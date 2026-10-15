@@ -22,20 +22,15 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
 *Feedback required from using existing processes first*
 - Private web access to HQ
   - Projects, reports by area, process calendar, adoption charts from `hq-private/data/stats/`
-  - GitHub Pages can't do this: free org needs a public repo, Team plan makes the site public, only
-    Enterprise Cloud has access-controlled Pages
-  - Proposed: Zensical site built by a GitHub Action, deployed to Cloudflare Pages behind Cloudflare
-    Access (free; email one-time code), e.g. `hq.rhizomatics.org.uk`
-  - Contributors added by email later
-  - Needs from Jey: Cloudflare account and DNS for the subdomain, API token for deploys
 - Public facing site
   - A separate site from a safe subset only (never security data, traffic referrers, personal
     infrastructure, support triage notes)
   - Retire `hacs_downloads` and not lose any functionality
   - Maintain private what has to be private
   - Maintain repo private, so build out of Github Pages
-    - Presume as an S3 bucket with CloudFront to guard against S3 costs
+    - Presume not an S3 bucket (with CloudFront to guard against S3 costs) unless hit wall with Github Pages
   - Non real time, build once or twice a day
+  - Replace `hacs_downloads` site and the `www.rhizomatics.org.uk` site built from `.github` repo
 
 ### Distant
 *Longer term feedback needed to see if its worthwhile and the shape of the package*
