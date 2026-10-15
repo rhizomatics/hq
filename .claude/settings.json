@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api -X PATCH repos/rhizomatics/*/branches/main/protection/required_status_checks *)"
+    ]
+  }
+}

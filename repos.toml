@@ -1,0 +1,121 @@
+# Registry of Rhizomatics repos and where each one is distributed.
+# Single source of truth for every process: stats collection, sweeps, alignment reviews.
+#
+# family:     ha-integration | signalk-plugin | mqtt-service | cli | site | meta
+# npm/pypi:   published package name
+# ghcr:       container image name under ghcr.io/rhizomatics/
+# ha_domain:  Home Assistant integration domain (for HA analytics install counts)
+# hacs_zip:   release asset name HACS downloads (counts = HACS installs/updates)
+# upstream:   platform whose transitive vulns are excluded from security escalation
+
+[org]
+github = "rhizomatics"
+maintainers = ["jeyrb"]
+
+[repos.supernotify]
+family = "ha-integration"
+ha_domain = "supernotify"
+hacs_zip = "supernotify.zip"
+upstream = "homeassistant"
+category = ["major"]
+
+[repos.autoarm]
+family = "ha-integration"
+ha_domain = "autoarm"
+hacs_zip = "autoarm.zip"
+upstream = "homeassistant"
+category = ["major"]
+
+[repos.remote_logger]
+family = "ha-integration"
+ha_domain = "remote_logger"
+hacs_zip = "remote_logger.zip"
+upstream = "homeassistant"
+category = ["major"]
+
+[repos.appliance_autonotify]
+family = "ha-integration"
+ha_domain = "appliance_autonotify"
+hacs_zip = "appliance_autonotify.zip"
+upstream = "homeassistant"
+
+[repos.homeassistant-repl]
+family = "ha-integration"
+pypi = "homeassistant-repl"
+ha_domain = "ha_repl_server"
+upstream = "homeassistant"
+
+[repos.updates2mqtt]
+family = "mqtt-service"
+pypi = "updates2mqtt"
+ghcr = "updates2mqtt"
+category = ["major"]
+
+[repos.anpr2mqtt]
+family = "mqtt-service"
+pypi = "anpr2mqtt"
+ghcr = "anpr2mqtt"
+
+[repos.signalk-einklabel-plugin]
+family = "signalk-plugin"
+npm = "@rhizomatics/signalk-einklabel-plugin"
+upstream = "signalk"
+category = ["major"]
+
+[repos.signalk-einklabel-genai-plugin]
+family = "signalk-plugin"
+npm = "@rhizomatics/signalk-einklabel-genai-plugin"
+upstream = "signalk"
+
+[repos.signalk-datalab-plugin]
+family = "signalk-plugin"
+npm = "@rhizomatics/signalk-datalab-plugin"
+upstream = "signalk"
+category = ["major"]
+
+[repos.signalk-teltonika-sms-plugin]
+family = "signalk-plugin"
+npm = "@rhizomatics/signalk-teltonika-sms-plugin"
+upstream = "signalk"
+
+[repos.signalk-bluetti-plugin]
+family = "signalk-plugin"
+npm = "@rhizomatics/signalk-bluetti-plugin"
+upstream = "signalk"
+category = ["major"]
+
+[repos.signalk-delta-squelch-plugin]
+family = "signalk-plugin"
+npm = "@rhizomatics/signalk-delta-squelch-plugin"
+upstream = "signalk"
+
+[repos.signalk-cli]
+family = "cli"
+pypi = "signalk-cli"
+
+[repos.hacs-downloads]
+family = "site"
+
+[repos.boat-tech-directory]
+family = "site"
+category = ["major"]
+
+[repos.awesome-mqtt]
+family = "site"
+
+[repos.agent-plugins]
+family = "meta"
+
+[repos.".github"]
+family = "meta"
+
+[repos.hq]
+family = "meta"
+
+[repos.hq-private]
+family = "meta"
+category = ["internal"]
+
+[repos.brands]
+family = "meta"
+category = ["internal"]
