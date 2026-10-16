@@ -16,4 +16,12 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
     (secret scanning + push protection, dependency graph, Dependabot alerts; CodeQL `not_set`, unenforced) set as
     default for new public repos. Existing repos are not attached to it; their settings were set directly.
   - [x] @pair CodeQL default setup on the signalk plugins — 2026-10-14: enabled on all six; first alerts in hq-private#3.
-  - [ ] @pair `paths-ignore` for generated docs HTML (supernotify `docs/developer/diagrams/`) — PR rhizomatics/supernotify#281; merge steps in hq-private#2.
+  - [x] @pair `paths-ignore` for generated docs HTML (supernotify `docs/developer/diagrams/`) — PR rhizomatics/supernotify#281 merged 2026-10-14.
+
+## Next
+
+- [ ] @agent Add OpenSSF Scorecard to the security/alignment reviews (nothing started yet; the 2026-10-14 work was all secret scanning and CodeQL)
+
+## Log
+
+- 2026-10-16 — project-review: ticked the `paths-ignore` task (supernotify#281 merged). Secret-scanning work is complete; Scorecard itself not started.
