@@ -7,6 +7,16 @@ Expectations of Rhizomatics projects
 `pre-commit` configured and local hooks installed
 `mise` used for tooling definition and installation
 
+## Claude Code settings
+
+- `.claude/settings.local.json` is gitignored. Accumulated "always allow" permissions go there and
+  stay on the maintainer's machine.
+- `.claude/settings.json` is committed only for deliberate, project-wide items: hooks, and
+  optionally the repo's own dev commands (`npm run *`, `uv run pytest *`, ...). No local paths,
+  one-off commands or broad rules like `git add *`, `pip install *` or `python3 -c *`; project
+  permissions apply to every contributor who opens Claude Code in a clone.
+- Don't gitignore all of `.claude/`: that also blocks shared skills, agents and `CLAUDE.md`.
+
 ## Python Projects
 
 Standard tools - `ruff`,`mypy`,`ty`,`uv`
