@@ -33,7 +33,7 @@ hacs_zip = "remote_logger.zip"
 upstream = "homeassistant"
 category = ["major"]
 
-[repos.appliances_autonotify]
+[repos.appliance_autonotify]
 family = "ha-integration"
 ha_domain = "appliance_autonotify"
 hacs_zip = "appliance_autonotify.zip"
