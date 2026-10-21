@@ -29,6 +29,11 @@ Once per run, not per repo:
   Dependabot alert: `gh api "repos/astral-sh/uv/security-advisories?state=published"` (in a cloud
   routine, WebFetch https://github.com/astral-sh/uv/security/advisories instead). Only those
   published since the previous report.
+- Node.js security releases, since every SignalK plugin runs on Node and Node CVEs never reach
+  Dependabot: WebFetch https://nodejs.org/en/feed/vulnerability.xml (posts listed at
+  https://nodejs.org/en/blog/vulnerability). Only posts since the previous report. A
+  pre-announcement gives the lines and top severity but no details; note it in one line and
+  check again once the release post is out.
 
 ## Escalate if any of
 
@@ -54,6 +59,14 @@ Once per run, not per repo:
    - The maintainer's laptop and servers, where uv is installed with mise (`mise upgrade uv`, not
      `uv self update`).
    Escalate under the area of the repos or images it affects, or `org` if none do.
+7. A released Node.js fix rated critical/high on a supported line. CI uses `node-version: "22"`
+   (major only), so it picks up the patch by itself. What stays exposed:
+   - SignalK users: plugins run on the user's signalk-server and its Node, which we can't patch.
+     Escalate under `signalk` only when the flaw is in something our plugins use (http/TLS,
+     `fetch`/undici, child processes, file system), so the maintainer can decide whether to tell
+     users or raise `engines.node`. Note plugins whose `engines.node` allows an end-of-life line.
+   - The maintainer's laptop and servers, where Node is installed with mise (`mise upgrade node`).
+     Escalate under `org`.
 
 Compare with the previous file in `hq-private/reports/security/` so the same alert isn't escalated twice
 unless it is older than 7 days and still open (then re-escalate as "still open").
