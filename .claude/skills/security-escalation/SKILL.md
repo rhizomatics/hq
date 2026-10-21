@@ -23,6 +23,13 @@ snapshot couldn't read it). Private advisories still work via `gh api`.
 - Secret scanning: `gh api repos/rhizomatics/<repo>/secret-scanning/alerts?state=open`
 - Privately reported advisories: `gh api repos/rhizomatics/<repo>/security-advisories?state=triage`
 
+Once per run, not per repo:
+
+- uv advisories, since uv builds, locks and packages every Python repo but never shows up as a
+  Dependabot alert: `gh api "repos/astral-sh/uv/security-advisories?state=published"` (in a cloud
+  routine, WebFetch https://github.com/astral-sh/uv/security/advisories instead). Only those
+  published since the previous report.
+
 ## Escalate if any of
 
 1. Any open secret-scanning alert.
@@ -35,6 +42,11 @@ snapshot couldn't read it). Private advisories still work via `gh api`.
    and we can't pin around them sensibly. Count them in the summary but don't escalate.
 5. A medium alert in a direct runtime dependency with a known exploit (check the advisory for
    "actively exploited" / KEV) — use judgement.
+6. A new critical/high uv advisory, or a medium one that applies to how we use uv. CI runs
+   `astral-sh/setup-uv` without a version, so it picks up the fix by itself. What stays exposed:
+   published images, which copy `ghcr.io/astral-sh/uv:latest` at build time (repos with `ghcr` in
+   `repos.toml`; compare the latest release date with the fix date), and the maintainer's laptop
+   and servers, where uv is installed with mise (`mise upgrade uv`, not `uv self update`). Escalate under the area of the images it affects, or `org` if none do.
 
 Compare with the previous file in `hq-private/reports/security/` so the same alert isn't escalated twice
 unless it is older than 7 days and still open (then re-escalate as "still open").
