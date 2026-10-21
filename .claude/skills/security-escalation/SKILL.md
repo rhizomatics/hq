@@ -40,13 +40,20 @@ Once per run, not per repo:
    `transitive` (or `unknown` and the package is not declared in our own manifest), and it arrives
    via `homeassistant` / `signalk-server` / their test harnesses. Those are the platform's to fix
    and we can't pin around them sensibly. Count them in the summary but don't escalate.
+   Exception: `uv`. Home Assistant pins it exactly, and under `uv run` the venv's copy shadows
+   the mise-managed one, so the old version actually runs in our dev and CI. Treat it as rule 6.
 5. A medium alert in a direct runtime dependency with a known exploit (check the advisory for
    "actively exploited" / KEV) — use judgement.
 6. A new critical/high uv advisory, or a medium one that applies to how we use uv. CI runs
    `astral-sh/setup-uv` without a version, so it picks up the fix by itself. What stays exposed:
-   published images, which copy `ghcr.io/astral-sh/uv:latest` at build time (repos with `ghcr` in
-   `repos.toml`; compare the latest release date with the fix date), and the maintainer's laptop
-   and servers, where uv is installed with mise (`mise upgrade uv`, not `uv self update`). Escalate under the area of the images it affects, or `org` if none do.
+   - `upstream = "homeassistant"` repos: the lock carries Home Assistant's exact uv pin into the
+     venv. Each has `override-dependencies = ["uv>=X"]` in `[tool.uv]`; when a fix lands, raise X
+     and relock (`uv lock --upgrade-package uv`) as a PR per repo. Check the locked `uv` version.
+   - Published images, which copy `ghcr.io/astral-sh/uv:latest` at build time (repos with `ghcr` in
+     `repos.toml`; compare the latest release date with the fix date).
+   - The maintainer's laptop and servers, where uv is installed with mise (`mise upgrade uv`, not
+     `uv self update`).
+   Escalate under the area of the repos or images it affects, or `org` if none do.
 
 Compare with the previous file in `hq-private/reports/security/` so the same alert isn't escalated twice
 unless it is older than 7 days and still open (then re-escalate as "still open").
