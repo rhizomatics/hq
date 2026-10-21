@@ -64,7 +64,8 @@ Once per run, not per repo:
    - SignalK users: plugins run on the user's signalk-server and its Node, which we can't patch.
      Escalate under `signalk` only when the flaw is in something our plugins use (http/TLS,
      `fetch`/undici, child processes, file system), so the maintainer can decide whether to tell
-     users or raise `engines.node`. Note plugins whose `engines.node` allows an end-of-life line.
+     users or raise `engines.node`. If the floor in `policies/signalk_versions.md` now permits a
+     Node line that won't get the fix, say so.
    - The maintainer's laptop and servers, where Node is installed with mise (`mise upgrade node`).
      Escalate under `org`.
 
