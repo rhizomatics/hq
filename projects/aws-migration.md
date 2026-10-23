@@ -53,3 +53,4 @@ _None yet._
 ## Log
 
 - 2026-10-14 — Project created. Rhizomatics AWS account exists; inventory blocked on Phase 0 credentials.
+- 2026-10-23 — project-review: hq-private#20 (Phase 0 access) was closed by jeyrb on 2026-10-16 with no comment. Phase 0 boxes left unticked until confirmed; no AWS CLI or profile in the cloud routine environment, so Phase 1 inventory is `@pair` for now. See hq-private#33.
