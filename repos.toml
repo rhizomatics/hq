@@ -39,6 +39,17 @@ ha_domain = "appliance_autonotify"
 hacs_zip = "appliance_autonotify.zip"
 upstream = "homeassistant"
 
+[repos.camera_autonotify]
+family = "ha-integration"
+ha_domain = "camera_autonotify"
+hacs_zip = "camera_autonotify.zip"
+upstream = "homeassistant"
+[repos.appliance_autonotify]
+family = "ha-integration"
+ha_domain = "appliance_autonotify"
+hacs_zip = "appliance_autonotify.zip"
+upstream = "homeassistant"
+
 [repos.homeassistant-repl]
 family = "ha-integration"
 pypi = "homeassistant-repl"
@@ -88,6 +99,12 @@ category = ["major"]
 family = "signalk-plugin"
 npm = "@rhizomatics/signalk-delta-squelch-plugin"
 upstream = "signalk"
+
+[repos.pico-ble-proxy]
+family="picoware"
+
+[repos.pico-ais-reporter]
+family="picoware"
 
 [repos.signalk-cli]
 family = "cli"
