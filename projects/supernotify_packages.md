@@ -15,4 +15,4 @@ Its anticipated that changes are made in Supernotify to handle live activities, 
 
 ## Log
 
-- 2026-10-23 — project-review: first package exists as its own repo, `rhizomatics/appliances_autonotify` (active, 0.13.0 prep 2026-10-22; design in supernotify RFC 0004). Frigate is RFC 0006 (draft, 2026-09-24), no code yet.
+- 2026-10-23 — project-review: first package exists as its own repo, `rhizomatics/appliance_autonotify` (active, 0.13.0 prep 2026-10-22; design in supernotify RFC 0004). Frigate is RFC 0006 (draft, 2026-09-24), no code yet.

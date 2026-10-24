@@ -16,4 +16,4 @@ to avoid complicating dependencies.
 
 ## Log
 
-- 2026-10-23 — project-review: audit done. Every docs repo with a docs config (anpr2mqtt, appliances_autonotify, autoarm, homeassistant-repl, remote_logger, signalk-cli, supernotify, updates2mqtt) has `properdocs.yml`, none has `mkdocs.yml`; remote_logger dropped its mkdocs refs on 2026-10-16. No Zensical trailblazer yet. Migration half looks complete (plugin packages keep their `mkdocs-` names, which is expected).
+- 2026-10-23 — project-review: audit done. Every docs repo with a docs config (anpr2mqtt, appliance_autonotify, autoarm, homeassistant-repl, remote_logger, signalk-cli, supernotify, updates2mqtt) has `properdocs.yml`, none has `mkdocs.yml`; remote_logger dropped its mkdocs refs on 2026-10-16. No Zensical trailblazer yet. Migration half looks complete (plugin packages keep their `mkdocs-` names, which is expected).
