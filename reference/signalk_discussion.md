@@ -15,4 +15,5 @@ for the area (`<area>: forum replies and manual checks`). Cadence as above.
 
 | Community | URL | Cadence | What to look for |
 |---|---|---|---|
-| SignalK Discord | _add invite link_ | weekly | plugin names, questions about eInk, SMS, Bluetti, data analysis |
+| SignalK Discord |[Discord Invite](https://discord.gg/uuZrwz4dCS) | weekly | plugin names, questions about eInk, SMS, Bluetti, data analysis |
+| SignalK Github Discussions|[Discussions](https://github.com/SignalK/signalk/discussions)|weekly| plugin names, questions about eInk, SMS, Bluetti, data analysis |
