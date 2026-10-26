@@ -34,6 +34,7 @@ Follow Home Assistants requirements. Maintain older versions of Python where req
 
 - Use a test matrix on `ci` Github Action workflows that tests every major version in the range, e.g. `3.13`,`3.14` and `3.15`
 - By exception, multiple minor versions may be added,e.g. separately test `3.14.3` and `3.14.4`. This will happen only where there's known issues introduced in the minor update.
+- ALways use the latest point release per major version
 - Nothing in this policy covers a `4.0.0` or similar Python release. Ignore all such releases until policy is reviewed to handle it.
 - New features in latest Python releases will not be exploited until that version is the last in the supported range
   - Exception for high priority usage that can be gated for that version only, or more cumbersome workarounds for earlier releases

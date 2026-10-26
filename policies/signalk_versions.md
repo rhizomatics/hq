@@ -23,6 +23,7 @@ The minimum Node version is the `engines.node` of the oldest supported `signalk-
   - When the window moves past a `signalk-server` release that raised its Node minimum, raise the
     plugins' `engines.node` to match. Never set it lower than the server's.
   - CI `node-version` uses that minimum major
+  - Always use the latest point release within a major version
   - Example
     - `signalk-server` `v2.25.0` declares `"node": ">=22"`, so plugins declare `"node": ">=22"`
 
