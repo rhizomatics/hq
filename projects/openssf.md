@@ -26,3 +26,4 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
 
 - 2026-10-16 — project-review: ticked the `paths-ignore` task (supernotify#281 merged). Secret-scanning work is complete; Scorecard itself not started.
 - 2026-10-23 — project-review: still no Scorecard work; nothing else moved.
+- 2026-10-30 — project-review: no Scorecard work for the third week running. Kept as `@agent` next step; see report for whether it is still worth having.
