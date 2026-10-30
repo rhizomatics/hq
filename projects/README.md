@@ -49,21 +49,22 @@ blocked, say on what (in frontmatter `status` if the file has it, otherwise in t
 | [OpenSSF](openssf.md) | OpenSSF Scorecard and checks feeding the security and alignment reviews |
 | [De-YAMLification](deyamlification.md) | HA components with zero YAML, or a small power-user set |
 | [Supernotify packages](supernotify_packages.md) | Auto-discovered notification packages on top of Supernotify |
-| [Developer environment](dev-env.md) | Segregated hardware, software and cloud dev environment (depends on AWS migration) |
-| [Media](media.md) | Supporting material aimed at a general audience that uses Rhizomatics products |
-| [mkdocs decom](mkdocs_decom.md) | Move docs off mkdocs to properdocs/materialx, Zensical for new projects |
-| [OCI container client](oci-container-client.md) | Extract updates2mqtt's OCI registry client into a reusable Python library |
-| [Project alignment](project-alignment.md) | Reduce unnecessary variation across the stack |
 
 ### Proposed
 
 | Project | Goal |
 |---|---|
 | [Tankie](proposed/tankie.md) | Heating oil / offline fuel storage in HA, using the Energy features |
+| [Developer environment](proposed/dev-env.md) | Segregated hardware, software and cloud dev environment (depends on AWS migration) |
+| [Media](proposed/media.md) | Supporting material aimed at a general audience that uses Rhizomatics products |
+| [OCI container client](proposed/oci-container-client.md) | Extract updates2mqtt's OCI registry client into a reusable Python library |
+| [Project alignment](proposed/project-alignment.md) | Reduce unnecessary variation across the stack |
 
 ### Done
 
-_None yet._
+| Project | Goal |
+|---|---|
+| [mkdocs decom](done/mkdocs_decom.md) | Move docs off mkdocs to properdocs/materialx, Zensical for new projects |
 
 ### Shelved
 
