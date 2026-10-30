@@ -13,5 +13,7 @@ This is always within the limitations of the underlying platform, and its import
   - Shared suite of admin workflows and configs
   - Common names for workflows (`ci`) and internal config
 - See also
-  - [Project Tooling](../reference/project_tooling.md)
-  - [Project Standards](../reference/project_standards.md)
+  - [Project Tooling](../../reference/project_tooling.md)
+  - [Project Standards](../../reference/project_standards.md)
+
+- 2026-10-30 — project-review: moved to proposed; idea note with no tasks or next step. Move back up when a first task and a start date exist.

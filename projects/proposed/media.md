@@ -19,3 +19,5 @@ Produce supporting material that uses Rhizomatics products but is aimed at a mor
 - Simplifying automations with virtual alarm panels in Home Assistant
 - CCTV without pictures, audio announcements of activity with Frigate and Home Assistant
 - Setting up a HQ for your open source projects with Claude 
+
+- 2026-10-30 — project-review: moved to proposed; idea note with no tasks or next step. Move back up when a first task and a start date exist.
