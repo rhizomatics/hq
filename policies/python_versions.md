@@ -40,6 +40,11 @@ Follow Home Assistants requirements. Maintain older versions of Python where req
   - Exception for high priority usage that can be gated for that version only, or more cumbersome workarounds for earlier releases
   - Exception for development only usage, e.g. profiling
 
+## Responsibilities
+
+  - Python and Home Assistant issues are not the responsibility of the Rhizomatics custom components, unless there's some specific vulnerable feature that is used by the components.
+
+
 ## Reference
 
 ## Python 3.15

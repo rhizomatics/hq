@@ -27,6 +27,10 @@ The minimum Node version is the `engines.node` of the oldest supported `signalk-
   - Example
     - `signalk-server` `v2.25.0` declares `"node": ">=22"`, so plugins declare `"node": ">=22"`
 
+## Responsibilities
+
+  - Node and SignalK issues are not the responsibility of the Rhizomatics SignalK plugins, unless there's some specific vulnerable feature that is used by the plugins
+
 ## Checking
 
 Find the oldest supported release with
