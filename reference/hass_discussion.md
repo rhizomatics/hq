@@ -5,7 +5,7 @@ even ISO weeks) | monthly (1st). `How to search` tells the agent which access me
 
 | Community | URL | Cadence | How to search |
 |---|---|---|---|
-| Home Assistant Community | https://community.home-assistant.io | daily | Discourse API: `/search.json?q=<terms> after:<YYYY-MM-DD> order:latest`, `/latest.json` Discourse API occasionally fails DNS in the sandbox and WebSearch is a lagging fallback. |
+| Home Assistant Community | https://community.home-assistant.io | daily | Discourse API: `/search.json?q=<terms> after:<YYYY-MM-DD> order:latest`, `/latest.json` Discourse API occasionally fails DNS in the sandbox and WebSearch is a lagging fallback. WebFetch can get 403 from it; `curl` to the same URL has worked then. |
 | r/homeassistant | https://www.reddit.com/r/homeassistant | daily | Reddit API blocks anonymous calls (403) — WebSearch `site:reddit.com/r/homeassistant <terms>` |
 | Feature Requests | https://github.com/orgs/home-assistant/discussions | daily | Regular Github Discussions|
 | Architecture | https://github.com/home-assistant/architecture/discussions | daily | Regular Github discussions |
