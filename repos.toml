@@ -7,10 +7,29 @@
 # ha_domain:  Home Assistant integration domain (for HA analytics install counts)
 # hacs_zip:   release asset name HACS downloads (counts = HACS installs/updates)
 # upstream:   platform whose transitive vulns are excluded from security escalation
+#
+# security_watch: platform packages our users run but we don't patch, so Dependabot's alerts don't
+# reach the decision that matters. Advisories for them are snapshotted by collect_github.py.
+# ecosystem is the GitHub advisory API's name (pip, npm); area is the hq issue label.
 
 [org]
 github = "rhizomatics"
 maintainers = ["jeyrb"]
+
+[[security_watch]]
+ecosystem = "npm"
+package = "signalk-server"
+area = "signalk"
+
+[[security_watch]]
+ecosystem = "npm"
+package = "@signalk/resources-provider"
+area = "signalk"
+
+[[security_watch]]
+ecosystem = "pip"
+package = "homeassistant"
+area = "homeassistant"
 
 [repos.supernotify]
 family = "ha-integration"

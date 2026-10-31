@@ -1,6 +1,6 @@
 ---
 name: security-escalation
-description: Daily check for serious security issues across Rhizomatics repos (Dependabot, code scanning, secret scanning, private advisories). Escalates only what matters, excluding purely transitive vulnerabilities inherited from Home Assistant or SignalK.
+description: Daily check for serious security issues across Rhizomatics repos (Dependabot, code scanning, secret scanning, private advisories, platform advisories). Escalates only what matters, excluding purely transitive vulnerabilities inherited from Home Assistant or SignalK.
 context: fork
 agent: infra-lead
 ---
@@ -34,6 +34,15 @@ Once per run, not per repo:
   https://nodejs.org/en/blog/vulnerability). Only posts since the previous report. A
   pre-announcement gives the lines and top severity but no details; note it in one line and
   check again once the release post is out.
+- Platform advisories, since Home Assistant and SignalK flaws hit our users whatever our own
+  dependencies say: `advisories` in the latest `hq-private/data/github/YYYY-MM-DD.json`, one list
+  per package in `security_watch` in `repos.toml` (reviewed GitHub advisories from the last 30 days,
+  with `epss` and `kev_added`). An advisory listed under two packages is one item. New means its
+  `ghsa` isn't in an earlier report in `hq-private/reports/security/`.
+- Exploitation: `kev_added` on Dependabot alerts and advisories is the date it entered CISA's Known
+  Exploited Vulnerabilities catalog (null if it isn't there), and `epss` the estimated chance of
+  exploitation (0 to 1). If `kev` in the snapshot is `{"error": ...}`, null means unknown: note the
+  gap.
 
 ## Escalate if any of
 
@@ -47,8 +56,8 @@ Once per run, not per repo:
    and we can't pin around them sensibly. Count them in the summary but don't escalate.
    Exception: `uv`. Home Assistant pins it exactly, and under `uv run` the venv's copy shadows
    the mise-managed one, so the old version actually runs in our dev and CI. Treat it as rule 6.
-5. A medium alert in a direct runtime dependency with a known exploit (check the advisory for
-   "actively exploited" / KEV) — use judgement.
+5. A medium alert in a direct runtime dependency with a known exploit (`kev_added` set, or the
+   advisory says "actively exploited") — use judgement.
 6. A new critical/high uv advisory, or a medium one that applies to how we use uv. CI runs
    `astral-sh/setup-uv` without a version, so it picks up the fix by itself. What stays exposed:
    - `upstream = "homeassistant"` repos: the lock carries Home Assistant's exact uv pin into the
@@ -68,6 +77,16 @@ Once per run, not per repo:
      Node line that won't get the fix, say so.
    - The maintainer's laptop and servers, where Node is installed with mise (`mise upgrade node`).
      Escalate under `org`.
+8. A new platform advisory that has `kev_added` set, or is critical/high and affects a release our
+   users can still be running. Severity labels overstate some of these, so read the description
+   and leave out one that needs an already trusted user and has low `epss` (count it in the summary
+   instead). Rule 4 still covers the same packages as Dependabot alerts. Escalate under the
+   `security_watch` area, saying:
+   - The affected range and first fixed release, and whether the floor in
+     `policies/signalk_versions.md` or a repo's own supported range still permits vulnerable
+     versions.
+   - What the human must decide: upgrade the maintainer's own servers, tell users (a draft in the
+     report), raise a floor (a PR per repo).
 
 Compare with the previous file in `hq-private/reports/security/` so the same alert isn't escalated twice
 unless it is older than 7 days and still open (then re-escalate as "still open").
