@@ -45,12 +45,12 @@ A `developer` docs directory with `principles.md` and `roadmap.md`
 
 - Quality Scale assessed and maintained
 - Rolling 6 months of Home Assistant compatibility maintained, including where the underlying Python version changes.
-  In October 2026 that means 2026.4.0 to 2026.10.x. `hacs.json` `homeassistant` is the oldest release in the window,
+  In November 2026 that means 2026.5.0 to 2026.11.x. `hacs.json` `homeassistant` is the oldest release in the window,
   and CI tests the oldest and newest.
 
 ## Other Home Assistant standards
 
 - Translation
-  - https://developers.home-assistant.io/docs/translations/
+  - https://contributors.home-assistant.io/translate/
     - Exception is use of `lokalise`
-  - https://developers.home-assistant.io/docs/internationalization/custom_integration
+  - https://contributors.home-assistant.io/core/integrations/translations/

@@ -9,7 +9,7 @@ This extends to documentation standards.
 ## Known Issues & Possible Work
 
 - Do not use strings.json for custom components.
-  - Source: https://developers.home-assistant.io/docs/internationalization/custom_integration
+  - Source: https://contributors.home-assistant.io/core/integrations/translations/
 - Support the HA change to new Contributors site by updating URLs to previous developer or data sites
 - HACS moving into Home Assistant as Marketplace
   - https://github.com/home-assistant/home-assistant.io/blob/7896394058b9b9576692cf990cbb36dcfbef1c8a/source/_integrations/marketplace.markdown

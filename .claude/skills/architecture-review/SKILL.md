@@ -24,7 +24,7 @@ May, August and November, scheduled daily then. Each run reviews **one batch**.
 What changed in the platform's architecture and guidance since the last quarter's review, so the
 product reviews judge against the current rules:
 
-- **Home Assistant**: developer docs (`https://developers.home-assistant.io/docs/`) and dev blog
+- **Home Assistant**: developer docs (`https://contributors.home-assistant.io/`, formerly developers.home-assistant.io) and dev blog
   posts since last quarter; the `hq-private/reports/ecosystem/` reports from the quarter. The release notes
   for every HA release in the supported window
   (`https://www.home-assistant.io/blog/categories/release-notes/`): read each release's
@@ -32,7 +32,7 @@ product reviews judge against the current rules:
   services or APIs our products use or overlap with (e.g. `notify`, `alarm_control_panel`, `update`,
   `logger`, MQTT discovery), and note which product each affects. **Quality Scale
   itself**: compare the current checklist and rules
-  (`https://developers.home-assistant.io/docs/core/integration-quality-scale/checklist`,
+  (`https://contributors.home-assistant.io/core/quality-scale/rules/#checklist`,
   `.../rules/`) with last quarter's `_platform-changes.md` — rules added, removed, renamed or moved
   between tiers, and hassfest changes in `home-assistant/core` `script/hassfest/quality_scale*.py`.
 - **SignalK**: `@signalk/server-api` and `SignalK/signalk-server` plugin docs
