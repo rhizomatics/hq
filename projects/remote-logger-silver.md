@@ -23,13 +23,13 @@ counters. No other Silver rule looks like a candidate for an exception; all are 
 
 ## Plan
 
-- [ ] @pair Bronze: action-setup, entity-unique-id, test-before-setup, docs-removal-instructions, reconfigure flow, HA floor and test matrix (hq#66; PRs in progress 2026-11-01)
-- [ ] @pair action-exceptions: `ServiceValidationError` for unknown or unloaded entries (rides the Bronze fixes PR)
+- [ ] @pair Bronze (hq#66): fixes remote_logger#103 (merged), reconfigure flow #104, HA floor + test matrix + bronze declaration #105
+- [x] @pair action-exceptions: `ServiceValidationError` for unknown or unloaded entries (remote_logger#103, merged 2026-11-01)
 - [ ] @pair parallel-updates: `PARALLEL_UPDATES = 0` in sensor.py (S)
 - [ ] @pair log-when-unavailable: log once when the collector becomes unreachable and once on recovery, instead of a warning per flush (S)
 - [ ] @pair docs-installation-parameters: describe every setup field in text (OTLP host/port/TLS/encoding/token/headers/resource attributes, syslog fields), after the reconfigure flow lands (S, tech-writer)
 - [ ] @pair docs-configuration-parameters: describe every options field (log level, event groups, event body, custom events, suppress event name) (S, tech-writer)
-- [ ] @pair test-coverage above 95% (91.7% on 2026-11-01): exporter.py, otel/exporter.py, remote_logger.py event-group branches; raise `fail-under` to 95 (M)
+- [ ] @pair test-coverage above 95% (91.7% on 2026-11-01; 96% with #104, so mainly raise `fail-under` and update quality_scale.yaml): exporter.py, otel/exporter.py, remote_logger.py event-group branches; raise `fail-under` to 95 (M)
 - [ ] @pair Re-check entity-unavailable exemption and set `quality_scale: silver` in manifest.json
 - [ ] @human Merge the PRs; release
 
@@ -41,3 +41,4 @@ counters. No other Silver rule looks like a candidate for an exception; all are 
 ## Log
 
 - 2026-11-01: project started. Bronze PRs being built. Silver gap list taken from quality_scale.yaml; no reasons found not to go for Silver.
+- 2026-11-01: #103 merged; #104 and #105 green. Coverage reaches 96% with #104. Remaining Silver: parallel-updates, log-when-unavailable, the two docs-parameters rules, fail-under 95.
