@@ -23,7 +23,7 @@ counters. No other Silver rule looks like a candidate for an exception; all are 
 
 ## Plan
 
-- [ ] @pair Bronze (hq#66): fixes remote_logger#103 (merged), reconfigure flow #104, HA floor + test matrix + bronze declaration #105
+- [x] @pair Bronze (hq#66): remote_logger#103, #104, #105, all merged 2026-11-01; manifest declares bronze
 - [x] @pair action-exceptions: `ServiceValidationError` for unknown or unloaded entries (remote_logger#103, merged 2026-11-01)
 - [ ] @pair parallel-updates: `PARALLEL_UPDATES = 0` in sensor.py (S)
 - [ ] @pair log-when-unavailable: log once when the collector becomes unreachable and once on recovery, instead of a warning per flush (S)
@@ -42,3 +42,4 @@ counters. No other Silver rule looks like a candidate for an exception; all are 
 
 - 2026-11-01: project started. Bronze PRs being built. Silver gap list taken from quality_scale.yaml; no reasons found not to go for Silver.
 - 2026-11-01: #103 merged; #104 and #105 green. Coverage reaches 96% with #104. Remaining Silver: parallel-updates, log-when-unavailable, the two docs-parameters rules, fail-under 95.
+- 2026-11-01: Bronze reached on main (#104, #105 merged); hq#66 closed. Next: Silver PRs.
