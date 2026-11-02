@@ -115,6 +115,11 @@ family = "signalk-plugin"
 npm = "@rhizomatics/signalk-delta-squelch-plugin"
 upstream = "signalk"
 
+[repos.signalk-ble-sensors-plugin]
+family = "signalk-plugin"
+npm = "@rhizomatics/signalk-ble-sensors-plugin"
+upstream = "signalk"
+
 [repos.pico-ble-proxy]
 family="picoware"
 
