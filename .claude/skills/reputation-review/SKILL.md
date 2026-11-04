@@ -25,8 +25,7 @@ agent: marketing
    Home Assistant/SignalK docs or blogs, YouTube/blog write-ups. GitHub dependents and stars trend.
 4. **Competitors and alternatives** — projects that came up in comparisons; what they claim, what
    users prefer, gaps we could fill or should acknowledge.
-5. **Our own presence** — last announcement per product vs last release; releases that were never
-   announced.
+5. **Our own presence** — last announcement per product vs last release; releases that were never announced. References to other products where relevant, or in the footer of README.md.
 
 ## Output
 
