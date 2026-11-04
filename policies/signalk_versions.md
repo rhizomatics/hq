@@ -12,6 +12,10 @@ Support a rolling 6 months of `signalk-server` releases.
     - Don't use server APIs added after the oldest supported release, unless the plugin checks
       for them at runtime and degrades gracefully
   - Declare the floor in `package.json` as `"engines": { "signalk-server": ">=X.Y.Z" }`
+  - Raise the declared floor when a plugin needs a newer API, otherwise at most once a quarter.
+    A declared floor a little below the window does no harm in between (decided in hq#53, 2026-10-29)
+  - The window applies to the CI test matrix as well as to the floor in `package.json`: test the
+    oldest supported release and the latest
   - Example
     - On 2026-10-21 the window starts 2026-04-21
     - `v2.25.0` (2026-04-19) was current then, so supported range is `v2.25.0` to `v2.34.0`
