@@ -15,8 +15,8 @@ github.com pages (`/releases`, `/pulls?q=...`, `/discussions`); the `gh` command
 
 ## Look back: releases in the last month
 
-- **Home Assistant**: release blog post (`https://www.home-assistant.io/blog/` — "20YY.M" post),
-  its "Backward-incompatible changes" section, and the developer blog
+- **Home Assistant**: release blog post (`https://www.home-assistant.io/blog/` — "20YY.M" post), 
+  its "Backward-incompatible changes" section, the changelog (for example https://www.home-assistant.io/changelogs/core-2026.11) and the developer blog
   `https://contributors.home-assistant.io/blog/` (deprecations and API changes for custom integrations).
 - **SignalK**: `gh release list -R SignalK/signalk-server` and release notes; also
   `SignalK/specification` and `@signalk/server-api` changes.
