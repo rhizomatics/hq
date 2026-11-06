@@ -2,9 +2,11 @@
 
 Home Assistant custom components will be exemplary citizens of the community. 
 
-Components will be regularly checked against the Quality Scale , with aspirations towards the highest level, and the results checked in. The potential will be kept open for possible migration from HACS to Core.
+Components will be regularly checked against the Quality Scale , with aspirations towards the highest level, and the results checked in. The potential will be kept open for possible migration from Marketplace to Core.
 
 This extends to documentation standards.
+
+New features and other changes introduced in monthly Home Assistant releases will be supported within the month, without prejudicing ongoing support for older versions.
 
 ## Known Issues & Possible Work
 

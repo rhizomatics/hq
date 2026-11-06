@@ -33,7 +33,7 @@ The minimum Node version is the `engines.node` of the oldest supported `signalk-
 
 ## Responsibilities
 
-  - Node and SignalK issues are not the responsibility of the Rhizomatics SignalK plugins, unless there's some specific vulnerable feature that is used by the plugins
+  - Vulnerabilities in Node, SignalK, other plugins or SignalK dependencies are not Rhizomatics responsibilites. An exception is if there is some specific vulnerable feature that is used by the plugins and which requires immediate remediation and/or advice to users to avoid. 
 
 ## Checking
 
