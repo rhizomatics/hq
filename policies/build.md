@@ -1,4 +1,4 @@
-# Build Process
+# Build Policies
 
 ## Automated Build
 

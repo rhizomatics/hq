@@ -6,7 +6,7 @@ Scope: All Python based libraries
 
 Scope: All projects publishing to PyPi
 
-For PyPi published libraries, maintain 2 or 3 major versions
+For PyPi published libraries, maintain support for 2 or 3 major Python versions
   - The primary version will be the version out for longer than 1 year
   - Once latest version out for 1 year
     - It becomes primary version
