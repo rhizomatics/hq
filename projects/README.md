@@ -49,6 +49,7 @@ blocked, say on what (in frontmatter `status` if the file has it, otherwise in t
 | [OpenSSF](openssf.md) | OpenSSF Scorecard and checks feeding the security and alignment reviews |
 | [De-YAMLification](deyamlification.md) | HA components with zero YAML, or a small power-user set |
 | [Supernotify packages](supernotify_packages.md) | Auto-discovered notification packages on top of Supernotify |
+| [Home Assistant Marketplace](ha_marketplace.md) | Rename HACS badges, links and references to the Marketplace (2026.11) |
 | [remote_logger Silver](remote-logger-silver.md) | remote_logger at Quality Scale Silver by Feb 2027 |
 
 ### Proposed
