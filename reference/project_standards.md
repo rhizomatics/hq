@@ -9,7 +9,8 @@ Expectations of Rhizomatics projects
   - Standard tasks
     - `clean` - removes local ephemeral dirs
     - `refresh` - refreshes dependencies, and pulls in changes merged PRs
-    - `preview` - run a preview of component, e.g. using docker
+    - `preview-xxxxx` - run a preview of component, e.g. using docker
+    - Use `supernotify` as the model of how to do this
 
 ## Claude Code settings
 
