@@ -6,6 +6,12 @@ Components will be regularly checked against the Quality Scale , with aspiration
 
 This extends to documentation standards.
 
+## No YAML configuration
+
+Everything configurable is UI-driven (config flow). YAML is kept only for power-user content that is naturally text and round-trips with the UI. 
+
+Exceptions: Supernotify scenarios/deliveries; AutoArm rules engine.
+
 ## Known Issues & Possible Work
 
 - Do not use strings.json for custom components.
