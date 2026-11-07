@@ -43,3 +43,4 @@ counters. No other Silver rule looks like a candidate for an exception; all are 
 - 2026-11-01: project started. Bronze PRs being built. Silver gap list taken from quality_scale.yaml; no reasons found not to go for Silver.
 - 2026-11-01: #103 merged; #104 and #105 green. Coverage reaches 96% with #104. Remaining Silver: parallel-updates, log-when-unavailable, the two docs-parameters rules, fail-under 95.
 - 2026-11-01: Bronze reached on main (#104, #105 merged); hq#66 closed. Next: Silver PRs.
+- 2026-11-06 — project-review: no Silver PRs yet in remote_logger (only #106 SECURITY.md removal, #107 README links, deps/type fixes since 11-01). `sensor.py` still has no `PARALLEL_UPDATES`; manifest still `bronze`. 12 weeks to 2027-02-01, plenty of slack. Next `@pair`: parallel-updates and log-when-unavailable (both S).
