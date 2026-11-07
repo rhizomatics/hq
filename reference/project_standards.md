@@ -5,7 +5,7 @@ Expectations of Rhizomatics projects
 ## All Projects
 
 `pre-commit` configured and local hooks installed
-`mise` used for tooling definition and installation
+`mise` used for tooling definition and installation plus development tasks (`clean`,`refresh` etc)
 
 ## Claude Code settings
 
