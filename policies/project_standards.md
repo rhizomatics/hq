@@ -4,8 +4,12 @@ Expectations of Rhizomatics projects
 
 ## All Projects
 
+"All projects" means every repo with any code or markdown, including sites and picoware.
+
 - `prek` configured and local hooks installed
   - legacy hooks for 'pre-commit' removed
+  - No pre-commit.ci: hooks run locally through prek, and the CI workflow runs the linters and
+    type checks itself (decided in hq-private#83, 2026-11-08)
 - `mise` used for tooling definition and installation plus development tasks
   - Standard tasks
     - `clean` - removes local ephemeral dirs
@@ -16,8 +20,14 @@ Expectations of Rhizomatics projects
   - For example, `prek autoupdate --cooldown-days` and similar for uv and npm
   - Standard cooldown is 7 days
   - This may be extended for less trusted packages
-  - This may be reduced to 0 for rhizomatics own packages, and to 2 days for trusted packages with strong process and wide usage, e.g. Home Assistant
+  - This may be reduced to 0 for rhizomatics own packages, and to 2 days for trusted packages with strong process and wide usage
+    - Trusted at 2 days: Home Assistant (`homeassistant`, `homeassistant-stubs`, `pytest-homeassistant`,
+      `pytest-homeassistant-custom-component`) and Astral (`uv`, `uv_build`, `ruff`, `ty`, `astral-sh/*` actions)
   - This may temporarily be reduced to 0 for one-off critical events and then restored, for example taking a critical CVE remediation
+    - Any other per-package exception is temporary: remove it once the event has passed. A security
+      floor belongs in `constraint-dependencies` or `override-dependencies`, not in a cooldown exception
+  - The cooldown covers mise tools too
+  - Only apply permanent cooldown overrides where it can be applied consistently within local git repo, prek environment and GitHub Actions workflows
   - Where each cooldown lives:
 
     | Updater | Where the cooldown lives |
@@ -26,6 +36,7 @@ Expectations of Rhizomatics projects
     | uv | `exclude-newer = "7 days"` in `[tool.uv]`; per-package exceptions in `exclude-newer-package` |
     | npm | shared `.npmrc` (`min-release-age=7`, `@rhizomatics/*` exempt) |
     | prek hooks | `prek autoupdate --cooldown-days 7` in the shared `refresh` task |
+    | mise tools | `minimum_release_age = "7d"` under `[settings]` in `mise.toml`; trusted tools as `uv = { version = "latest", minimum_release_age = "2d" }` |
 
 ## Shared repo admin
 

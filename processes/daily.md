@@ -24,6 +24,12 @@
 - **Escalates:** issue labelled `security-escalation` in `rhizomatics/hq-private`
 - Excludes purely transitive vulnerabilities from Home Assistant / SignalK.
 
+## Decision follow-up — `/decision-followup`
+- **Who:** pm, handing each issue to the persona that owns its label
+- **Output:** `hq-private/reports/decisions/YYYY-MM-DD.md`, only when something was picked up
+- Acts on the maintainer's comments on open hq issues (approvals, choices), then posts a
+  follow-up comment on each issue. You can still ask in a session for anything urgent.
+
 ## Forum watch — `/forum-watch`
 - **Who:** marketing
 - **Output:** `hq-private/reports/forums/YYYY-MM-DD.md`
