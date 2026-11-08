@@ -48,7 +48,7 @@ Shallow-clone into the scratchpad. Cite `file:line` for every finding.
   verified against, plus a changelog of rule changes). For every rule, check the recorded
   `status`/`comment` against the actual code: rules marked `done` that no longer hold, `todo`
   rules now met, `exempt` justifications still valid, new/renamed rules not yet in the file.
-- **Compatibility window** (`reference/project_standards.md`): the integration supports a rolling 6
+- **Compatibility window** (`policies/project_standards.md`): the integration supports a rolling 6
   months of HA releases, including across HA's Python version changes. Check `hacs.json`/`manifest.json`
   minimums, `pyproject.toml` `requires-python` and CI test matrices against it, and that the code
   handles every release-note change in the window that touches it (from "Platform changes" above).

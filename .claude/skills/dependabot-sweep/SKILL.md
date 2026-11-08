@@ -40,7 +40,7 @@ for the weekly `/pr-report`. Silence is the expected outcome.
 **Raises a support floor** (close without merging, whatever the dependency): the PR raises
 `requires-python`, a `homeassistant` minimum (in `pyproject.toml`, `hacs.json` or `manifest.json`),
 or, in a package published to PyPI or npm, the lower bound of a runtime dependency. Floors are set
-deliberately (see "Dependency floors" in `reference/project_standards.md`). Comment why, and check
+deliberately (see "Dependency floors" in `policies/project_standards.md`). Comment why, and check
 the repo's `dependabot.yml` has `versioning-strategy: increase-if-necessary`; if not, add it in the
 same `dependabot.yml` PR as any `ignore` entries.
 

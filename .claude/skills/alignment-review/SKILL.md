@@ -21,7 +21,7 @@ Shallow-clone into the scratchpad when diffing many files is easier than the API
 
 ## 2. Snapshot the current state per family
 
-The baseline every repo should meet is `reference/project_standards.md` plus the policies in
+The baseline every repo should meet is `policies/project_standards.md` plus the policies in
 `policies/` (within each policy's scope, allowing its listed exceptions); report each repo's gaps
 against them, as well as differences between repos.
 

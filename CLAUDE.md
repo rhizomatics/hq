@@ -21,8 +21,8 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
 - `team.md` — who owns what, character, handoffs between personas, disagreements.
 - `.claude/agents/` — personas: `pm`, `architect`, `infra-lead`, `marketing`, `tech-writer`; plus `researcher` (Haiku) for farmed-out gathering.
 - `.claude/skills/` — one skill per process.
-- `policies/` — the maintainer's cross-project policies (e.g. supported Python versions), each with its scope and exceptions. Processes check repos against them; format in `policies/README.md`.
-- `reference/` — lookup material for processes: `project_standards.md` (the baseline every product repo should meet), forums to watch (`hass_discussion.md`, `signalk_discussion.md`) and per-product problem phrases (`topic_terms.md`).
+- `policies/` — the maintainer's cross-project policies (e.g. supported Python versions), each with its scope and exceptions, including `project_standards.md` (the baseline every product repo should meet: tooling, cooldowns, shared admin workflows, Dependabot shape). Processes check repos against them; format in `policies/README.md`.
+- `reference/` — lookup material for processes: `project_tooling.md`, forums to watch (`hass_discussion.md`, `signalk_discussion.md`) and per-product problem phrases (`topic_terms.md`).
 - `hq-private/commands/` — helper shell commands for the maintainer.
 - `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-stats.yml`.
 - `hq-private/reference/` — private reference notes (e.g. the real-world test environments).

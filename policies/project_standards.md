@@ -18,6 +18,41 @@ Expectations of Rhizomatics projects
   - This may be extended for less trusted packages
   - This may be reduced to 0 for rhizomatics own packages, and to 2 days for trusted packages with strong process and wide usage, e.g. Home Assistant
   - This may temporarily be reduced to 0 for one-off critical events and then restored, for example taking a critical CVE remediation
+  - Where each cooldown lives:
+
+    | Updater | Where the cooldown lives |
+    |---|---|
+    | Dependabot | `cooldown: default-days: 7` on each ecosystem |
+    | uv | `exclude-newer = "7 days"` in `[tool.uv]`; per-package exceptions in `exclude-newer-package` |
+    | npm | shared `.npmrc` (`min-release-age=7`, `@rhizomatics/*` exempt) |
+    | prek hooks | `prek autoupdate --cooldown-days 7` in the shared `refresh` task |
+
+## Shared repo admin
+
+Every production repo uses the shared setup in `rhizomatics/.github`, synced by its
+`scripts/sync-admin.sh` (how it works is in that repo's `templates/README.md`):
+
+- Admin workflows: auto-assign issues and PRs to `jeyrb`, weekly label sync from `labels.yml`,
+  dependency review on PRs, and auto-merge of Dependabot PRs touching only trusted deps (astral's
+  uv, ruff, ty and `astral-sh/*` actions) once every other check passes. Callers pin the reusable
+  workflows to a release commit SHA.
+- Shared mise file tasks `refresh` and `clean` in `.mise/tasks/`. A repo that needs its own
+  version defines it in `mise.toml` instead.
+
+## Dependabot
+
+`dependabot.yml` can't be shared, so each repo has its own with a common shape per ecosystem:
+
+- **Version updates** on the 1st and 15th of the month, with the 7-day cooldown. Minor and patch
+  bumps are grouped into one PR per ecosystem; majors come separately.
+- **astral** group (uv, ruff, ty, `astral-sh/*` actions) in the Python and Actions ecosystems, so
+  trusted updates arrive in their own PR and can be auto-merged. Keep it in step with the
+  auto-merge workflow's `TRUSTED` list.
+- **Security updates** are raised as soon as an alert opens, grouped into one PR per ecosystem.
+- Home Assistant integrations only update direct pip deps, since homeassistant pins their
+  transitive deps. The same `allow` rule keeps security PRs to direct deps too.
+- Floors stay put: see "Dependency floors" below.
+- Versions of project tools will be kept consistent across local repo tooling and Github Actions workflows, as other dependencies
 
 ## Claude Code settings
 
