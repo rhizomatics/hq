@@ -137,9 +137,6 @@ family = "site"
 family = "site"
 category = ["major"]
 
-[repos.awesome-mqtt]
-family = "site"
-
 [repos.agent-plugins]
 family = "meta"
 
