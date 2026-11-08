@@ -4,7 +4,8 @@ Expectations of Rhizomatics projects
 
 ## All Projects
 
-- `pre-commit` configured and local hooks installed
+- `prek` configured and local hooks installed
+  - legacy hooks for 'pre-commit' removed
 - `mise` used for tooling definition and installation plus development tasks
   - Standard tasks
     - `clean` - removes local ephemeral dirs
