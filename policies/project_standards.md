@@ -23,17 +23,24 @@ Expectations of Rhizomatics projects
     - `preview-xxxxx` - run a preview of component, e.g. using docker
     - Use `supernotify` as the model of how to do this
 - All auto update processes will follow a cooldown process
-  - For example, `prek autoupdate --cooldown-days` and similar for uv and npm
+  - To include, at least
+    - prek
+    - dependabot
+    - Github Actions workflows
+    - mise
+    - uv
+    - npm
+    - apt
+  - Cooldown will be applied consistently across all tools, so builds are reproducible across local, pre-commit and CI/release environments
+    - Only apply permanent cooldown overrides where it can be applied consistently within local git repo, prek environment and GitHub Actions workflows
   - Standard cooldown is 7 days
-  - This may be extended for less trusted packages
-  - This may be reduced to 0 for rhizomatics own packages, and to 2 days for trusted packages with strong process and wide usage
+    - This may be extended for less trusted packages
+    - This may be reduced to 0 for rhizomatics own packages, and to 2 days for trusted packages with strong process and wide usage
     - Trusted at 2 days: Home Assistant (`homeassistant`, `homeassistant-stubs`, `pytest-homeassistant`,
       `pytest-homeassistant-custom-component`) and Astral (`uv`, `uv_build`, `ruff`, `ty`, `astral-sh/*` actions)
-  - This may temporarily be reduced to 0 for one-off critical events and then restored, for example taking a critical CVE remediation
+    - This may temporarily be reduced to 0 for one-off critical events and then restored, for example taking a critical CVE remediation
     - Any other per-package exception is temporary: remove it once the event has passed. A security
       floor belongs in `constraint-dependencies` or `override-dependencies`, not in a cooldown exception
-  - The cooldown covers mise tools too
-  - Only apply permanent cooldown overrides where it can be applied consistently within local git repo, prek environment and GitHub Actions workflows
   - Where each cooldown lives:
 
     | Updater | Where the cooldown lives |
