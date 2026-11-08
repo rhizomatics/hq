@@ -10,6 +10,12 @@ Expectations of Rhizomatics projects
   - legacy hooks for 'pre-commit' removed
   - No pre-commit.ci: hooks run locally through prek, and the CI workflow runs the linters and
     type checks itself (decided in hq-private#83, 2026-11-08)
+- README badges
+  - Every repo in `repos.toml` except `hq`, `.github` and internal repos shows the "managed by hq" badge,
+    linking to the hq repo:
+    `[![managed by hq](https://raw.githubusercontent.com/rhizomatics/hq/main/assets/badge-managed-by-hq.svg)](https://github.com/rhizomatics/hq)`
+  - Sailing projects listed in the boat tech directory also show its badge:
+    `[![boat tech directory](https://boat-tech-directory.rhizomatics.org.uk/images/badge.svg)](https://boat-tech-directory.rhizomatics.org.uk)`
 - `mise` used for tooling definition and installation plus development tasks
   - Standard tasks
     - `clean` - removes local ephemeral dirs
