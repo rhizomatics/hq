@@ -12,6 +12,12 @@ Expectations of Rhizomatics projects
     - `refresh` - refreshes dependencies, and pulls in changes merged PRs
     - `preview-xxxxx` - run a preview of component, e.g. using docker
     - Use `supernotify` as the model of how to do this
+- All auto update processes will follow a cooldown process
+  - For example, `prek autoupdate --cooldown-days` and similar for uv and npm
+  - Standard cooldown is 7 days
+  - This may be extended for less trusted packages
+  - This may be reduced to 0 for rhizomatics own packages, and to 2 days for trusted packages with strong process and wide usage, e.g. Home Assistant
+  - This may temporarily be reduced to 0 for one-off critical events and then restored, for example taking a critical CVE remediation
 
 ## Claude Code settings
 
