@@ -1,3 +1,5 @@
+<img src="assets/icon.svg" alt="" width="96" align="right">
+
 # Rhizomatics HQ
 
 How the [Rhizomatics](https://github.com/rhizomatics) open source projects are run: one human
