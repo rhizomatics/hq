@@ -45,8 +45,9 @@ that environment a spec to build to.
 - [x] @agent Write a diagnostics section in `reference/project_tooling.md`
 - [ ] @human Confirm or create agent accounts: OpenObserve, HA `home`, SignalK, boat and home routers ([hq-private#93](https://github.com/rhizomatics/hq-private/issues/93))
 - [ ] @pair `openobserve` skill: query logs by service and time range, loading `openobserve.env`
-- [ ] @pair Sandbox profiles per family (`homeassistant`, `signalk`) in hq-private, plus a command that writes them into each repo's `.claude/settings.local.json`, driven by `repos.toml` ([hq-private#94](https://github.com/rhizomatics/hq-private/pull/94))
-- [ ] @pair Retire one-off `curl` allows in project `settings.local.json` in favour of the profile's host rules (`--prune` in hq-private#94)
+- [x] @pair Sandbox profiles per family (`homeassistant`, `signalk`) in hq-private, plus a command that writes them into each repo's `.claude/settings.local.json`, driven by `repos.toml` ([hq-private#94](https://github.com/rhizomatics/hq-private/pull/94), [#96](https://github.com/rhizomatics/hq-private/pull/96); applied to 19 checkouts 2026-11-10)
+- [x] @pair Retire one-off `curl` allows in project `settings.local.json` in favour of the profile's host rules (`--prune`, 2026-11-10)
+- [ ] @human Remove `10.36.10.20` from `sandbox.network.allowedDomains` in `~/.claude/settings.json`, now that the `signalk` profile covers it per repo
 - [ ] @pair Point supernotify and updates2mqtt at `~/Projects/.hq.env/openobserve.env`, then delete their `.logs.env` copies
 - [ ] @pair Move the preview environment out of supernotify into a reusable pattern, or document it as the template
 - [ ] @human Dedicated Chrome profile for Claude in Chrome, logged in only with agent accounts (hq-private#93)
@@ -71,3 +72,4 @@ that environment a spec to build to.
 - 2026-11-10: proposed from a maintainer note listing five scattered diagnostic resources; inventory written in hq-private.
 - 2026-11-10: started. Created `~/Projects/.hq.env/` with `openobserve.env`; added agent accounts to the scope and the inventory; filed hq-private#93 for account checks; tooling reference updated. Next: sandbox profiles.
 - 2026-11-10: browser automation (Claude in Chrome, Playwright) and the OpenObserve MCP server added to scope and inventory; Chrome profile item added to hq-private#93. Sandbox profiles and sync command opened as hq-private#94 (dry run: 19 checkouts, 7 curl allows to prune). Next after merge: `openobserve` skill.
+- 2026-11-10: OrbStack made an opt-in profile (environments moving to the dev server), hq-private#96. Profiles applied with `--prune`; the earlier #94 run had given every HA repo OrbStack access, removed by hand, with supernotify opted in. All 19 checkouts up to date.
