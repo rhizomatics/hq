@@ -51,6 +51,8 @@ that environment a spec to build to.
 - [ ] @pair Move the preview environment out of supernotify into a reusable pattern, or document it as the template
 - [ ] @human Dedicated Chrome profile for Claude in Chrome, logged in only with agent accounts (hq-private#93)
 - [ ] @pair Browser guidance: Claude in Chrome for UI checks on real instances, headless Playwright for preview and docs; shared Playwright setup instead of per-repo `npx` installs
+- [ ] @pair Cloud routines: advisory text in the snapshot instead of blocked sources ([hq-private#95](https://github.com/rhizomatics/hq-private/pull/95), [hq#3](https://github.com/rhizomatics/hq/pull/3))
+- [ ] @agent Sweep reports for other "blocked"/"not read" gaps (e.g. `hacs/default` via raw.githubusercontent.com) and move each source into the snapshot
 - [ ] @agent Remove the stale `openobserve` MCP entry for the old `~/Code/rhizomatics-ha/supernotify` path
 
 ### Later (developer environment)
