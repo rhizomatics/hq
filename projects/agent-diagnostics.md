@@ -43,7 +43,7 @@ that environment a spec to build to.
 - [x] @agent Gitignore `.logs.env` where a copy exists (supernotify had it; updates2mqtt fixed by the maintainer, 2026-11-10)
 - [x] @agent Create `~/Projects/.hq.env/` and move the OpenObserve credentials in (2026-11-10)
 - [x] @agent Write a diagnostics section in `reference/project_tooling.md`
-- [ ] @human Confirm or create agent accounts: OpenObserve, HA `home`, SignalK, boat and home routers ([hq-private#93](https://github.com/rhizomatics/hq-private/issues/93))
+- [x] @human Confirm or create agent accounts: OpenObserve, HA `home`, SignalK, boat and home routers ([hq-private#93](https://github.com/rhizomatics/hq-private/issues/93), closed 2026-11-10)
 - [x] @pair `openobserve` skill: query logs by service and time range, loading `openobserve.env` (`diagnostics` plugin in a private hq-private marketplace, [hq-private#97](https://github.com/rhizomatics/hq-private/pull/97); installed 2026-11-10)
 - [x] @pair Sandbox profiles per family (`homeassistant`, `signalk`) in hq-private, plus a command that writes them into each repo's `.claude/settings.local.json`, driven by `repos.toml` ([hq-private#94](https://github.com/rhizomatics/hq-private/pull/94), [#96](https://github.com/rhizomatics/hq-private/pull/96); applied to 19 checkouts 2026-11-10)
 - [x] @pair Retire one-off `curl` allows in project `settings.local.json` in favour of the profile's host rules (`--prune`, 2026-11-10)
@@ -51,7 +51,7 @@ that environment a spec to build to.
 - [x] @pair Point supernotify and updates2mqtt at `~/Projects/.hq.env/openobserve.env`, then delete their `.logs.env` copies (nothing read them; the skill uses the central file; deleted 2026-11-10)
 - [ ] @pair Move the preview environment out of supernotify into a reusable pattern, or document it as the template
 - [ ] @pair Home dev SignalK (Docker or VM) for plugin development, since the boat server is only online when the boat is in use; add its host to the `signalk` sandbox profile
-- [ ] @human Dedicated Chrome profile for Claude in Chrome, logged in only with agent accounts (hq-private#93)
+- [x] @human Dedicated Chrome profile for Claude in Chrome, logged in only with agent accounts (hq-private#93; `aiagent`, 2026-11-10)
 - [ ] @pair Browser guidance: Claude in Chrome for UI checks on real instances, headless Playwright for preview and docs; shared Playwright setup instead of per-repo `npx` installs
 - [ ] @pair Cloud routines: advisory text in the snapshot instead of blocked sources ([hq-private#95](https://github.com/rhizomatics/hq-private/pull/95), [hq#3](https://github.com/rhizomatics/hq/pull/3))
 - [ ] @agent Sweep reports for other "blocked"/"not read" gaps (e.g. `hacs/default` via raw.githubusercontent.com) and move each source into the snapshot
