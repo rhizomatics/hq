@@ -43,6 +43,11 @@ Once per run, not per repo:
   Exploited Vulnerabilities catalog (null if it isn't there), and `epss` the estimated chance of
   exploitation (0 to 1). If `kev` in the snapshot is `{"error": ...}`, null means unknown: note the
   gap.
+- Advisory text, for judging exploitability: `advisory_text["<CVE or GHSA id>"]` in the snapshot,
+  for every id in an open code-scanning rule or Dependabot alert (OSV: summary, details, CVSS
+  vector, references; for CVEs also the Debian releases with a fixed package, which says whether a
+  base-image bump fixes a Grype/Trivy alert). Don't WebFetch osv.dev, NVD or distro trackers from a
+  cloud routine; they're blocked. Only an `{"error": ...}` entry or a missing id is a data gap.
 
 ## Escalate if any of
 
