@@ -44,10 +44,10 @@ that environment a spec to build to.
 - [x] @agent Create `~/Projects/.hq.env/` and move the OpenObserve credentials in (2026-11-10)
 - [x] @agent Write a diagnostics section in `reference/project_tooling.md`
 - [ ] @human Confirm or create agent accounts: OpenObserve, HA `home`, SignalK, boat and home routers ([hq-private#93](https://github.com/rhizomatics/hq-private/issues/93))
-- [ ] @pair `openobserve` skill: query logs by service and time range, loading `openobserve.env`
+- [ ] @pair `openobserve` skill: query logs by service and time range, loading `openobserve.env` (`diagnostics` plugin in a private hq-private marketplace, [hq-private#97](https://github.com/rhizomatics/hq-private/pull/97))
 - [x] @pair Sandbox profiles per family (`homeassistant`, `signalk`) in hq-private, plus a command that writes them into each repo's `.claude/settings.local.json`, driven by `repos.toml` ([hq-private#94](https://github.com/rhizomatics/hq-private/pull/94), [#96](https://github.com/rhizomatics/hq-private/pull/96); applied to 19 checkouts 2026-11-10)
 - [x] @pair Retire one-off `curl` allows in project `settings.local.json` in favour of the profile's host rules (`--prune`, 2026-11-10)
-- [ ] @human Remove `10.36.10.20` from `sandbox.network.allowedDomains` in `~/.claude/settings.json`, now that the `signalk` profile covers it per repo
+- [x] @human Remove `10.36.10.20` from `sandbox.network.allowedDomains` in `~/.claude/settings.json`, now that the `signalk` profile covers it per repo (2026-11-10)
 - [ ] @pair Point supernotify and updates2mqtt at `~/Projects/.hq.env/openobserve.env`, then delete their `.logs.env` copies
 - [ ] @pair Move the preview environment out of supernotify into a reusable pattern, or document it as the template
 - [ ] @human Dedicated Chrome profile for Claude in Chrome, logged in only with agent accounts (hq-private#93)
