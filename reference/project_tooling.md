@@ -14,6 +14,9 @@
   every repo; never copy them into a checkout. Load at run time, never print.
 - Agents use dedicated, least-privilege accounts on local services (OpenObserve, SignalK, Home Assistant,
   routers), not the maintainer's logins.
+- Browser automation: Claude in Chrome (MCP extension) for UI checks against real instances, using a
+  Chrome profile logged in with agent accounts only; headless Playwright for preview environments,
+  docs sites and screenshots.
 - What exists, hosts, accounts and sandbox needs: `hq-private/reference/diagnostics.md`. Project:
   `projects/agent-diagnostics.md`.
 

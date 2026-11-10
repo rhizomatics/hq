@@ -9,8 +9,9 @@ started: 2026-11-10
 # Agent diagnostics
 
 Give every project the same diagnostic access, set up once in hq: logs, the live Home Assistant
-API and database, real config, preview environments, throwaway HA/SignalK instances, and the
-local services agents log in to (OpenObserve, SignalK, Home Assistant, routers). Each one gets a
+API and database, real config, preview environments, throwaway HA/SignalK instances, browser
+automation (Claude in Chrome, headless Playwright), and the local services agents log in to
+(OpenObserve, SignalK, Home Assistant, routers). Each one gets a
 dedicated agent account, a skill or doc, a known place for its secret and the same sandbox rules
 in every project.
 
@@ -48,6 +49,9 @@ that environment a spec to build to.
 - [ ] @pair Retire one-off `curl` allows in project `settings.local.json` in favour of the profile's host rules
 - [ ] @pair Point supernotify and updates2mqtt at `~/Projects/.hq.env/openobserve.env`, then delete their `.logs.env` copies
 - [ ] @pair Move the preview environment out of supernotify into a reusable pattern, or document it as the template
+- [ ] @human Dedicated Chrome profile for Claude in Chrome, logged in only with agent accounts (hq-private#93)
+- [ ] @pair Browser guidance: Claude in Chrome for UI checks on real instances, headless Playwright for preview and docs; shared Playwright setup instead of per-repo `npx` installs
+- [ ] @agent Remove the stale `openobserve` MCP entry for the old `~/Code/rhizomatics-ha/supernotify` path
 
 ### Later (developer environment)
 
