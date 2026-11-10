@@ -51,14 +51,14 @@ blocked, say on what (in frontmatter `status` if the file has it, otherwise in t
 | [Supernotify packages](supernotify_packages.md) | Auto-discovered notification packages on top of Supernotify |
 | [Home Assistant Marketplace](ha_marketplace.md) | Rename HACS badges, links and references to the Marketplace (2026.11) |
 | [remote_logger Silver](remote-logger-silver.md) | remote_logger at Quality Scale Silver by Feb 2027 |
+| [Agent diagnostics](agent-diagnostics.md) | Logs, HA API/DB, config, previews and agent accounts reachable the same way from every project |
 
 ### Proposed
 
 | Project | Goal |
 |---|---|
 | [Tankie](proposed/tankie.md) | Heating oil / offline fuel storage in HA, using the Energy features |
-| [Developer environment](proposed/dev-env.md) | Segregated hardware, software and cloud dev environment (depends on AWS migration) |
-| [Media](proposed/media.md) | Supporting material aimed at a general audience that uses Rhizomatics products |
+| [Developer environment](proposed/dev-env.md) | Segregated hardware, software and cloud dev environment (depends on AWS migration) || [Media](proposed/media.md) | Supporting material aimed at a general audience that uses Rhizomatics products |
 | [OCI container client](proposed/oci-container-client.md) | Extract updates2mqtt's OCI registry client into a reusable Python library |
 | [Project alignment](proposed/project-alignment.md) | Reduce unnecessary variation across the stack |
 

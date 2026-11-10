@@ -8,6 +8,15 @@
 - Real-world beta test environments (home Home Assistant install, boat SignalK server) are described
   privately in `hq-private/reference/test_environments.md`.
 
+## Diagnostics
+
+- Local secrets for diagnostics and agent accounts live in `~/Projects/.hq.env/<service>.env`, outside
+  every repo; never copy them into a checkout. Load at run time, never print.
+- Agents use dedicated, least-privilege accounts on local services (OpenObserve, SignalK, Home Assistant,
+  routers), not the maintainer's logins.
+- What exists, hosts, accounts and sandbox needs: `hq-private/reference/diagnostics.md`. Project:
+  `projects/agent-diagnostics.md`.
+
 ## Github Actions
 - All production projects
   - Share the same set of admin workflows from the `.github` project
