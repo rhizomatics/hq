@@ -50,6 +50,7 @@ that environment a spec to build to.
 - [x] @human Remove `10.36.10.20` from `sandbox.network.allowedDomains` in `~/.claude/settings.json`, now that the `signalk` profile covers it per repo (2026-11-10)
 - [x] @pair Point supernotify and updates2mqtt at `~/Projects/.hq.env/openobserve.env`, then delete their `.logs.env` copies (nothing read them; the skill uses the central file; deleted 2026-11-10)
 - [ ] @pair Move the preview environment out of supernotify into a reusable pattern, or document it as the template
+- [ ] @pair Home dev SignalK (Docker or VM) for plugin development, since the boat server is only online when the boat is in use; add its host to the `signalk` sandbox profile
 - [ ] @human Dedicated Chrome profile for Claude in Chrome, logged in only with agent accounts (hq-private#93)
 - [ ] @pair Browser guidance: Claude in Chrome for UI checks on real instances, headless Playwright for preview and docs; shared Playwright setup instead of per-repo `npx` installs
 - [ ] @pair Cloud routines: advisory text in the snapshot instead of blocked sources ([hq-private#95](https://github.com/rhizomatics/hq-private/pull/95), [hq#3](https://github.com/rhizomatics/hq/pull/3))
