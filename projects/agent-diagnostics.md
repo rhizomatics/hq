@@ -60,7 +60,7 @@ that environment a spec to build to.
 ### Later (developer environment)
 
 - [ ] @human Decide which resources move to the remote dev environment (preview, starters, mounted config)
-- [ ] @pair Move `.hq.env` secrets to AWS Secrets Manager and resolve them at runtime
+- [ ] @pair Move `.hq.env` secrets to AWS Secrets Manager and resolve them at runtime (now planned in [mise environments](proposed/mise-environments.md), through fnox profiles)
 
 ## Decisions
 
@@ -78,3 +78,4 @@ that environment a spec to build to.
 - 2026-11-10: agent accounts: OpenObserve confirmed; HA `home` non-admin user (`hass.env`, ha-repl stays on the user-level admin config); boat RUT956 (`rutos.env`). Read-only `homeassistant` skill (hq-private#98) and boat router in the `signalk` sandbox profile (hq-private#99).
 - 2026-11-10: environments split into production and dev/test (maintainer); production access is by exception, routers especially. Secrets under `.hq.env/prod/` (hq-private#102); production hosts removed from every checkout's sandbox, one opt-in `prod-*` profile per system with `--remove` (hq-private#103). MQTT agent account added; login not yet confirmed (broker rejects the client id).
 - 2026-11-10: `homeassistant` skill removed again (hq-private#100): it duplicated `ha-repl`'s API client mode, which works with the non-admin token. The maintainer will add the gaps (history, logbook, services list, clearer empty/401 messages) to ha-repl itself.
+- 2026-11-10: proposed [mise environments](proposed/mise-environments.md), which loads `.hq.env` secrets through mise and fnox instead of sourcing plaintext files. The Secrets Manager task moves there.
