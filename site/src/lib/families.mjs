@@ -4,6 +4,6 @@ export const FAMILIES = [
   ['signalk-plugin', 'SignalK'],
   ['mqtt-service', 'MQTT'],
   ['cli', 'Command line'],
-  ['picoware', 'Pico firmware'],
+  ['picoware', 'Picoware'],
   ['site', 'Sites'],
 ];
