@@ -3,7 +3,8 @@ name: Site
 # Builds the public HQ site (site/) and deploys it to GitHub Pages: hq's docs, the reports that
 # processes declare public, usage stats derived from hq-private's daily snapshots, and the Actions
 # state of each public repo (read with this run's token; actions: read).
-# Runs daily after hq-private's 05:00 stats collection, and on doc or site changes.
+# Runs daily after hq-private's 05:00 stats collection, again at 17:40 to refresh the Workflows page,
+# and on doc or site changes.
 # Logs are public: the build scripts only print counts, file names and public source errors.
 
 on:
@@ -21,6 +22,7 @@ on:
       - .github/workflows/site.yml
   schedule:
     - cron: "40 5 * * *"
+    - cron: "40 17 * * *"
   workflow_dispatch:
 
 permissions:

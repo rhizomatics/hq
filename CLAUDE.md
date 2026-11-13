@@ -24,7 +24,7 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
 - `.claude/skills/` — one skill per process.
 - `policies/` — the maintainer's cross-project policies (e.g. supported Python versions), each with its scope and exceptions, including `project_standards.md` (the baseline every product repo should meet: tooling, cooldowns, shared admin workflows, Dependabot shape). Processes check repos against them; format in `policies/README.md`.
 - `reference/` — lookup material for processes: `project_tooling.md`, forums to watch (`hass_discussion.md`, `signalk_discussion.md`) and per-product problem phrases (`topic_terms.md`).
-- `site/` — the public HQ site at https://hq.rhizomatics.org.uk/ (Astro Starlight), built daily by
+- `site/` — the public HQ site at https://hq.rhizomatics.org.uk/ (Astro Starlight), built twice daily by
   `.github/workflows/site.yml`: the docs above, public reports, and a Usage section per component
   from `hq-private/data/`. `scripts/sync-content.mjs` publishes docs and reports and fails on
   anything that looks private; `scripts/build-stats.mjs` writes only public aggregates;

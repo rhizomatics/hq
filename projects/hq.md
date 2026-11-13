@@ -57,3 +57,4 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
 - 2026-11-13 — Workflows states refined: Broken / Flapping (3+ failure streaks in 7 days) / Recovered (failed
   in the last day) / Passing. Dependabot update jobs no longer set the state (listed per ecosystem instead).
   Linked from the home page. Now 3 broken, 1 flapping, 2 recovered.
+- 2026-11-13 — Site also rebuilt at 17:40 UTC so the Workflows page is never more than ~12 hours old.

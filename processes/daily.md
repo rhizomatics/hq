@@ -8,7 +8,7 @@
 - Must stay daily: GitHub traffic data is only kept for 14 days.
 
 ## Site build
-- **When:** 05:40 UTC, after the stats snapshot; also on any push that changes docs or `site/`
+- **When:** 05:40 UTC, after the stats snapshot, and 17:40 UTC to refresh the Workflows page; also on any push that changes docs or `site/`
 - **Who:** GitHub Actions (`.github/workflows/site.yml`)
 - **Output:** https://hq.rhizomatics.org.uk/ — docs, public reports and per-component usage
 - **Report:** public (it is the site)
