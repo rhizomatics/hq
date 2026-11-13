@@ -4,38 +4,53 @@ import Kpi from '../components/Kpi.astro';
 import actions from '../data/actions.json';
 import { FAMILIES } from '../lib/families.mjs';
 
+type State = 'red' | 'flapping' | 'recovered' | 'green' | 'none';
 type Repo = {
   id: string;
   family: string;
   url: string;
-  state: 'red' | 'amber' | 'green' | 'none';
-  workflows: { name: string; state: 'red' | 'amber' | 'green'; conclusion: string; lastRun: string; event: string; url: string; failures24h: number }[];
+  state: State;
+  workflows: { name: string; state: Exclude<State, 'none'>; conclusion: string; lastRun: string; url: string; failures24h: number; streaks7d: number }[];
+  dependabot: { job: string; since: string; url: string }[];
 };
 
 const repos = actions.repos as Repo[];
-const RANK = { red: 0, amber: 1, green: 2, none: 3 };
-const LABEL = { red: 'Broken', amber: 'Failed in last day', green: 'Passing', none: 'No runs' };
+const ORDER: Record<State, number> = { red: 0, flapping: 1, recovered: 2, green: 3, none: 4 };
+const LABEL: Record<State, string> = { red: 'Broken', flapping: 'Flapping', recovered: 'Recovered', green: 'Passing', none: 'No runs' };
 const groups = [...FAMILIES, ['meta', 'Organisation']]
-  .map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => RANK[a.state] - RANK[b.state] || a.id.localeCompare(b.id))] as const)
+  .map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => ORDER[a.state] - ORDER[b.state] || a.id.localeCompare(b.id))] as const)
   .filter(([, list]) => list.length);
-const count = (s: Repo['state']) => repos.filter((r) => r.state === s).length;
+const count = (s: State) => repos.filter((r) => r.state === s).length;
 const asOf = actions.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 const day = (t: string) => t.slice(0, 10);
+const detail = (w: Repo['workflows'][number]) =>
+  w.state === 'red'
+    ? `${w.conclusion.replace('_', ' ')} ${day(w.lastRun)}`
+    : w.state === 'flapping'
+      ? `${w.streaks7d} separate failures in 7 days, passing now`
+      : `${w.failures24h} failed in the last day, passing now`;
 ---
 <StarlightPage frontmatter={{ title: 'Workflows', description: 'GitHub Actions state of each public Rhizomatics repo, updated daily.', tableOfContents: false }}>
   <p>
-    The GitHub Actions state of each public repo, as of {asOf}. Updated daily.
-    <strong>Broken</strong> means a workflow's latest run failed.
-    <strong>Failed in last day</strong> means it has failed in the 24 hours before the update but has passed since.
-    Runs from pull requests and Dependabot branches are left out, so this shows the state of the main branch,
-    releases and scheduled jobs only.
+    The GitHub Actions state of each public repo, as of {asOf}. Updated daily. A repo takes the state of its worst workflow:
+  </p>
+  <ul class="ci-legend">
+    <li><span class="ci-status ci-status--red">Broken</span> the workflow's latest run failed.</li>
+    <li><span class="ci-status ci-status--flapping">Flapping</span> passing now, but it has failed and recovered three or more times in the last 7 days.</li>
+    <li><span class="ci-status ci-status--recovered">Recovered</span> passing now, after a failure in the last day.</li>
+    <li><span class="ci-status ci-status--green">Passing</span> no failures in the last day.</li>
+  </ul>
+  <p class="ci-meta">
+    Runs from pull requests, Dependabot branches and Copilot reviews are left out, so this covers the main branch,
+    releases and scheduled jobs. Failing Dependabot update jobs are listed but don't change the state.
   </p>
 
   {actions.available ? (
     <>
       <div class="kpis">
         <Kpi label="Broken" value={String(count('red'))} note="repos" />
-        <Kpi label="Failed in last day" value={String(count('amber'))} note="repos" />
+        <Kpi label="Flapping" value={String(count('flapping'))} note="repos" />
+        <Kpi label="Recovered" value={String(count('recovered'))} note="repos" />
         <Kpi label="Passing" value={String(count('green'))} note="repos" />
       </div>
 
@@ -64,12 +79,7 @@ const day = (t: string) => t.slice(0, 10);
                           {problems.map((w) => (
                             <li>
                               <span class={`ci-dot ci-dot--${w.state}`} aria-hidden="true"></span>
-                              <a href={w.url}>{w.name}</a>
-                              <span class="ci-meta">
-                                {w.state === 'red'
-                                  ? ` ${w.conclusion.replace('_', ' ')} ${day(w.lastRun)}`
-                                  : ` ${w.failures24h} failed, then passed`}
-                              </span>
+                              <a href={w.url}>{w.name}</a> <span class="ci-meta">{detail(w)}</span>
                             </li>
                           ))}
                         </ul>
@@ -77,6 +87,9 @@ const day = (t: string) => t.slice(0, 10);
                       {r.workflows.length === 0
                         ? <span class="ci-meta">No runs outside pull requests</span>
                         : passing > 0 && <span class="ci-meta">{problems.length ? '+ ' : ''}{passing} passing</span>}
+                      {r.dependabot.map((d) => (
+                        <div class="ci-meta">Dependabot <a href={d.url}>{d.job}</a> update failing since {day(d.since)}</div>
+                      ))}
                     </td>
                   </tr>
                 );

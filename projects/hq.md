@@ -54,3 +54,6 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
 - 2026-11-13 — Workflows page added at `/actions/`: per public repo, red where a workflow's latest run failed,
   amber where one failed in the past day but has passed since (PR, Dependabot-branch and Copilot review runs
   excluded). Built daily with the site using the workflow's own token. First build: 7 red, 2 amber of 24.
+- 2026-11-13 — Workflows states refined: Broken / Flapping (3+ failure streaks in 7 days) / Recovered (failed
+  in the last day) / Passing. Dependabot update jobs no longer set the state (listed per ecosystem instead).
+  Linked from the home page. Now 3 broken, 1 flapping, 2 recovered.
