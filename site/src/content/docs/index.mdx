@@ -9,10 +9,10 @@ hero:
     file: ../../assets/icon.svg
   actions:
     - text: Usage
-      link: /hq/usage/
+      link: /usage/
       icon: right-arrow
     - text: Projects
-      link: /hq/projects/
+      link: /projects/
       variant: minimal
     - text: GitHub
       link: https://github.com/rhizomatics
@@ -25,18 +25,18 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 <CardGrid>
   <Card title="Usage" icon="seti:graphql">
     Downloads, installs, stars and clones for every component: Home Assistant integrations,
-    SignalK plugins, MQTT services and command line tools. [See usage](/hq/usage/).
+    SignalK plugins, MQTT services and command line tools. [See usage](/usage/).
   </Card>
   <Card title="Projects" icon="rocket">
-    Work in progress, proposals, and what's been finished or shelved. [Browse projects](/hq/projects/).
+    Work in progress, proposals, and what's been finished or shelved. [Browse projects](/projects/).
   </Card>
   <Card title="Processes" icon="list-format">
     The daily to quarterly routines, which persona runs each, and whether its report is public.
-    [See processes](/hq/processes/).
+    [See processes](/processes/).
   </Card>
   <Card title="Policies" icon="approve-check">
     Cross-project policies: supported Python and Home Assistant versions, tooling, cooldowns and
-    the baseline every repo should meet. [Read policies](/hq/policies/).
+    the baseline every repo should meet. [Read policies](/policies/).
   </Card>
 </CardGrid>
 
@@ -49,8 +49,8 @@ triage stay private. This site is rebuilt daily from the public
 [hq repo](https://github.com/rhizomatics/hq) and the public aggregates of the private data.
 
 <CardGrid>
-  <LinkCard title="Team" description="The personas, what each owns and how they hand work over." href="/hq/team/" />
-  <LinkCard title="Reference" description="Tooling, the forums we watch and the problem phrases for each product." href="/hq/reference/project_tooling/" />
-  <LinkCard title="Reports" description="Reports from processes declared public." href="/hq/reports/" />
+  <LinkCard title="Team" description="The personas, what each owns and how they hand work over." href="/team/" />
+  <LinkCard title="Reference" description="Tooling, the forums we watch and the problem phrases for each product." href="/reference/project_tooling/" />
+  <LinkCard title="Reports" description="Reports from processes declared public." href="/reports/" />
   <LinkCard title="Main site" description="www.rhizomatics.org.uk" href="https://www.rhizomatics.org.uk" />
 </CardGrid>

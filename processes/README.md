@@ -15,7 +15,7 @@ Each agent process is a Claude Code skill in `.claude/skills/<name>/SKILL.md` (r
 
 Each process also declares who can read its report (`- **Report:**`):
 
-- **public**: published on the [HQ site](https://rhizomatics.github.io/hq/reports/); never holds
+- **public**: published on the [HQ site](https://hq.rhizomatics.org.uk/reports/); never holds
   security findings, referrers, personal infrastructure or support triage.
 - **private by exception**: published unless the report's frontmatter says `visibility: private`,
   which the agent sets whenever the report holds anything sensitive.

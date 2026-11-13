@@ -17,7 +17,7 @@ const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 const hqRoot = path.resolve(siteRoot, '..');
 const privateRoot = path.resolve(process.env.HQ_PRIVATE ?? path.join(hqRoot, '..', 'hq-private'));
 const docsOut = path.join(siteRoot, 'src', 'content', 'docs');
-const BASE = '/hq/';
+const BASE = '/';
 const REPO = 'https://github.com/rhizomatics/hq';
 
 // Reports written before visibility was declared assumed they were private; none of those are published.

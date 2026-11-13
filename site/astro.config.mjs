@@ -21,8 +21,7 @@ function usageSidebar() {
 }
 
 export default defineConfig({
-  site: 'https://rhizomatics.github.io',
-  base: '/hq',
+  site: 'https://hq.rhizomatics.org.uk',
   trailingSlash: 'always',
   integrations: [
     starlight({
@@ -30,7 +29,7 @@ export default defineConfig({
       description: 'How the Rhizomatics open source projects are run, and how much they are used.',
       logo: { src: './src/assets/icon.svg' },
       favicon: '/favicon.svg',
-      head: [{ tag: 'meta', attrs: { property: 'og:image', content: 'https://rhizomatics.github.io/hq/og.png' } }],
+      head: [{ tag: 'meta', attrs: { property: 'og:image', content: 'https://hq.rhizomatics.org.uk/og.png' } }],
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/rhizomatics' }],
       customCss: ['./src/styles/site.css'],
       lastUpdated: false,

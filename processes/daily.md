@@ -10,7 +10,7 @@
 ## Site build
 - **When:** 05:40 UTC, after the stats snapshot; also on any push that changes docs or `site/`
 - **Who:** GitHub Actions (`.github/workflows/site.yml`)
-- **Output:** https://rhizomatics.github.io/hq/ — docs, public reports and per-component usage
+- **Output:** https://hq.rhizomatics.org.uk/ — docs, public reports and per-component usage
 - **Report:** public (it is the site)
 
 ## Dependabot sweep — `/dependabot-sweep`

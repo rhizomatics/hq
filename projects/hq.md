@@ -22,7 +22,7 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
 *Feedback required from using existing processes first*
 - Private web access to HQ
   - Projects, reports by area, process calendar, adoption charts from `hq-private/data/stats/`
-- Public facing site — **built** in `site/`, deploying to https://rhizomatics.github.io/hq/ (2026-11-13)
+- Public facing site — **built** in `site/`, deploying to https://hq.rhizomatics.org.uk/ (2026-11-13)
   - [x] Docs (policies, projects, processes, reference, team) published, with a build-time check for private details
   - [x] Usage per component: HACS/Marketplace by version, npm, PyPI, GHCR, stars, clones, HA analytics by version
   - [x] Processes declare report visibility; public and private-by-exception reports published from 2026-11-14

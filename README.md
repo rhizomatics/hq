@@ -17,6 +17,6 @@ Reports, metrics and the maintainer's to-do list live in a private companion rep
 
 ## Related
 
-- [HQ site](https://rhizomatics.github.io/hq/), with [usage stats](https://rhizomatics.github.io/hq/usage/) for every component
+- [HQ site](https://hq.rhizomatics.org.uk/), with [usage stats](https://hq.rhizomatics.org.uk/usage/) for every component
 - [NPM Stats](https://www.packfolio.dev/?q=%40rhizomatics)
 - [Public Site](https://www.rhizomatics.org.uk)
