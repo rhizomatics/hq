@@ -26,8 +26,8 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
   - [x] Docs (policies, projects, processes, reference, team) published, with a build-time check for private details
   - [x] Usage per component: HACS/Marketplace by version, npm, PyPI, GHCR, stars, clones, HA analytics by version
   - [x] Processes declare report visibility; public and private-by-exception reports published from 2026-11-14
-  - [ ] @human Add `HQ_PRIVATE_READ_TOKEN` to hq's Actions secrets and set Pages source to GitHub Actions
-  - [ ] @pair Retire `hacs-downloads`: point its Pages at the new Usage section, stop its daily capture, archive the repo
+  - [x] @human Add `HQ_PRIVATE_READ_TOKEN` (repository secret; org secrets are public-repo-only on Free) and enable Pages with the `hq.rhizomatics.org.uk` domain (2026-11-13)
+  - [ ] @pair Retire `hacs-downloads`: redirect and capture stop in [hacs-downloads#7](https://github.com/rhizomatics/hacs-downloads/pull/7); then archive the repo and revoke its `TRAFFIC_GITHUB_TOKEN`
   - [ ] @pair Replace the `www.rhizomatics.org.uk` site built from `.github` (custom domain on this site, or link across)
 
 ### Distant
@@ -59,3 +59,4 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
   free org; private data is read at build time from hq-private and only aggregates are published.
   hacs-downloads' history archived to `hq-private/data/legacy/`. Privacy check before publishing: redacted
   a LAN address and router model in `agent-diagnostics.md`; nothing else found.
+- 2026-11-13 — Site live at https://hq.rhizomatics.org.uk/ (first deploy green: 36 docs, 20 components, no source gaps). hacs-downloads retirement PR opened (hacs-downloads#7).
