@@ -53,7 +53,7 @@ that environment a spec to build to.
 - [ ] @pair Home dev SignalK (Docker or VM) for plugin development, since the boat server is only online when the boat is in use; add its host to the `signalk` sandbox profile
 - [x] @human Dedicated Chrome profile for Claude in Chrome, logged in only with agent accounts (hq-private#93; `aiagent`, 2026-11-10)
 - [ ] @pair Browser guidance: Claude in Chrome for UI checks on real instances, headless Playwright for preview and docs; shared Playwright setup instead of per-repo `npx` installs
-- [ ] @pair Cloud routines: advisory text in the snapshot instead of blocked sources ([hq-private#95](https://github.com/rhizomatics/hq-private/pull/95), [hq#3](https://github.com/rhizomatics/hq/pull/3))
+- [x] @pair Cloud routines: advisory text in the snapshot instead of blocked sources ([hq-private#95](https://github.com/rhizomatics/hq-private/pull/95), [hq#3](https://github.com/rhizomatics/hq/pull/3); merged 2026-11-10)
 - [ ] @agent Sweep reports for other "blocked"/"not read" gaps (e.g. `hacs/default` via raw.githubusercontent.com) and move each source into the snapshot
 - [ ] @agent Remove the stale `openobserve` MCP entry for the old `~/Code/rhizomatics-ha/supernotify` path
 
@@ -79,3 +79,4 @@ that environment a spec to build to.
 - 2026-11-10: environments split into production and dev/test (maintainer); production access is by exception, routers especially. Secrets under `.hq.env/prod/` (hq-private#102); production hosts removed from every checkout's sandbox, one opt-in `prod-*` profile per system with `--remove` (hq-private#103). MQTT agent account added; login not yet confirmed (broker rejects the client id).
 - 2026-11-10: `homeassistant` skill removed again (hq-private#100): it duplicated `ha-repl`'s API client mode, which works with the non-admin token. The maintainer will add the gaps (history, logbook, services list, clearer empty/401 messages) to ha-repl itself.
 - 2026-11-10: proposed [mise environments](proposed/mise-environments.md), which loads `.hq.env` secrets through mise and fnox instead of sourcing plaintext files. The Secrets Manager task moves there.
+- 2026-11-13 — project-review: no commits since 11-10. Open: preview pattern, home dev SignalK, browser guidance, snapshot sweep, stale MCP entry. Not stalled yet (3 days).

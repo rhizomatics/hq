@@ -48,7 +48,7 @@ repo so it can be rebuilt and reviewed.
 
 ## Decisions
 
-_None yet._
+- 2026-11-09 jeyrb (hq-private#33): Phase 1 inventory is run locally by the maintainer with an agent, not by a cloud routine.
 
 ## Log
 
@@ -56,3 +56,4 @@ _None yet._
 - 2026-10-23 — project-review: hq-private#20 (Phase 0 access) was closed by jeyrb on 2026-10-16 with no comment. Phase 0 boxes left unticked until confirmed; no AWS CLI or profile in the cloud routine environment, so Phase 1 inventory is `@pair` for now. See hq-private#33.
 - 2026-10-30 — project-review: no reply on hq-private#33 after a week; Phase 0 still unticked, no movement since 10-16. Still the only blocker for Phase 1 and for dev-env.
 - 2026-11-06 — project-review: no reply on hq-private#33 (3 weeks since Phase 0 issue closed); still stalled, Phase 0 unticked.
+- 2026-11-13 — project-review: jeyrb answered hq-private#33 on 11-09: inventory runs option (a), locally by the maintainer with an agent (recorded as a Decision). Phase 0 boxes still unticked: the reply did not say whether access is set up. Next is a local `@pair` session for Phase 1.

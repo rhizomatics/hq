@@ -28,3 +28,4 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
 - 2026-10-23 — project-review: still no Scorecard work; nothing else moved.
 - 2026-10-30 — project-review: no Scorecard work for the third week running. Kept as `@agent` next step; see report for whether it is still worth having.
 - 2026-11-06 — project-review: no Scorecard work for the fourth week; open security-alert issue #55 was closed 10-31, so the alerts excuse has gone. Still `@agent` next step.
+- 2026-11-13 — project-review: fifth week with no Scorecard work and no agent has picked it up. Asked in hq-private issue whether to do it or shelve it.

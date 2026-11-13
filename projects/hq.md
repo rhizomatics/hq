@@ -55,3 +55,4 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
 - 2026-10-14 — Added private web access idea (Cloudflare Pages + Access) after confirming GitHub
   Pages can't serve a private site on the free org; noted that `hq` stays private.
 - 2026-10-30 — project-review: correction to the 10-23 note. The `/github-review` skill was only created on 10-14, after its 11th-of-month slot, so "no report" was expected; first real run is 2026-11-11. Same for `/alignment-review` changes and `/roadmap-review` (December). Nothing to chase.
+- 2026-11-13 — project-review: `/github-review` ran 11-11 (hq-private#105 follows up). "Now" items are all running; nothing started on "Soon".
