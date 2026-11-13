@@ -52,6 +52,7 @@ blocked, say on what (in frontmatter `status` if the file has it, otherwise in t
 | [Home Assistant Marketplace](ha_marketplace.md) | Rename HACS badges, links and references to the Marketplace (2026.11) |
 | [remote_logger Silver](remote-logger-silver.md) | remote_logger at Quality Scale Silver by Feb 2027 |
 | [Agent diagnostics](agent-diagnostics.md) | Logs, HA API/DB, config, previews and agent accounts reachable the same way from every project |
+| [Docs PNGs compressed at commit](docs-png-hook.md) | No docs build needs pngquant; PNGs compressed by a prek hook, as each repo is next released |
 
 ### Proposed
 

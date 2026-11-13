@@ -32,16 +32,7 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
 
 ### Distant
 *Longer term feedback needed to see if its worthwhile and the shape of the package*
-- Make `hq` available as a product itself
-  - `homeassistant` and `signalk` become modules within it
-  - Extract as a public template (personas, skills, processes, scripts) with no data; `hq` itself stays
-    private because it holds unfixed security findings and personal infrastructure details
-  - Possibly split into
-    - `hq-skill` - the commodified shared skill
-    - `hq-private` - reports, and sensitive config
-    - `hq` - the public facing site, also housing the web front end
-      - S3 buckets also considered for the public facing site and private generated reports, however don't do this unless GitHub repo can't cope
-  
+- See [HQ as Product](./hq-as-product.md)
 - Reflect *Project* documents as GitHub projects
   - Cloud agents have no GraphQL access, so has to be one way sync out
 
