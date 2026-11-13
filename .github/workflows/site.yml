@@ -1,0 +1,77 @@
+name: Site
+
+# Builds the public HQ site (site/) and deploys it to GitHub Pages: hq's docs, the reports that
+# processes declare public, and usage stats derived from hq-private's daily snapshots.
+# Runs daily after hq-private's 05:00 stats collection, and on doc or site changes.
+# Logs are public: the build scripts only print counts, file names and public source errors.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - site/**
+      - policies/**
+      - processes/**
+      - projects/**
+      - reference/**
+      - team.md
+      - repos.toml
+      - assets/**
+      - .github/workflows/site.yml
+  schedule:
+    - cron: "40 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # Snapshots and reports. Fine-grained PAT: rhizomatics/hq-private only, read-only Contents.
+      - uses: actions/checkout@v7
+        with:
+          repository: rhizomatics/hq-private
+          token: ${{ secrets.HQ_PRIVATE_READ_TOKEN }}
+          path: hq-private
+          sparse-checkout: |
+            data/stats
+            data/github
+            data/legacy
+            reports
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - uses: actions/configure-pages@v6
+      - name: Build
+        working-directory: site
+        env:
+          HQ_PRIVATE: ${{ github.workspace }}/hq-private
+          ASTRO_TELEMETRY_DISABLED: "1"
+        run: |
+          npm ci
+          npm run build
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

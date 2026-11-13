@@ -1,0 +1,13 @@
+---
+interface Props {
+  label: string;
+  value: string;
+  note?: string;
+}
+const { label, value, note } = Astro.props;
+---
+<div class="kpi">
+  <div class="kpi__label">{label}</div>
+  <div class="kpi__value">{value}</div>
+  {note && <div class="kpi__note">{note}</div>}
+</div>

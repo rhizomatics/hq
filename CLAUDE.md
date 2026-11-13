@@ -1,7 +1,8 @@
 # Rhizomatics HQ
 
 Management and administration hub for the Rhizomatics open source organisation (GitHub org
-`rhizomatics`). One human maintainer (`jeyrb`); agents do routine work. No product code here.
+`rhizomatics`). One human maintainer (`jeyrb`); agents do routine work. No product code here, apart from the public
+site that publishes it (`site/`).
 
 HQ is two repos, checked out side by side (locally and in cloud routines):
 
@@ -23,10 +24,17 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
 - `.claude/skills/` — one skill per process.
 - `policies/` — the maintainer's cross-project policies (e.g. supported Python versions), each with its scope and exceptions, including `project_standards.md` (the baseline every product repo should meet: tooling, cooldowns, shared admin workflows, Dependabot shape). Processes check repos against them; format in `policies/README.md`.
 - `reference/` — lookup material for processes: `project_tooling.md`, forums to watch (`hass_discussion.md`, `signalk_discussion.md`) and per-product problem phrases (`topic_terms.md`).
+- `site/` — the public HQ site at https://rhizomatics.github.io/hq/ (Astro Starlight), built daily by
+  `.github/workflows/site.yml`: the docs above, public reports, and a Usage section per component
+  from `hq-private/data/`. `scripts/sync-content.mjs` publishes docs and reports and fails on
+  anything that looks private; `scripts/build-stats.mjs` writes only public aggregates. Run it with
+  `mise run preview-site`.
 - `hq-private/commands/` — helper shell commands for the maintainer.
 - `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-stats.yml`.
 - `hq-private/reference/` — private reference notes (e.g. the real-world test environments).
 - `hq-private/data/stats/` — daily metric snapshots (committed; GitHub traffic is lost after 14 days otherwise).
+- `hq-private/data/legacy/hacs-downloads-history.json` — frozen history from the retired hacs-downloads
+  site (2026-09-12 on), used by the site for HACS downloads, stars and clones before the snapshots began.
 - `hq-private/reports/<area>/` — dated process outputs (`YYYY-MM-DD.md`, `YYYY-Www.md` for weekly, `YYYY-MM.md` for monthly).
 
 ## House values
@@ -42,6 +50,13 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
 
 - Read freely across `rhizomatics/*` with `gh`.
 - Reports in `hq-private/reports/` are the detailed record for drill-down; assume nobody reads them. Anything the maintainer must do reaches them only through GitHub: an hq issue, or a PR when the action is reviewing a change (see "Issues and PRs"). Either one links back to the report section with the detail (drafts, evidence). A report item that needs the human and has no issue or PR link is a bug.
+- **Report visibility.** Each process declares its report `public`, `private` or `private by exception`
+  in its cadence file (`- **Report:**`). The site publishes public and private-by-exception reports
+  dated from 2026-11-14. Write those for a public reader. In a private-by-exception report, add
+  `visibility: private` to its YAML frontmatter whenever it holds anything that must not be published:
+  unfixed security findings, alert details, traffic referrers, personal infrastructure, support triage
+  of named users, unposted drafts. When unsure, mark it private. Public reports never hold those;
+  put such detail in the hq issue instead.
 - Keep reports short and compare with the previous one in the same folder; say what changed, not what's the same. **Daily reports**: a quiet day is one or two lines; otherwise a headline, the action items (each with its hq issue link) and then only the detail those items need, aiming for under ~20 lines plus drafts. No lists of sources checked or unchanged tables unless something failed or changed; data gaps are one line each.
 - Fix what an agent can fix (hq reference files, `repos.toml`, docs) in the same run, or as a PR for product repos, instead of listing it as a to-do.
 - When working a project, update its **Log** and task checkboxes in the same session.

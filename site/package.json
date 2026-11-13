@@ -1,0 +1,21 @@
+{
+  "name": "rhizomatics-hq-site",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "sync": "node scripts/sync-content.mjs",
+    "stats": "node scripts/build-stats.mjs",
+    "dev": "npm run sync && astro dev",
+    "build": "npm run sync && npm run stats && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.9",
+    "astro": "^7.4.7",
+    "chart.js": "^4.6.1",
+    "smol-toml": "^1.9.1"
+  }
+}

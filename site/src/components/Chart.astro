@@ -1,0 +1,46 @@
+---
+// One chart: a canvas drawn by src/scripts/charts.ts from the embedded spec, a caption, and a
+// table of the same numbers. `views` holds alternative specs (e.g. weekly / daily) with a toggle.
+import type { ChartSpec } from '../lib/usage';
+import { fmt } from '../lib/usage';
+
+interface Props {
+  title: string;
+  caption?: string;
+  views: Record<string, ChartSpec>;
+}
+const { title, caption, views } = Astro.props;
+const names = Object.keys(views);
+const first = views[names[0]];
+---
+<figure class="usage-chart" data-chart>
+  <div class="usage-chart__head">
+    <h3>{title}</h3>
+    {names.length > 1 && (
+      <div class="usage-chart__views" role="group" aria-label={`${title}: view`}>
+        {names.map((n, i) => <button type="button" data-view={n} aria-pressed={i === 0 ? 'true' : 'false'}>{n}</button>)}
+      </div>
+    )}
+  </div>
+  <div class="usage-chart__canvas"><canvas role="img" aria-label={`${title}${caption ? `. ${caption}` : ''}`}></canvas></div>
+  <script type="application/json" set:html={JSON.stringify(views)} />
+  {caption && <figcaption>{caption}</figcaption>}
+  <details>
+    <summary>Show data</summary>
+    <div class="usage-chart__table">
+      <table>
+        <thead><tr><th scope="col"></th>{first.datasets.map((d) => <th scope="col">{d.label}</th>)}</tr></thead>
+        <tbody>
+          {[...first.labels.keys()].reverse().map((i) => (
+            <tr><th scope="row">{first.labels[i]}</th>{first.datasets.map((d) => <td>{fmt(d.data[i])}</td>)}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+
+<script>
+  import { renderCharts } from '../scripts/charts';
+  renderCharts();
+</script>

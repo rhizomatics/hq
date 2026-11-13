@@ -13,6 +13,17 @@ Each agent process is a Claude Code skill in `.claude/skills/<name>/SKILL.md` (r
 `hq-private/reports/<area>/`, and escalates only via an issue in `rhizomatics/hq-private`. The cadence files say
 *when* and *who*; the skill says *how*.
 
+Each process also declares who can read its report (`- **Report:**`):
+
+- **public**: published on the [HQ site](https://rhizomatics.github.io/hq/reports/); never holds
+  security findings, referrers, personal infrastructure or support triage.
+- **private by exception**: published unless the report's frontmatter says `visibility: private`,
+  which the agent sets whenever the report holds anything sensitive.
+- **private**: stays in `hq-private`.
+
+Publishing starts with reports dated 2026-11-14; earlier ones were written as private. The site
+build also withholds any report that looks private (IP or email addresses, referrer counts, tokens).
+
 Data gathering that needs no judgement (download counts, traffic) is a plain script on a GitHub
 Actions cron so it is cheap, reliable and builds history; the agent routines only interpret.
 

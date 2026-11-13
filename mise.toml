@@ -1,0 +1,11 @@
+[settings]
+# Cooldown for tool upgrades (policies/project_standards.md)
+minimum_release_age = "7d"
+
+[tools]
+node = "lts"
+
+[tasks.preview-site]
+description = "Build the public site from hq and ../hq-private, then serve it at http://localhost:4321/hq/"
+dir = "site"
+run = ["npm ci", "npm run build", "npx astro preview"]

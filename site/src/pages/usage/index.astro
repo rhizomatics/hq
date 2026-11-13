@@ -1,0 +1,75 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import Chart from '../../components/Chart.astro';
+import Kpi from '../../components/Kpi.astro';
+import { CHANNELS, combinedDownloads, data, downloadsSpecs, familyLabel, fmt } from '../../lib/usage';
+import { FAMILIES } from '../../lib/families.mjs';
+
+const base = import.meta.env.BASE_URL;
+const components = data.components;
+const sum = (f: (c: (typeof components)[number]) => number | null) => components.reduce((s, c) => s + (f(c) ?? 0), 0);
+const downloads = downloadsSpecs(combinedDownloads());
+const families = FAMILIES.map(([family]) => [family, components.filter((c) => c.family === family)] as const).filter(([, list]) => list.length);
+const firstDate = (id: string) =>
+  components.flatMap((c) => Object.keys((c.downloads as Record<string, Record<string, number>>)[id] ?? {})).sort()[0];
+---
+<StarlightPage frontmatter={{ title: 'Usage', description: 'Downloads, installs, stars and clones across all Rhizomatics components.', tableOfContents: false }}>
+  <p>
+    How much each Rhizomatics component is used, from the public counters each channel offers.
+    None of them counts people: downloads include updates, CI and mirrors, and Home Assistant
+    installs only cover installations that opted in to analytics. Updated daily; numbers to {data.snapshotDate}.
+  </p>
+
+  <div class="kpis">
+    <Kpi label="Downloads, last 7 days" value={fmt(sum((c) => c.kpis.downloads7))} note="all channels" />
+    <Kpi label="Downloads, last 30 days" value={fmt(sum((c) => c.kpis.downloads30))} note="all channels" />
+    <Kpi label="GitHub stars" value={fmt(sum((c) => c.kpis.stars))} />
+    <Kpi label="Home Assistant installs" value={fmt(sum((c) => c.kpis.haInstalls))} note="opted-in only" />
+  </div>
+
+  {downloads && (
+    <Chart
+      title="Downloads, all components"
+      views={{ Weekly: downloads.weekly, Daily: downloads.daily }}
+      caption={`Stacked by channel. Counting starts on different dates per channel: ${CHANNELS.filter((c) => downloads.channels.includes(c.id)).map((c) => `${c.label} ${firstDate(c.id)}`).join(', ')}.`}
+    />
+  )}
+
+  {families.map(([family, list]) => (
+    <>
+      <h2>{familyLabel(family)}</h2>
+      <table class="usage-table">
+        <thead>
+          <tr>
+            <th scope="col">Component</th>
+            <th scope="col" class="num">Downloads 7d</th>
+            <th scope="col" class="num">30d</th>
+            <th scope="col" class="num">Stars</th>
+            {family === 'ha-integration' && <th scope="col" class="num">HA installs</th>}
+            <th scope="col" class="num">Clones 14d</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((c) => (
+            <tr>
+              <th scope="row"><a href={`${base}/usage/${c.id}/`.replace('//', '/')}>{c.id}</a></th>
+              <td class="num">{c.channels.length ? fmt(c.kpis.downloads7) : '–'}</td>
+              <td class="num">{c.channels.length ? fmt(c.kpis.downloads30) : '–'}</td>
+              <td class="num">{fmt(c.kpis.stars)}</td>
+              {family === 'ha-integration' && <td class="num">{fmt(c.kpis.haInstalls)}</td>}
+              <td class="num">{fmt(c.kpis.clones14)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ))}
+
+  <h2>Sources</h2>
+  <ul class="usage-notes">
+    {CHANNELS.map((c) => <li><strong>{c.label}</strong>: {c.note}.</li>)}
+    <li><strong>Home Assistant installs</strong>: Home Assistant's public analytics for custom integrations; only installations that opted in, so a partial view.</li>
+    <li><strong>Clones</strong>: GitHub traffic API, which includes CI and bots. GitHub keeps 14 days, so it is snapshotted daily.</li>
+    {data.notes.map((n) => <li>{n}</li>)}
+  </ul>
+</StarlightPage>

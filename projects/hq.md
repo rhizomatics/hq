@@ -22,15 +22,13 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
 *Feedback required from using existing processes first*
 - Private web access to HQ
   - Projects, reports by area, process calendar, adoption charts from `hq-private/data/stats/`
-- Public facing site
-  - A separate site from a safe subset only (never security data, traffic referrers, personal
-    infrastructure, support triage notes)
-  - Retire `hacs_downloads` and not lose any functionality
-  - Maintain private what has to be private
-  - Maintain repo private, so build out of Github Pages
-    - Presume not an S3 bucket (with CloudFront to guard against S3 costs) unless hit wall with Github Pages
-  - Non real time, build once or twice a day
-  - Replace `hacs_downloads` site and the `www.rhizomatics.org.uk` site built from `.github` repo
+- Public facing site — **built** in `site/`, deploying to https://rhizomatics.github.io/hq/ (2026-11-13)
+  - [x] Docs (policies, projects, processes, reference, team) published, with a build-time check for private details
+  - [x] Usage per component: HACS/Marketplace by version, npm, PyPI, GHCR, stars, clones, HA analytics by version
+  - [x] Processes declare report visibility; public and private-by-exception reports published from 2026-11-14
+  - [ ] @human Add `HQ_PRIVATE_READ_TOKEN` to hq's Actions secrets and set Pages source to GitHub Actions
+  - [ ] @pair Retire `hacs-downloads`: point its Pages at the new Usage section, stop its daily capture, archive the repo
+  - [ ] @pair Replace the `www.rhizomatics.org.uk` site built from `.github` (custom domain on this site, or link across)
 
 ### Distant
 *Longer term feedback needed to see if its worthwhile and the shape of the package*
@@ -56,3 +54,8 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
   Pages can't serve a private site on the free org; noted that `hq` stays private.
 - 2026-10-30 — project-review: correction to the 10-23 note. The `/github-review` skill was only created on 10-14, after its 11th-of-month slot, so "no report" was expected; first real run is 2026-11-11. Same for `/alignment-review` changes and `/roadmap-review` (December). Nothing to chase.
 - 2026-11-13 — project-review: `/github-review` ran 11-11 (hq-private#105 follows up). "Now" items are all running; nothing started on "Soon".
+- 2026-11-13 — Public site built in `site/` (Astro Starlight, per the docs toolchain policy for non-Python
+  projects) and deployed by `.github/workflows/site.yml` daily at 05:40. hq is public, so Pages works on the
+  free org; private data is read at build time from hq-private and only aggregates are published.
+  hacs-downloads' history archived to `hq-private/data/legacy/`. Privacy check before publishing: redacted
+  a LAN address and router model in `agent-diagnostics.md`; nothing else found.

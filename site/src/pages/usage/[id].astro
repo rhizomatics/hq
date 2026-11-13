@@ -1,0 +1,83 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import Chart from '../../components/Chart.astro';
+import Kpi from '../../components/Kpi.astro';
+import {
+  CHANNELS,
+  clonesSpec,
+  data,
+  downloadsSpecs,
+  familyLabel,
+  fmt,
+  haVersionSpec,
+  hacsVersionSpec,
+  lineSpec,
+  signed,
+  type Channel,
+  type Component,
+} from '../../lib/usage';
+
+export function getStaticPaths() {
+  return data.components.map((c) => ({ params: { id: c.id }, props: { c } }));
+}
+
+const { c } = Astro.props as { c: Component };
+const series = c.downloads as Partial<Record<Channel, Record<string, number>>>;
+const downloads = downloadsSpecs(series);
+const totals = c.kpis.totals as Partial<Record<Channel, number>>;
+const hacsVersions = hacsVersionSpec(c.hacsVersions);
+const haVersions = haVersionSpec(c.haVersions as Record<string, number> | null);
+const haInstalls = lineSpec(c.haInstalls as Record<string, number>, 'Installations', 'Installations reporting');
+const stars = lineSpec(c.stars as Record<string, number>, 'Stars', 'Stars');
+const clones = clonesSpec(c.clones as Record<string, { count: number; uniques: number }>);
+const used = CHANNELS.filter((ch) => c.channels.includes(ch.id));
+const totalNote: Record<string, string> = { hacs: 'all time', npm: 'last 18 months', ghcr: 'all time' };
+---
+<StarlightPage frontmatter={{ title: c.id, description: c.description, tableOfContents: false }}>
+  <p>
+    {c.description} <a href={c.url}>GitHub</a> · {familyLabel(c.family)} · numbers to {data.snapshotDate}.
+  </p>
+
+  <div class="kpis">
+    {used.length > 0 && <Kpi label="Downloads, last 7 days" value={fmt(c.kpis.downloads7)} note={used.length > 1 ? 'all channels' : used[0].label} />}
+    {used.length > 0 && <Kpi label="Downloads, last 30 days" value={fmt(c.kpis.downloads30)} note={used.length > 1 ? 'all channels' : used[0].label} />}
+    {used.filter((ch) => totals[ch.id] != null).map((ch) => <Kpi label={`${ch.label} total`} value={fmt(totals[ch.id])} note={totalNote[ch.id]} />)}
+    <Kpi label="GitHub stars" value={fmt(c.kpis.stars)} note={c.kpis.starsChange7 != null ? `${signed(c.kpis.starsChange7)} in 7 days` : undefined} />
+    {c.kpis.haInstalls != null && <Kpi label="Home Assistant installs" value={fmt(c.kpis.haInstalls)} note="opted-in only" />}
+    <Kpi label="Clones, last 14 days" value={fmt(c.kpis.clones14)} />
+  </div>
+
+  {downloads && (
+    <Chart
+      title={used.length > 1 ? 'Downloads by channel' : `Downloads (${used[0].label})`}
+      views={{ Weekly: downloads.weekly, Daily: downloads.daily }}
+      caption={used.map((ch) => `${ch.label}: ${ch.note}`).join('. ') + '.'}
+    />
+  )}
+
+  {hacsVersions && (
+    <Chart
+      title="HACS / Marketplace downloads by version"
+      views={{ Versions: hacsVersions }}
+      caption="Downloads of each release's zip, all time; hover for the last 7 days. GitHub reports the latest 100 releases."
+    />
+  )}
+
+  {haVersions && (
+    <Chart
+      title="Home Assistant installs by version"
+      views={{ Versions: haVersions }}
+      caption="Installations running each version, from Home Assistant's analytics: only those that opted in, so a partial count, shown apart from downloads."
+    />
+  )}
+
+  {haInstalls && (
+    <Chart title="Home Assistant installs over time" views={{ Installs: haInstalls }} caption="Opted-in installations reporting this integration." />
+  )}
+
+  {stars && <Chart title="GitHub stars" views={{ Stars: stars }} />}
+
+  {clones && (
+    <Chart title="Git clones" views={{ Clones: clones }} caption="From GitHub's traffic API, which includes CI and bots; unique cloners are counted per day." />
+  )}
+</StarlightPage>

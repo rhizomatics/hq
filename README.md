@@ -17,6 +17,6 @@ Reports, metrics and the maintainer's to-do list live in a private companion rep
 
 ## Related
 
-- [HACS Dashboard](https://rhizomatics.github.io/hacs-downloads/)
+- [HQ site](https://rhizomatics.github.io/hq/), with [usage stats](https://rhizomatics.github.io/hq/usage/) for every component
 - [NPM Stats](https://www.packfolio.dev/?q=%40rhizomatics)
 - [Public Site](https://www.rhizomatics.org.uk)

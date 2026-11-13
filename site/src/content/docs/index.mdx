@@ -1,0 +1,56 @@
+---
+title: Rhizomatics HQ
+description: How the Rhizomatics open source projects are run, and how much they are used.
+template: splash
+editUrl: false
+hero:
+  tagline: How the Rhizomatics open source projects are run, by one human maintainer and a team of AI agent personas doing the routine work on a schedule.
+  image:
+    file: ../../assets/icon.svg
+  actions:
+    - text: Usage
+      link: /hq/usage/
+      icon: right-arrow
+    - text: Projects
+      link: /hq/projects/
+      variant: minimal
+    - text: GitHub
+      link: https://github.com/rhizomatics
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="Usage" icon="seti:graphql">
+    Downloads, installs, stars and clones for every component: Home Assistant integrations,
+    SignalK plugins, MQTT services and command line tools. [See usage](/hq/usage/).
+  </Card>
+  <Card title="Projects" icon="rocket">
+    Work in progress, proposals, and what's been finished or shelved. [Browse projects](/hq/projects/).
+  </Card>
+  <Card title="Processes" icon="list-format">
+    The daily to quarterly routines, which persona runs each, and whether its report is public.
+    [See processes](/hq/processes/).
+  </Card>
+  <Card title="Policies" icon="approve-check">
+    Cross-project policies: supported Python and Home Assistant versions, tooling, cooldowns and
+    the baseline every repo should meet. [Read policies](/hq/policies/).
+  </Card>
+</CardGrid>
+
+## How this works
+
+Each recurring process is a Claude Code skill run by a persona (pm, architect, infra-lead,
+marketing, tech-writer). Anything that needs the maintainer becomes an issue in a private
+companion repo; changes arrive as pull requests. Raw metrics, security findings and support
+triage stay private. This site is rebuilt daily from the public
+[hq repo](https://github.com/rhizomatics/hq) and the public aggregates of the private data.
+
+<CardGrid>
+  <LinkCard title="Team" description="The personas, what each owns and how they hand work over." href="/hq/team/" />
+  <LinkCard title="Reference" description="Tooling, the forums we watch and the problem phrases for each product." href="/hq/reference/project_tooling/" />
+  <LinkCard title="Reports" description="Reports from processes declared public." href="/hq/reports/" />
+  <LinkCard title="Main site" description="www.rhizomatics.org.uk" href="https://www.rhizomatics.org.uk" />
+</CardGrid>

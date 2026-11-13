@@ -5,16 +5,19 @@
 ### Adoption report — `/adoption-report`
 - **Who:** marketing
 - **Output:** `hq-private/reports/adoption/YYYY-Www.md`
+- **Report:** private
 - Download, install and clone trends from `hq-private/data/stats/`.
 
 ### Lingering PRs — `/pr-report`
 - **Who:** pm
 - **Output:** `hq-private/reports/prs/YYYY-Www.md`
+- **Report:** private
 
 ### Registry check — `/registry-check`
 - **Who:** pm
 - **When:** after the PR report
 - **Output:** section in `hq-private/reports/prs/YYYY-Www.md`; clear-cut fixes committed to `repos.toml`
+- **Report:** private (a section of the PR report)
 - New, removed, renamed or archived repos in the org; new publishing channels.
 
 ## Friday
@@ -22,6 +25,7 @@
 ### Project review — `/project-review`
 - **Who:** pm
 - **Output:** `hq-private/reports/projects/YYYY-MM-DD.md`; factual updates to `projects/`
+- **Report:** public
 - Progress and next steps for every project, mark work that's done. Ensure responsibility either clear or status is unscheduled. On the last Friday of the month this becomes the monthly project review (see [monthly.md](monthly.md)).
 
 ## Any day (human)

@@ -7,12 +7,14 @@ results over about a week.
 - **Who:** tech-writer
 - **When:** daily on the 1st–14th; each run reviews the next batch until all products are done
 - **Output:** `hq-private/reports/docs-review/YYYY-Qn/<repo>.md`
+- **Report:** public
 - Readability, accessibility and fidelity to the code.
 
 ## Feb / May / Aug / Nov — Architecture review — `/architecture-review`
 - **Who:** architect
 - **When:** daily on the 1st–14th, rolling like the docs review
 - **Output:** `hq-private/reports/architecture-review/YYYY-Qn/` (`_platform-changes.md` plus one file per product)
+- **Report:** private by exception
 - Conformance with the Home Assistant / SignalK architecture, HA Quality Scale (code, level, and
   changes to the scale), MQTT discovery for MQTT services.
 
@@ -20,4 +22,5 @@ results over about a week.
 - **Who:** pm
 - **When:** 10th
 - **Output:** `hq-private/reports/roadmaps/YYYY-Qn.md`
+- **Report:** public
 - Roadmap items done, obsoleted, or needing reprioritising, for every product that has a roadmap.
