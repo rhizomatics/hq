@@ -8,4 +8,4 @@ node = "lts"
 [tasks.preview-site]
 description = "Build the public site from hq and ../hq-private, then serve it at http://localhost:4321/"
 dir = "site"
-run = ["npm ci", "npm run build", "npx astro preview"]
+run = ["npm ci", "GITHUB_TOKEN=\"${GITHUB_TOKEN:-$(gh auth token)}\" npm run build", "npx astro preview"]

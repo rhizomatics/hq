@@ -1,0 +1,98 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import Kpi from '../components/Kpi.astro';
+import actions from '../data/actions.json';
+import { FAMILIES } from '../lib/families.mjs';
+
+type Repo = {
+  id: string;
+  family: string;
+  url: string;
+  state: 'red' | 'amber' | 'green' | 'none';
+  workflows: { name: string; state: 'red' | 'amber' | 'green'; conclusion: string; lastRun: string; event: string; url: string; failures24h: number }[];
+};
+
+const repos = actions.repos as Repo[];
+const RANK = { red: 0, amber: 1, green: 2, none: 3 };
+const LABEL = { red: 'Broken', amber: 'Failed in last day', green: 'Passing', none: 'No runs' };
+const groups = [...FAMILIES, ['meta', 'Organisation']]
+  .map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => RANK[a.state] - RANK[b.state] || a.id.localeCompare(b.id))] as const)
+  .filter(([, list]) => list.length);
+const count = (s: Repo['state']) => repos.filter((r) => r.state === s).length;
+const asOf = actions.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
+const day = (t: string) => t.slice(0, 10);
+---
+<StarlightPage frontmatter={{ title: 'Workflows', description: 'GitHub Actions state of each public Rhizomatics repo, updated daily.', tableOfContents: false }}>
+  <p>
+    The GitHub Actions state of each public repo, as of {asOf}. Updated daily.
+    <strong>Broken</strong> means a workflow's latest run failed.
+    <strong>Failed in last day</strong> means it has failed in the 24 hours before the update but has passed since.
+    Runs from pull requests and Dependabot branches are left out, so this shows the state of the main branch,
+    releases and scheduled jobs only.
+  </p>
+
+  {actions.available ? (
+    <>
+      <div class="kpis">
+        <Kpi label="Broken" value={String(count('red'))} note="repos" />
+        <Kpi label="Failed in last day" value={String(count('amber'))} note="repos" />
+        <Kpi label="Passing" value={String(count('green'))} note="repos" />
+      </div>
+
+      {groups.map(([label, list]) => (
+        <>
+          <h2>{label}</h2>
+          <table class="usage-table ci-table">
+            <thead>
+              <tr>
+                <th scope="col">Repo</th>
+                <th scope="col">State</th>
+                <th scope="col">Workflows</th>
+              </tr>
+            </thead>
+            <tbody>
+              {list.map((r) => {
+                const problems = r.workflows.filter((w) => w.state !== 'green');
+                const passing = r.workflows.length - problems.length;
+                return (
+                  <tr>
+                    <th scope="row"><a href={r.url}>{r.id}</a></th>
+                    <td><span class={`ci-status ci-status--${r.state}`}>{LABEL[r.state]}</span></td>
+                    <td>
+                      {problems.length > 0 && (
+                        <ul class="ci-problems">
+                          {problems.map((w) => (
+                            <li>
+                              <span class={`ci-dot ci-dot--${w.state}`} aria-hidden="true"></span>
+                              <a href={w.url}>{w.name}</a>
+                              <span class="ci-meta">
+                                {w.state === 'red'
+                                  ? ` ${w.conclusion.replace('_', ' ')} ${day(w.lastRun)}`
+                                  : ` ${w.failures24h} failed, then passed`}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {r.workflows.length === 0
+                        ? <span class="ci-meta">No runs outside pull requests</span>
+                        : passing > 0 && <span class="ci-meta">{problems.length ? '+ ' : ''}{passing} passing</span>}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </>
+      ))}
+    </>
+  ) : (
+    <p>Workflow states weren't available at the last build.</p>
+  )}
+
+  {actions.notes.length > 0 && (
+    <ul class="usage-notes">
+      {actions.notes.map((n) => <li>{n}</li>)}
+    </ul>
+  )}
+</StarlightPage>

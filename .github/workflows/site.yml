@@ -1,7 +1,8 @@
 name: Site
 
 # Builds the public HQ site (site/) and deploys it to GitHub Pages: hq's docs, the reports that
-# processes declare public, and usage stats derived from hq-private's daily snapshots.
+# processes declare public, usage stats derived from hq-private's daily snapshots, and the Actions
+# state of each public repo (read with this run's token; actions: read).
 # Runs daily after hq-private's 05:00 stats collection, and on doc or site changes.
 # Logs are public: the build scripts only print counts, file names and public source errors.
 
@@ -24,6 +25,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: pages
@@ -55,6 +57,7 @@ jobs:
         working-directory: site
         env:
           HQ_PRIVATE: ${{ github.workspace }}/hq-private
+          GITHUB_TOKEN: ${{ github.token }}
           ASTRO_TELEMETRY_DISABLED: "1"
         run: |
           npm ci

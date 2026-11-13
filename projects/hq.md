@@ -51,3 +51,6 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
   hacs-downloads' history archived to `hq-private/data/legacy/`. Privacy check before publishing: redacted
   a LAN address and router model in `agent-diagnostics.md`; nothing else found.
 - 2026-11-13 — Site live at https://hq.rhizomatics.org.uk/ (first deploy green: 36 docs, 20 components, no source gaps). hacs-downloads retirement PR opened (hacs-downloads#7).
+- 2026-11-13 — Workflows page added at `/actions/`: per public repo, red where a workflow's latest run failed,
+  amber where one failed in the past day but has passed since (PR, Dependabot-branch and Copilot review runs
+  excluded). Built daily with the site using the workflow's own token. First build: 7 red, 2 amber of 24.

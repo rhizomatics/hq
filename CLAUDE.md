@@ -27,7 +27,8 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
 - `site/` — the public HQ site at https://hq.rhizomatics.org.uk/ (Astro Starlight), built daily by
   `.github/workflows/site.yml`: the docs above, public reports, and a Usage section per component
   from `hq-private/data/`. `scripts/sync-content.mjs` publishes docs and reports and fails on
-  anything that looks private; `scripts/build-stats.mjs` writes only public aggregates. Run it with
+  anything that looks private; `scripts/build-stats.mjs` writes only public aggregates;
+  `scripts/build-actions.mjs` fetches each public repo's Actions state for the Workflows page. Run it with
   `mise run preview-site`.
 - `hq-private/commands/` — helper shell commands for the maintainer.
 - `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-stats.yml`.

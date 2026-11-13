@@ -55,3 +55,38 @@
 .usage-table td.num, .usage-table th.num { text-align: end; font-variant-numeric: tabular-nums; }
 .usage-table { display: block; overflow-x: auto; }
 .usage-notes { font-size: var(--sl-text-sm); color: var(--sl-color-gray-3); }
+
+/* Workflows page: status colours. Text labels carry the meaning; colour only reinforces it. */
+:root {
+  --ci-red: #f2685c;
+  --ci-red-bg: #4a1f1b;
+  --ci-amber: #f0b43c;
+  --ci-amber-bg: #45340f;
+  --ci-green: #4cc38a;
+  --ci-green-bg: #173b2a;
+  --ci-none: var(--sl-color-gray-3);
+  --ci-none-bg: var(--sl-color-gray-6);
+}
+:root[data-theme='light'] {
+  --ci-red: #b3261e;
+  --ci-red-bg: #fde4e1;
+  --ci-amber: #8a5a00;
+  --ci-amber-bg: #fdf0d2;
+  --ci-green: #18794e;
+  --ci-green-bg: #dcf3e6;
+}
+.ci-table td { vertical-align: top; }
+.ci-status {
+  display: inline-block; white-space: nowrap; border-radius: 999px; padding: 0.05rem 0.6rem;
+  font-size: var(--sl-text-sm); font-weight: 600;
+}
+.ci-status--red { color: var(--ci-red); background: var(--ci-red-bg); }
+.ci-status--amber { color: var(--ci-amber); background: var(--ci-amber-bg); }
+.ci-status--green { color: var(--ci-green); background: var(--ci-green-bg); }
+.ci-status--none { color: var(--ci-none); background: var(--ci-none-bg); }
+.ci-problems { list-style: none; padding: 0; margin: 0 0 0.2rem !important; }
+.ci-problems li { margin: 0 !important; }
+.ci-dot { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; margin-inline-end: 0.4rem; }
+.ci-dot--red { background: var(--ci-red); }
+.ci-dot--amber { background: var(--ci-amber); }
+.ci-meta { font-size: var(--sl-text-sm); color: var(--sl-color-gray-3); }

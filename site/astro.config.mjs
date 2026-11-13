@@ -35,6 +35,7 @@ export default defineConfig({
       lastUpdated: false,
       sidebar: [
         { label: 'Usage', items: usageSidebar() },
+        { label: 'Workflows', link: '/actions/' },
         { label: 'Projects', collapsed: true, items: [{ autogenerate: { directory: 'projects' } }] },
         { label: 'Processes', collapsed: true, items: [{ autogenerate: { directory: 'processes' } }] },
         { label: 'Policies', collapsed: true, items: [{ autogenerate: { directory: 'policies' } }] },
