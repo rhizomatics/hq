@@ -51,7 +51,7 @@ Environments: routines that read the web (WebFetch/WebSearch of forums, platform
 github.com pages) run in **HQ Web Research**, which allowlists those domains but isn't meant for
 package installs: Dependabot sweep, support sweep, security escalation, forum watch, alignment, support review,
 ecosystem, GitHub, agent accessibility, reputation, architecture review, registry check, docs
-review. The rest (adoption, PR report, project review, roadmap review, policy review) run in **Cloud Play Pen**. When changing a routine's environment through the API, send the whole `job_config`; a partial one replaces it and drops the prompt and repos.
+review, policy review. The rest (adoption, PR report, project review, roadmap review) run in **Cloud Play Pen**. When changing a routine's environment through the API, send the whole `job_config`; a partial one replaces it and drops the prompt and repos.
 
 When adding a repo to the org, attach it to the routines too (the registry check will remind you).
 
