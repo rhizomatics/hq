@@ -1,3 +1,17 @@
+/* Accent colours from the icon (src/assets/icon.svg): navy, orange and cream. They replace Starlight's
+   default blues for the site title, links and buttons. Orange is only used on dark backgrounds, where it
+   has enough contrast; light mode uses navy for text and buttons. */
+:root {
+  --sl-color-accent-low: #1f2b40;
+  --sl-color-accent: #f28c3a;
+  --sl-color-accent-high: #f28c3a;
+}
+:root[data-theme='light'] {
+  --sl-color-accent-low: #f4ead5;
+  --sl-color-accent: #2c3d5c;
+  --sl-color-accent-high: #1f2b40;
+}
+
 /* Chart colours: the validated reference categorical palette, slots 1-4, stepped for each theme. */
 :root {
   --viz-1: #3987e5;
