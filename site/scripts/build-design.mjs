@@ -1,10 +1,15 @@
 #!/usr/bin/env node
-// Builds src/data/rfcs.json, the RFCs page: open and recently closed RFCs across the public repos.
+// Builds src/data/design.json for the Design Process page (per product: roadmap, design principles,
+// RFCs, GitHub discussions and issues) and the RFCs page (open and recently closed RFCs).
+//
+// Products are the public repos in repos.toml, less `meta`, `internal`, `experimental` and archived ones
+// (policies/products.md). Roadmap and design principles are found by file name (`roadmap.md`,
+// `design_principles.md`) anywhere under `docs/` (policies/design.md).
 //
 // Sources, all read-only:
 //   - repos.toml                        which repos to cover (`archived = true` ones are left out)
 //   - hq-private/data/github/<latest>   only for repo visibility and archive state
-//   - GitHub REST API                   each public repo's tree, its RFC files and their last commit
+//   - GitHub REST API                   each public repo's settings, tree, RFC files and their last commit
 //
 // An RFC is any Markdown file in a directory named `rfcs` (policies/design.md), apart from index,
 // README and template files. Its status is read from the first lines, in any of the forms in use:
@@ -22,7 +27,7 @@ import { parse as parseToml } from 'smol-toml';
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
 const privateRoot = path.resolve(process.env.HQ_PRIVATE ?? path.join(hqRoot, '..', 'hq-private'));
-const outPath = path.join(siteRoot, 'src', 'data', 'rfcs.json');
+const outPath = path.join(siteRoot, 'src', 'data', 'design.json');
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const DAY = 86_400_000;
 const RECENT_DAYS = 60;
@@ -82,10 +87,27 @@ function readTitle(text, file) {
 
 const discussionOf = (text) => text.match(/https:\/\/github\.com\/rhizomatics\/[\w.-]+\/discussions\/\d+/)?.[0] ?? null;
 
-async function repoRfcs(org, name) {
+const docLink = (repo, paths, file) => {
+  const p = paths.find((x) => x.toLowerCase().startsWith('docs/') && path.basename(x).toLowerCase() === file);
+  return p ? `https://github.com/${repo}/blob/HEAD/${p}` : null;
+};
+
+async function repoDesign(org, name) {
   const repo = `${org}/${name}`;
-  const { tree, truncated } = await gh(`repos/${repo}/git/trees/HEAD?recursive=1`);
+  const [{ tree, truncated }, settings] = await Promise.all([gh(`repos/${repo}/git/trees/HEAD?recursive=1`), gh(`repos/${repo}`)]);
+  const blobs = tree.filter((t) => t.type === 'blob').map((t) => t.path);
   const files = tree.filter((t) => t.type === 'blob' && isRfc(t.path));
+  const rfcDir = files.length ? path.dirname(files[0].path) : null;
+  const product = {
+    id: name,
+    url: `https://github.com/${repo}`,
+    roadmap: docLink(repo, blobs, 'roadmap.md'),
+    principles: docLink(repo, blobs, 'design_principles.md'),
+    rfcs: rfcDir ? `https://github.com/${repo}/tree/HEAD/${rfcDir}` : null,
+    rfcCount: files.length,
+    discussions: settings.has_discussions ? `https://github.com/${repo}/discussions` : null,
+    issues: settings.has_issues ? `https://github.com/${repo}/issues` : null,
+  };
   const out = await Promise.all(
     files.map(async (f) => {
       const [blob, commits] = await Promise.all([
@@ -105,7 +127,7 @@ async function repoRfcs(org, name) {
       };
     }),
   );
-  return { rfcs: out, truncated };
+  return { rfcs: out, product, truncated };
 }
 
 async function main() {
@@ -117,22 +139,25 @@ async function main() {
   const now = Date.now();
   const notes = [];
 
+  const isProduct = (r) => r.family !== 'meta' && !r.category?.some((c) => c === 'internal' || c === 'experimental');
   const names = Object.keys(registry.repos).filter((n) => !registry.repos[n].archived && orgRepos[n]?.visibility === 'public' && !orgRepos[n].archived);
   const all = [];
+  const products = [];
   if (!token) {
-    notes.push('No GitHub token at build time, so RFCs were not fetched.');
-    console.warn('rfcs: no GITHUB_TOKEN; writing an empty page');
+    notes.push('No GitHub token at build time, so design documents were not fetched.');
+    console.warn('design: no GITHUB_TOKEN; writing empty pages');
   } else {
     for (let i = 0; i < names.length; i += 4) {
       const batch = names.slice(i, i + 4);
       const results = await Promise.all(
         batch.map(async (name) => {
           try {
-            const { rfcs, truncated } = await repoRfcs(org, name);
+            const { rfcs, product, truncated } = await repoDesign(org, name);
+            if (isProduct(registry.repos[name])) products.push({ ...product, family: registry.repos[name].family });
             if (truncated) notes.push(`${name}: file list was truncated, so some RFCs may be missing.`);
             return rfcs;
           } catch (err) {
-            notes.push(`${name}: RFCs unavailable (${err.message}).`);
+            notes.push(`${name}: design documents unavailable (${err.message}).`);
             return [];
           }
         }),
@@ -149,9 +174,9 @@ async function main() {
   await mkdir(path.dirname(outPath), { recursive: true });
   await writeFile(
     outPath,
-    `${JSON.stringify({ generatedAt: new Date(now).toISOString(), available: Boolean(token), recentDays: RECENT_DAYS, total: all.length, drafts, notes, open, closed })}\n`,
+    `${JSON.stringify({ generatedAt: new Date(now).toISOString(), available: Boolean(token), recentDays: RECENT_DAYS, total: all.length, drafts, notes, products, open, closed })}\n`,
   );
-  console.log(`rfcs: ${all.length} found, ${open.length} open, ${closed.length} recently closed, ${drafts} drafts${notes.length ? `; ${notes.length} gaps` : ''}`);
+  console.log(`design: ${products.length} products, ${all.length} RFCs, ${open.length} open, ${closed.length} recently closed, ${drafts} drafts${notes.length ? `; ${notes.length} gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);
 }
 

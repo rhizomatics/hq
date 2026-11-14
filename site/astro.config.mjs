@@ -36,7 +36,7 @@ export default defineConfig({
       sidebar: [
         { label: 'Usage', items: usageSidebar() },
         { label: 'Workflows', link: '/actions/' },
-        { label: 'RFCs', link: '/rfcs/' },
+        { label: 'Design Process', items: [{ label: 'Overview', link: '/design/' }, { label: 'RFCs', link: '/rfcs/' }] },
         { label: 'Projects', collapsed: true, items: [{ autogenerate: { directory: 'projects' } }] },
         { label: 'Processes', collapsed: true, items: [{ autogenerate: { directory: 'processes' } }] },
         { label: 'Policies', collapsed: true, items: [{ autogenerate: { directory: 'policies' } }] },

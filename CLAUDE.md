@@ -29,7 +29,7 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
   from `hq-private/data/`. `scripts/sync-content.mjs` publishes docs and reports and fails on
   anything that looks private; `scripts/build-stats.mjs` writes only public aggregates;
   `scripts/build-actions.mjs` fetches each public repo's Actions state for the Workflows page;
-  `scripts/build-rfcs.mjs` lists RFCs past draft (open and recently closed) for the RFCs page. Run it with
+  `scripts/build-design.mjs` gathers RFCs, roadmaps and design principles for the Design Process and RFCs pages. Run it with
   `mise run preview-site`.
 - `hq-private/commands/` — helper shell commands for the maintainer.
 - `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-stats.yml`.

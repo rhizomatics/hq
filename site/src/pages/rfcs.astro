@@ -1,6 +1,7 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
-import rfcs from '../data/rfcs.json';
+import design from '../data/design.json';
+const rfcs = design;
 
 type Rfc = { repo: string; number: string | null; title: string; status: string; updated: string | null; url: string; discussion: string | null };
 

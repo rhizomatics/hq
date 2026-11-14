@@ -9,9 +9,9 @@
     "sync": "node scripts/sync-content.mjs",
     "stats": "node scripts/build-stats.mjs",
     "actions": "node scripts/build-actions.mjs",
-    "rfcs": "node scripts/build-rfcs.mjs",
-    "dev": "npm run sync && npm run actions && npm run rfcs && astro dev",
-    "build": "npm run sync && npm run stats && npm run actions && npm run rfcs && astro build",
+    "design": "node scripts/build-design.mjs",
+    "dev": "npm run sync && npm run actions && npm run design && astro dev",
+    "build": "npm run sync && npm run stats && npm run actions && npm run design && astro build",
     "preview": "astro preview"
   },
   "dependencies": {

@@ -1,0 +1,76 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import design from '../data/design.json';
+import { FAMILIES } from '../lib/families.mjs';
+
+type Product = {
+  id: string;
+  family: string;
+  url: string;
+  roadmap: string | null;
+  principles: string | null;
+  rfcs: string | null;
+  rfcCount: number;
+  discussions: string | null;
+  issues: string | null;
+};
+
+const products = design.products as Product[];
+const groups = FAMILIES.map(([family, label]) => [label, products.filter((p) => p.family === family).sort((a, b) => a.id.localeCompare(b.id))] as const).filter(
+  ([, list]) => list.length,
+);
+const asOf = design.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
+---
+<StarlightPage frontmatter={{ title: 'Design Process', description: 'How Rhizomatics products are designed in the open: RFCs, roadmaps and design principles, and where to comment.', tableOfContents: false }}>
+  <p>
+    Designs are worked out in the open, in each product's repo (see the <a href="/policies/design/">design policy</a>):
+  </p>
+  <ul>
+    <li><strong>RFCs</strong> (Requests for Comment) plan major changes before they're built. They start as drafts, then go to review, get built and are closed.</li>
+    <li>A <strong>roadmap</strong> summarises what's expected next, large and small, including ideas that don't have an RFC yet.</li>
+    <li><strong>Design principles</strong> set out the scope of larger products, such as what belongs in Home Assistant or SignalK rather than here.</li>
+  </ul>
+  <p>
+    <a href="/rfcs/"><strong>See RFCs past draft</strong></a>, open and recently closed, across all products.
+    To comment on a design, use the product's GitHub discussions, or an issue where discussions aren't switched on.
+  </p>
+
+  {design.available ? (
+    groups.map(([label, list]) => (
+      <>
+        <h2>{label}</h2>
+        <table class="usage-table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Roadmap</th>
+              <th scope="col">Design principles</th>
+              <th scope="col">RFCs</th>
+              <th scope="col">Discussions</th>
+              <th scope="col">Issues</th>
+            </tr>
+          </thead>
+          <tbody>
+            {list.map((p) => (
+              <tr>
+                <th scope="row"><a href={p.url}>{p.id}</a></th>
+                <td>{p.roadmap ? <a href={p.roadmap}>Roadmap</a> : <span class="ci-meta">–</span>}</td>
+                <td>{p.principles ? <a href={p.principles}>Principles</a> : <span class="ci-meta">–</span>}</td>
+                <td>{p.rfcs ? <a href={p.rfcs}>{p.rfcCount} RFC{p.rfcCount === 1 ? '' : 's'}</a> : <span class="ci-meta">–</span>}</td>
+                <td>{p.discussions ? <a href={p.discussions}>Discussions</a> : <span class="ci-meta">off</span>}</td>
+                <td>{p.issues ? <a href={p.issues}>Issues</a> : <span class="ci-meta">off</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    ))
+  ) : (
+    <p>Design documents weren't available at the last build.</p>
+  )}
+
+  <ul class="usage-notes">
+    <li>As of {asOf}, updated daily. Experimental and internal repos aren't listed.</li>
+    {design.notes.map((n) => <li>{n}</li>)}
+  </ul>
+</StarlightPage>
