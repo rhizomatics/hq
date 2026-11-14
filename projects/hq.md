@@ -27,8 +27,8 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
   - [x] Usage per component: HACS/Marketplace by version, npm, PyPI, GHCR, stars, clones, HA analytics by version
   - [x] Processes declare report visibility; public and private-by-exception reports published from 2026-11-14
   - [x] @human Add `HQ_PRIVATE_READ_TOKEN` (repository secret; org secrets are public-repo-only on Free) and enable Pages with the `hq.rhizomatics.org.uk` domain (2026-11-13)
-  - [ ] @pair Retire `hacs-downloads`: redirect and capture stop in [hacs-downloads#7](https://github.com/rhizomatics/hacs-downloads/pull/7); then archive the repo and revoke its `TRAFFIC_GITHUB_TOKEN`
-  - [ ] @pair Replace the `www.rhizomatics.org.uk` site built from `.github` (custom domain on this site, or link across)
+  - [x] @pair Retire `hacs-downloads`: redirect and capture stop in [hacs-downloads#7](https://github.com/rhizomatics/hacs-downloads/pull/7); then archive the repo and revoke its `TRAFFIC_GITHUB_TOKEN`
+  - [x] @pair Replace the `www.rhizomatics.org.uk` site built from `.github` (custom domain on this site, or link across)
 
 ### Distant
 *Longer term feedback needed to see if its worthwhile and the shape of the package*
