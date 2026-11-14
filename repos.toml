@@ -132,6 +132,7 @@ pypi = "signalk-cli"
 
 [repos.hacs-downloads]
 family = "site"
+archived = true
 
 [repos.boat-tech-directory]
 family = "site"
