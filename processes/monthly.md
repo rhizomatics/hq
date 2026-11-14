@@ -23,8 +23,7 @@
 - **Who:** infra-lead
 - **Output:** `hq-private/reports/github/YYYY-MM.md`
 - **Report:** private by exception
-- Workflow consistency per app type, settings drift, new GitHub features, root causes of
-  recurring build failures.
+- Workflow consistency per app type, settings drift, new GitHub features, root causes of recurring build failures.
 
 ## 18th — Agent accessibility — `/agent-accessibility-review`
 - **Who:** architect

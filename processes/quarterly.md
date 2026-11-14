@@ -1,26 +1,29 @@
 # Quarterly
 
-Each quarterly review owns a different month of the quarter, and the rolling ones spread their
-results over about a week.
+Each quarterly review owns a different month of the quarter, and the rolling ones spread their results over about a week. 
 
-## Jan / Apr / Jul / Oct — Docs review — `/docs-review`
+## Jan / May / Sep — Docs review — `/docs-review`
 - **Who:** tech-writer
 - **When:** daily on the 1st–14th; each run reviews the next batch until all products are done
-- **Output:** `hq-private/reports/docs-review/YYYY-Qn/<repo>.md`
 - **Report:** public
 - Readability, accessibility and fidelity to the code.
 
-## Feb / May / Aug / Nov — Architecture review — `/architecture-review`
+## Feb / Jun / Oct — Architecture review — `/architecture-review`
 - **Who:** architect
 - **When:** daily on the 1st–14th, rolling like the docs review
 - **Output:** `hq-private/reports/architecture-review/YYYY-Qn/` (`_platform-changes.md` plus one file per product)
 - **Report:** private by exception
-- Conformance with the Home Assistant / SignalK architecture, HA Quality Scale (code, level, and
-  changes to the scale), MQTT discovery for MQTT services.
+- Conformance with the Home Assistant / SignalK architecture, HA Quality Scale (code, level, and changes to the scale), MQTT discovery for MQTT services.
 
-## Mar / Jun / Sep / Dec — Roadmap review — `/roadmap-review`
+## Mar / Jul / Nov — Roadmap review — `/roadmap-review`
 - **Who:** pm
 - **When:** 10th
-- **Output:** `hq-private/reports/roadmaps/YYYY-Qn.md`
 - **Report:** public
 - Roadmap items done, obsoleted, or needing reprioritising, for every product that has a roadmap.
+
+
+## Apr / Aug / Dec - Policy Review - `/policy-review`
+- **Who:** pm
+- **When:** 10th
+- **Report:** public
+Review HQ policies and processes for consistency, gaps and missed opportunities. Propose changes to policies via PRs assigned to maintainer.

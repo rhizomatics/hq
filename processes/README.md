@@ -9,31 +9,29 @@ Recurring routines, one file per cadence:
 - [quarterly.md](quarterly.md)
 
 Each agent process is a Claude Code skill in `.claude/skills/<name>/SKILL.md` (runnable by hand as
-`/<name>`) that runs as a persona from `.claude/agents/`, writes a dated report under
-`hq-private/reports/<area>/`, and escalates only via an issue in `rhizomatics/hq-private`. The cadence files say
-*when* and *who*; the skill says *how*.
+`/<name>`) that runs as a persona from `.claude/agents/`. The cadence files say *when* and *who*; the skill says *how*.
+
+Process outputs are focused on *actionable results* rather than reports. Primary output of each process are PRs for identified changes and Issues for open questions, raised on the target repository. A report may be added only where required as an appendix for detail such as extended explanations and supporting findings, or where the subject is private and requires a `hq-private` report rather than a public PR, and a `hq-private` Issue isn't appropriate.
+
+## Report Accessibility
+
+> This applies only where a report has to be created, see the above section on Actionable Results.
 
 Each process also declares who can read its report (`- **Report:**`):
 
-- **public**: published on the [HQ site](https://hq.rhizomatics.org.uk/reports/); never holds
-  security findings, referrers, personal infrastructure or support triage.
-- **private by exception**: published unless the report's frontmatter says `visibility: private`,
-  which the agent sets whenever the report holds anything sensitive.
+- **public**: published on the [HQ site](https://hq.rhizomatics.org.uk/reports/); never holds security findings, referrers, personal infrastructure or support triage.
+- **private by exception**: published unless the report's frontmatter says `visibility: private`, which the agent sets whenever the report holds anything sensitive.
 - **private**: stays in `hq-private`.
 
-Publishing starts with reports dated 2026-11-14; earlier ones were written as private. The site
-build also withholds any report that looks private (IP or email addresses, referrer counts, tokens).
+Publishing starts with reports dated 2026-11-14; earlier ones were written as private. The site build also withholds any report that looks private (IP or email addresses, referrer counts, tokens).
 
-Data gathering that needs no judgement (download counts, traffic) is a plain script on a GitHub
-Actions cron so it is cheap, reliable and builds history; the agent routines only interpret.
+Data gathering that needs no judgement (download counts, traffic) is a plain script on a GitHub Actions cron so it is cheap, reliable and builds history; the agent routines only interpret.
 
-Monthly and quarterly work is spread across the calendar so it doesn't all land at once. Forum and
-topic sources are in `reference/`.
+Monthly and quarterly work is spread across the calendar so it doesn't all land at once. Forum and topic sources are in `reference/`.
 
 ## Scheduling
 
-Every agent process runs as a Claude Code cloud routine (manage at https://claude.ai/code/routines),
-named `hq: <cadence> <process>`, with all rhizomatics repos attached. Times are UTC:
+Every agent process runs as a Claude Code cloud routine (manage at https://claude.ai/code/routines), named `hq: <cadence> <process>`, with all rhizomatics repos attached. Times are UTC:
 
 - **Daily:** Dependabot sweep 05:40, support sweep 06:00, security escalation 06:20, forum watch 06:40 (after the 05:00
   stats and GitHub snapshot in Actions).
@@ -52,8 +50,7 @@ Environments: routines that read the web (WebFetch/WebSearch of forums, platform
 github.com pages) run in **HQ Web Research**, which allowlists those domains but isn't meant for
 package installs: Dependabot sweep, support sweep, security escalation, forum watch, alignment, support review,
 ecosystem, GitHub, agent accessibility, reputation, architecture review, registry check, docs
-review. The rest (adoption, PR report, project review, roadmap review) run in **Cloud Play Pen**. When changing a routine's environment through
-the API, send the whole `job_config`; a partial one replaces it and drops the prompt and repos.
+review. The rest (adoption, PR report, project review, roadmap review) run in **Cloud Play Pen**. When changing a routine's environment through the API, send the whole `job_config`; a partial one replaces it and drops the prompt and repos.
 
 When adding a repo to the org, attach it to the routines too (the registry check will remind you).
 
