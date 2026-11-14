@@ -3,24 +3,25 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import design from '../data/design.json';
 const rfcs = design;
 
-type Rfc = { repo: string; number: string | null; title: string; status: string; updated: string | null; url: string; discussion: string | null };
+type Rfc = { repo: string; number: string | null; title: string; status: string | null; created: string | null; updated: string | null; url: string; discussion: string | null };
 
 const asOf = rfcs.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 const day = (t: string | null) => (t ? t.slice(0, 10) : '–');
-const sections: [string, string, Rfc[]][] = [
-  ['Open', 'Past draft and not finished: ready for review, agreed, or partly built.', rfcs.open as Rfc[]],
-  ['Recently closed', `Done, built, cancelled or archived, and changed in the last ${rfcs.recentDays} days.`, rfcs.closed as Rfc[]],
+const sections: [string, string, Rfc[], boolean][] = [
+  ['Ready for Review', 'Past draft and not finished: ready for review, agreed, or partly built.', rfcs.open as Rfc[], false],
+  ['Draft', 'Still being written. Comments are welcome, but the design may change a lot.', rfcs.drafts as Rfc[], true],
+  ['Recently closed', `Done, built, cancelled or archived, and changed in the last ${rfcs.recentDays} days.`, rfcs.closed as Rfc[], false],
 ];
 ---
-<StarlightPage frontmatter={{ title: 'RFCs', description: 'Design proposals (RFCs) across the public Rhizomatics repos that are past draft: open and recently closed.', tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'RFCs', description: 'Design proposals (RFCs) across the public Rhizomatics repos: ready for review, draft and recently closed.', tableOfContents: false }}>
   <p>
     Major changes are planned as Requests for Comment, kept in each repo's <code>docs/developer</code> folder
-    (see the <a href="/policies/design/">design policy</a>). This page lists the ones past draft, as of {asOf}, updated daily.
+    (see the <a href="/policies/design/">design policy</a>). This page lists them by stage, as of {asOf}, updated daily.
     Comments are welcome on the linked GitHub discussion, or as an issue in the repo where there isn't one.
   </p>
 
   {rfcs.available ? (
-    sections.map(([heading, blurb, list]) => (
+    sections.map(([heading, blurb, list, isDraft]) => (
       <>
         <h2>{heading}</h2>
         <p class="ci-meta">{blurb}</p>
@@ -31,7 +32,8 @@ const sections: [string, string, Rfc[]][] = [
                 <th scope="col">RFC</th>
                 <th scope="col">Repo</th>
                 <th scope="col">Status</th>
-                <th scope="col">Updated</th>
+                {isDraft && <th scope="col">Created</th>}
+                <th scope="col">{isDraft ? 'Changed' : 'Updated'}</th>
                 <th scope="col">Discussion</th>
               </tr>
             </thead>
@@ -40,7 +42,8 @@ const sections: [string, string, Rfc[]][] = [
                 <tr>
                   <th scope="row"><a href={r.url}>{r.number ? `${r.number} ` : ''}{r.title}</a></th>
                   <td>{r.repo}</td>
-                  <td>{r.status}</td>
+                  <td>{r.status ?? <span class="ci-meta">no status</span>}</td>
+                  {isDraft && <td class="num">{day(r.created)}</td>}
                   <td class="num">{day(r.updated)}</td>
                   <td>{r.discussion ? <a href={r.discussion}>#{r.discussion.split('/').at(-1)}</a> : <span class="ci-meta">none</span>}</td>
                 </tr>
@@ -57,7 +60,6 @@ const sections: [string, string, Rfc[]][] = [
   )}
 
   <ul class="usage-notes">
-    {rfcs.available && <li>{rfcs.drafts} of {rfcs.total} RFCs are drafts or have no status yet, and aren't listed.</li>}
     {rfcs.notes.map((n) => <li>{n}</li>)}
   </ul>
 </StarlightPage>

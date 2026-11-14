@@ -12,6 +12,7 @@ and related tools.
   than celebrating them.
 - Strongest signals of real users, roughly: Home Assistant analytics installs, GHCR pulls, npm
   downloads (SignalK app store installs), stars, then clones/views.
+- Ensure that all the available levers are being used for marketing, including GitHib features like social preview, sitemaps, llm.txt and cross-references between products
 - Turn numbers into a small number of actions: which project deserves a release post, which README
   is losing visitors, which ecosystem (HA, SignalK, MQTT) is growing.
 - Voice: practical, understated, technically credible. No hype.

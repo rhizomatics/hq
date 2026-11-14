@@ -14,10 +14,12 @@
 // An RFC is any Markdown file in a directory named `rfcs` (policies/design.md), apart from index,
 // README and template files. Its status is read from the first lines, in any of the forms in use:
 //   `Status: x`, `**Status**: x`, `· Status: x` (byline) or a `| Status | x |` table row.
-// Drafts and RFCs with no status are left off the page; the rest are:
+// RFCs with no status count as drafts. The rest are:
 //   closed  done, complete, implemented, built, released, archived, cancelled, rejected, superseded
 //   open    everything else, including partly built ("phases 0 and 1 implemented", "in progress")
-// "Recently closed" means the file's last commit is within RECENT_DAYS. Needs GITHUB_TOKEN (or GH_TOKEN).
+// "Recently closed" means the file's last commit is within RECENT_DAYS. Created is the earlier of a date in
+// the header (`Created:`, `Date:` or the byline) and the file's first commit; changed is its last commit.
+// Needs GITHUB_TOKEN (or GH_TOKEN).
 
 import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -85,6 +87,15 @@ function readTitle(text, file) {
   return m ? { number: m[1], title: m[2] || raw } : { number: fromFile ?? null, title: raw };
 }
 
+// Header dates: `Created: 2026-10-07`, `| Date | 2026-10-28, updated ... |`, `2026-10-07 · Author · Status: x`.
+function headerDate(text) {
+  for (const line of text.split('\n').slice(0, 40)) {
+    const m = line.match(/\b(?:created|date)\b\**\s*(?:\||:)\s*\**\s*(\d{4}-\d{2}-\d{2})/i) ?? line.match(/^(\d{4}-\d{2}-\d{2})\s*·/);
+    if (m) return m[1];
+  }
+  return null;
+}
+
 const discussionOf = (text) => text.match(/https:\/\/github\.com\/rhizomatics\/[\w.-]+\/discussions\/\d+/)?.[0] ?? null;
 
 const docLink = (repo, paths, file) => {
@@ -112,7 +123,7 @@ async function repoDesign(org, name) {
     files.map(async (f) => {
       const [blob, commits] = await Promise.all([
         gh(`repos/${repo}/git/blobs/${f.sha}`),
-        gh(`repos/${repo}/commits?path=${encodeURIComponent(f.path)}&per_page=1`),
+        gh(`repos/${repo}/commits?path=${encodeURIComponent(f.path)}&per_page=100`),
       ]);
       const text = Buffer.from(blob.content, 'base64').toString('utf8');
       const status = readStatus(text);
@@ -121,6 +132,7 @@ async function repoDesign(org, name) {
         ...readTitle(text, path.basename(f.path)),
         status,
         stage: stage(status),
+        created: [headerDate(text), commits.at(-1)?.commit.committer.date?.slice(0, 10)].filter(Boolean).sort()[0] ?? null,
         updated: commits[0]?.commit.committer.date ?? null,
         url: `https://github.com/${repo}/blob/HEAD/${f.path}`,
         discussion: discussionOf(text),
@@ -169,14 +181,14 @@ async function main() {
   const byUpdated = (a, b) => (b.updated ?? '').localeCompare(a.updated ?? '') || a.repo.localeCompare(b.repo);
   const open = all.filter((r) => r.stage === 'open').sort(byUpdated);
   const closed = all.filter((r) => r.stage === 'closed' && r.updated && Date.parse(r.updated) >= now - RECENT_DAYS * DAY).sort(byUpdated);
-  const drafts = all.filter((r) => r.stage === 'draft').length;
+  const drafts = all.filter((r) => r.stage === 'draft').sort(byUpdated);
 
   await mkdir(path.dirname(outPath), { recursive: true });
   await writeFile(
     outPath,
-    `${JSON.stringify({ generatedAt: new Date(now).toISOString(), available: Boolean(token), recentDays: RECENT_DAYS, total: all.length, drafts, notes, products, open, closed })}\n`,
+    `${JSON.stringify({ generatedAt: new Date(now).toISOString(), available: Boolean(token), recentDays: RECENT_DAYS, total: all.length, notes, drafts, products, open, closed })}\n`,
   );
-  console.log(`design: ${products.length} products, ${all.length} RFCs, ${open.length} open, ${closed.length} recently closed, ${drafts} drafts${notes.length ? `; ${notes.length} gaps` : ''}`);
+  console.log(`design: ${products.length} products, ${all.length} RFCs, ${open.length} open, ${closed.length} recently closed, ${drafts.length} drafts${notes.length ? `; ${notes.length} gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);
 }
 
