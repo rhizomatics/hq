@@ -19,6 +19,9 @@ commits touching: `pyproject.toml`, `.pre-commit-config.yaml`, `mise.toml`, `pro
 
 Shallow-clone into the scratchpad when diffing many files is easier than the API.
 
+Also take each open item in `reference/hass_platform_changes.md` (kept by the ecosystem review) as a change
+to spread to the Home Assistant repos that haven't made it yet.
+
 ## 2. Snapshot the current state per family
 
 The baseline every repo should meet is `policies/project_standards.md` plus the policies in

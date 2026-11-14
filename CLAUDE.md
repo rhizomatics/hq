@@ -23,7 +23,7 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
 - `.claude/agents/` — personas: `pm`, `architect`, `infra-lead`, `marketing`, `tech-writer`; plus `researcher` (Haiku) for farmed-out gathering.
 - `.claude/skills/` — one skill per process.
 - `policies/` — the maintainer's cross-project policies (e.g. supported Python versions), each with its scope and exceptions, including `project_standards.md` (the baseline every product repo should meet: tooling, cooldowns, shared admin workflows, Dependabot shape). Processes check repos against them; format in `policies/README.md`.
-- `reference/` — lookup material for processes: `project_tooling.md`, forums to watch (`hass_discussion.md`, `signalk_discussion.md`) and per-product problem phrases (`topic_terms.md`).
+- `reference/` — lookup material for processes: `project_tooling.md`, forums to watch (`hass_discussion.md`, `signalk_discussion.md`) per-product problem phrases (`topic_terms.md`) and Home Assistant platform changes still to act on (`hass_platform_changes.md`).
 - `site/` — the public HQ site at https://hq.rhizomatics.org.uk/ (Astro Starlight), built twice daily by
   `.github/workflows/site.yml`: the docs above, public reports, and a Usage section per component
   from `hq-private/data/`. `scripts/sync-content.mjs` publishes docs and reports and fails on
@@ -51,7 +51,11 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
 ## Working rules for agents
 
 - Read freely across `rhizomatics/*` with `gh`.
-- Reports in `hq-private/reports/` are the detailed record for drill-down; assume nobody reads them. Anything the maintainer must do reaches them only through GitHub: an hq issue, or a PR when the action is reviewing a change (see "Issues and PRs"). Either one links back to the report section with the detail (drafts, evidence). A report item that needs the human and has no issue or PR link is a bug.
+- **Reports only when there's a case for one.** Write a report in `hq-private/reports/` only as an audit trail that
+  the process ran and what it found (security escalation is the one known case), or as memory the agent needs on its
+  next run (what it compared, drafted or handed over). Otherwise a process's output is its PRs and hq issues and
+  nothing else. This overrides a skill's **Output** that names a report path (decided in hq-private#110).
+- Reports are the detailed record for drill-down; assume nobody reads them. Anything the maintainer must do reaches them only through GitHub: an hq issue, or a PR when the action is reviewing a change (see "Issues and PRs"). Either one links back to the report section with the detail (drafts, evidence). A report item that needs the human and has no issue or PR link is a bug.
 - **Report visibility.** Each process declares its report `public`, `private` or `private by exception`
   in its cadence file (`- **Report:**`). The site publishes public and private-by-exception reports
   dated from 2026-11-14. Write those for a public reader. In a private-by-exception report, add

@@ -11,7 +11,7 @@ Recurring routines, one file per cadence:
 Each agent process is a Claude Code skill in `.claude/skills/<name>/SKILL.md` (runnable by hand as
 `/<name>`) that runs as a persona from `.claude/agents/`. The cadence files say *when* and *who*; the skill says *how*.
 
-Process outputs are focused on *actionable results* rather than reports. Primary output of each process are PRs for identified changes and Issues for open questions, raised on the target repository. A report may be added only where required as an appendix for detail such as extended explanations and supporting findings, or where the subject is private and requires a `hq-private` report rather than a public PR, and a `hq-private` Issue isn't appropriate.
+Process outputs are focused on *actionable results* rather than reports. Primary output of each process are PRs for identified changes and Issues for open questions, raised on the target repository. A report is written only where there's a case for one: an audit trail that the process ran and what it found (security escalation is the one known case), or memory the agent needs for its next run. Otherwise nobody reads it, so it isn't written (see "Reports" in `CLAUDE.md`).
 
 ## Report Accessibility
 
@@ -40,7 +40,7 @@ Every agent process runs as a Claude Code cloud routine (manage at https://claud
   accessibility 18th, reputation 24th.
 - **Every four months** (`quarterly.md`): docs review 08:30 on the 1st–14th of Jan/May/Sep, architecture review 08:30 on the
   1st–14th of Feb/Jun/Oct, roadmap review 09:00 on the 10th of Mar/Jul/Nov, policy review 09:00 on the 10th of Apr/Aug/Dec
-  (not yet a routine: run by hand until tuned).
+  (routine `hq: quarterly policy review`).
 
 Models: Sonnet for daily and weekly routines, Opus for monthly and quarterly ones, Haiku for
 the `researcher` subagent they farm gathering out to. What cloud routines can and can't reach is in
@@ -51,7 +51,7 @@ Environments: routines that read the web (WebFetch/WebSearch of forums, platform
 github.com pages) run in **HQ Web Research**, which allowlists those domains but isn't meant for
 package installs: Dependabot sweep, support sweep, security escalation, forum watch, alignment, support review,
 ecosystem, GitHub, agent accessibility, reputation, architecture review, registry check, docs
-review. The rest (adoption, PR report, project review, roadmap review) run in **Cloud Play Pen**. When changing a routine's environment through the API, send the whole `job_config`; a partial one replaces it and drops the prompt and repos.
+review. The rest (adoption, PR report, project review, roadmap review, policy review) run in **Cloud Play Pen**. When changing a routine's environment through the API, send the whole `job_config`; a partial one replaces it and drops the prompt and repos.
 
 When adding a repo to the org, attach it to the routines too (the registry check will remind you).
 
