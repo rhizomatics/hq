@@ -14,12 +14,12 @@ For PyPi published libraries, maintain support for 2 or 3 major Python versions
   - If the latest version is less than a year old, don't drop older version support yet
   - Example
     - Py3.15 came out October 2026
-    - Py3.13 will be supported until September 2027
+    - Py3.13 will be supported until October 2027, when Py3.15 has been out for a year
     - Py3.14 remains primary
 
 ## Policy - Dockerfiles
 
-- Switch to the latest Python version after the first minor release
+- Switch to the latest Python version after its first patch release
   - e.g. Don't use `3.15.0`, start usage from `3.15.1`
 
 ## Policy - Home Assistant
@@ -34,7 +34,7 @@ Follow Home Assistants requirements. Maintain older versions of Python where req
 
 - Use a test matrix on `ci` Github Action workflows that tests every major version in the range, e.g. `3.13`,`3.14` and `3.15`
 - By exception, multiple minor versions may be added,e.g. separately test `3.14.3` and `3.14.4`. This will happen only where there's known issues introduced in the minor update.
-- ALways use the latest point release per major version
+- Always use the latest point release per major version
 - Nothing in this policy covers a `4.0.0` or similar Python release. Ignore all such releases until policy is reviewed to handle it.
 - New features in latest Python releases will not be exploited until that version is the last in the supported range
   - Exception for high priority usage that can be gated for that version only, or more cumbersome workarounds for earlier releases
@@ -47,7 +47,7 @@ Follow Home Assistants requirements. Maintain older versions of Python where req
 
 ## Reference
 
-## Python 3.15
+### Python 3.15
 
 `3.15.0` released Oct 14th 2026
 

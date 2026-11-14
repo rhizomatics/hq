@@ -107,9 +107,8 @@ Standard tools - `npm`,`oxfmt`,`oxlint`
 
 ## Major Projects
 
-A `developer` docs directory with `principles.md` and `roadmap.md`
-
-(Considered 'major' based on number of downloads and known installs)
+Major projects are the ones with `category = ["major"]` in `repos.toml` (chosen by downloads and known installs).
+They have `design_principles.md` and `roadmap.md` in `docs/developer/design/`, as set out in `design.md`.
 
 
 ## Home Assistant Projects

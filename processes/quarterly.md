@@ -1,6 +1,6 @@
 # Quarterly
 
-Each quarterly review owns a different month of the quarter, and the rolling ones spread their results over about a week. 
+Four reviews, each run every four months in its own month, so one lands each month. The rolling ones spread their results over about a week.
 
 ## Jan / May / Sep — Docs review — `/docs-review`
 - **Who:** tech-writer
@@ -25,5 +25,6 @@ Each quarterly review owns a different month of the quarter, and the rolling one
 ## Apr / Aug / Dec - Policy Review - `/policy-review`
 - **Who:** pm
 - **When:** 10th
+- **Output:** a PR on `hq` with policy and process changes, review requested from `jeyrb`; decisions only the maintainer can make in one hq issue (`alignment`, `org`)
 - **Report:** public
-Review HQ policies and processes for consistency, gaps and missed opportunities. Propose changes to policies via PRs assigned to maintainer.
+- Review HQ policies and processes for consistency, gaps and missed opportunities, and check policies against the repos where that's cheap (GitHub settings, design docs, releases).

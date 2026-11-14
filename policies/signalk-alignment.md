@@ -4,7 +4,7 @@ Plugins will be exemplary citizens of the `npm` and `SignalK` ecosystems.
 
 Plugins will be in typescript.
 
-Plugins will be automatically tested across a 6 month rolling version range.
+Plugins will be automatically tested across a 6 month rolling version range (see `signalk_versions.md`).
 
 ## npm Releases
 
