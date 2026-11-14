@@ -28,3 +28,4 @@ Four reviews, each run every four months in its own month, so one lands each mon
 - **Output:** a PR on `hq` with policy and process changes, review requested from `jeyrb`; decisions only the maintainer can make in one hq issue (`alignment`, `org`)
 - **Report:** public
 - Review HQ policies and processes for consistency, gaps and missed opportunities, and check policies against the repos where that's cheap (GitHub settings, design docs, releases).
+- Include the Claude routines that run the processes: schedules, environments and attached repos consistent with the HQ docs and `repos.toml`.

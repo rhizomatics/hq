@@ -12,8 +12,9 @@ Exception: `supernotify` keeps its RFCs in `docs/developer/rfcs/`.
 
 RFCs *may* be accompanied by a GitHub discussion, where there's a likelihood of someone noticing and contributing.
 
-RFCs start as `draft`, then move to `ready for review` and `in progress`, and end as `complete`, `partially complete` or
-`cancelled`. A superseded RFC is `cancelled`, naming the one that replaced it.
+RFCs start as `draft`, then move to `ready for review` and `in progress`, and end as `complete`, `partially complete` or `cancelled`. A superseded RFC is `cancelled`, naming the one that replaced it.
+
+If an RFC has been `partially complete` for over 4 weeks, raise a PR to close it and open a new RFC for the remaining work.
 
 The status goes near the top of the file, on its own line or as a table row, followed by any detail:
 
