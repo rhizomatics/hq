@@ -3,6 +3,7 @@
 //
 // Sources, all read-only:
 //   - hq-private/data/stats/*.json      daily snapshots by hq-private/scripts/collect_stats.py (from 2026-10-14)
+//   - repos.toml                        which repos to cover (`archived = true` ones are left out)
 //   - hq-private/data/github/<latest>   only for repo visibility, archive state and description
 //   - hq-private/data/legacy/hacs-downloads-history.json   the retired hacs-downloads site's history (2026-09-12 on)
 //   - live public APIs: npm daily downloads, PyPI daily downloads, Home Assistant analytics by version
@@ -212,7 +213,7 @@ async function main() {
 
   for (const [name, repo] of Object.entries(registry.repos)) {
     const meta = orgRepos[name];
-    if (repo.family === 'meta' || repo.category?.includes('internal')) continue;
+    if (repo.archived || repo.family === 'meta' || repo.category?.includes('internal')) continue;
     if (!meta || meta.visibility !== 'public' || meta.archived) continue;
 
     const downloads = {};

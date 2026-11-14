@@ -8,6 +8,8 @@ Major changes, such as new features and extensive refactoring, will be planned u
 
 RFCs *may* be accompanied by a GitHub discussion, where there's a likelihood of someone noticing and contributing.
 
+RFCs will start in `draft` state, move to `ready for review`, `in progress`,`cancelled`,`partially complete` and `complete`
+
 ## Design Principles
 
 A `design_principles.md` in `docs/developer/design` will be used for larger projects to state the overall principles, including scope, such as where something is expected in HomeAssistant/SignalK/some other plugin vs this one.

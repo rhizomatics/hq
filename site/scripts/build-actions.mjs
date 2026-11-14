@@ -2,7 +2,7 @@
 // Builds src/data/actions.json, the GitHub Actions health shown on the site's Workflows page.
 //
 // Sources, all read-only:
-//   - repos.toml                        which repos to cover
+//   - repos.toml                        which repos to cover (`archived = true` ones are left out)
 //   - hq-private/data/github/<latest>   only for repo visibility and archive state
 //   - GitHub REST API                   workflows and workflow runs of each public repo
 //
@@ -139,7 +139,7 @@ async function main() {
   const now = Date.now();
   const notes = [];
 
-  const names = Object.keys(registry.repos).filter((n) => orgRepos[n]?.visibility === 'public' && !orgRepos[n].archived);
+  const names = Object.keys(registry.repos).filter((n) => !registry.repos[n].archived && orgRepos[n]?.visibility === 'public' && !orgRepos[n].archived);
   const repos = [];
   if (!token) {
     notes.push('No GitHub token at build time, so workflow states were not fetched.');

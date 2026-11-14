@@ -26,7 +26,9 @@
 - **Who:** pm
 - **Output:** `hq-private/reports/projects/YYYY-MM-DD.md`; factual updates to `projects/`
 - **Report:** public
-- Progress and next steps for every project, mark work that's done. Ensure responsibility either clear or status is unscheduled. On the last Friday of the month this becomes the monthly project review (see [monthly.md](monthly.md)).
+- Progress and next steps for every project, mark work that's done. 
+- Check open RFCs and their status and template usage, flag up drafts open for more than 2 weeks and `ready for review` ones have a GitHub discussion open
+- Ensure responsibility either clear or status is unscheduled. - On the last Friday of the month this becomes the monthly project review (see [monthly.md](monthly.md)).
 
 ## Any day (human)
 

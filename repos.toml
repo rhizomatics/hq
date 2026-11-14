@@ -7,6 +7,7 @@
 # ha_domain:  Home Assistant integration domain (for HA analytics install counts)
 # hacs_zip:   release asset name HACS downloads (counts = HACS installs/updates)
 # upstream:   platform whose transitive vulns are excluded from security escalation
+# archived:   true when retired; left off the public site (Usage, Workflows) even before GitHub archives it
 #
 # security_watch: platform packages our users run but we don't patch, so Dependabot's alerts don't
 # reach the decision that matters. Advisories for them are snapshotted by collect_github.py.
