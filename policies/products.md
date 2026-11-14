@@ -4,8 +4,8 @@ Products will follow all the other HQ policies except where an exception listed.
 
 ## Git Repositories
 
-Each product will have be listed in HQ at `repos.toml`
-Products with an 'experimental' status won't be shown on the public index, all others will be show in public HQ and listed under appropriate category at https://www.rhizomatics.org.uk (the `.github` project).
+Each product will be listed in HQ in `repos.toml`.
+Products marked `category = ["experimental"]` there aren't shown publicly. All others are shown on the public HQ site and listed under the appropriate category at https://www.rhizomatics.org.uk (the `.github` project).
 
 ## GitHub
 
@@ -16,4 +16,4 @@ Products with an 'experimental' status won't be shown on the public index, all o
 
 ## Documentation
 
-README.md will have a 'Managed by HQ' badge with link back to https://hq.rhizomatics.org.uk
+README.md will have the 'managed by hq' badge linking back to https://hq.rhizomatics.org.uk (exact markdown in `project_standards.md`).

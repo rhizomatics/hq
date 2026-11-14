@@ -38,8 +38,9 @@ Every agent process runs as a Claude Code cloud routine (manage at https://claud
 - **Weekly:** Monday adoption 07:00, PR report 07:20, registry check 07:40; Friday project review 07:00.
 - **Monthly, 08:00:** alignment 1st, support review 4th, ecosystem 10th, GitHub 11th, agent
   accessibility 18th, reputation 24th.
-- **Quarterly:** docs review 08:30 on the 1st–14th of Jan/Apr/Jul/Oct, architecture review 08:30 on the
-  1st–14th of Feb/May/Aug/Nov, roadmap review 09:00 on the 10th of Mar/Jun/Sep/Dec.
+- **Every four months** (`quarterly.md`): docs review 08:30 on the 1st–14th of Jan/May/Sep, architecture review 08:30 on the
+  1st–14th of Feb/Jun/Oct, roadmap review 09:00 on the 10th of Mar/Jul/Nov, policy review 09:00 on the 10th of Apr/Aug/Dec
+  (not yet a routine: run by hand until tuned).
 
 Models: Sonnet for daily and weekly routines, Opus for monthly and quarterly ones, Haiku for
 the `researcher` subagent they farm gathering out to. What cloud routines can and can't reach is in
