@@ -16,16 +16,15 @@ Exceptions: Supernotify scenarios/deliveries; AutoArm rules engine.
 
 New features and other changes introduced in monthly Home Assistant releases will be supported within the month, without prejudicing ongoing support for older versions.
 
-## Known Issues & Possible Work
+## Translations
 
-- Do not use strings.json for custom components.
-  - Source: https://contributors.home-assistant.io/core/integrations/translations/
-- Support the HA change to new Contributors site by updating URLs to previous developer or data sites
-- HACS moving into Home Assistant as Marketplace
-  - https://github.com/home-assistant/home-assistant.io/blob/7896394058b9b9576692cf990cbb36dcfbef1c8a/source/_integrations/marketplace.markdown
-- `homeassistant-stubs` is deprecated since HA now has its own types
-- `pytest-homeassistant-custom-component` now deprecated in favour of HA owned `pytest-homeassistant` from HA 2026.11
+Custom components don't use `strings.json`: it's for core integrations only
+([translations](https://contributors.home-assistant.io/core/integrations/translations/)).
 
+## Platform changes
+
+Platform changes still to act on (Marketplace, the Contributors site, deprecated test and type packages) are
+tracked in `reference/hass_platform_changes.md`, picked up by the ecosystem and alignment reviews.
 
 ## References
 

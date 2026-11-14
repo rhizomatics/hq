@@ -42,6 +42,9 @@ For each relevant change: which of our repos, and is it a
 Also check our `hacs.json` `homeassistant` minimum versions and SignalK server version ranges
 against what's now current.
 
+Keep `reference/hass_platform_changes.md` current: add Home Assistant changes we still have to act on,
+update who's still affected, and remove items every repo has caught up with. Commit it to `hq` with the run.
+
 ## Output
 
 `hq-private/reports/ecosystem/YYYY-MM.md`: a summary, then **Threats** (`Change | Affects | When | Action`),

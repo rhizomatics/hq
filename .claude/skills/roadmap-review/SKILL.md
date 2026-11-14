@@ -9,8 +9,8 @@ agent: pm
 
 ## Find the roadmaps
 
-For each repo in `repos.toml`, look for: `docs/developer/roadmap.md` (the standard location for major
-projects per `policies/project_standards.md`; flag major projects without one), `ROADMAP.md`, roadmap pages under `docs/` (grep nav in
+For each repo in `repos.toml`, look for: `docs/developer/design/roadmap.md` (the standard location for major
+projects per `policies/design.md`; flag major projects without one), `ROADMAP.md`, roadmap pages under `docs/` (grep nav in
 `properdocs.yml`/`zensical.toml`), a roadmap section in the README, open milestones
 (`gh api repos/rhizomatics/<repo>/milestones`), issues labelled `roadmap`/`enhancement` that are
 referenced from those pages, and planning folders (e.g. `planning/`). Skip repos without one, but

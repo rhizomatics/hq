@@ -37,7 +37,10 @@ Expectations of Rhizomatics projects
     - This may be extended for less trusted packages
     - This may be reduced to 0 for rhizomatics own packages, and to 2 days for trusted packages with strong process and wide usage
     - Trusted at 2 days: Home Assistant (`homeassistant`, `homeassistant-stubs`, `pytest-homeassistant`,
-      `pytest-homeassistant-custom-component`) and Astral (`uv`, `uv_build`, `ruff`, `ty`, `astral-sh/*` actions)
+      `pytest-homeassistant-custom-component`), Astral (`uv`, `uv_build`, `ruff`, `ty`, `astral-sh/*` actions)
+      and oxc (`oxfmt`, `oxlint`)
+      - `homeassistant-stubs` and `pytest-homeassistant-custom-component` are deprecated: drop them here once no
+        repo uses them (in November 2026 still supernotify, autoarm and remote_logger)
     - This may temporarily be reduced to 0 for one-off critical events and then restored, for example taking a critical CVE remediation
     - Any other per-package exception is temporary: remove it once the event has passed. A security
       floor belongs in `constraint-dependencies` or `override-dependencies`, not in a cooldown exception
