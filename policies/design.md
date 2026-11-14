@@ -8,8 +8,6 @@ They're checked by HQ processes: RFCs by the weekly project review, roadmaps by 
 
 Major changes, such as new features and extensive refactoring, will be planned using Request for Comment (RFC) documents, stored in `docs/developer/design/rfcs/`, one file per RFC named `NNNN-short_title.md`.
 
-Exception: `supernotify` keeps its RFCs in `docs/developer/rfcs/`.
-
 RFCs *may* be accompanied by a GitHub discussion, where there's a likelihood of someone noticing and contributing.
 
 RFCs start as `draft`, then move to `ready for review` and `in progress`, and end as `complete`, `partially complete` or `cancelled`. A superseded RFC is `cancelled`, naming the one that replaced it.
