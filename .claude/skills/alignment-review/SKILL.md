@@ -36,7 +36,7 @@ config, Python version, hook versions, docs plugins and theme, lint/format tooli
 For each improvement: source repo + commit link, why it's better, target repos, the concrete change,
 effort S/M/L. Also flag divergence that looks accidental, and fixes in one repo (a CI bug, a docs
 build workaround) whose bug likely exists elsewhere. Where 3+ repos need the same thing, propose
-a reusable workflow or template in `<org>/.github` instead.
+a reusable workflow or template in hq's `admin/` instead.
 
 Check the previous report in `hq-private/reports/alignment/` and record which recommendations were adopted.
 

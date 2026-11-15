@@ -3,14 +3,16 @@
 // products, grouped by the product they extend. Kept apart from the org's own usage figures.
 //
 // Sources, all read-only and public:
-//   - repos.toml        `[community.<id>]` entries (repo, author, extends, channel fields)
+//   - repos.toml        `[community.<id>]` entries: projects (repo, author, extends, channel fields) and blogs
 //   - GitHub REST API   each project's description, stars, latest release, and downloads of its HACS asset
+//   - each blog's RSS feed (<url>/feed)   its title, description and latest posts
 // Needs GITHUB_TOKEN (or GH_TOKEN) for the API; without one the page still lists the projects.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { parse as parseToml } from 'smol-toml';
 import { gh, ghAll, hqRoot, inBatches, siteRoot, token } from './lib/github.mjs';
+import { USER_AGENT } from '../src/lib/hq-config.mjs';
 
 const outPath = path.join(siteRoot, 'src', 'data', 'community.json');
 
@@ -32,10 +34,44 @@ async function details(entry) {
   };
 }
 
+// A blog's title, description and latest posts from its RSS feed; null if the feed can't be read.
+async function blogFeed(url) {
+  const res = await fetch(`${url.replace(/\/$/, '')}/feed`, { headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(20_000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const xml = await res.text();
+  const text = (tag, s) => {
+    const m = s.match(new RegExp(`<${tag}>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`));
+    if (!m) return null;
+    const entities = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", '#39': "'" };
+    return m[1].trim().replace(/&(amp|lt|gt|quot|apos|#39);/g, (_, e) => entities[e]);
+  };
+  const [channel, ...items] = xml.split('<item>');
+  return {
+    title: text('title', channel),
+    description: text('description', channel),
+    posts: items.slice(0, 3).map((i) => ({ title: text('title', i), url: text('link', i), date: new Date(text('pubDate', i)).toISOString() })),
+  };
+}
+
+async function blogs(entries, notes) {
+  return Promise.all(
+    entries.map(async (e) => {
+      const base = { id: e.id, url: e.url, author: e.author, note: e.note ?? null, title: e.id, description: null, posts: [] };
+      try {
+        return { ...base, ...(await blogFeed(e.url)) };
+      } catch (err) {
+        notes.push(`${e.id}: feed unavailable (${err.message}).`);
+        return base;
+      }
+    }),
+  );
+}
+
 async function main() {
   const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
   const org = registry.org.github;
-  const entries = Object.entries(registry.community ?? {}).map(([id, e]) => ({ id, ...e }));
+  const all = Object.entries(registry.community ?? {}).map(([id, e]) => ({ id, ...e }));
+  const entries = all.filter((e) => (e.kind ?? 'project') === 'project');
   const notes = [];
   if (!token && entries.length) notes.push('No GitHub token at the last build, so stars and releases are missing.');
 
@@ -70,8 +106,9 @@ async function main() {
     projects: projects.filter((p) => p.extends === id).sort((a, b) => a.name.localeCompare(b.name)),
   }));
   await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(outPath, `${JSON.stringify({ generatedAt: new Date().toISOString(), notes, products })}\n`);
-  console.log(`community: ${projects.length} projects for ${products.length} products${notes.length ? `; ${notes.length} gaps` : ''}`);
+  const blogList = await blogs(all.filter((e) => e.kind === 'blog'), notes);
+  await writeFile(outPath, `${JSON.stringify({ generatedAt: new Date().toISOString(), notes, products, blogs: blogList })}\n`);
+  console.log(`community: ${projects.length} projects for ${products.length} products, ${blogList.length} blogs${notes.length ? `; ${notes.length} gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);
 }
 

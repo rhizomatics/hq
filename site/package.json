@@ -13,8 +13,9 @@
     "issues": "node scripts/build-issues.mjs",
     "security": "node scripts/build-security.mjs",
     "community": "node scripts/build-community.mjs",
-    "dev": "npm run sync && npm run actions && npm run design && npm run issues && npm run security && npm run community && astro dev",
-    "build": "npm run sync && npm run stats && npm run actions && npm run design && npm run issues && npm run security && npm run community && astro build",
+    "releases": "node scripts/build-releases.mjs",
+    "dev": "npm run sync && npm run actions && npm run design && npm run issues && npm run security && npm run community && npm run releases && astro dev",
+    "build": "npm run sync && npm run stats && npm run actions && npm run design && npm run issues && npm run security && npm run community && npm run releases && astro build",
     "preview": "astro preview"
   },
   "dependencies": {

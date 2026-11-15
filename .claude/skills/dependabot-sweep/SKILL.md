@@ -1,6 +1,6 @@
 ---
 name: dependabot-sweep
-description: Daily merge or close of Dependabot PRs across the org's repos — merges trusted bumps (GitHub-owned actions, hassfest/HACS actions, <org>/.github workflows, Astral and oxc tooling) once CI is green, and closes bumps of dependencies inherited from Home Assistant or SignalK.
+description: Daily merge or close of Dependabot PRs across the org's repos — merges trusted bumps (GitHub-owned actions, hassfest/HACS actions, the shared admin workflows in <org>/hq, Astral and oxc tooling) once CI is green, and closes bumps of dependencies inherited from Home Assistant or SignalK.
 context: fork
 agent: infra-lead
 ---
@@ -25,7 +25,8 @@ for the weekly `/pr-report`. Silence is the expected outcome.
 **Trusted** (merge):
 - GitHub-owned actions: `actions/*`.
 - Home Assistant validation actions: `home-assistant/actions/hassfest`, `hacs/action`.
-- Shared workflows from `<org>/.github` (`uses: <org>/.github/...`).
+- Shared admin workflows from `<org>/hq` (`uses: <org>/hq/.github/workflows/reusable-...`); before
+  2026-11-15 they came from `<org>/.github`, so bumps of either are trusted.
 - Astral: `uv`, `uv_build`, `ruff`, `ty` and `astral-sh/*` actions.
 - oxc: `oxlint`, `oxfmt`, `oxlint-tsgolint`.
 
@@ -73,7 +74,7 @@ pinned by Home Assistant, so we follow the platform's version rather than bumpin
 `gh api -X PATCH repos/<org>/<repo>/pulls/<n> -f state=closed`. If the repo's
 `.github/dependabot.yml` doesn't already `ignore` that dependency, add it in one PR per repo
 (reuse an open one), so Dependabot stops raising it; if the same ignore belongs in the shared
-template in `<org>/.github`, say so in the PR.
+template in `<org>/hq` (`admin/templates/`), say so in the PR.
 
 **Not merged** despite the rules (CI failing for 2+ days, merge refused by branch protection):
 add it to the rolling hq issue for the area, `<area>: review waiting PRs` (labels `prs` + area),

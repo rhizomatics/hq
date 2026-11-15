@@ -1,0 +1,64 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import releases from '../data/releases.json';
+import { ORG } from '../lib/hq-config.mjs';
+
+type Release = {
+  key: string;
+  repo: string;
+  tag: string;
+  date: string;
+  url: string;
+  repoUrl: string;
+  kind: 'enhancement' | 'critical-fix';
+  summary: string;
+};
+
+const list = releases.releases as Release[];
+const byDay = new Map<string, Release[]>();
+for (const r of list) byDay.set(r.date.slice(0, 10), [...(byDay.get(r.date.slice(0, 10)) ?? []), r]);
+const label = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'long', timeZone: 'UTC' });
+const asOf = releases.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
+---
+<StarlightPage frontmatter={{ title: 'Releases', description: `What's new in ${ORG.name} products over the last month: new features and critical fixes, summarised.`, tableOfContents: false }}>
+  <p>
+    What changed in our products over the last {releases.windowDays} days, newest first. Each release is summarised in a
+    line or two; follow the version for its full notes.
+  </p>
+  <p>
+    Only releases with new features or fixes for something badly broken are listed. Pre-releases, small fixes and
+    dependency updates are left out.
+  </p>
+
+  {releases.available ? (
+    list.length ? (
+      [...byDay.entries()].map(([day, items]) => (
+        <>
+          <h2>{label(day)}</h2>
+          <ul class="release-list">
+            {items.map((r) => (
+              <li>
+                <a href={r.repoUrl}><strong>{r.repo}</strong></a> <a href={r.url}>{r.tag}</a>
+                {r.kind === 'critical-fix' && <span class="release-kind"> · Important fix</span>}
+                <br />
+                {r.summary}
+              </li>
+            ))}
+          </ul>
+        </>
+      ))
+    ) : (
+      <p>No releases with new features or important fixes in the last {releases.windowDays} days.</p>
+    )
+  ) : (
+    <p>Releases weren't available at the last build.</p>
+  )}
+
+  <ul class="usage-notes">
+    <li>As of {asOf}. Summaries are written daily, so a release from the last day may not be listed yet.</li>
+    <li>
+      {releases.total} releases in all over the period, {releases.leftOut} of them left out as maintenance
+      {releases.pending > 0 && <>, {releases.pending} not summarised yet</>}. Every release is on its repo's Releases page.
+    </li>
+  </ul>
+</StarlightPage>

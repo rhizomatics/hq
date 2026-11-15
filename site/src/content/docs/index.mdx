@@ -8,14 +8,14 @@ hero:
   image:
     file: ../../assets/icon.svg
   actions:
+    - text: Releases
+      link: /releases/
+      icon: right-arrow
     - text: Usage
       link: /usage/
-      icon: right-arrow
+      variant: minimal
     - text: Support
       link: /support/
-      variant: minimal
-    - text: Design Process
-      link: /design/
       variant: minimal
     - text: Community
       link: /community/
@@ -29,13 +29,17 @@ hero:
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 <CardGrid>
+  <Card title="Releases" icon="rocket">
+    What's new across the products over the last month: new features and important fixes, each in a line or two.
+    [See releases](/releases/).
+  </Card>
   <Card title="Usage" icon="seti:graphql">
     Downloads, installs, stars and clones for every component: Home Assistant integrations,
     SignalK plugins, pyPI and NPM libraries, MQTT services and command line tools. [See usage](/usage/).
   </Card>
   <Card title="Community" icon="heart">
     Projects other people have built on our products, such as plugins and dashboard cards, grouped by the
-    product they extend. [Meet the community](/community/).
+    product they extend, and blogs about them. [Meet the community](/community/).
   </Card>
   <Card title="Operations" icon="setting">
     Updated daily for every product: open bugs and unsorted issues ([support](/support/)),

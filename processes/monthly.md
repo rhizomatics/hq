@@ -41,6 +41,8 @@
 - **Output:** `hq-private/reports/reputation/YYYY-MM.md`
 - **Report:** private
 - Mentions and sentiment trends, search visibility, listings, competitors. Ends with manual checks.
+- Reviews the main site, www.rhizomatics.org.uk (source in `docs/` of the `.github` repo): products covered and
+  current, positioning for newcomers, discoverability. Fixes as a PR on `.github`.
 
 ## Last Friday — Project review (monthly) — `/project-review`
 - **Who:** pm

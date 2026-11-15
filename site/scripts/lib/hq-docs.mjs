@@ -171,6 +171,12 @@ export async function checkHq(hqRoot) {
   // Community entries: complete, and extending one of the org's own repos.
   const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
   for (const [id, e] of Object.entries(registry.community ?? {})) {
+    const kind = e.kind ?? 'project';
+    if (kind === 'blog') {
+      for (const field of ['url', 'author']) if (!e[field]) problems.push(`repos.toml [community.${id}]: no ${field}`);
+      continue;
+    }
+    if (kind !== 'project') problems.push(`repos.toml [community.${id}]: kind "${kind}" isn't project or blog`);
     for (const field of ['repo', 'author', 'extends']) if (!e[field]) problems.push(`repos.toml [community.${id}]: no ${field}`);
     if (e.repo && !/^[\w.-]+\/[\w.-]+$/.test(e.repo)) problems.push(`repos.toml [community.${id}]: repo should be owner/name`);
     if (e.extends && !registry.repos?.[e.extends]) problems.push(`repos.toml [community.${id}]: extends "${e.extends}", which isn't in [repos]`);

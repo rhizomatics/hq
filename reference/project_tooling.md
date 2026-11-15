@@ -22,7 +22,7 @@
 
 ## Github Actions
 - All production projects
-  - Share the same set of admin workflows from the `.github` project
+  - Share the same set of admin workflows from hq (`admin/`, reusable workflows in hq's `.github/workflows/`)
   - Have a `ci` build that's triggered on push to main or PR
   - Have package publish workflows that require a clean (tests, lints, cyber checks) build, unless manually forced
 

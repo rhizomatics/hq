@@ -1,6 +1,6 @@
 ---
 name: reputation-review
-description: Monthly reputation and visibility review for the org — trends in mentions and sentiment, search visibility gaps, competitors, and where the products are (and aren't) recommended.
+description: Monthly reputation and visibility review for the org — trends in mentions and sentiment, search visibility gaps, competitors, where the products are (and aren't) recommended, and a review of the org's main website.
 context: fork
 agent: marketing
 ---
@@ -26,6 +26,20 @@ agent: marketing
 4. **Competitors and alternatives** — projects that came up in comparisons; what they claim, what
    users prefer, gaps we could fill or should acknowledge.
 5. **Our own presence** — last announcement per product vs last release; releases that were never announced. References to other products where relevant, or in the footer of README.md.
+6. **The org's main site** — www.rhizomatics.org.uk, built with Zensical from `docs/` in `<org>/.github`
+   (`index.md`, `home-automation.md`, `sailing.md`, `zensical.toml`), served from its `gh-pages` branch.
+   Read the live pages and the source, and check:
+   - **Coverage and accuracy**: every product in `repos.toml` (not `meta`, `internal`, `experimental` or
+     archived) appears on the right page with a current one-line description and working links to its repo
+     and docs; nothing retired is still promoted; the description matches the product's README.
+   - **Positioning**: does each page tell a newcomer what the products do for them, in the house voice
+     (practical, understated, technically credible)? Recent notable releases, the HQ site, the Community page
+     and blogs linked where they help.
+   - **Discoverability**: title and description per page, sitemap, `robots.txt`, IndexNow still running
+     (`.github/workflows/indexnow.yml`), indexed (`site:www.rhizomatics.org.uk`), and how it ranks for the
+     org's name and its main product names compared with the repos.
+   Fixes are a PR on `<org>/.github` (one theme, review from the maintainer); positioning choices are an hq
+   issue.
 
 ## Output
 

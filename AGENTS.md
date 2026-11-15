@@ -49,6 +49,10 @@ HQ is those two repos:
 - `projects/` — active projects; `projects/proposed/` ideas not started, `projects/done/` finished, `projects/shelved/` rejected or postponed indefinitely. Format, task tags (`@agent`/`@pair`/`@human`) in `projects/README.md`; the project tables there are generated from each file's folder and `summary:`.
 - `processes/` — recurring routines, one file per cadence (`daily.md` … `quarterly.md`): when, persona, environment, output. The schedule in `processes/README.md` and each persona's **Runs** in `team.md` are generated from them.
 - `team.md` — who owns what, character, handoffs between personas, disagreements.
+- `admin/` — shared repo admin for every product repo: caller templates, `sync-admin.sh` and the shared
+  `labels.yml` ([admin/README.md](admin/README.md)). The reusable workflows they call are in `.github/workflows/reusable-*.yml`;
+  repos pin them to an hq release (`vX.Y.Z`). The `.github` repo holds only the main website and the org's profile and
+  SECURITY.md.
 - `.claude/agents/` — personas: `pm`, `architect`, `infra-lead`, `marketing`, `tech-writer`; plus `researcher`, a cheap fast model for farmed-out gathering.
 - `.claude/skills/` — one skill per process.
 - `policies/` — the maintainer's cross-project policies (e.g. supported Python versions), each with its scope and exceptions, including `project_standards.md` (the baseline every product repo should meet: tooling, cooldowns, shared admin workflows, Dependabot shape). Processes check repos against them; format in `policies/README.md`.
@@ -62,7 +66,8 @@ HQ is those two repos:
   `scripts/build-issues.mjs` counts open issues by type for the Support and Design Process pages;
   `scripts/build-security.mjs` gathers public security settings and published advisories (never alerts) for the Security page;
   `scripts/build-design.mjs` gathers RFCs, roadmaps and design principles for the Design Process and RFCs pages;
-  `scripts/build-community.mjs` lists `[community.*]` projects with their public GitHub figures for the Community page. Run it with
+  `scripts/build-community.mjs` lists `[community.*]` projects with their public GitHub figures for the Community page;
+  `scripts/build-releases.mjs` builds the Releases page from the last month's releases and the daily digest's summaries. Run it with
   `mise run preview-site`.
 - `hq-private/commands/` — helper shell commands for the maintainer.
 - `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-stats.yml`.

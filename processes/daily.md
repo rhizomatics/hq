@@ -18,7 +18,7 @@
 - **When:** 05:40 UTC
 - **Output:** `hq-private/reports/dependabot/YYYY-MM-DD.md`
 - **Report:** private by exception
-- Merges trusted bumps (GitHub-owned, hassfest/HACS and `<org>/.github` actions; Astral and
+- Merges trusted bumps (GitHub-owned, hassfest/HACS and `<org>/hq` shared admin workflows; Astral and
   oxc tooling) once CI is green, never major versions; closes bumps of dependencies inherited from Home Assistant or
   SignalK. Standing approval from the maintainer; everything else waits for the PR report.
 
@@ -36,6 +36,14 @@
 - **Report:** private
 - **Escalates:** issue labelled `security-escalation` in `<org>/hq-private`
 - Excludes purely transitive vulnerabilities from Home Assistant / SignalK.
+
+## Release digest — `/release-digest`
+- **Who:** marketing
+- **When:** 06:50 UTC
+- **Output:** summaries in `hq-private/data/releases/summaries.json`, shown on the site's Releases page
+- **Report:** public (it is the site's Releases page)
+- Judges each new release of a product as an enhancement, a critical fix or maintenance, and summarises what's
+  significant. A script lists the releases and builds the page; most days there's nothing new.
 
 ## Forum watch — `/forum-watch`
 - **Who:** marketing

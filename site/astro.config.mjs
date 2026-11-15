@@ -35,6 +35,7 @@ export default defineConfig({
       customCss: ['./src/styles/site.css'],
       lastUpdated: false,
       sidebar: [
+        { label: 'Releases', link: '/releases/' },
         { label: 'Usage', items: usageSidebar() },
         { label: 'Community', link: '/community/' },
         { label: 'Design Process', items: [{ label: 'Overview', link: '/design/' }, { label: 'RFCs', link: '/rfcs/' }] },

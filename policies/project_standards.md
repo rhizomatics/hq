@@ -59,12 +59,12 @@ Expectations of Rhizomatics projects
 
 ## Shared repo admin
 
-Every production repo uses the shared setup in `rhizomatics/.github`, synced by its `scripts/sync-admin.sh` (how it works is in that repo's `templates/README.md`):
+Every production repo uses the shared setup in `rhizomatics/hq` (`admin/`), synced by `admin/sync-admin.sh` (how it works is in [admin/README.md](../admin/README.md)):
 
-- Admin workflows: auto-assign issues and PRs to `jeyrb`, weekly label sync from `labels.yml`,
+- Admin workflows: auto-assign issues and PRs to `jeyrb`, weekly label sync from `admin/labels.yml`,
   dependency review on PRs, and auto-merge of Dependabot PRs touching only trusted deps (astral's
   uv, ruff, ty and `astral-sh/*` actions) once every other check passes. Callers pin the reusable
-  workflows to a release commit SHA.
+  workflows to an hq release commit SHA (`@<sha> # v1.0.0`).
 - Shared mise file tasks `refresh` and `clean` in `.mise/tasks/`. A repo that needs its own
   version defines it in `mise.toml` instead.
 - All repos have code scanning, security scanning and dependency analysis switched on

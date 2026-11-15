@@ -23,7 +23,7 @@ validation), `signalk-plugin` (npm publish with OIDC trusted publishing), `mqtt-
 to GHCR + PyPI), `cli`, `site`. Within each type compare `.github/workflows/*`: same jobs, triggers,
 action versions (pinned to SHA or major consistently), permissions blocks, concurrency, caching,
 release flow. Identify the best current version per type and the repos behind it. Where a type
-has 3+ repos with near-identical workflows, propose a reusable workflow in `<org>/.github`.
+has 3+ repos with near-identical workflows, propose a reusable workflow in hq (`.github/workflows/reusable-*.yml`, with its caller template in `admin/`).
 
 ## 3. Settings
 
