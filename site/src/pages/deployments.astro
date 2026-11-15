@@ -34,10 +34,10 @@ const detail = (w: Repo['workflows'][number]) =>
 ---
 <StarlightPage frontmatter={{ title: 'Deployments', description: 'GitHub Actions state of each public Rhizomatics repo, updated daily.', tableOfContents: false }}>
   <p>
-    The GitHub Actions state of each public repo, as of {asOf}. Updated daily. A repo takes the state of its worst workflow:
+    The GitHub Actions state of each public repo, as of {asOf}. Updated daily. A repo takes the state of its worst deployment:
   </p>
   <ul class="ci-legend">
-    <li><span class="ci-status ci-status--red">Broken</span> the workflow's latest run failed.</li>
+    <li><span class="ci-status ci-status--red">Broken</span> the deployment's latest run failed.</li>
     <li><span class="ci-status ci-status--flapping">Flapping</span> passing now, but it has failed and recovered three or more times in the last 7 days, most recently within the last day.</li>
     <li><span class="ci-status ci-status--recovered">Recovered</span> passing now, after a failure in the last day, or after flapping but with no failures for a day or more.</li>
     <li><span class="ci-status ci-status--green">Passing</span> no failures in the last day, and fewer than three in the last 7 days.</li>
@@ -64,7 +64,7 @@ const detail = (w: Repo['workflows'][number]) =>
               <tr>
                 <th scope="col">Repo</th>
                 <th scope="col">State</th>
-                <th scope="col">Workflows</th>
+                <th scope="col">Deployments</th>
               </tr>
             </thead>
             <tbody>
@@ -102,7 +102,7 @@ const detail = (w: Repo['workflows'][number]) =>
       ))}
     </>
   ) : (
-    <p>Workflow states weren't available at the last build.</p>
+    <p>Deployment states weren't available at the last build.</p>
   )}
 
   {actions.notes.length > 0 && (
