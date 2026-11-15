@@ -1,0 +1,7 @@
+# Hooks run locally through prek (policies/project_standards.md).
+repos:
+  - repo: https://github.com/sirosen/texthooks
+    rev: 1.0.0
+    hooks:
+      # Non-breaking and other irregular spaces break Markdown headings and YAML (policies/project_standards.md).
+      - id: fix-spaces

@@ -10,6 +10,9 @@ Expectations of Rhizomatics projects
   - legacy hooks for 'pre-commit' removed
   - No pre-commit.ci: hooks run locally through prek, and the CI workflow runs the linters and
     type checks itself (decided in hq-private#83, 2026-11-08)
+  - `fix-spaces` from `sirosen/texthooks` in every repo: it replaces non-breaking and other irregular
+    spaces with plain ones. They slip in from pastes and option-space on macOS, break Markdown headings
+    and YAML, and look identical in review. A recurring problem across repos (found again in hq, 2026-11-15)
 - README badges
   - Every repo in `repos.toml` except `hq`, `.github` and internal repos shows the "managed by hq" badge,
     linking to the HQ site:

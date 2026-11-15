@@ -99,13 +99,17 @@ export async function processes(hqRoot) {
   return out;
 }
 
+// The Environment column appears only if some entry sets one (the default environment is in processes/README.md).
 function scheduleTable(list, fromDir) {
+  const envs = list.some((e) => e.fields.environment);
   const rows = list.map((e) => {
     const when = e.fields.when ? [e.day, e.fields.when].filter(Boolean).join(', ') : '_not scheduled_';
     const link = path.posix.relative(fromDir, e.rel);
-    return `| [${cell(e.name)}](${link}) | \`/${e.skill}\` | ${e.cadenceLabel} | ${cell(when)} | ${e.who ?? ''} | ${cell(e.fields.environment ?? '')} |`;
+    const env = envs ? ` ${cell(e.fields.environment ?? 'default')} |` : '';
+    return `| [${cell(e.name)}](${link}) | \`/${e.skill}\` | ${e.cadenceLabel} | ${cell(when)} | ${e.who ?? ''} |${env}`;
   });
-  return ['| Process | Skill | Cadence | When | Who | Environment |', '|---|---|---|---|---|---|', ...rows].join('\n');
+  const head = envs ? ['| Process | Skill | Cadence | When | Who | Environment |', '|---|---|---|---|---|---|'] : ['| Process | Skill | Cadence | When | Who |', '|---|---|---|---|---|'];
+  return [...head, ...rows].join('\n');
 }
 
 function runsList(list, persona, fromDir) {
@@ -152,7 +156,6 @@ export async function checkHq(hqRoot) {
     else if (fields.agent && fields.agent !== e.who) problems.push(`${where}: **Who:** is ${e.who} but the skill runs as agent: ${fields.agent}`);
     if (!e.fields.when) problems.push(`${where}: no **When:** (UTC time), so it has no routine`);
     else if (!/\d{2}:\d{2} UTC/.test(e.fields.when)) problems.push(`${where}: **When:** has no UTC time`);
-    if (!e.fields.environment) problems.push(`${where}: no **Environment:**`);
     if (!e.fields.report) problems.push(`${where}: no **Report:** visibility`);
   }
   const used = new Set(procs.map((e) => e.skill));
@@ -170,7 +173,7 @@ export async function checkHq(hqRoot) {
       for (const ent of await readdir(d, { withFileTypes: true })) {
         const full = path.join(d, ent.name);
         if (ent.isDirectory()) await walk(full);
-        else if (ent.name.endsWith('.md') && /^#+ /m.test(await readFile(full, 'utf8'))) {
+        else if (ent.name.endsWith('.md') && /^#+\u00a0/m.test(await readFile(full, 'utf8'))) {
           problems.push(`${path.relative(hqRoot, full)}: heading with a non-breaking space after #`);
         }
       }

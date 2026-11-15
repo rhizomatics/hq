@@ -5,7 +5,6 @@
 ### Adoption report — `/adoption-report`
 - **Who:** marketing
 - **When:** 07:00 UTC
-- **Environment:** Cloud Play Pen
 - **Output:** `hq-private/reports/adoption/YYYY-Www.md`
 - **Report:** private
 - Download, install and clone trends from `hq-private/data/stats/`.
@@ -13,14 +12,12 @@
 ### Lingering PRs — `/pr-report`
 - **Who:** pm
 - **When:** 07:20 UTC
-- **Environment:** Cloud Play Pen
 - **Output:** `hq-private/reports/prs/YYYY-Www.md`
 - **Report:** private
 
 ### Registry check — `/registry-check`
 - **Who:** pm
 - **When:** 07:40 UTC, after the PR report
-- **Environment:** HQ Web Research
 - **Output:** section in `hq-private/reports/prs/YYYY-Www.md`; clear-cut fixes committed to `repos.toml`
 - **Report:** private (a section of the PR report)
 - New, removed, renamed or archived repos in the org; new publishing channels.
@@ -30,10 +27,11 @@
 ### Project review — `/project-review`
 - **Who:** pm
 - **When:** 07:00 UTC
-- **Environment:** Cloud Play Pen
 - **Output:** `hq-private/reports/projects/YYYY-MM-DD.md`; factual updates to `projects/`
 - **Report:** public
-- Progress and next steps for every project, mark work that's done. 
+- First acts on the maintainer's decisions left as comments on hq issues (approvals, choices), and
+  posts a follow-up comment on each. Ask in a session for anything more urgent than a week.
+- Progress and next steps for every project, mark work that's done.
 - Check open RFCs and their status and template usage, flag up drafts open for more than 2 weeks and `ready for review` ones have a GitHub discussion open
 - Ensure responsibility either clear or status is unscheduled. - On the last Friday of the month this becomes the monthly project review (see [monthly.md](monthly.md)).
 

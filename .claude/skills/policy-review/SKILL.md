@@ -35,7 +35,7 @@ Read every file under `policies/` and `processes/`, then `AGENTS.md`, `CLAUDE.md
 - **Process plumbing**: run `mise run check-hq` (or `node site/scripts/check-hq.mjs`) and fix or
   raise what it reports. It covers the mechanical checks: every cadence entry has a skill and vice
   versa, skill `name` and `agent:` match the entry, the persona exists, each entry has **When:**
-  (UTC), **Environment:** and **Report:**, every project has a `summary:`, no broken headings. The
+  (UTC) and **Report:**, every project has a `summary:`, no broken headings. The
   schedule in `processes/README.md`, the project tables and each persona's **Runs** in `team.md` are
   generated from those sources, so there's nothing to compare there.
 - **Scripts over agents** (`policies/scripts_over_agents.md`): any step in a skill that is the same
@@ -69,7 +69,8 @@ file. Where it isn't clear which is intended, put it in the issue with both vers
 
 List the routines (the `/schedule` skill, or `RemoteTrigger` list). For each `hq: ...` routine
 check its cron against the **When:** of its cadence entry (times are UTC), its environment against
-the entry's **Environment:**, and that it runs the right skill.
+the default in `processes/README.md` (or the entry's **Environment:**, if it sets one), and that it
+runs the right skill.
 
 **Attached repos**: compare each routine's attached repos with `repos.toml` exactly, not just for
 missing ones. The correct set is every repo in `repos.toml` without `archived = true`, including

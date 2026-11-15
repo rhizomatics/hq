@@ -221,3 +221,6 @@ _None._
   runs the check instead of reading for plumbing. Found and fixed on the way: `project-alignment` listed as
   proposed while in `done/`, five headings broken by non-breaking spaces, `decision-followup` missing from
   `team.md`. Still open: `decision-followup` has no time or environment in the docs.
+- 2026-11-15 — Decision follow-up folded into the weekly project review (it never had a routine); skill removed.
+  Only one routine environment now (HQ Web Research), so it's a single default in `processes/README.md`, not a
+  per-entry field. `fix-spaces` (sirosen/texthooks) added to the project standards and to hq's own prek config.
