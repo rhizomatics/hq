@@ -265,3 +265,9 @@ _None._
   `[community.*]`, grouped by product; `check-hq` validates the entries. The routine's rename failed (HTTP 403,
   a repo it attaches is no longer accessible), so it's still `hq: monthly ecosystem review` running
   `/ecosystem-review`: needs fixing before 2026-12-10.
+- 2026-11-15 — Routines regrouped to one per persona per cadence where processes share a time: `hq: daily
+  infra-lead` (Dependabot sweep, then security escalation), `hq: daily marketing` (forum watch, then the new
+  release digest), `hq: weekly pm (Monday)` (PR report, then registry check): 9 daily and weekly routines down to 6,
+  each process keeping its own skill and output. Cadence entries carry **Routine:**; `check-hq` checks a shared
+  routine's processes have one persona and one start time. Candidates for scripts next: the registry check and
+  the PR report's listing.

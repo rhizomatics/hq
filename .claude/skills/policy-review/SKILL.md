@@ -68,7 +68,8 @@ file. Where it isn't clear which is intended, put it in the issue with both vers
 ## 2. Cloud routines
 
 List the routines (the `/schedule` skill, or `RemoteTrigger` list). For each `hq: ...` routine
-check its cron against the **When:** of its cadence entry (times are UTC), its environment against
+check its cron against the **When:** of its cadence entry (times are UTC; a shared routine, `hq: <cadence> <persona>`,
+runs every process whose **Routine:** names it, in order, and its prompt should list exactly those), its environment against
 the default in `processes/README.md` (or the entry's **Environment:**, if it sets one), and that it
 runs the right skill.
 

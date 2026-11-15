@@ -12,7 +12,7 @@ How the [Rhizomatics](https://github.com/rhizomatics) open source projects are r
 - [projects/](projects/) — work in progress and ideas
 - [repos.toml](repos.toml) — every repo and where it's published
 
-Reports, metrics and the maintainer's to-do list live in a private companion repo.
+Reports, metrics and the maintainer's to-do list live in a private companion repo. Analytics are supplied by https://rhizomatics.goatcounter.com
 
 ## Related
 

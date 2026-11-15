@@ -107,9 +107,12 @@ function scheduleTable(list, fromDir) {
     const when = e.fields.when ? [e.day, e.fields.when].filter(Boolean).join(', ') : '_not scheduled_';
     const link = path.posix.relative(fromDir, e.rel);
     const env = envs ? ` ${cell(e.fields.environment ?? 'default')} |` : '';
-    return `| [${cell(e.name)}](${link}) | \`/${e.skill}\` | ${e.cadenceLabel} | ${cell(when)} | ${e.who ?? ''} |${env}`;
+    const routine = e.fields.routine ? e.fields.routine.replace(/`/g, '') : `hq: ${e.cadence} ${e.name.toLowerCase()}`;
+    return `| [${cell(e.name)}](${link}) | \`/${e.skill}\` | ${e.cadenceLabel} | ${cell(when)} | ${e.who ?? ''} | ${cell(routine)} |${env}`;
   });
-  const head = envs ? ['| Process | Skill | Cadence | When | Who | Environment |', '|---|---|---|---|---|---|'] : ['| Process | Skill | Cadence | When | Who |', '|---|---|---|---|---|'];
+  const head = envs
+    ? ['| Process | Skill | Cadence | When | Who | Routine | Environment |', '|---|---|---|---|---|---|---|']
+    : ['| Process | Skill | Cadence | When | Who | Routine |', '|---|---|---|---|---|---|'];
   return [...head, ...rows].join('\n');
 }
 
@@ -159,6 +162,16 @@ export async function checkHq(hqRoot) {
     else if (!/\d{2}:\d{2} UTC/.test(e.fields.when)) problems.push(`${where}: **When:** has no UTC time`);
     if (!e.fields.report) problems.push(`${where}: no **Report:** visibility`);
   }
+  // Processes sharing a routine run as one persona at one time.
+  const byRoutine = {};
+  for (const e of procs.filter((p) => p.fields.routine)) (byRoutine[e.fields.routine] ??= []).push(e);
+  for (const [routine, list] of Object.entries(byRoutine)) {
+    const who = new Set(list.map((e) => e.who));
+    const time = new Set(list.map((e) => e.fields.when?.match(/\d{2}:\d{2} UTC/)?.[0]));
+    if (who.size > 1) problems.push(`routine ${routine}: processes with different personas (${[...who].join(', ')})`);
+    if (time.size > 1) problems.push(`routine ${routine}: processes with different start times (${[...time].join(', ')})`);
+  }
+
   const used = new Set(procs.map((e) => e.skill));
   for (const s of skills) {
     if (!used.has(s) && (await exists(path.join(skillsDir, s, 'SKILL.md')))) problems.push(`.claude/skills/${s}: not in any cadence file`);
