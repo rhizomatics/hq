@@ -15,9 +15,9 @@ Expectations of Rhizomatics projects
     and YAML, and look identical in review. A recurring problem across repos (found again in hq, 2026-11-15)
 - Page views on every website the org publishes (docs sites, the HQ site, www) are counted with
   GoatCounter, cookieless, so no site needs a consent banner. No Google Analytics or other cookie-setting
-  trackers. Each website has its own GoatCounter site: `rhizomatics` for www.rhizomatics.org.uk,
-  `rhizomatics-hq` for the HQ site (`[org].goatcounter` in hq's `repos.toml`) and `boat-tech-directory` for
-  the boat tech directory. Count only the public production build, as the boat tech directory's
+  trackers. Each website has its own GoatCounter site, recorded as `goatcounter` on its repo in hq's
+  `repos.toml` (e.g. `rhizomatics` for www.rhizomatics.org.uk on `.github`, `rhizomatics-hq` for the HQ site,
+  a product's name for its docs site). Count only the public production build, as the boat tech directory's
   `site/src/analytics.mjs` does, so dev servers and builds run elsewhere aren't counted (decided 2026-11-15)
 - README badges
   - Every repo in `repos.toml` except `hq`, `.github` and internal repos shows the "managed by hq" badge,

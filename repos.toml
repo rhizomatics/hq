@@ -10,8 +10,6 @@
 #   private_repo:  repo for reports, data snapshots and hq issues, checked out next to hq_repo;
 #                  omit for an entirely public set-up (hq issues then go in hq_repo)
 #   site_url:      where the public HQ site is served
-#   goatcounter:   GoatCounter site code for the HQ site's page views (cookieless, so no consent banner);
-#                  omit for none. Other sites have their own GoatCounter site, set in their own repo
 # [families]:      each repo family, in display order: its heading on the site and its hq issue area
 # [labels]:        hq issue labels; an issue gets one source and one area (the areas are the `area`
 #                  values in [families])
@@ -23,6 +21,8 @@
 # ha_domain:  Home Assistant integration domain (for HA analytics install counts)
 # hacs_zip:   release asset name HACS downloads, a zip or a card's .js (counts = HACS installs/updates)
 # upstream:   platform whose transitive vulns are excluded from security escalation
+# goatcounter: GoatCounter site code counting page views of the repo's website (docs site, www, the HQ site);
+#             cookieless, so no consent banner (policies/project_standards.md)
 # archived:   true when retired; left off the public site (Usage, Operations) even before GitHub archives it
 #
 # [community.<id>]: contributed projects built on the org's products, by other people. Tracked for stats and
@@ -50,7 +50,6 @@ maintainers = ["jeyrb"]
 hq_repo = "hq"
 private_repo = "hq-private"
 site_url = "https://hq.rhizomatics.org.uk"
-goatcounter = "rhizomatics-hq"
 
 [families]
 ha-integration = { label = "Home Assistant", area = "homeassistant" }
@@ -83,6 +82,7 @@ package = "homeassistant"
 area = "homeassistant"
 
 [repos.supernotify]
+goatcounter = "supernotify"
 family = "ha-integration"
 ha_domain = "supernotify"
 hacs_zip = "supernotify.zip"
@@ -90,6 +90,7 @@ upstream = "homeassistant"
 category = ["major"]
 
 [repos.autoarm]
+goatcounter = "autoarm"
 family = "ha-integration"
 ha_domain = "autoarm"
 hacs_zip = "autoarm.zip"
@@ -97,6 +98,7 @@ upstream = "homeassistant"
 category = ["major"]
 
 [repos.remote_logger]
+goatcounter = "remote-logger"
 family = "ha-integration"
 ha_domain = "remote_logger"
 hacs_zip = "remote_logger.zip"
@@ -104,12 +106,14 @@ upstream = "homeassistant"
 category = ["major"]
 
 [repos.appliance_autonotify]
+goatcounter = "appliance-autonotify"
 family = "ha-integration"
 ha_domain = "appliance_autonotify"
 hacs_zip = "appliance_autonotify.zip"
 upstream = "homeassistant"
 
 [repos.camera_autonotify]
+goatcounter = "camera-autonotify"
 family = "ha-integration"
 ha_domain = "camera_autonotify"
 hacs_zip = "camera_autonotify.zip"
@@ -117,23 +121,27 @@ upstream = "homeassistant"
 
 
 [repos.homeassistant-repl]
+goatcounter = "homeassistant-repl"
 family = "ha-integration"
 pypi = "homeassistant-repl"
 ha_domain = "ha_repl_server"
 upstream = "homeassistant"
 
 [repos.updates2mqtt]
+goatcounter = "updates2mqtt"
 family = "mqtt-service"
 pypi = "updates2mqtt"
 ghcr = "updates2mqtt"
 category = ["major"]
 
 [repos.anpr2mqtt]
+goatcounter = "anpr2mqtt"
 family = "mqtt-service"
 pypi = "anpr2mqtt"
 ghcr = "anpr2mqtt"
 
 [repos.signalk-einklabel-plugin]
+goatcounter = "signalk-einklabel"
 family = "signalk-plugin"
 npm = "@rhizomatics/signalk-einklabel-plugin"
 upstream = "signalk"
@@ -145,6 +153,7 @@ npm = "@rhizomatics/signalk-einklabel-genai-plugin"
 upstream = "signalk"
 
 [repos.signalk-datalab-plugin]
+goatcounter = "signalk-datalab"
 family = "signalk-plugin"
 npm = "@rhizomatics/signalk-datalab-plugin"
 upstream = "signalk"
@@ -178,6 +187,7 @@ family="picoware"
 family="picoware"
 
 [repos.signalk-cli]
+goatcounter = "signalk-cli"
 family = "cli"
 pypi = "signalk-cli"
 
@@ -186,6 +196,7 @@ family = "site"
 archived = true
 
 [repos.boat-tech-directory]
+goatcounter = "boat-tech-directory"
 family = "site"
 category = ["major"]
 
@@ -193,9 +204,11 @@ category = ["major"]
 family = "meta"
 
 [repos.".github"]
+goatcounter = "rhizomatics"
 family = "meta"
 
 [repos.hq]
+goatcounter = "rhizomatics-hq"
 family = "meta"
 
 [repos.hq-private]

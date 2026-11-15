@@ -168,8 +168,17 @@ export async function checkHq(hqRoot) {
     if (!p.summary) problems.push(`${p.rel}: no summary: in frontmatter`);
   }
 
-  // Community entries: complete, and extending one of the org's own repos.
   const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
+  // GoatCounter codes: the site code GoatCounter allows, and no two repos counting to the same site.
+  const codes = {};
+  for (const [name, r] of Object.entries(registry.repos ?? {})) {
+    if (r.goatcounter == null) continue;
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(r.goatcounter)) problems.push(`repos.toml [repos.${name}]: goatcounter "${r.goatcounter}" isn't a GoatCounter site code`);
+    if (codes[r.goatcounter]) problems.push(`repos.toml: goatcounter "${r.goatcounter}" used by both ${codes[r.goatcounter]} and ${name}`);
+    codes[r.goatcounter] = name;
+  }
+
+  // Community entries: complete, and extending one of the org's own repos.
   for (const [id, e] of Object.entries(registry.community ?? {})) {
     const kind = e.kind ?? 'project';
     if (kind === 'blog') {

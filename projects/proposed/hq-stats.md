@@ -52,7 +52,7 @@ Any open source developer, even with a single product, can collect usage for the
 - [ ] @pair Workflow runs on schedule and manual dispatch only, so its push-access token never runs on PR code;
       docs on making `hq-stats` private for private stats, and the permissions that needs
 - [ ] @pair Site views: collect daily page views and top pages per website from the GoatCounter API (a GoatCounter
-      site each: `rhizomatics` for www, `rhizomatics-hq` for HQ, `boat-tech-directory`, more as docs sites are added; a token as a secret),
+      site each, the `goatcounter` field on its repo in `repos.toml`; a token as a secret),
       shown per product next to its downloads. GitHub's repo traffic stays as the code-side views
 - [ ] @pair Community: move the `hq` site's Community page (`build-community.mjs`, live since 2026-11-15) here, and
       collect `[community.*]` entries from public sources only, stored apart from the org's
