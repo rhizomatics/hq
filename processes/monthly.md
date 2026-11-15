@@ -14,10 +14,10 @@
 - **Report:** private
 - Recurring support themes and root-cause fixes in code, tests or docs.
 
-## 10th — Ecosystem review — `/ecosystem-review`
+## 10th — Platform review — `/platform-review`
 - **Who:** architect
 - **When:** 08:00 UTC
-- **Output:** `hq-private/reports/ecosystem/YYYY-MM.md`
+- **Output:** `hq-private/reports/platform/YYYY-MM.md`
 - **Report:** public
 - Home Assistant and SignalK releases and upcoming changes: threats and opportunities. The 10th is always after HA's release on the first Wednesday of the month.
 - Other dependencies that are worth upgrading for feature, performance or security reasons and safe to do so

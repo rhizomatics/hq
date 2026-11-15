@@ -1,7 +1,7 @@
 # Home Assistant platform changes to act on
 
 Moved from `policies/hass-alignment.md` (policy review, hq-private#110): these are work to do, not policy.
-The ecosystem review adds to this list and the alignment review spreads the fixes; remove an item once every
+The platform review adds to this list and the alignment review spreads the fixes; remove an item once every
 repo has caught up.
 
 - Support the HA change to the new Contributors site by updating URLs that point to the old developer or data sites

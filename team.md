@@ -68,8 +68,8 @@ maintainer turns them into an hq issue.
 | support review | recurring bug with a code root cause | architect (design) → PR |
 | forum watch | competitor, sentiment, comparison | marketing (reputation review) |
 | PR report, security escalation | recurring CI failure, workflow/settings issue | infra-lead (GitHub review) |
-| ecosystem review | breaking change or deprecation affecting us | architect (architecture review), pm (project/issue) |
-| ecosystem review | opportunity (new platform feature) | pm (roadmap review), marketing |
+| platform review | breaking change or deprecation affecting us | architect (architecture review), pm (project/issue) |
+| platform review | opportunity (new platform feature) | pm (roadmap review), marketing |
 | registry check | new repo or channel | infra-lead (stats), marketing (adoption) |
 | adoption report | release with no announcement, falling README traffic | marketing, tech-writer |
 | architecture review | Quality Scale docs rules (`docs-*`) not met | tech-writer |

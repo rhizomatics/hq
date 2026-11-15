@@ -24,7 +24,7 @@ a separate product, [HQ Stats](proposed/hq-stats.md), which ships and is markete
   policies, processes and skills. Different audiences and set-up costs; (1) is the low-friction way in to (2),
   so it goes first, under shared branding, and HQ uses it as a component.
 - **Coupling is lighter than it looks** (2026-11-15 count): most org-specific content is the org name and
-  maintainer in prose. Only `architecture-review`, `ecosystem-review`, `security-escalation` and
+  maintainer in prose. Only `architecture-review`, `platform-review`, `security-escalation` and
   `dependabot-sweep` are deeply Home Assistant or SignalK specific. Stats are already per channel, driven by
   fields in `repos.toml`, so `python`/`node` "modules" aren't needed.
 - **GitHub Agentic Workflows** (`gh-aw`, technical preview): Markdown workflows compiled to GitHub Actions, run
@@ -32,7 +32,7 @@ a separate product, [HQ Stats](proposed/hq-stats.md), which ships and is markete
   contributor report, open source compliance check, stale repo report. Maintained by GitHub and improving, and
   engine-neutral, which also helps non-Claude users.
 - **OpenSSF Allstar** looks unmaintained; not a candidate. OpenSSF Scorecard is (see [OpenSSF](openssf.md)).
-- **What HQ adds** over gh-aw's examples: ecosystem-aware stats (HACS, HA analytics, SignalK), forum watching,
+- **What HQ adds** over gh-aw's examples: platform-aware stats (HACS, HA analytics, SignalK), forum watching,
   policies aligned to an upstream platform, personas that disagree on purpose, private/public split, the site.
 
 ## Design
@@ -60,7 +60,7 @@ with one or more providers, each pinned to a version:
   time and people want their own. `security-escalation` becomes the step that merges, de-duplicates and ranks
   their findings, and applies the transitive-vulnerability and escalation rules
 
-Keep in HQ only what nobody else does well, mostly the ecosystem packs and the glue between providers.
+Keep in HQ only what nobody else does well, mostly the platform packs and the glue between providers.
 
 ### Two regular reviews
 
@@ -76,7 +76,7 @@ Which skills are used, and whether they're still the best choice, is reviewed re
   one), which local changes to keep, local skills a third-party one now covers, and local changes worth offering
   back to the product. Output is a PR with the uncontested updates and an issue for the judgement calls.
 
-### Core and ecosystem packs
+### Core and platform packs
 
 - **Core:** project and process model, issue/PR conventions, support, PRs, Dependabot, registry, projects,
   security merge step, provider config, the two reviews, brand kit structure. Stats and the site come from
@@ -84,6 +84,28 @@ Which skills are used, and whether they're still the best choice, is reviewed re
 - **Packs:** `homeassistant` and `signalk`: forum watch sources and topic terms, platform alignment policies,
   platform change tracking, upstream advisories (`security_watch`), stats channels (HACS, HA analytics).
 - No language modules: channel fields in `repos.toml` (`pypi`, `npm`, `ghcr`, ...) already select collectors.
+
+### Community: contributed projects
+
+Other people build on the org's products: plugins for a product, Supernotify Cards, integrations that depend on
+one of our packages. HQ tracks them as the org's **community**, separately from its own repos, so their use and
+standing are visible without being mixed into the org's own numbers.
+
+- **Registry:** `[community.<id>]` entries in `repos.toml`, beside `[repos]`: the project's GitHub repo, its
+  author, the product it extends, and the same channel fields as our repos (`npm`, `pypi`, `hacs_zip`,
+  `ha_domain`, ...). Only public projects.
+- **Stats** (in [HQ Stats](proposed/hq-stats.md)): collected by the same collectors, from public sources only
+  (stars, forks, releases, last release date, downloads per channel). Traffic and clones need push access to
+  their repo, so they're never collected. Shown in their own Community section and kept out of the org's totals.
+- **Reputation:** the reputation review covers the community too: mentions and sentiment, health (stale,
+  unanswered issues, broken by one of our releases), and how we treat contributors (linked from our docs,
+  thanked, notable ones mentioned in announcements).
+- **Breaking changes:** before a release that changes an extension point, the architect lists the community
+  projects that use it, so the release notes and any heads-up reach their authors.
+- **Discovery:** a script finds candidates, per [scripts over agents](../policies/scripts_over_agents.md):
+  npm and PyPI dependents of our packages, a GitHub topic or code search for our package names, forum mentions
+  from forum watch. The registry check proposes additions; the maintainer approves, since the entry names
+  someone else's project publicly. An author who asks to be left out is removed.
 
 ### Agent-neutral by design, best with Claude
 
@@ -104,7 +126,8 @@ and what's known to be weaker or missing; a non-Claude engine is "supported" onl
 ### Config
 
 Extend `repos.toml`, don't add YAML: `[org]` gains the private repo location (optional; omitted for entirely
-public set-ups), areas and labels, enabled packs and capability providers. Plain config also suits scripted
+public set-ups), areas and labels, enabled packs and capability providers; `[community.*]` lists contributed
+projects. Plain config also suits scripted
 automation without an agent.
 
 ### Privacy in the core
@@ -155,6 +178,9 @@ a separate domain only once there are outside users.
 
 - [ ] @pair Split skills, policies and reference into core and `homeassistant` / `signalk` packs; hq runs unchanged;
       done when core files name no platform (deferred from Phase 0)
+- [ ] @pair Community: `[community.*]` schema in `repos.toml`; discovery script; registry check proposes
+      additions; reputation review and release checks cover it. Seed Rhizomatics' entries (known plugins,
+      Supernotify Cards) for the maintainer to approve. Stats side is in [HQ Stats](proposed/hq-stats.md)
 - [ ] @pair Brand kit structure in core; Rhizomatics images move to wherever its products keep them
 - [ ] @pair Per-agent adapters generated from personas and skills; try one non-Claude engine end to end
 
@@ -224,3 +250,18 @@ _None._
 - 2026-11-15 — Decision follow-up folded into the weekly project review (it never had a routine); skill removed.
   Only one routine environment now (HQ Web Research), so it's a single default in `processes/README.md`, not a
   per-entry field. `fix-spaces` (sirosen/texthooks) added to the project standards and to hq's own prek config.
+- 2026-11-15 — Ecosystem facility added to the design: contributed projects (plugins, Supernotify Cards) listed
+  as `[ecosystem.*]` in `repos.toml`, with their own stats in HQ Stats and coverage in the reputation review,
+  discovery by script and release checks for extension points. "Ecosystem packs" renamed "platform packs" to
+  keep the word for this.
+- 2026-11-15 — First ecosystem entry, approved by the maintainer: `[ecosystem.supernotify-cards]`
+  (lollox80/supernotify-cards, a HACS card extending supernotify). Schema documented in the `repos.toml` header;
+  no collector reads it yet. The repo carries the `supernotify` GitHub topic, a good first discovery source.
+- 2026-11-15 — Ecosystem facility renamed **community** (`[community.*]` in `repos.toml`): plainer, and it keeps
+  "ecosystem" from meaning two things. The platform a product belongs to is its platform.
+- 2026-11-15 — Ecosystem review renamed **platform review** (skill, cadence entry, `platform` label in hq-private,
+  report folder `hq-private/reports/platform/`). Terms defined in `AGENTS.md`: product, platform (what we run
+  inside), community (what others build on us). Community page added to the site (sidebar, home page) from
+  `[community.*]`, grouped by product; `check-hq` validates the entries. The routine's rename failed (HTTP 403,
+  a repo it attaches is no longer accessible), so it's still `hq: monthly ecosystem review` running
+  `/ecosystem-review`: needs fixing before 2026-12-10.

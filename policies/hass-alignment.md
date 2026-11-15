@@ -24,7 +24,7 @@ Custom components don't use `strings.json`: it's for core integrations only
 ## Platform changes
 
 Platform changes still to act on (Marketplace, the Contributors site, deprecated test and type packages) are
-tracked in `reference/hass_platform_changes.md`, picked up by the ecosystem and alignment reviews.
+tracked in `reference/hass_platform_changes.md`, picked up by the platform and alignment reviews.
 
 ## References
 

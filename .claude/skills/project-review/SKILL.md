@@ -76,7 +76,7 @@ moving a file between folders is the whole change. Add a `summary:` to any proje
 - Proposed projects: is any now ready to start (move up to `projects/`), or better shelved?
 - Active projects that look finished (propose moving to `projects/done/`) or abandoned (propose
   `projects/shelved/` with a dated reason). Moves between folders are the maintainer's call.
-- Shelved projects: has anything changed (ecosystem, demand) that makes one worth reviving?
+- Shelved projects: has anything changed (platform, demand) that makes one worth reviving?
 
 ## Output
 

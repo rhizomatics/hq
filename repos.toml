@@ -19,9 +19,17 @@
 # npm/pypi:   published package name
 # ghcr:       container image name under ghcr.io/<org.github>/
 # ha_domain:  Home Assistant integration domain (for HA analytics install counts)
-# hacs_zip:   release asset name HACS downloads (counts = HACS installs/updates)
+# hacs_zip:   release asset name HACS downloads, a zip or a card's .js (counts = HACS installs/updates)
 # upstream:   platform whose transitive vulns are excluded from security escalation
 # archived:   true when retired; left off the public site (Usage, Operations) even before GitHub archives it
+#
+# [community.<id>]: contributed projects built on the org's products, by other people. Tracked for stats and
+# reputation, never counted in the org's own totals (projects/hq-as-product.md, "Community"). Public projects
+# only, added with the maintainer's approval.
+#   repo:     owner/name on GitHub
+#   author:   GitHub login of the author
+#   extends:  the org's repo it builds on (a key of [repos])
+#   plus the same channel fields as a repo (npm, pypi, hacs_zip, ...)
 #
 # security_watch: platform packages our users run but we don't patch, so Dependabot's alerts don't
 # reach the decision that matters. Advisories for them are snapshotted by collect_github.py.
@@ -47,7 +55,7 @@ meta = { label = "Organisation", area = "org" }
 [labels]
 sources = [
   "security-escalation", "dependabot", "support", "forums", "alignment", "github", "docs",
-  "architecture", "ecosystem", "reputation", "roadmap", "project", "adoption", "prs",
+  "architecture", "platform", "reputation", "roadmap", "project", "adoption", "prs",
 ]
 
 [[security_watch]]
@@ -185,3 +193,9 @@ family = "meta"
 family = "meta"
 category = ["internal"]
 
+
+[community.supernotify-cards]
+repo = "lollox80/supernotify-cards"
+author = "lollox80"
+extends = "supernotify"
+hacs_zip = "supernotify-control-card.js"

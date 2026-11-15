@@ -36,6 +36,7 @@ export default defineConfig({
       lastUpdated: false,
       sidebar: [
         { label: 'Usage', items: usageSidebar() },
+        { label: 'Community', link: '/community/' },
         { label: 'Design Process', items: [{ label: 'Overview', link: '/design/' }, { label: 'RFCs', link: '/rfcs/' }] },
         {
           label: 'Operations',

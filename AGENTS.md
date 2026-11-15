@@ -19,6 +19,21 @@ The docs name roles, not the org. Each resolves through `repos.toml`:
 - **the site**: the public HQ site at `[org].site_url`.
 - **areas** and **labels**: the `area` of each family in `[families]`, and `[labels].sources`.
 
+Three words for what surrounds a product, used only in these senses:
+
+- **product**: one of the org's own repos in `[repos]` that users install (not `meta`, `internal` or
+  `experimental`; see `policies/products.md`).
+- **platform**: what a product is built *for* and runs inside, made by others: Home Assistant, SignalK, MQTT
+  brokers. Set per repo by `upstream`. Its releases and changes are watched by the platform review; its
+  conventions are the `*-alignment` policies; its packages are in `security_watch`. Say "platform", never
+  "ecosystem", for this.
+- **community**: projects other people build *on* one of our products: plugins, cards, packages that depend on
+  ours. Listed in `[community.<id>]` with the product they `extend`. Their stats are shown apart and never
+  counted in the org's totals.
+
+"Ecosystem" appears only as a package manager's own term (Dependabot's `package-ecosystem`, the advisory
+API's `ecosystem = "npm"`).
+
 HQ is those two repos:
 
 - **`hq`** (this repo, public): the static docs — processes, skills, personas, policies, reference,
@@ -46,7 +61,8 @@ HQ is those two repos:
   `scripts/build-actions.mjs` fetches each public repo's Actions state for the Operations › Deployments page;
   `scripts/build-issues.mjs` counts open issues by type for the Support and Design Process pages;
   `scripts/build-security.mjs` gathers public security settings and published advisories (never alerts) for the Security page;
-  `scripts/build-design.mjs` gathers RFCs, roadmaps and design principles for the Design Process and RFCs pages. Run it with
+  `scripts/build-design.mjs` gathers RFCs, roadmaps and design principles for the Design Process and RFCs pages;
+  `scripts/build-community.mjs` lists `[community.*]` projects with their public GitHub figures for the Community page. Run it with
   `mise run preview-site`.
 - `hq-private/commands/` — helper shell commands for the maintainer.
 - `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-stats.yml`.

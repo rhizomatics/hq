@@ -8,6 +8,7 @@
 
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { parse as parseToml } from 'smol-toml';
 
 const CADENCES = [
   ['daily', 'Daily'],
@@ -165,6 +166,14 @@ export async function checkHq(hqRoot) {
 
   for (const p of await projects(hqRoot)) {
     if (!p.summary) problems.push(`${p.rel}: no summary: in frontmatter`);
+  }
+
+  // Community entries: complete, and extending one of the org's own repos.
+  const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
+  for (const [id, e] of Object.entries(registry.community ?? {})) {
+    for (const field of ['repo', 'author', 'extends']) if (!e[field]) problems.push(`repos.toml [community.${id}]: no ${field}`);
+    if (e.repo && !/^[\w.-]+\/[\w.-]+$/.test(e.repo)) problems.push(`repos.toml [community.${id}]: repo should be owner/name`);
+    if (e.extends && !registry.repos?.[e.extends]) problems.push(`repos.toml [community.${id}]: extends "${e.extends}", which isn't in [repos]`);
   }
 
   // Markdown headings broken by a non-breaking space after the #s.

@@ -25,7 +25,7 @@ What changed in the platform's architecture and guidance since the last quarter'
 product reviews judge against the current rules:
 
 - **Home Assistant**: developer docs (`https://contributors.home-assistant.io/`, formerly developers.home-assistant.io) and dev blog
-  posts since last quarter; the `hq-private/reports/ecosystem/` reports from the quarter. The release notes
+  posts since last quarter; the `hq-private/reports/platform/` reports from the quarter. The release notes
   for every HA release in the supported window
   (`https://www.home-assistant.io/blog/categories/release-notes/`): read each release's
   backward-incompatible changes, deprecations and full change list for integrations, helpers,

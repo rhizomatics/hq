@@ -21,11 +21,11 @@ list them.
 - **Done** — shipped: match against CHANGELOG.md, releases, merged PRs, closed issues since the
   item was written. Cite the release/PR.
 - **Obsolete** — overtaken by another change in our code, or by the platform (check
-  `hq-private/reports/ecosystem/` and `hq-private/reports/architecture-review/` for the quarter: e.g. Home Assistant core
+  `hq-private/reports/platform/` and `hq-private/reports/architecture-review/` for the quarter: e.g. Home Assistant core
   now does it, a SignalK API made it unnecessary).
 - **Changed priority** — strong demand signals (support themes in `hq-private/reports/support-review/`,
   forum mentions, issue reactions `gh api .../issues/<n>/reactions`) or none at all.
-- **Missing** — recurring requests or ecosystem opportunities from the quarter's reports that
+- **Missing** — recurring requests or platform opportunities from the quarter's reports that
   aren't on the roadmap.
 
 ## Output

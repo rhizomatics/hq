@@ -18,7 +18,7 @@ Any open source developer, even with a single product, can collect usage for the
   built by `site/scripts/build-stats.mjs`, which publishes only public aggregates.
 - Channels are already selected by fields in `repos.toml` (`pypi`, `npm`, `ghcr`, `hacs_zip`, `ha_domain`), so
   adding a user's repos is config, not code.
-- Ecosystem channels (HACS, HA analytics, SignalK) are what nobody else offers; generic ones (PyPI, npm, ghcr, GitHub traffic) make it useful beyond those ecosystems.
+- Platform channels (HACS, HA analytics, SignalK) are what nobody else offers; generic ones (PyPI, npm, ghcr, GitHub traffic) make it useful beyond those platforms.
 - New product is a Javascript project with Github Actions and a config file that provides a location for `repos.toml`
   - `repos.toml` is expected to be inside a `hq` project at same repo, however it is also supported running `hq-stats` on its own, so the `repos.toml` can be in the same project. A skeleton one is provided in MD docs.
   - stats are collected into the `hq-stats` repo instance, from where they are available to `hq`
@@ -35,6 +35,12 @@ Any open source developer, even with a single product, can collect usage for the
      simpler, so it's made as seamless as possible instead.
 - HQ must be able to build navigation to the `hq-stats` pages into its own menu, and the two sites should feel like
   one: same look, links back and forth.
+- **Community**: contributed projects built on the org's products (plugins, Supernotify Cards, packages that
+  depend on ours) are listed in `repos.toml` as `[community.<id>]` (design in
+  [HQ as a product](../hq-as-product.md#community-contributed-projects)). `hq-stats` collects them with the same
+  collectors from public sources only: stars, forks, releases, last release, downloads per channel; no traffic
+  or clones, which need push access. They're kept apart from the org's own figures: separate in the snapshots,
+  their own Community pages and navigation entry, never in the org's totals.
 
 ## Plan
 
@@ -45,6 +51,10 @@ Any open source developer, even with a single product, can collect usage for the
 - [x] @agent Collector skips private repos, so current snapshots hold only public ones (2026-11-15)
 - [ ] @pair Workflow runs on schedule and manual dispatch only, so its push-access token never runs on PR code;
       docs on making `hq-stats` private for private stats, and the permissions that needs
+- [ ] @pair Community: move the `hq` site's Community page (`build-community.mjs`, live since 2026-11-15) here, and
+      collect `[community.*]` entries from public sources only, stored apart from the org's
+      repos; Community pages (per product extended, with author and links) and their entry in the navigation
+      manifest; never counted in the org's totals
 - [ ] @pair Document the snapshot and aggregate formats as the headless interface
 - [ ] @pair Default pages: move the Usage pages and `build-stats.mjs` out of the `hq` site into an optional `hq-stats`
       site, deployed to its own subdomain
@@ -89,3 +99,6 @@ _None._
   JavaScript port and for keeping a public `hq-stats` repo free of private repos' data.
 - 2026-11-15 — Collectors plus optional pages on a subdomain, with a navigation manifest for HQ's menu; everything
   public. `hq-private/scripts/collect_stats.py` now skips private repos.
+- 2026-11-15 — Ecosystem added: contributed projects collected from public sources, shown on their own pages and
+  kept out of the org's totals.
+- 2026-11-15 — Ecosystem renamed community (`[community.*]`).

@@ -1,11 +1,11 @@
 ---
-name: ecosystem-review
-description: Monthly review of Home Assistant and SignalK — recent releases and upcoming architecture changes — for threats (breakage, deprecations, overlap) and opportunities for the org's products.
+name: platform-review
+description: Monthly review of the platforms the org's products run on (Home Assistant and SignalK) — recent releases and upcoming architecture changes — for threats (breakage, deprecations, overlap) and opportunities for the org's products.
 context: fork
 agent: architect
 ---
 
-# Monthly ecosystem review
+# Monthly platform review
 
 Scheduled on the 10th, always after Home Assistant's monthly release (first Wednesday), so the new
 release is in scope.
@@ -47,6 +47,7 @@ update who's still affected, and remove items every repo has caught up with. Com
 
 ## Output
 
-`hq-private/reports/ecosystem/YYYY-MM.md`: a summary, then **Threats** (`Change | Affects | When | Action`),
+`hq-private/reports/platform/YYYY-MM.md`: a summary, then **Threats** (`Change | Affects | When | Action`),
 **Opportunities**, **Watch list** (forward-looking items to recheck next month, carried over and
-updated from last month's report). File actions as hq issues per "Issues and PRs" in `AGENTS.md`.
+updated from last month's report; reports before 2026-11-15 are in the same folder, written as the
+ecosystem review). File actions as hq issues (label `platform` + area) per "Issues and PRs" in `AGENTS.md`.

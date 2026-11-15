@@ -1,0 +1,75 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import community from '../data/community.json';
+import { ORG } from '../lib/hq-config.mjs';
+
+type Project = {
+  id: string;
+  name: string;
+  url: string;
+  author: string;
+  authorUrl: string;
+  description?: string | null;
+  stars?: number;
+  license?: string | null;
+  archived?: boolean;
+  latestRelease?: { tag: string; date: string; url: string } | null;
+  hacsDownloads?: number | null;
+};
+type Product = { id: string; url: string; projects: Project[] };
+
+const products = community.products as Product[];
+const count = products.reduce((n, p) => n + p.projects.length, 0);
+const day = (t: string) => t.slice(0, 10);
+const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
+---
+<StarlightPage frontmatter={{ title: 'Community', description: `Projects other people have built on ${ORG.name} products: plugins, cards and more.`, tableOfContents: false }}>
+  <p>
+    Projects other people have built on {ORG.name} products, grouped by the product they extend. They're made and
+    maintained by their authors, not by us; thank you to everyone who has built one.
+  </p>
+  <p>
+    Built something on one of our products? Open an issue or discussion on that product's repo and we'll add it here.
+    If you'd rather yours wasn't listed, say so the same way.
+  </p>
+
+  {count ? (
+    products.map((product) => (
+      <>
+        <h2>For <a href={product.url}>{product.id}</a></h2>
+        <table class="usage-table">
+          <thead>
+            <tr>
+              <th scope="col">Project</th>
+              <th scope="col">By</th>
+              <th scope="col">What it does</th>
+              <th scope="col">Latest release</th>
+              <th scope="col" class="num">Stars</th>
+              <th scope="col" class="num">HACS downloads</th>
+            </tr>
+          </thead>
+          <tbody>
+            {product.projects.map((p) => (
+              <tr>
+                <th scope="row"><a href={p.url}>{p.name}</a>{p.archived && <span class="ci-meta"> (archived)</span>}</th>
+                <td><a href={p.authorUrl}>{p.author}</a></td>
+                <td>{p.description ?? ''}</td>
+                <td>{p.latestRelease ? <a href={p.latestRelease.url}>{p.latestRelease.tag}</a> : ''}{p.latestRelease && <span class="ci-meta"> {day(p.latestRelease.date)}</span>}</td>
+                <td class="num">{p.stars ?? ''}</td>
+                <td class="num">{p.hacsDownloads ?? <span class="ci-meta">n/a</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    ))
+  ) : (
+    <p>No community projects listed yet.</p>
+  )}
+
+  <ul class="usage-notes">
+    <li>As of {asOf}. Figures come from each project's public GitHub data and are never added to {ORG.name}'s own usage.</li>
+    <li>HACS downloads count every download of the release asset HACS installs, so updates count too.</li>
+    {community.notes.map((note) => <li>{note}</li>)}
+  </ul>
+</StarlightPage>
