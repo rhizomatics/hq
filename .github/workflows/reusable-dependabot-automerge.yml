@@ -1,0 +1,91 @@
+# Reusable: squash-merge Dependabot PRs that only touch trusted dependencies, once every other
+# check on the PR has passed. Never merges a major version bump, or a minor bump of a 0.x version.
+# Callers trigger on `pull_request`.
+#
+# Waits on checks itself rather than using GitHub auto-merge, because most repos have no required
+# status checks and auto-merge would then merge before CI finishes.
+name: Dependabot auto-merge
+
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  # Dependency names (anchored regex) trusted enough to merge without review.
+  TRUSTED: ^(uv|ruff|ty|astral-sh/.+)$
+
+jobs:
+  automerge:
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check dependencies are trusted
+        id: trusted
+        env:
+          DEPS: ${{ steps.metadata.outputs.dependency-names }}
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
+          PREVIOUS: ${{ steps.metadata.outputs.previous-version }}
+        run: |
+          # Semver: a major bump, or a minor bump while still on 0.x, may break things.
+          if [[ $UPDATE_TYPE == version-update:semver-major ]] ||
+            [[ $UPDATE_TYPE == version-update:semver-minor && $PREVIOUS =~ ^v?0\. ]]; then
+            echo "::notice::Not auto-merging: $UPDATE_TYPE from $PREVIOUS"
+            echo "ok=false" >>"$GITHUB_OUTPUT"
+            exit 0
+          fi
+          IFS=',' read -ra deps <<<"$DEPS"
+          for dep in "${deps[@]}"; do
+            dep=$(xargs <<<"$dep")
+            if [[ ! $dep =~ $TRUSTED ]]; then
+              echo "::notice::Not auto-merging: $dep is not trusted"
+              echo "ok=false" >>"$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          echo "ok=true" >>"$GITHUB_OUTPUT"
+
+      - name: Wait for other checks
+        if: steps.trusted.outputs.ok == 'true'
+        id: checks
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          SELF: ${{ github.workflow }}
+        run: |
+          sleep 30  # let the PR's other workflows register their checks
+          while :; do
+            others=$(gh pr checks "$PR" --json workflow,bucket \
+              --jq "[.[] | select(.workflow != \"$SELF\")]" || true)
+            total=$(jq length <<<"$others")
+            pending=$(jq '[.[] | select(.bucket == "pending")] | length' <<<"$others")
+            failed=$(jq '[.[] | select(.bucket == "fail" or .bucket == "cancel")] | length' <<<"$others")
+            if ((failed)); then
+              echo "::notice::Not auto-merging: $failed check(s) failed"
+              echo "ok=false" >>"$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if ((total && !pending)); then
+              echo "ok=true" >>"$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 30
+          done
+
+      - name: Merge
+        if: steps.checks.outputs.ok == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: gh pr merge "$PR" --squash

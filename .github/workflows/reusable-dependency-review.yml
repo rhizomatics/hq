@@ -1,0 +1,19 @@
+# Reusable: flag known-vulnerable dependencies added or changed by a PR.
+# Callers trigger on `pull_request`. See https://github.com/actions/dependency-review-action
+name: Dependency review
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dependency review
+        uses: actions/dependency-review-action@v5
+        with:
+          comment-summary-in-pr: on-failure

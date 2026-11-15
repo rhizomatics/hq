@@ -1,0 +1,40 @@
+# Reusable: assign new issues and PRs to a maintainer. Bot PRs (Dependabot, pre-commit.ci) are not
+# assigned, so they don't notify the maintainer; the hq Dependabot sweep handles them.
+#
+# Callers must trigger on `issues` and `pull_request_target` (not `pull_request`: PRs from forks
+# get a read-only GITHUB_TOKEN under pull_request whatever `permissions` says, so assigning fails
+# with a 403). This job never checks out or runs PR code, which is what makes the elevated token safe.
+name: Auto assign
+
+on:
+  workflow_call:
+    inputs:
+      assignee:
+        type: string
+        default: jeyrb
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign issue
+        if: github.event_name == 'issues'
+        run: gh issue edit "$NUMBER" --add-assignee "$ASSIGNEE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          ASSIGNEE: ${{ inputs.assignee }}
+
+      - name: Assign pull request
+        if: github.event_name == 'pull_request_target' && github.event.pull_request.user.type != 'Bot'
+        run: gh pr edit "$NUMBER" --add-assignee "$ASSIGNEE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          ASSIGNEE: ${{ inputs.assignee }}

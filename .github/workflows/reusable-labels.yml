@@ -1,0 +1,27 @@
+# Reusable: sync the shared label set in rhizomatics/hq admin/labels.yml into the calling repo.
+# Labels that exist only in the calling repo are left alone (skip-delete).
+name: Sync labels
+
+on:
+  workflow_call:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch shared label set
+        uses: actions/checkout@v7.0.1
+        with:
+          repository: rhizomatics/hq
+          sparse-checkout: admin/labels.yml
+          sparse-checkout-cone-mode: false
+
+      - name: Sync labels
+        uses: crazy-max/ghaction-github-labeler@548a7c3603594ec17c819e1239f281a3b801ab4d
+        with:
+          yaml-file: admin/labels.yml
+          skip-delete: true
