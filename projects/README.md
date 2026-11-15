@@ -1,5 +1,46 @@
 # Projects
 
+What's in progress, proposed, finished or shelved. How project files work is [below](#how-projects-work).
+
+## Active
+
+| Project | Goal |
+|---|---|
+| [HQ](hq.md) | Run projects and keep products healthy from one hub |
+| [AWS migration](aws-migration.md) | Move Rhizomatics infrastructure to its own AWS account |
+| [OpenSSF](openssf.md) | OpenSSF Scorecard and checks feeding the security and alignment reviews |
+| [De-YAMLification](deyamlification.md) | HA components with zero YAML, or a small power-user set |
+| [Supernotify packages](supernotify_packages.md) | Auto-discovered notification packages on top of Supernotify |
+| [Home Assistant Marketplace](ha_marketplace.md) | Rename HACS badges, links and references to the Marketplace (2026.11) |
+| [remote_logger Silver](remote-logger-silver.md) | remote_logger at Quality Scale Silver by Feb 2027 |
+| [Agent diagnostics](agent-diagnostics.md) | Logs, HA API/DB, config, previews and agent accounts reachable the same way from every project |
+| [Docs PNGs compressed at commit](docs-png-hook.md) | No docs build needs pngquant; PNGs compressed by a prek hook, as each repo is next released |
+| [HQ as a product](hq-as-product.md) | Others seed their own HQ, adapt it with their own agents and keep taking core updates |
+
+## Proposed
+
+| Project | Goal |
+|---|---|
+| [Tankie](proposed/tankie.md) | Heating oil / offline fuel storage in HA, using the Energy features |
+| [Developer environment](proposed/dev-env.md) | Segregated hardware, software and cloud dev environment (depends on AWS migration) |
+| [Media](proposed/media.md) | Supporting material aimed at a general audience that uses Rhizomatics products |
+| [OCI container client](proposed/oci-container-client.md) | Extract updates2mqtt's OCI registry client into a reusable Python library |
+| [Project alignment](proposed/project-alignment.md) | Reduce unnecessary variation across the stack |
+| [mise environments](proposed/mise-environments.md) | mise as the way into prod/dev/test environments, starting with secrets through fnox |
+| [HQ Stats](proposed/hq-stats.md) | Usage stats and public site as a standalone product, shipped and marketed ahead of HQ |
+
+## Done
+
+| Project | Goal |
+|---|---|
+| [mkdocs decom](done/mkdocs_decom.md) | Move docs off mkdocs to properdocs/materialx, Zensical for new projects |
+
+## Shelved
+
+_None yet._
+
+## How projects work
+
 One markdown file per project.
 
 - `projects/*.md` — active projects.
@@ -37,42 +78,3 @@ a `@pair` task gets the PR the agent built. See "Issues and PRs" in `AGENTS.md`.
 Rules for agents working a project: work the first unblocked task you're allowed to; never cross a
 `@pair` gate without recorded approval in **Decisions**; add a **Log** entry each session; if
 blocked, say on what (in frontmatter `status` if the file has it, otherwise in the Log).
-
-## Index
-
-### Active
-
-| Project | Goal |
-|---|---|
-| [HQ](hq.md) | Run projects and keep products healthy from one hub |
-| [AWS migration](aws-migration.md) | Move Rhizomatics infrastructure to its own AWS account |
-| [OpenSSF](openssf.md) | OpenSSF Scorecard and checks feeding the security and alignment reviews |
-| [De-YAMLification](deyamlification.md) | HA components with zero YAML, or a small power-user set |
-| [Supernotify packages](supernotify_packages.md) | Auto-discovered notification packages on top of Supernotify |
-| [Home Assistant Marketplace](ha_marketplace.md) | Rename HACS badges, links and references to the Marketplace (2026.11) |
-| [remote_logger Silver](remote-logger-silver.md) | remote_logger at Quality Scale Silver by Feb 2027 |
-| [Agent diagnostics](agent-diagnostics.md) | Logs, HA API/DB, config, previews and agent accounts reachable the same way from every project |
-| [Docs PNGs compressed at commit](docs-png-hook.md) | No docs build needs pngquant; PNGs compressed by a prek hook, as each repo is next released |
-| [HQ as a product](hq-as-product.md) | Others seed their own HQ, adapt it with their own agents and keep taking core updates |
-
-### Proposed
-
-| Project | Goal |
-|---|---|
-| [Tankie](proposed/tankie.md) | Heating oil / offline fuel storage in HA, using the Energy features |
-| [Developer environment](proposed/dev-env.md) | Segregated hardware, software and cloud dev environment (depends on AWS migration) |
-| [Media](proposed/media.md) | Supporting material aimed at a general audience that uses Rhizomatics products |
-| [OCI container client](proposed/oci-container-client.md) | Extract updates2mqtt's OCI registry client into a reusable Python library |
-| [Project alignment](proposed/project-alignment.md) | Reduce unnecessary variation across the stack |
-| [mise environments](proposed/mise-environments.md) | mise as the way into prod/dev/test environments, starting with secrets through fnox |
-| [HQ Stats](proposed/hq-stats.md) | Usage stats and public site as a standalone product, shipped and marketed ahead of HQ |
-
-### Done
-
-| Project | Goal |
-|---|---|
-| [mkdocs decom](done/mkdocs_decom.md) | Move docs off mkdocs to properdocs/materialx, Zensical for new projects |
-
-### Shelved
-
-_None yet._
