@@ -65,6 +65,7 @@ blocked, say on what (in frontmatter `status` if the file has it, otherwise in t
 | [Project alignment](proposed/project-alignment.md) | Reduce unnecessary variation across the stack |
 | [mise environments](proposed/mise-environments.md) | mise as the way into prod/dev/test environments, starting with secrets through fnox |
 | [HQ as a product](proposed/hq-as-product.md) | Others seed their own HQ, adapt it with their own agents and keep taking core updates |
+| [HQ Stats](proposed/hq-stats.md) | Usage stats and public site as a standalone product, shipped and marketed ahead of HQ |
 
 ### Done
 

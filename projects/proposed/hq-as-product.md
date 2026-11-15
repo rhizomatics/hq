@@ -9,16 +9,18 @@ owner: jeyrb
 
 Other open source developers can seed their own HQ from Rhizomatics HQ, with agentic policy checks, scheduled
 sweeps, usage stats and a public site, and have their own agents adapt it to them. They keep taking
-improvements from the core product without losing their local changes. It runs on more than one agent (not only
-Claude), and uses the best available skills and GitHub Agentic Workflows rather than maintaining equivalents here.
+improvements from the core product without losing their local changes. It's designed to be agent neutral, and
+says honestly that it works best with Claude. It's built from existing skill packages wherever they exist, adding its own skills only to fill gaps.
 
-There should be value even for a single-product developer, e.g. usage stats and the public site alone.
+There should be value even for a single-product developer: usage stats and the public site are pulled out as
+a separate product, [HQ Stats](hq-stats.md), which ships and is marketed first.
 
 ## Context
 
-- **Two products in one.** (1) Stats and site: deterministic collection of usage per channel (PyPI, npm, ghcr,
-  HACS, HA analytics) and the public site. No AI needed. (2) The agentic operating model: personas, policies,
-  processes and skills. Different audiences and set-up costs; (1) is the low-friction way in to (2).
+- **Two products.** (1) [HQ Stats](hq-stats.md): deterministic collection of usage per channel (PyPI, npm,
+  ghcr, HACS, HA analytics) and its public site. No AI needed. (2) HQ, the agentic operating model: personas,
+  policies, processes and skills. Different audiences and set-up costs; (1) is the low-friction way in to (2),
+  so it goes first, under shared branding, and HQ uses it as a component.
 - **Coupling is lighter than it looks** (2026-11-15 count): most org-specific content is the org name and
   maintainer in prose. Only `architecture-review`, `ecosystem-review`, `security-escalation` and
   `dependabot-sweep` are deeply Home Assistant or SignalK specific. Stats are already per channel, driven by
@@ -39,43 +41,62 @@ A user seeds an HQ from the product, then their own agents change it freely. A t
 
 - `hq.lock` (or a section of `repos.toml`): product version seeded from, and per file whether it is
   **upstream** (unchanged), **modified** or **local**.
-- A monthly **upstream review** process, in the product itself: three-way comparison of the base version, the
-  current product and the local copy, per policy, skill, persona and process. It recommends which upstream
-  changes to take, which local changes to keep, and which local changes look worth offering back upstream.
-  Output is a PR with the uncontested updates and an issue for the judgement calls. Rhizomatics HQ runs it too.
-
 This keeps the support burden low: users' agents do the adapting and the merging, not the maintainer.
 
-### Capabilities with pluggable providers
+### Reuse skill packages first
+
+Fundamental to HQ: it reuses existing packages of skills and adds its own only where there is a gap. gh-aw's
+workflows are one source among several: vendors' own skills (a tool or platform vendor's skill for their own
+product), skill marketplaces and other agent plugin packages. HQ doesn't do something a vendor has a better
+skill for; it wires that skill in and supplies the org context (policies, `repos.toml`, issue conventions).
 
 Each capability (security audit, docs review, support sweep, PR report, org health, ...) is declared in config
 with one or more providers, each pinned to a version:
 
-- an upstream HQ skill, a third-party skill (e.g. from a skills marketplace), a gh-aw workflow, or a local skill
+- an upstream HQ skill, a third-party skill or skill package, a gh-aw workflow, or a local skill
 - more than one provider is allowed and expected for **security auditing**: the best auditors will change over
   time and people want their own. `security-escalation` becomes the step that merges, de-duplicates and ranks
   their findings, and applies the transitive-vulnerability and escalation rules
-- the upstream review also checks for better providers than the ones in use, and proposes swaps with evidence
-  (findings missed or false positives on the same repos)
 
-Prefer pulling in a better maintained skill or workflow over maintaining one here. Keep in HQ only what nobody
-else does well, mostly the ecosystem packs.
+Keep in HQ only what nobody else does well, mostly the ecosystem packs and the glue between providers.
+
+### Two regular reviews
+
+Which skills are used, and whether they're still the best choice, is reviewed regularly, at two levels:
+
+- **Product architecture review**, in the HQ product: for each capability, is the HQ skill still needed, or has
+  a vendor or third-party skill caught up so it can be retired? Is any skill obsolete (the process it served is
+  gone, or the platform changed)? Are there gaps no provider fills yet? Proposes swaps with evidence (findings
+  missed or false positives on the same repos) and keeps the default provider set current.
+- **Alignment review**, in each HQ instance, Rhizomatics' own included: three-way comparison of the base
+  version, the current product and the local copy, per policy, skill, persona, process and provider choice. It
+  recommends which product changes to take (including skills the product has retired in favour of a third-party
+  one), which local changes to keep, local skills a third-party one now covers, and local changes worth offering
+  back to the product. Output is a PR with the uncontested updates and an issue for the judgement calls.
 
 ### Core and ecosystem packs
 
 - **Core:** project and process model, issue/PR conventions, support, PRs, Dependabot, registry, projects,
-  security merge step, stats collection framework, site, upstream review, brand kit structure.
+  security merge step, provider config, the two reviews, brand kit structure. Stats and the site come from
+  [HQ Stats](hq-stats.md).
 - **Packs:** `homeassistant` and `signalk`: forum watch sources and topic terms, platform alignment policies,
   platform change tracking, upstream advisories (`security_watch`), stats channels (HACS, HA analytics).
 - No language modules: channel fields in `repos.toml` (`pypi`, `npm`, `ghcr`, ...) already select collectors.
 
-### Agent-neutral
+### Agent-neutral by design, best with Claude
+
+Designed so any capable agent can run it, and honest that it works best with Claude: that's what it's built
+and run on daily, and where its personas, skills and subagent hand-offs are tested. The docs say so plainly,
+rather than claiming parity that hasn't been tested. For each other agent, say what has been tried, what works
+and what's known to be weaker or missing; a non-Claude engine is "supported" only once it has run end to end.
 
 - `AGENTS.md` is the canonical instruction file; `CLAUDE.md` and other agent files are thin pointers to it.
 - Skills in the open `SKILL.md` format where the agent supports it; processes and personas as plain Markdown
   any agent can follow, with thin per-agent adapters (`.claude/agents/`, Codex, Copilot, ...) generated from them.
-- Scheduling via gh-aw (engine chosen by the user) as the default runtime, Claude Code routines as one option.
-  The cloud-sandbox workarounds in today's `CLAUDE.md` move to the Claude adapter.
+- Scheduling is the agent's own: Claude Code routines for Claude (the reference set-up), the equivalent
+  scheduler for other agents. gh-aw is not a runtime for HQ, just one source of reused skills: a gh-aw provider
+  runs as its own Actions workflow and HQ picks up its output. The cloud-sandbox workarounds in today's
+  `CLAUDE.md` move to the Claude adapter.
 - Every requirement stated per runtime: plan or API key, token scopes, rough monthly cost.
 
 ### Config
@@ -109,15 +130,18 @@ a separate domain only once there are outside users.
 - [ ] @agent Replace hardcoded `rhizomatics` / `jeyrb` / platform names outside config and packs; done when a grep finds none
 - [ ] @agent Make `AGENTS.md` canonical, `CLAUDE.md` a pointer plus Claude-only notes
 
-### Phase 1: providers and gh-aw
+- [ ] @pair Pull usage stats and the site's Usage section out into [HQ Stats](hq-stats.md); it ships ahead of the phases below
 
-- [ ] @agent Evaluate gh-aw OSPO workflows against HQ skills on Rhizomatics repos for two weeks, side by side.
-      First candidates: org health report ↔ `support-sweep` + `pr-report`; stale repo report ↔ `registry-check`;
+### Phase 1: providers and skill packages
+
+- [ ] @agent Survey existing skill packages for each HQ capability: vendors' own skills, skill marketplaces,
+      agent plugin packages and gh-aw workflows. List per capability what exists, who maintains it and how it compares
+- [ ] @agent Evaluate the best candidates against HQ skills on Rhizomatics repos for two weeks, side by side.
+      First gh-aw candidates: org health report ↔ `support-sweep` + `pr-report`; stale repo report ↔ `registry-check`;
       compliance check ↔ `github-review` (community files part); contributor report ↔ part of `adoption-report`
-- [ ] @pair Replace each skill where the gh-aw workflow does as well or better; keep the HQ-specific remainder as a small add-on
+- [ ] @pair Retire each HQ skill where a third-party one does as well or better; keep the HQ-specific remainder as a small add-on
 - [ ] @agent Survey existing security auditing skills and workflows; pick at least two providers to run alongside Dependabot and CodeQL
 - [ ] @pair Capability/provider config and the security merge step
-- [ ] @human Decide gh-aw as default runtime (cost, engine, token handling)
 
 ### Phase 2: core and packs
 
@@ -129,7 +153,8 @@ a separate domain only once there are outside users.
 
 - [ ] @human Create the product repo (name: `hq-product`?) and its plugin / skills listing
 - [ ] @pair Publish core and packs from it, versioned; hq consumes them and records `hq.lock`
-- [ ] @pair Upstream review process and skill; first run on hq itself
+- [ ] @pair Product architecture review process and skill, in the product (skills in use, obsolete, retirable, gaps)
+- [ ] @pair Instance alignment review process and skill; first run on Rhizomatics HQ
 - [ ] @pair Seed skill (`/hq-init` or equivalent): drafts `repos.toml` from the org's repo list, optional private repo, site and stats workflows
 - [ ] @agent Seed a throwaway org end to end; fix whatever needed hand edits
 
@@ -141,16 +166,26 @@ a separate domain only once there are outside users.
 
 ## Success test
 
-One outside org running a seeded HQ, and taking at least one upstream update through the upstream review,
+One outside org running a seeded HQ, and taking at least one product update through the alignment review,
 within 3 months of the announcement. Otherwise stop at phase 3: everything up to there still pays off for
 Rhizomatics alone.
 
 ## Decisions
 
+Decided:
+
+- 2026-11-15 — Stats and site become a separate project and product, [HQ Stats](hq-stats.md), with shared
+  branding. It's pulled out in the first phase and marketed ahead of HQ itself.
+- 2026-11-15 — Reusing existing skill packages is fundamental, gh-aw being only one source. HQ adds skills only
+  for gaps and never does what a vendor has a better skill for. Skills in use, obsolete or retirable in favour of
+  a third-party one are reviewed regularly, split into a product architecture review (HQ as a product) and an
+  alignment review in each HQ instance, Rhizomatics' own included.
+- 2026-11-15 — gh-aw is not HQ's runtime, only one of the reused skill sources. Each agent schedules with its
+  own scheduler, Claude Code routines being the reference set-up.
+
 Open:
 
-- Which product leads the announcement: stats and site, or the full operating model
-- gh-aw as default runtime, or Claude Code routines with gh-aw as an option
+_None._
 
 ## Log
 
@@ -158,3 +193,8 @@ Open:
   seed + upstream review model for support burden; pluggable capability providers (several security auditors);
   gh-aw to replace skills where it does as well; agent-neutral; brand kit as structure only; Allstar dropped
   (unmaintained).
+- 2026-11-15 — Decisions recorded: stats split out as [HQ Stats](hq-stats.md), first to market; skill-package
+  reuse made fundamental, with the upstream review replaced by two reviews (product architecture, instance
+  alignment). Plan updated to match.
+- 2026-11-15 — Agent-neutral by design, but stated honestly as best used with Claude; other engines listed
+  with what has and hasn't been tested. gh-aw dropped as a runtime; it stays a skill source.
