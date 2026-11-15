@@ -29,7 +29,31 @@ Read every file under `policies/` and `processes/`, then `CLAUDE.md` and `team.m
   renamed or archived (check against `repos.toml`).
 - **Process plumbing**: every cadence entry has a skill in `.claude/skills/` and vice versa; the
   schedule in `processes/README.md` matches the cadence files; owners in `team.md` match the
-  cadence files' **Who**; each skill's output matches its cadence entry.
+  cadence files' **Who**.
+
+## 1a. Skills against the cadence files
+
+The cadence files in `processes/` are the source of truth for *when*, *who*, *output* and *scope*;
+the skill says *how*. Skills drift when a cadence entry is edited and the skill isn't. For every
+cadence entry, read its `SKILL.md` in full and check:
+
+- **Name**: the skill named in the heading (`/<name>`) exists and its frontmatter `name` matches.
+- **When**: the timing the skill states (title, intro, "runs every …", rolling batch days, the
+  weekly/monthly split) matches the cadence entry and its section heading.
+- **Who**: frontmatter `agent:` is the persona in **Who**.
+- **Output**: the paths, PR/issue shapes and labels the skill's **Output** names match the entry's
+  **Output**, and both follow the "Reports only when there's a case for one" rule in `CLAUDE.md`
+  (a skill still writing a report the cadence entry has dropped, or the reverse, is drift).
+- **Report visibility**: the skill writes for the reader the entry's **Report** line implies, and a
+  private-by-exception skill tells the agent when to set `visibility: private`.
+- **Scope**: every bullet in the cadence entry is covered by a step in the skill, and the skill
+  doesn't do substantial work the entry doesn't mention (or that another process owns).
+- **Description**: the frontmatter `description` still summarises the entry; it's what decides
+  when the skill is picked.
+
+Where the cadence file is right and the skill has drifted, fix the skill in the PR. Where the skill
+looks right and the cadence file stale (the skill was changed on purpose since), fix the cadence
+file. Where it isn't clear which is intended, put it in the issue with both versions.
 
 ## 2. Cloud routines
 

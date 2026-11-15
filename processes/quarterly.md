@@ -28,4 +28,5 @@ Four reviews, each run every four months in its own month, so one lands each mon
 - **Output:** a PR on `hq` with policy and process changes, review requested from `jeyrb`; decisions only the maintainer can make in one hq issue (`alignment`, `org`)
 - **Report:** none
 - Review HQ policies and processes for consistency, gaps and missed opportunities, and check policies against the repos where that's cheap (GitHub settings, design docs, releases).
+- Check every skill in `.claude/skills/` still matches its cadence entry here and in the other cadence files: timing, persona, output, report visibility and scope.
 - Include the Claude routines that run the processes: schedules, environments and attached repos consistent with the HQ docs and `repos.toml`.
