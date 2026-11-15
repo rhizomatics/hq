@@ -35,8 +35,7 @@ There should be value even for a single-product developer, e.g. usage stats and 
 
 ### Seed, not template
 
-A user seeds an HQ from the product, then their own agents change it freely. A template copy would drift from
-day one, so the seed records where everything came from:
+A user seeds an HQ from the product, then their own agents change it freely. A template copy would drift from day one, so the seed records where everything came from:
 
 - `hq.lock` (or a section of `repos.toml`): product version seeded from, and per file whether it is
   **upstream** (unchanged), **modified** or **local**.

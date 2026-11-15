@@ -40,4 +40,4 @@
 - **Who:** pm
 - **Output:** `hq-private/reports/projects/YYYY-MM-DD.md`
 - **Report:** public
-- The weekly review plus refining each project: goal, scope, shape, whether it's still worth doing.
+- The weekly review plus refining each project: goal, scope, shape, whether it's still worth doing and ensuring its categorized correctly, so all proposed projects in their right directory and all in progress in main directory.

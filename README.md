@@ -2,8 +2,7 @@
 
 # Rhizomatics HQ
 
-How the [Rhizomatics](https://github.com/rhizomatics) open source projects are run: one human
-maintainer, and a team of AI agent personas doing the routine work on a schedule.
+How the [Rhizomatics](https://github.com/rhizomatics) open source projects are run: one human maintainer, a team of AI agent personas doing the routine work on a schedule, reusing and supplementing product skills.
 
 - [processes/](processes/) — the recurring routines (daily to quarterly) and who runs them
 - [.claude/skills/](.claude/skills/) and [.claude/agents/](.claude/agents/) — each process as a
