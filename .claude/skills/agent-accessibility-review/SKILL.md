@@ -23,8 +23,7 @@ User agents:
 - Docs site publishes `llms.txt` (and ideally `llms-full.txt`) — check `https://<CNAME>/llms.txt`.
 - Configuration documented as complete, copyable examples (YAML/JSON) with every option, types and
   defaults; error messages in docs match the code.
-- Project listed in `rhizomatics/agent-plugins` marketplace where a skill/plugin makes sense (e.g.
-  a config-helper skill for supernotify, a SignalK plugin skill), and the listing is current.
+- Project listed in `rhizomatics/agent-plugins` marketplace where a skill/plugin makes sense (e.g. a config-helper skill for supernotify, a SignalK plugin skill), and the listing is current. Include opportunities for new plugins in this marketplace
 - Machine-readable metadata accurate: repo description/topics, `hacs.json`, `package.json`
   `signalk` keywords, pyproject classifiers/URLs.
 
