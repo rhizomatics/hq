@@ -59,8 +59,19 @@ file. Where it isn't clear which is intended, put it in the issue with both vers
 
 List the routines (the `/schedule` skill, or `RemoteTrigger` list). For each `hq: ...` routine
 check its cron against the cadence files and `processes/README.md` (times are UTC), its environment
-against the README's environment lists, that it runs the right skill, and that every non-archived repo in
-`repos.toml` is attached. A process with no routine is a gap unless the README says it runs by hand.
+against the README's environment lists, and that it runs the right skill.
+
+**Attached repos**: compare each routine's attached repos with `repos.toml` exactly, not just for
+missing ones. The correct set is every repo in `repos.toml` without `archived = true`, including
+`hq` and `hq-private` (routines commit to both). Report per routine:
+
+- repos in `repos.toml` that aren't attached (new repos are the usual case);
+- attached repos that shouldn't be: archived in `repos.toml`, renamed (the old name still attached),
+  deleted, or not in `repos.toml` at all (if the repo is real and belongs, the gap is in
+  `repos.toml`; fix it in the PR);
+- routines whose repo sets differ from each other, since all `hq:` routines should carry the same set.
+
+A process with no routine is a gap unless the README says it runs by hand.
 Fixing a routine is the maintainer's: list the exact change in the issue.
 
 ## 3. Policies against reality
