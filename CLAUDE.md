@@ -28,7 +28,9 @@ HQ is two repos, checked out side by side (locally and in cloud routines):
   `.github/workflows/site.yml`: the docs above, public reports, and a Usage section per component
   from `hq-private/data/`. `scripts/sync-content.mjs` publishes docs and reports and fails on
   anything that looks private; `scripts/build-stats.mjs` writes only public aggregates;
-  `scripts/build-actions.mjs` fetches each public repo's Actions state for the Workflows page;
+  `scripts/build-actions.mjs` fetches each public repo's Actions state for the Operations › Deployments page;
+  `scripts/build-issues.mjs` counts open issues by type for the Support and Design Process pages;
+  `scripts/build-security.mjs` gathers public security settings and published advisories (never alerts) for the Security page;
   `scripts/build-design.mjs` gathers RFCs, roadmaps and design principles for the Design Process and RFCs pages. Run it with
   `mise run preview-site`.
 - `hq-private/commands/` — helper shell commands for the maintainer.

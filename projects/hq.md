@@ -58,3 +58,12 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
   in the last day) / Passing. Dependabot update jobs no longer set the state (listed per ecosystem instead).
   Linked from the home page. Now 3 broken, 1 flapping, 2 recovered.
 - 2026-11-13 — Site also rebuilt at 17:40 UTC so the Workflows page is never more than ~12 hours old.
+- 2026-11-15 — Flapping now needs a failure in the last 24 hours; a workflow with 3+ failure streaks in 7 days
+  that has been green for a day or more shows as Recovered.
+- 2026-11-15 — New Operations section on the site: Support (`/support/`, open Bug and untyped issues per product,
+  linked to the GitHub searches), Deployments (the Workflows page, moved to `/deployments/`; `/actions/` redirects)
+  and Security (`/security/`, public measures per repo: private reporting, policy, CodeQL, Dependabot, published
+  advisories; never alerts). Design Process gains a Features column (open Feature-type issues). Counts come from
+  issue types only. First build: 10 features, 0 bugs, 2 unclassified; 21/23 repos with private reporting, 20 CodeQL.
+  Decided: Security shows only what's already public (no alert data); issues are classified by type only, labels
+  ignored until there are enough issues to matter; Support covers public products only.

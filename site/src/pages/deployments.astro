@@ -28,17 +28,19 @@ const detail = (w: Repo['workflows'][number]) =>
     ? `${w.conclusion.replace('_', ' ')} ${day(w.lastRun)}`
     : w.state === 'flapping'
       ? `${w.streaks7d} separate failures in 7 days, passing now`
-      : `${w.failures24h} failed in the last day, passing now`;
+      : w.failures24h
+        ? `${w.failures24h} failed in the last day, passing now`
+        : `${w.streaks7d} separate failures in 7 days, none in the last day`;
 ---
-<StarlightPage frontmatter={{ title: 'Workflows', description: 'GitHub Actions state of each public Rhizomatics repo, updated daily.', tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'Deployments', description: 'GitHub Actions state of each public Rhizomatics repo, updated daily.', tableOfContents: false }}>
   <p>
     The GitHub Actions state of each public repo, as of {asOf}. Updated daily. A repo takes the state of its worst workflow:
   </p>
   <ul class="ci-legend">
     <li><span class="ci-status ci-status--red">Broken</span> the workflow's latest run failed.</li>
-    <li><span class="ci-status ci-status--flapping">Flapping</span> passing now, but it has failed and recovered three or more times in the last 7 days.</li>
-    <li><span class="ci-status ci-status--recovered">Recovered</span> passing now, after a failure in the last day.</li>
-    <li><span class="ci-status ci-status--green">Passing</span> no failures in the last day.</li>
+    <li><span class="ci-status ci-status--flapping">Flapping</span> passing now, but it has failed and recovered three or more times in the last 7 days, most recently within the last day.</li>
+    <li><span class="ci-status ci-status--recovered">Recovered</span> passing now, after a failure in the last day, or after flapping but with no failures for a day or more.</li>
+    <li><span class="ci-status ci-status--green">Passing</span> no failures in the last day, and fewer than three in the last 7 days.</li>
   </ul>
   <p class="ci-meta">
     Runs from pull requests, Dependabot branches and Copilot reviews are left out, so this covers the main branch,

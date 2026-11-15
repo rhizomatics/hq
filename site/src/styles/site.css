@@ -70,7 +70,7 @@
 .usage-table { display: block; overflow-x: auto; }
 .usage-notes { font-size: var(--sl-text-sm); color: var(--sl-color-gray-3); }
 
-/* Workflows page: status colours. Text labels carry the meaning; colour only reinforces it. */
+/* Deployments page: status colours. Text labels carry the meaning; colour only reinforces it. */
 :root {
   --ci-red: #f2685c;
   --ci-red-bg: #4a1f1b;

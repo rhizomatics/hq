@@ -1,6 +1,7 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import design from '../data/design.json';
+import issues from '../data/issues.json';
 import { FAMILIES } from '../lib/families.mjs';
 
 type Product = {
@@ -19,6 +20,8 @@ const products = design.products as Product[];
 const groups = FAMILIES.map(([family, label]) => [label, products.filter((p) => p.family === family).sort((a, b) => a.id.localeCompare(b.id))] as const).filter(
   ([, list]) => list.length,
 );
+const features = Object.fromEntries((issues.repos as { id: string; counts: Record<string, number> }[]).map((r) => [r.id, r.counts.feature ?? 0]));
+const search = (url: string, q: string) => `${url}/issues?q=${encodeURIComponent(q)}`;
 const asOf = design.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 ---
 <StarlightPage frontmatter={{ title: 'Design Process', description: 'How Rhizomatics products are designed in the open: RFCs, roadmaps and design principles, and where to comment.', tableOfContents: false }}>
@@ -48,6 +51,7 @@ const asOf = design.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
               <th scope="col">RFCs</th>
               <th scope="col">Discussions</th>
               <th scope="col">Issues</th>
+              <th scope="col" class="num">Features</th>
             </tr>
           </thead>
           <tbody>
@@ -59,6 +63,11 @@ const asOf = design.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
                 <td>{p.rfcs ? <a href={p.rfcs}>{p.rfcCount} RFC{p.rfcCount === 1 ? '' : 's'}</a> : <span class="ci-meta">–</span>}</td>
                 <td>{p.discussions ? <a href={p.discussions}>Discussions</a> : <span class="ci-meta">off</span>}</td>
                 <td>{p.issues ? <a href={p.issues}>Issues</a> : <span class="ci-meta">off</span>}</td>
+                <td class="num">
+                  {!p.issues || !issues.available
+                    ? <span class="ci-meta">–</span>
+                    : features[p.id] ? <a href={search(p.url, 'is:issue is:open type:Feature')}>{features[p.id]}</a> : <span class="ci-meta">0</span>}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -71,6 +80,7 @@ const asOf = design.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 
   <ul class="usage-notes">
     <li>As of {asOf}, updated daily. Experimental and internal repos aren't listed.</li>
+    <li>Features are open issues of GitHub's Feature type.</li>
     {design.notes.map((n) => <li>{n}</li>)}
   </ul>
 </StarlightPage>

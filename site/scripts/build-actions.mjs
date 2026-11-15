@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds src/data/actions.json, the GitHub Actions health shown on the site's Workflows page.
+// Builds src/data/actions.json, the GitHub Actions health shown on the site's Deployments page.
 //
 // Sources, all read-only:
 //   - repos.toml                        which repos to cover (`archived = true` ones are left out)
@@ -11,9 +11,11 @@
 // proposed changes, not the repo's own state. Needs GITHUB_TOKEN (or GH_TOKEN); without one the page says so.
 //
 // Per workflow:  red       = its latest completed run failed
-//                flapping  = passing now, but 3+ separate failure streaks in the last 7 days
-//                recovered = passing now, but a run failed in the 24 hours before the build
-//                green     = passing, no failures in the last day
+//                flapping  = passing now, but 3+ separate failure streaks in the last 7 days and
+//                            a run failed in the 24 hours before the build
+//                recovered = passing now, and either a run failed in the last 24 hours, or it was
+//                            flapping but has had no failures for 24 hours or more
+//                green     = passing, no failures in the last day and not flapping this week
 // A repo takes its worst workflow's state. Dependabot's update jobs don't set the state; their
 // failures are listed separately.
 
@@ -81,9 +83,9 @@ async function workflowHealth(repo, wf, now) {
   const streaks7d = failureStreaks(own, now - 7 * DAY);
   const state = FAILED.has(latest.conclusion)
     ? 'red'
-    : streaks7d >= FLAPPING_STREAKS
+    : streaks7d >= FLAPPING_STREAKS && recentFailures.length
       ? 'flapping'
-      : recentFailures.length
+      : recentFailures.length || streaks7d >= FLAPPING_STREAKS
         ? 'recovered'
         : 'green';
   const lastFailure = own.find((r) => FAILED.has(r.conclusion));

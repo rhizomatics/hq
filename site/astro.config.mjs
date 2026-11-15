@@ -23,6 +23,7 @@ function usageSidebar() {
 export default defineConfig({
   site: 'https://hq.rhizomatics.org.uk',
   trailingSlash: 'always',
+  redirects: { '/actions/': '/deployments/' },
   integrations: [
     starlight({
       title: 'Rhizomatics HQ',
@@ -35,8 +36,15 @@ export default defineConfig({
       lastUpdated: false,
       sidebar: [
         { label: 'Usage', items: usageSidebar() },
-        { label: 'Workflows', link: '/actions/' },
         { label: 'Design Process', items: [{ label: 'Overview', link: '/design/' }, { label: 'RFCs', link: '/rfcs/' }] },
+        {
+          label: 'Operations',
+          items: [
+            { label: 'Support', link: '/support/' },
+            { label: 'Deployments', link: '/deployments/' },
+            { label: 'Security', link: '/security/' },
+          ],
+        },
         { label: 'Projects', collapsed: true, items: [{ autogenerate: { directory: 'projects' } }] },
         { label: 'Processes', collapsed: true, items: [{ autogenerate: { directory: 'processes' } }] },
         { label: 'Policies', collapsed: true, items: [{ autogenerate: { directory: 'policies' } }] },
