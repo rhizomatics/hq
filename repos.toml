@@ -10,6 +10,8 @@
 #   private_repo:  repo for reports, data snapshots and hq issues, checked out next to hq_repo;
 #                  omit for an entirely public set-up (hq issues then go in hq_repo)
 #   site_url:      where the public HQ site is served
+#   goatcounter:   GoatCounter site code for the HQ site's page views (cookieless, so no consent banner);
+#                  omit for none. Other sites have their own GoatCounter site, set in their own repo
 # [families]:      each repo family, in display order: its heading on the site and its hq issue area
 # [labels]:        hq issue labels; an issue gets one source and one area (the areas are the `area`
 #                  values in [families])
@@ -48,6 +50,7 @@ maintainers = ["jeyrb"]
 hq_repo = "hq"
 private_repo = "hq-private"
 site_url = "https://hq.rhizomatics.org.uk"
+goatcounter = "rhizomatics-hq"
 
 [families]
 ha-integration = { label = "Home Assistant", area = "homeassistant" }

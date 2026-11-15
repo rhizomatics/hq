@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import starlight from '@astrojs/starlight';
 import { defineConfig } from 'astro/config';
-import { FAMILIES, ORG, githubUrl } from './src/lib/hq-config.mjs';
+import { FAMILIES, ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
 
 // Usage pages are listed in the sidebar by family; stats.json is built before Astro runs.
 function usageSidebar() {
@@ -30,7 +30,7 @@ export default defineConfig({
       description: `How the ${ORG.name} open source projects are run, and how much they are used.`,
       logo: { src: './src/assets/icon.svg' },
       favicon: '/favicon.svg',
-      head: [{ tag: 'meta', attrs: { property: 'og:image', content: `${ORG.siteUrl}/og.png` } }],
+      head: [{ tag: 'meta', attrs: { property: 'og:image', content: `${ORG.siteUrl}/og.png` } }, ...analyticsHead()],
       social: [{ icon: 'github', label: 'GitHub', href: githubUrl() }],
       customCss: ['./src/styles/site.css'],
       lastUpdated: false,

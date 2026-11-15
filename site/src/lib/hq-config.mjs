@@ -24,7 +24,15 @@ export const ORG = {
   hqRepo: org.hq_repo ?? 'hq',
   privateRepo: org.private_repo ?? null,
   siteUrl: org.site_url.replace(/\/$/, ''),
+  goatcounter: org.goatcounter || null,
 };
+
+// Page-view counting with GoatCounter: cookieless, so no consent banner. The HQ site has a GoatCounter site
+// of its own ([org].goatcounter).
+export const analyticsHead = () =>
+  ORG.goatcounter
+    ? [{ tag: 'script', attrs: { 'data-goatcounter': `https://${ORG.goatcounter}.goatcounter.com/count`, async: true, src: '//gc.zgo.at/count.js' } }]
+    : [];
 
 export const githubUrl = (repo) => `https://github.com/${ORG.github}${repo ? `/${repo}` : ''}`;
 

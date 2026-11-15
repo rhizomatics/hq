@@ -51,6 +51,9 @@ Any open source developer, even with a single product, can collect usage for the
 - [x] @agent Collector skips private repos, so current snapshots hold only public ones (2026-11-15)
 - [ ] @pair Workflow runs on schedule and manual dispatch only, so its push-access token never runs on PR code;
       docs on making `hq-stats` private for private stats, and the permissions that needs
+- [ ] @pair Site views: collect daily page views and top pages per website from the GoatCounter API (a GoatCounter
+      site each: `rhizomatics` for www, `rhizomatics-hq` for HQ, `boat-tech-directory`, more as docs sites are added; a token as a secret),
+      shown per product next to its downloads. GitHub's repo traffic stays as the code-side views
 - [ ] @pair Community: move the `hq` site's Community page (`build-community.mjs`, live since 2026-11-15) here, and
       collect `[community.*]` entries from public sources only, stored apart from the org's
       repos; Community pages (per product extended, with author and links) and their entry in the navigation
@@ -102,3 +105,5 @@ _None._
 - 2026-11-15 — Ecosystem added: contributed projects collected from public sources, shown on their own pages and
   kept out of the org's totals.
 - 2026-11-15 — Ecosystem renamed community (`[community.*]`).
+- 2026-11-15 — Page views: GitHub gives none for Pages sites, only repo traffic. GoatCounter chosen (cookieless,
+  no consent banners; no Google Analytics). HQ site wired to it via `[org].goatcounter`; collector task added.
