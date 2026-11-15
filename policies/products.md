@@ -14,6 +14,10 @@ Products marked `category = ["experimental"]` there aren't shown publicly. All o
 - All available, free of charge, code quality and security tooling will be enabled
 - Social Preview will be enabled for all products, using Rhizomatics branding customized for the product
 
+## Licence
+
+All projects will be Apache-2.0 licensed, with a licence file at the root of the repo.
+
 ## Documentation
 
 README.md will have the 'managed by hq' badge linking back to https://hq.rhizomatics.org.uk (exact markdown in `project_standards.md`).
