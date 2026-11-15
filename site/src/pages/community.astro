@@ -25,6 +25,7 @@ type Blog = {
   title: string;
   description: string | null;
   posts: { title: string; url: string; date: string }[] | null;
+  asOf?: string | null;
 };
 const blogs = (community.blogs ?? []) as Blog[];
 
@@ -90,6 +91,7 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
             <p class="ci-meta">Latest posts couldn't be loaded at the last build; <a href={b.url}>see the blog</a>.</p>
           ) : b.posts.length > 0 ? (
             <ul>
+              {b.asOf && <li class="ci-meta">Latest posts as of {day(b.asOf)}</li>}
               {b.posts.map((post) => (
                 <li><a href={post.url}>{post.title}</a> <span class="ci-meta">{day(post.date)}</span></li>
               ))}

@@ -51,6 +51,7 @@ jobs:
             data/github
             data/legacy
             data/releases
+            data/community
             reports
       - uses: actions/setup-node@v7
         with:

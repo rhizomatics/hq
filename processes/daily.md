@@ -52,7 +52,8 @@
 - **Who:** marketing
 - **When:** 06:40 UTC, after forum watch
 - **Routine:** `hq: daily marketing`
-- **Output:** summaries in `hq-private/data/releases/summaries.json`, shown on the site's Releases page
+- **Output:** summaries in `hq-private/data/releases/summaries.json`, shown on the site's Releases page; the community
+  blogs' saved feeds in `hq-private/data/community/feeds.json`, for the Community page
 - **Report:** public (it is the site's Releases page)
 - Judges each new release of a product as an enhancement, a critical fix or maintenance, and summarises what's
   significant. A script lists the releases and builds the page; most days there's nothing new.

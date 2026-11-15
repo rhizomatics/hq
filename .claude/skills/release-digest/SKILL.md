@@ -1,6 +1,6 @@
 ---
 name: release-digest
-description: Daily summary of new releases across the org's products for the HQ site's Releases page — judges each release as an enhancement, a critical fix or maintenance, and writes a one or two line summary of what's significant for users.
+description: Daily summary of new releases across the org's products for the HQ site's Releases page — judges each release as an enhancement, a critical fix or maintenance, and writes a one or two line summary of what's significant for users. Also refreshes the saved copy of the community blogs' feeds.
 context: fork
 agent: marketing
 ---
@@ -15,8 +15,8 @@ writing (`policies/scripts_over_agents.md`).
 
 From `hq/site`: `GITHUB_TOKEN=$(gh auth token) node scripts/build-releases.mjs --pending` lists, as JSON,
 every release from the last 31 days of a public product that has no entry yet in
-`hq-private/data/releases/summaries.json`. Most days it's empty or one or two: then stop, with nothing to
-commit. Read each pending release's notes (`gh api repos/<org>/<repo>/releases/tags/<tag>`).
+`hq-private/data/releases/summaries.json`. Most days it's empty or one or two; when it's empty, go straight
+to the community blog feeds below. Read each pending release's notes (`gh api repos/<org>/<repo>/releases/tags/<tag>`).
 
 ## Judge and summarise
 
@@ -41,7 +41,16 @@ clause. Don't copy the release notes, list PRs, or mention CI, typing, tests or 
 
 Never change an existing entry unless it's wrong; it's the record of what was shown.
 
+## Community blog feeds
+
+The site build can't read some blogs' feeds (Substack refuses GitHub's build servers), so it shows a saved copy.
+Refresh it: from `hq/site`, `node scripts/build-community.mjs --update-feeds`. It rewrites
+`hq-private/data/community/feeds.json` and exits 1 naming any feed it couldn't read. If a feed fails here too,
+WebFetch its `<url>/feed` and update that blog's entry in the file by hand, keeping its shape
+(`title`, `description`, `posts`: the latest three as `{title, url, date}` with an ISO date, `fetchedAt`). If it
+can't be read either way, leave the old copy and say so in your summary.
+
 ## Output
 
-Commit `hq-private/data/releases/summaries.json` and push to `main` with the message
-`release-digest: <YYYY-MM-DD>`. No report. The site picks it up at its next build.
+Commit `hq-private/data/releases/summaries.json` and `hq-private/data/community/feeds.json` and push to `main`
+with the message `release-digest: <YYYY-MM-DD>`. No report. The site picks them up at its next build.

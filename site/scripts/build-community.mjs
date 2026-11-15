@@ -5,16 +5,28 @@
 // Sources, all read-only and public:
 //   - repos.toml        `[community.<id>]` entries: projects (repo, author, extends, channel fields) and blogs
 //   - GitHub REST API   each project's description, stars, latest release, and downloads of its HACS asset
-//   - each blog's RSS feed (<url>/feed)   its title, description and latest posts
+//   - each blog's RSS feed (<url>/feed)   its title, description and latest posts. Some hosts (Substack) refuse
+//     GitHub's build servers, so each feed read is also kept in hq-private/data/community/feeds.json and that
+//     copy is used when a fetch fails. `node scripts/build-community.mjs --update-feeds` only refreshes that copy
+//     (the daily release digest runs it), exiting 1 if any feed couldn't be read.
 // Needs GITHUB_TOKEN (or GH_TOKEN) for the API; without one the page still lists the projects.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { parse as parseToml } from 'smol-toml';
-import { gh, ghAll, hqRoot, inBatches, siteRoot, token } from './lib/github.mjs';
+import { gh, ghAll, hqRoot, inBatches, privateRoot, siteRoot, token } from './lib/github.mjs';
 import { ORG, USER_AGENT } from '../src/lib/hq-config.mjs';
 
 const outPath = path.join(siteRoot, 'src', 'data', 'community.json');
+const feedsPath = path.join(privateRoot, 'data', 'community', 'feeds.json');
+
+async function readFeedCopies() {
+  try {
+    return JSON.parse(await readFile(feedsPath, 'utf8'));
+  } catch {
+    return {};
+  }
+}
 
 async function details(entry) {
   const info = await gh(`repos/${entry.repo}`);
@@ -55,26 +67,52 @@ async function blogFeed(url) {
   };
 }
 
-async function blogs(entries, notes) {
+// Each blog's feed, live where it can be read, otherwise the last copy kept. Fresh reads update `copies`.
+async function blogs(entries, notes, copies) {
   return Promise.all(
     entries.map(async (e) => {
       // posts: null means the feed couldn't be read, as distinct from a feed with no posts.
-      const base = { id: e.id, url: e.url, author: e.author, note: e.note ?? null, title: e.title ?? e.id, description: null, posts: null };
+      const base = { id: e.id, url: e.url, author: e.author, note: e.note ?? null, title: e.title ?? e.id, description: null, posts: null, asOf: null };
       try {
         const feed = await blogFeed(e.url);
+        copies[e.id] = { ...feed, fetchedAt: new Date().toISOString() };
         return { ...base, ...feed, title: e.title ?? feed.title ?? e.id };
       } catch (err) {
-        notes.push(`${e.id}: feed unavailable (${err.message}).`);
+        const copy = copies[e.id];
+        if (copy) return { ...base, description: copy.description, posts: copy.posts, asOf: copy.fetchedAt };
+        notes.push(`${e.id}: feed unavailable (${err.message}) and no saved copy.`);
         return base;
       }
     }),
   );
 }
 
+async function saveFeedCopies(copies) {
+  await mkdir(path.dirname(feedsPath), { recursive: true });
+  await writeFile(feedsPath, `${JSON.stringify(copies, null, 1)}\n`);
+}
+
 async function main() {
   const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
   const org = registry.org.github;
   const all = Object.entries(registry.community ?? {}).map(([id, e]) => ({ id, ...e }));
+  const blogEntries = all.filter((e) => e.kind === 'blog');
+  const copies = await readFeedCopies();
+
+  if (process.argv.includes('--update-feeds')) {
+    const before = JSON.stringify(copies);
+    const failed = [];
+    for (const e of blogEntries) {
+      try {
+        copies[e.id] = { ...(await blogFeed(e.url)), fetchedAt: new Date().toISOString() };
+      } catch (err) {
+        failed.push(`${e.id} (${err.message})`);
+      }
+    }
+    if (JSON.stringify(copies) !== before) await saveFeedCopies(copies);
+    console.log(`feeds: ${blogEntries.length - failed.length} of ${blogEntries.length} read${failed.length ? `; failed: ${failed.join(', ')}` : ''}`);
+    process.exit(failed.length ? 1 : 0);
+  }
   const entries = all.filter((e) => (e.kind ?? 'project') === 'project');
   const notes = [];
   if (!token && entries.length) notes.push('No GitHub token at the last build, so stars and releases are missing.');
@@ -110,7 +148,7 @@ async function main() {
     projects: projects.filter((p) => p.extends === id).sort((a, b) => a.name.localeCompare(b.name)),
   }));
   await mkdir(path.dirname(outPath), { recursive: true });
-  const blogList = await blogs(all.filter((e) => e.kind === 'blog'), notes);
+  const blogList = await blogs(blogEntries, notes, copies);
   await writeFile(outPath, `${JSON.stringify({ generatedAt: new Date().toISOString(), notes, products, blogs: blogList })}\n`);
   console.log(`community: ${projects.length} projects for ${products.length} products, ${blogList.length} blogs${notes.length ? `; ${notes.length} gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);
