@@ -13,3 +13,4 @@ In the install guides, retain a reference to HACS for people using Home Assistan
 ## Log
 
 - 2026-11-13 — project-review: Marketplace wording is merged in supernotify, autoarm (#147) and remote_logger (#119, all ten translations). Remaining: `appliance_autonotify` README still has the `hacs` badge and says Supernotify is "installed from HACS" (lines 3 and 26), though its install steps are updated. Then the project can be marked done. No other HA repos checked.
+- 2026-11-15 — project-review: appliance_autonotify's README now says "Home Assistant Marketplace (previously *HACS*)" and no `hacs` mentions remain; "dehacs" commits also landed in autoarm, camera_autonotify, updates2mqtt and remote_logger. Looks finished for the repos checked; propose moving to `done/`.

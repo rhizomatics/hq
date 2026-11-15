@@ -23,3 +23,4 @@ Its anticipated that changes are made in Supernotify to handle live activities, 
 - 2026-10-30 — project-review: correction, `appliance_autonotify` v0.13.0 was released 2026-10-22 (not "in prep"); repo has had steady dependency, manifest and codeowner commits since, no new features. Frigate still RFC only.
 - 2026-11-06 — project-review: `appliance_autonotify` added a Quality Scale file (Silver) and HA floor 2026.5.0 (#34), plus marketplace wording; no new features. Frigate still RFC only.
 - 2026-11-13 — project-review: `appliance_autonotify` only maintenance since 11-06 (Dependabot, pytest-homeassistant move, docs nav). Frigate still RFC only; no movement for 3 weeks, expected.
+- 2026-11-15 — project-review: appliance_autonotify maintenance only (LG appliance promotion and feedback fixes, GoatCounter, Scorecard). Frigate still RFC only. supernotify#293 (record where a notification came from, starting with Appliance Autonotify) is the live Supernotify-side link.

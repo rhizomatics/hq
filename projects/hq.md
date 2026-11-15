@@ -71,3 +71,4 @@ A headquarters for Rhizomatics, running projects and ensuring products are runni
   issue types only. First build: 10 features, 0 bugs, 2 unclassified; 21/23 repos with private reporting, 20 CodeQL.
   Decided: Security shows only what's already public (no alert data); issues are classified by type only, labels
   ignored until there are enough issues to matter; Support covers public products only.
+- 2026-11-15 — project-review: large day of work, mostly [HQ as Product](./hq-as-product.md) Phase 0 and the site: routines regrouped (9 to 6), admin workflows moved into hq (v1.0.0, pinned by every product repo), GoatCounter on docs sites, Releases and Community pages, licence. No "Soon" items outstanding.

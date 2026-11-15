@@ -81,3 +81,4 @@ that environment a spec to build to.
 - 2026-11-10: `homeassistant` skill removed again (hq-private#100): it duplicated `ha-repl`'s API client mode, which works with the non-admin token. The maintainer will add the gaps (history, logbook, services list, clearer empty/401 messages) to ha-repl itself.
 - 2026-11-10: proposed [mise environments](proposed/mise-environments.md), which loads `.hq.env` secrets through mise and fnox instead of sourcing plaintext files. The Secrets Manager task moves there.
 - 2026-11-13 — project-review: no commits since 11-10. Open: preview pattern, home dev SignalK, browser guidance, snapshot sweep, stale MCP entry. Not stalled yet (3 days).
+- 2026-11-15 — project-review: no change since 11-10; five items still open.
