@@ -64,6 +64,7 @@ blocked, say on what (in frontmatter `status` if the file has it, otherwise in t
 | [OCI container client](proposed/oci-container-client.md) | Extract updates2mqtt's OCI registry client into a reusable Python library |
 | [Project alignment](proposed/project-alignment.md) | Reduce unnecessary variation across the stack |
 | [mise environments](proposed/mise-environments.md) | mise as the way into prod/dev/test environments, starting with secrets through fnox |
+| [HQ as a product](proposed/hq-as-product.md) | Others seed their own HQ, adapt it with their own agents and keep taking core updates |
 
 ### Done
 
