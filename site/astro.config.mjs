@@ -30,7 +30,12 @@ export default defineConfig({
       description: `How the ${ORG.name} open source projects are run, and how much they are used.`,
       logo: { src: './src/assets/icon.svg' },
       favicon: '/favicon.svg',
-      head: [{ tag: 'meta', attrs: { property: 'og:image', content: `${ORG.siteUrl}/og.png` } }, ...analyticsHead()],
+      head: [
+        { tag: 'meta', attrs: { property: 'og:image', content: `${ORG.siteUrl}/og.png` } },
+        // Lets feed readers find the releases feed from any page.
+        { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: `${ORG.name} releases`, href: '/releases.xml' } },
+        ...analyticsHead(),
+      ],
       social: [{ icon: 'github', label: 'GitHub', href: githubUrl() }],
       customCss: ['./src/styles/site.css'],
       lastUpdated: false,
