@@ -24,7 +24,7 @@ type Blog = {
   note: string | null;
   title: string;
   description: string | null;
-  posts: { title: string; url: string; date: string }[];
+  posts: { title: string; url: string; date: string }[] | null;
 };
 const blogs = (community.blogs ?? []) as Blog[];
 
@@ -86,7 +86,9 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
           <h3><a href={b.url}>{b.title}</a></h3>
           <p class="ci-meta">By {b.author}{b.note && <> · {b.note}</>}</p>
           {b.description && <p>{b.description}</p>}
-          {b.posts.length > 0 ? (
+          {b.posts === null ? (
+            <p class="ci-meta">Latest posts couldn't be loaded at the last build; <a href={b.url}>see the blog</a>.</p>
+          ) : b.posts.length > 0 ? (
             <ul>
               {b.posts.map((post) => (
                 <li><a href={post.url}>{post.title}</a> <span class="ci-meta">{day(post.date)}</span></li>

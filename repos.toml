@@ -35,7 +35,8 @@
 #     extends:  the org's repo it builds on (a key of [repos])
 #     plus the same channel fields as a repo (npm, pypi, hacs_zip, ...)
 #   A blog (writing about the products or their platforms):
-#     url:      the blog's home page; its RSS feed gives the title, description and latest posts
+#     url:      the blog's home page; its RSS feed gives the description and latest posts
+#     title:    the blog's name, shown even when its feed can't be read
 #     author:   the byline the blog itself uses
 #     note:     optional, shown with it (e.g. that it's the maintainer's personal blog)
 #
@@ -224,12 +225,14 @@ hacs_zip = "supernotify-control-card.js"
 
 [community.boat-tech-projects]
 kind = "blog"
+title = "Boat Tech Projects"
 url = "https://automatedboat.substack.com"
 author = "jey"
 note = "The maintainer's personal blog"
 
 [community.home-tech-projects]
 kind = "blog"
+title = "Home Tech Projects"
 url = "https://automatedhome.substack.com"
 author = "jey"
 note = "The maintainer's personal blog"

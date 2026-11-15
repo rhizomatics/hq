@@ -12,7 +12,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { parse as parseToml } from 'smol-toml';
 import { gh, ghAll, hqRoot, inBatches, siteRoot, token } from './lib/github.mjs';
-import { USER_AGENT } from '../src/lib/hq-config.mjs';
+import { ORG, USER_AGENT } from '../src/lib/hq-config.mjs';
 
 const outPath = path.join(siteRoot, 'src', 'data', 'community.json');
 
@@ -36,7 +36,9 @@ async function details(entry) {
 
 // A blog's title, description and latest posts from its RSS feed; null if the feed can't be read.
 async function blogFeed(url) {
-  const res = await fetch(`${url.replace(/\/$/, '')}/feed`, { headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(20_000) });
+  // Identify as a feed reader, with a link back, as feed readers do; some hosts refuse unnamed clients.
+  const headers = { 'User-Agent': `${USER_AGENT} feed reader (+${ORG.siteUrl}/community/)`, Accept: 'application/rss+xml, application/xml;q=0.9' };
+  const res = await fetch(`${url.replace(/\/$/, '')}/feed`, { headers, signal: AbortSignal.timeout(20_000) });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const xml = await res.text();
   const text = (tag, s) => {
@@ -56,9 +58,11 @@ async function blogFeed(url) {
 async function blogs(entries, notes) {
   return Promise.all(
     entries.map(async (e) => {
-      const base = { id: e.id, url: e.url, author: e.author, note: e.note ?? null, title: e.id, description: null, posts: [] };
+      // posts: null means the feed couldn't be read, as distinct from a feed with no posts.
+      const base = { id: e.id, url: e.url, author: e.author, note: e.note ?? null, title: e.title ?? e.id, description: null, posts: null };
       try {
-        return { ...base, ...(await blogFeed(e.url)) };
+        const feed = await blogFeed(e.url);
+        return { ...base, ...feed, title: e.title ?? feed.title ?? e.id };
       } catch (err) {
         notes.push(`${e.id}: feed unavailable (${err.message}).`);
         return base;
