@@ -152,6 +152,3 @@ family = "meta"
 family = "meta"
 category = ["internal"]
 
-[repos.brands]
-family = "meta"
-category = ["internal"]
