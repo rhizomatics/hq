@@ -31,10 +31,10 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 <CardGrid>
   <Card title="Usage" icon="seti:graphql">
     Downloads, installs, stars and clones for every component: Home Assistant integrations,
-    SignalK plugins, MQTT services and command line tools. [See usage](/usage/).
+    SignalK plugins, pyPI and NPM libraries, MQTT services and command line tools. [See usage](/usage/).
   </Card>
   <Card title="Operations" icon="setting">
-    Updated daily for every public repo: open bugs and unsorted issues ([support](/support/)),
+    Updated daily for every product: open bugs and unsorted issues ([support](/support/)),
     the GitHub Actions state, including what's broken, flapping or recently recovered ([deployments](/deployments/)),
     and the security measures in place ([security](/security/)).
   </Card>
@@ -46,21 +46,21 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
     [See the design process](/design/), or go straight to [open and recent RFCs](/rfcs/).
   </Card>
   <Card title="Processes" icon="list-format">
-    The daily to quarterly routines, which persona runs each, and whether its report is public.
+    The daily to quarterly routines, who on the team runs each, and whether its report is public.
     [See processes](/processes/).
   </Card>
   <Card title="Policies" icon="approve-check">
-    Cross-project policies: supported Python and Home Assistant versions, tooling, cooldowns and
-    the baseline every repo should meet. [Read policies](/policies/).
+    Cross-project policies: architecture alignment with Home Assistant and SignalK, version policies, tooling, cooldowns and
+    the baseline every product repo should meet. [Read policies](/policies/).
   </Card>
 </CardGrid>
 
 ## How this works
 
-Each recurring process is a Claude Code skill run by a persona (pm, architect, infra-lead,
-marketing, tech-writer). Anything that needs the maintainer becomes an issue in a private
-companion repo; changes arrive as pull requests. Raw metrics, security findings and support
-triage stay private. This site is rebuilt twice a day from the public
+Each recurring process is an skill run by one of the agent team - pm, architect, infra-lead,
+marketing, tech-writer. Anything that needs the maintainer becomes an Issue in a private
+companion repo; changes arrive as Pull Requests. Raw metrics, security findings and support
+triage stay private. This site is rebuilt several times a day from the public
 [hq repo](https://github.com/rhizomatics/hq) and the public aggregates of the private data.
 
 <CardGrid>
