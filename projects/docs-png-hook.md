@@ -67,3 +67,4 @@ As done in camera_autonotify (the first, 2026-11-11):
   from 35.7 KB to 15.0 KB, the same as the `optimize` plugin made them in the built site, and a second hook run
   changes nothing. Survey of local checkouts: 7 repos use `optimize` and install pngquant in CI, and
   homeassistant-repl installs it without using it.
+- 2026-11-15: project-review: no repo beyond camera_autonotify has `docgen/optimize_png.py` yet; six still have `- optimize` in `properdocs.yml`. Expected, since it is opportunistic. 2026-11-15 releases touched many repos (admin v1.0.0, GoatCounter), so a repo being released next is the moment.

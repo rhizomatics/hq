@@ -58,3 +58,4 @@ repo so it can be rebuilt and reviewed.
 - 2026-10-30 — project-review: no reply on hq-private#33 after a week; Phase 0 still unticked, no movement since 10-16. Still the only blocker for Phase 1 and for dev-env.
 - 2026-11-06 — project-review: no reply on hq-private#33 (3 weeks since Phase 0 issue closed); still stalled, Phase 0 unticked.
 - 2026-11-13 — project-review: jeyrb answered hq-private#33 on 11-09: inventory runs option (a), locally by the maintainer with an agent (recorded as a Decision). Phase 0 boxes still unticked: the reply did not say whether access is set up. Next is a local `@pair` session for Phase 1.
+- 2026-11-15 — project-review: no reply on the Phase 0 question in hq-private#33 (asked 11-13). No movement since 11-09.

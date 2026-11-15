@@ -39,6 +39,12 @@ Once per run, not per repo:
   per package in `security_watch` in `repos.toml` (reviewed GitHub advisories from the last 30 days,
   with `epss` and `kev_added`). An advisory listed under two packages is one item. New means its
   `ghsa` isn't in an earlier report in `hq-private/reports/security/`.
+- OpenSSF Scorecard, a weekly supply-chain view per public repo with a `scorecard.yml` workflow: WebFetch
+  `https://api.securityscorecards.dev/projects/github.com/<org>/<repo>` (no key; 404 = not yet published,
+  note it once). If the host is blocked in the routine's network, that is a one-line data gap, not a failure. Never escalate a score on its own. Escalate only a check that fell to 0 or dropped 3+
+  points since the previous report in `hq-private/reports/security/` and bears on a real exposure
+  (Dangerous-Workflow, Token-Permissions, Pinned-Dependencies, Vulnerabilities, Binary-Artifacts). Other
+  low checks (Fuzzing, CII-Best-Practices, Signed-Releases) go to the alignment review, not here.
 - Exploitation: `kev_added` on Dependabot alerts and advisories is the date it entered CISA's Known
   Exploited Vulnerabilities catalog (null if it isn't there), and `epss` the estimated chance of
   exploitation (0 to 1). If `kev` in the snapshot is `{"error": ...}`, null means unknown: note the

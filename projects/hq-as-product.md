@@ -271,3 +271,4 @@ _None._
   each process keeping its own skill and output. Cadence entries carry **Routine:**; `check-hq` checks a shared
   routine's processes have one persona and one start time. Candidates for scripts next: the registry check and
   the PR report's listing.
+- 2026-11-15 — project-review: first review. Phase 0 is 4 of 5 done; the open box (platform names out of core) is deferred to Phase 2 by design. Nothing is `@human`-blocked. Note the Log above is out of order and says "moved to proposed" before "Started (moved to active)"; status is active.
