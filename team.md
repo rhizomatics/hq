@@ -2,14 +2,14 @@
 
 One human maintainer and five agent personas. Each persona's full brief is in
 `.claude/agents/<name>.md` (that file is what Claude Code loads); this page is how they fit
-together. House values that apply to everyone are in `CLAUDE.md`.
+together. House values that apply to everyone are in `AGENTS.md`.
 
 ## Roster
 
-### jeyrb — maintainer (human)
-- **Owns:** direction, priorities, releases, merges, anything public in Rhizomatics' name, spending,
+### Maintainer (human)
+- **Owns:** direction, priorities, releases, merges, anything public in the org's name, spending,
   credentials.
-- **Works through:** issues in `rhizomatics/hq-private` (the to-do list) and PRs (agent-built changes to review).
+- **Works through:** issues in `<org>/hq-private` (the to-do list) and PRs (agent-built changes to review).
 - **Final say** on any disagreement between personas.
 
 ### pm — project manager

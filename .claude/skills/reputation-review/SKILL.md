@@ -1,6 +1,6 @@
 ---
 name: reputation-review
-description: Monthly reputation and visibility review for Rhizomatics — trends in mentions and sentiment, search visibility gaps, competitors, and where the products are (and aren't) recommended.
+description: Monthly reputation and visibility review for the org — trends in mentions and sentiment, search visibility gaps, competitors, and where the products are (and aren't) recommended.
 context: fork
 agent: marketing
 ---
@@ -34,7 +34,7 @@ agent: marketing
 forum post for supernotify 2.13 YAML-free config", "add sitemap to remote_logger docs").
 
 Actions the maintainer must do or approve become hq issues (labels `reputation` + area) linking
-back here, per "Issues and PRs" in `CLAUDE.md`.
+back here, per "Issues and PRs" in `AGENTS.md`.
 
 Add every "Manual checks" row in `reference/*_discussion.md` to the rolling forums issue for its
 area (`<area>: forum replies and manual checks`), since this review can't see those places: for

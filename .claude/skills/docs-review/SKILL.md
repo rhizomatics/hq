@@ -1,6 +1,6 @@
 ---
 name: docs-review
-description: Quarterly rolling documentation review of each Rhizomatics product for readability, accessibility and fidelity to the code. Runs daily during the review window and reviews only the next small batch of products each run.
+description: Quarterly rolling documentation review of each of the org's products for readability, accessibility and fidelity to the code. Runs daily during the review window and reviews only the next small batch of products each run.
 context: fork
 agent: tech-writer
 ---
@@ -45,4 +45,4 @@ example). Compare with the same product's file from last quarter if present.
 
 Fix `wrong` and `missing` findings as a docs PR in the product repo where an agent can, linking
 this report. File an hq issue (labels `docs` + area, one per product) only for findings that need
-the maintainer's decision or knowledge, per "Issues and PRs" in `CLAUDE.md`.
+the maintainer's decision or knowledge, per "Issues and PRs" in `AGENTS.md`.

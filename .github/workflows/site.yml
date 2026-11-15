@@ -40,10 +40,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      # Snapshots and reports. Fine-grained PAT: rhizomatics/hq-private only, read-only Contents.
+      # Snapshots and reports from the private repo (repos.toml org.private_repo). Fine-grained PAT: that repo only, read-only Contents.
       - uses: actions/checkout@v7
         with:
-          repository: rhizomatics/hq-private
+          repository: ${{ github.repository_owner }}/hq-private
           token: ${{ secrets.HQ_PRIVATE_READ_TOKEN }}
           path: hq-private
           sparse-checkout: |

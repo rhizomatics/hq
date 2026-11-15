@@ -10,14 +10,14 @@
 ## Site build
 - **When:** 05:40 UTC, after the stats snapshot, and 17:40 UTC to refresh the Operations pages; also on any push that changes docs or `site/`
 - **Who:** GitHub Actions (`.github/workflows/site.yml`)
-- **Output:** https://hq.rhizomatics.org.uk/ — docs, public reports and per-component usage
+- **Output:** the HQ site (`[org].site_url` in `repos.toml`) — docs, public reports and per-component usage
 - **Report:** public (it is the site)
 
 ## Dependabot sweep — `/dependabot-sweep`
 - **Who:** infra-lead
 - **Output:** `hq-private/reports/dependabot/YYYY-MM-DD.md`
 - **Report:** private by exception
-- Merges trusted bumps (GitHub-owned, hassfest/HACS and `rhizomatics/.github` actions; Astral and
+- Merges trusted bumps (GitHub-owned, hassfest/HACS and `<org>/.github` actions; Astral and
   oxc tooling) once CI is green, never major versions; closes bumps of dependencies inherited from Home Assistant or
   SignalK. Standing approval from the maintainer; everything else waits for the PR report.
 
@@ -31,7 +31,7 @@
 - **Who:** infra-lead
 - **Output:** `hq-private/reports/security/YYYY-MM-DD.md`
 - **Report:** private
-- **Escalates:** issue labelled `security-escalation` in `rhizomatics/hq-private`
+- **Escalates:** issue labelled `security-escalation` in `<org>/hq-private`
 - Excludes purely transitive vulnerabilities from Home Assistant / SignalK.
 
 ## Decision follow-up — `/decision-followup`

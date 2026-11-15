@@ -17,7 +17,7 @@ in `projects/README.md`. Respect their wording; suggest structure rather than im
 ## Weekly, per active project
 
 - What moved this week: ticked tasks, Log entries, related commits/issues/PRs in the product repos
-  (`gh search issues/prs --owner rhizomatics --updated >=<date>`), relevant process reports
+  (`gh search issues/prs --owner <org> --updated >=<date>`), relevant process reports
   (e.g. an alignment proposal that belongs to a project).
 - Status check: is the recorded status still true? Stalled (no movement in 3+ weeks)? Blocked, and on
   whom?
@@ -52,5 +52,5 @@ for the monthly review a **Refinements** section with proposed edits as diffs or
 
 Every `@human` next step, flag (blocked on the maintainer, stalled) and refinement needing a decision
 must be in an hq issue (label `project` + area, one per project, per "Issues and PRs" in
-`CLAUDE.md`) linking back to its section here; update the project's existing issue rather than
+`AGENTS.md`) linking back to its section here; update the project's existing issue rather than
 opening another.

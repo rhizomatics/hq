@@ -12,13 +12,14 @@
 import { copyFile, readFile, readdir, writeFile, mkdir, rm, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { ORG, githubUrl } from '../src/lib/hq-config.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
 const privateRoot = path.resolve(process.env.HQ_PRIVATE ?? path.join(hqRoot, '..', 'hq-private'));
 const docsOut = path.join(siteRoot, 'src', 'content', 'docs');
 const BASE = '/';
-const REPO = 'https://github.com/rhizomatics/hq';
+const REPO = githubUrl(ORG.hqRepo);
 
 // Reports written before visibility was declared assumed they were private; none of those are published.
 const REPORTS_FROM = '2026-11-14';
@@ -88,8 +89,8 @@ function rewriteLinks(body, srcRel, { linkBase }) {
     if (/^(?:[a-z]+:|#|\/)/i.test(target)) return match;
     const [file, anchor] = target.split('#');
     let rel = path.posix.normalize(path.posix.join(path.posix.dirname(srcRel), file));
-    if (rel.startsWith('../hq-private/') || rel.startsWith('hq-private/')) {
-      return `](https://github.com/rhizomatics/hq-private/blob/main/${rel.replace(/^(\.\.\/)?hq-private\//, '')})`;
+    if (ORG.privateRepo && (rel.startsWith('../hq-private/') || rel.startsWith('hq-private/'))) {
+      return `](${githubUrl(ORG.privateRepo)}/blob/main/${rel.replace(/^(\.\.\/)?hq-private\//, '')})`;
     }
     if (rel.startsWith('..')) return match;
     const isDir = file.endsWith('/') || !path.posix.extname(rel);

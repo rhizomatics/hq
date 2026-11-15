@@ -1,9 +1,23 @@
-# Registry of Rhizomatics repos and where each one is distributed.
+# Registry of the org's repos and where each one is distributed, plus the org-specific settings every
+# process, skill and site script reads instead of naming the org itself.
 # Single source of truth for every process: stats collection, sweeps, alignment reviews.
 #
-# family:     ha-integration | signalk-plugin | mqtt-service | cli | site | meta
+# [org]
+#   name:          display name, used in prose and on the site
+#   github:        GitHub org (or user) that owns the repos
+#   maintainers:   GitHub logins of the human maintainers; the first is assigned hq issues
+#   hq_repo:       the public repo holding these docs (this repo)
+#   private_repo:  repo for reports, data snapshots and hq issues, checked out next to hq_repo;
+#                  omit for an entirely public set-up (hq issues then go in hq_repo)
+#   site_url:      where the public HQ site is served
+# [families]:      each repo family, in display order: its heading on the site and its hq issue area
+# [labels]:        hq issue labels; an issue gets one source and one area (the areas are the `area`
+#                  values in [families])
+#
+# Per repo:
+# family:     a key of [families]
 # npm/pypi:   published package name
-# ghcr:       container image name under ghcr.io/rhizomatics/
+# ghcr:       container image name under ghcr.io/<org.github>/
 # ha_domain:  Home Assistant integration domain (for HA analytics install counts)
 # hacs_zip:   release asset name HACS downloads (counts = HACS installs/updates)
 # upstream:   platform whose transitive vulns are excluded from security escalation
@@ -14,8 +28,27 @@
 # ecosystem is the GitHub advisory API's name (pip, npm); area is the hq issue label.
 
 [org]
+name = "Rhizomatics"
 github = "rhizomatics"
 maintainers = ["jeyrb"]
+hq_repo = "hq"
+private_repo = "hq-private"
+site_url = "https://hq.rhizomatics.org.uk"
+
+[families]
+ha-integration = { label = "Home Assistant", area = "homeassistant" }
+signalk-plugin = { label = "SignalK", area = "signalk" }
+mqtt-service = { label = "MQTT", area = "mqtt" }
+cli = { label = "Command line", area = "org" }
+picoware = { label = "Picoware", area = "org" }
+site = { label = "Sites", area = "org" }
+meta = { label = "Organisation", area = "org" }
+
+[labels]
+sources = [
+  "security-escalation", "dependabot", "support", "forums", "alignment", "github", "docs",
+  "architecture", "ecosystem", "reputation", "roadmap", "project", "adoption", "prs",
+]
 
 [[security_watch]]
 ecosystem = "npm"

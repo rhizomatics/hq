@@ -1,6 +1,6 @@
 ---
 name: agent-accessibility-review
-description: Monthly review of how well Rhizomatics repos and docs work for AI agents — both agents developing the code and agents helping end users install and configure it — with suggested improvements.
+description: Monthly review of how well the org's repos and docs work for AI agents — both agents developing the code and agents helping end users install and configure it — with suggested improvements.
 context: fork
 agent: architect
 ---
@@ -23,7 +23,7 @@ User agents:
 - Docs site publishes `llms.txt` (and ideally `llms-full.txt`) — check `https://<CNAME>/llms.txt`.
 - Configuration documented as complete, copyable examples (YAML/JSON) with every option, types and
   defaults; error messages in docs match the code.
-- Project listed in `rhizomatics/agent-plugins` marketplace where a skill/plugin makes sense (e.g. a config-helper skill for supernotify, a SignalK plugin skill), and the listing is current. Include opportunities for new plugins in this marketplace
+- Project listed in the org's agent plugin marketplace (`<org>/agent-plugins`, if it has one) where a skill/plugin makes sense (e.g. a config-helper skill for supernotify, a SignalK plugin skill), and the listing is current. Include opportunities for new plugins in this marketplace
 - Machine-readable metadata accurate: repo description/topics, `hacs.json`, `package.json`
   `signalk` keywords, pyproject classifiers/URLs.
 
@@ -36,4 +36,4 @@ in `hq-private/reports/agent-accessibility/` so progress is visible.
 then the top 5 improvements ranked by value/effort with concrete content (e.g. a drafted AGENTS.md
 section, an `llms.txt` docs plugin config to copy from the repo that already has one). Build the
 improvements as PRs and file anything needing a decision as an hq issue, per "Issues and PRs" in
-`CLAUDE.md`.
+`AGENTS.md`.

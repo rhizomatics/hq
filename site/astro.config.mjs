@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import starlight from '@astrojs/starlight';
 import { defineConfig } from 'astro/config';
-import { FAMILIES } from './src/lib/families.mjs';
+import { FAMILIES, ORG, githubUrl } from './src/lib/hq-config.mjs';
 
 // Usage pages are listed in the sidebar by family; stats.json is built before Astro runs.
 function usageSidebar() {
@@ -21,17 +21,17 @@ function usageSidebar() {
 }
 
 export default defineConfig({
-  site: 'https://hq.rhizomatics.org.uk',
+  site: ORG.siteUrl,
   trailingSlash: 'always',
   redirects: { '/actions/': '/deployments/' },
   integrations: [
     starlight({
-      title: 'Rhizomatics HQ',
-      description: 'How the Rhizomatics open source projects are run, and how much they are used.',
+      title: `${ORG.name} HQ`,
+      description: `How the ${ORG.name} open source projects are run, and how much they are used.`,
       logo: { src: './src/assets/icon.svg' },
       favicon: '/favicon.svg',
-      head: [{ tag: 'meta', attrs: { property: 'og:image', content: 'https://hq.rhizomatics.org.uk/og.png' } }],
-      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/rhizomatics' }],
+      head: [{ tag: 'meta', attrs: { property: 'og:image', content: `${ORG.siteUrl}/og.png` } }],
+      social: [{ icon: 'github', label: 'GitHub', href: githubUrl() }],
       customCss: ['./src/styles/site.css'],
       lastUpdated: false,
       sidebar: [

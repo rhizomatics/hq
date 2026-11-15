@@ -1,6 +1,6 @@
 ---
 name: support-review
-description: Monthly review of the past month's support load (issues, discussions, forum threads) across Rhizomatics products, finding recurring themes and proposing root-cause fixes in code, tests or docs.
+description: Monthly review of the past month's support load (issues, discussions, forum threads) across the org's products, finding recurring themes and proposing root-cause fixes in code, tests or docs.
 context: fork
 agent: pm
 ---
@@ -36,4 +36,4 @@ a class of question over many patch replies.
 `hq-private/reports/support-review/YYYY-MM.md`: headline metrics (volume, first-response median, still-open
 from last month, vs previous month), themes ranked by recurring cost, the fix proposals, and a
 check of last month's proposals (done / not done / no longer relevant). End with "proposed
-issues", filed as hq issues (fixes an agent can build go as PRs), per "Issues and PRs" in `CLAUDE.md`.
+issues", filed as hq issues (fixes an agent can build go as PRs), per "Issues and PRs" in `AGENTS.md`.

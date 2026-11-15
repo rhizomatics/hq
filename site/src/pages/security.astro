@@ -2,7 +2,7 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import Kpi from '../components/Kpi.astro';
 import security from '../data/security.json';
-import { FAMILIES } from '../lib/families.mjs';
+import { FAMILIES, META_LABEL, ORG, githubUrl } from '../lib/hq-config.mjs';
 
 type Repo = {
   id: string;
@@ -17,19 +17,19 @@ type Repo = {
 };
 
 const repos = security.repos as Repo[];
-const groups = [...FAMILIES, ['meta', 'Organisation']]
+const groups = [...FAMILIES, ['meta', META_LABEL]]
   .map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => a.id.localeCompare(b.id))] as const)
   .filter(([, list]) => list.length);
 const count = (f: (r: Repo) => boolean) => `${repos.filter(f).length} of ${repos.length}`;
 const asOf = security.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 ---
-<StarlightPage frontmatter={{ title: 'Security', description: 'Security measures in place on each public Rhizomatics repo, and the advisories published, updated daily.', tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'Security', description: `Security measures in place on each public ${ORG.name} repo, and the advisories published, updated daily.`, tableOfContents: false }}>
   <p>
     What each public repo has in place to find and handle security problems, as of {asOf}. Updated daily.
   </p>
   <ul>
     <li><strong>Private reporting</strong>: anyone can report a vulnerability privately from the repo's Security tab.</li>
-    <li><strong>Policy</strong>: the repo's own SECURITY.md, or else the <a href={security.orgPolicy ?? 'https://github.com/rhizomatics/.github'}>organisation's</a>, which GitHub shows in its place.</li>
+    <li><strong>Policy</strong>: the repo's own SECURITY.md, or else the <a href={security.orgPolicy ?? githubUrl('.github')}>organisation's</a>, which GitHub shows in its place.</li>
     <li><strong>CodeQL</strong>: GitHub code scanning runs on the code.</li>
     <li><strong>Dependabot</strong>: Dependabot opens pull requests to keep dependencies up to date.</li>
     <li><strong>Advisories</strong>: security advisories published for the repo once a fix is out.</li>

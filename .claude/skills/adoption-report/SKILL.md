@@ -1,6 +1,6 @@
 ---
 name: adoption-report
-description: Weekly report on download, install and clone trends for Rhizomatics projects across npm, PyPI, GHCR (Docker), HACS/Home Assistant analytics and GitHub.
+description: Weekly report on download, install and clone trends for the org's projects across npm, PyPI, GHCR (Docker), HACS/Home Assistant analytics and GitHub.
 context: fork
 agent: marketing
 ---
@@ -31,9 +31,9 @@ if it proves stable, propose adding it to `hq-private/scripts/`.
 2. Per family (HA integrations, SignalK plugins, MQTT services, other) a table:
    `Project | Real-use signal | Δ wk | Downloads/pulls | Δ wk | Clones (uniq) | Stars Δ`.
 3. Anomalies (spikes from CI, mirrors, a blog/forum mention — check referrers with
-   `gh api repos/rhizomatics/<repo>/traffic/popular/referrers`).
+   `gh api repos/<org>/<repo>/traffic/popular/referrers`).
 4. Up to three suggested actions (release post, README fix, forum reply…). Each one the maintainer
    must do or approve is an hq issue (labels `adoption` + area) linking back here, per "Issues and
-   PRs" in `CLAUDE.md`; list the issue links, not just the suggestions.
+   PRs" in `AGENTS.md`; list the issue links, not just the suggestions.
 
 Where history is shorter than a comparison window, say so rather than guessing.

@@ -2,7 +2,7 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import design from '../data/design.json';
 import issues from '../data/issues.json';
-import { FAMILIES } from '../lib/families.mjs';
+import { FAMILIES, ORG } from '../lib/hq-config.mjs';
 
 type Product = {
   id: string;
@@ -24,7 +24,7 @@ const features = Object.fromEntries((issues.repos as { id: string; counts: Recor
 const search = (url: string, q: string) => `${url}/issues?q=${encodeURIComponent(q)}`;
 const asOf = design.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 ---
-<StarlightPage frontmatter={{ title: 'Design Process', description: 'How Rhizomatics products are designed in the open: RFCs, roadmaps and design principles, and where to comment.', tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'Design Process', description: `How ${ORG.name} products are designed in the open: RFCs, roadmaps and design principles, and where to comment.`, tableOfContents: false }}>
   <p>
     Designs are worked out in the open, in each product's repo (see the <a href="/policies/design/">design policy</a>):
   </p>

@@ -2,7 +2,7 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import Kpi from '../components/Kpi.astro';
 import issues from '../data/issues.json';
-import { FAMILIES } from '../lib/families.mjs';
+import { FAMILIES, ORG } from '../lib/hq-config.mjs';
 
 type Repo = {
   id: string;
@@ -30,7 +30,7 @@ const inProducts = (t: string) => {
 };
 const asOf = issues.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 ---
-<StarlightPage frontmatter={{ title: 'Support', description: 'Open bug reports and unclassified issues for each Rhizomatics product, updated daily.', tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'Support', description: `Open bug reports and unclassified issues for each ${ORG.name} product, updated daily.`, tableOfContents: false }}>
   <p>
     Open issues on each product, as of {asOf}. Updated daily. Issues are sorted with GitHub's issue types:
   </p>

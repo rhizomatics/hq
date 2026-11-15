@@ -4,6 +4,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse as parseToml } from 'smol-toml';
+import { USER_AGENT } from '../../src/lib/hq-config.mjs';
 
 export const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const hqRoot = path.resolve(siteRoot, '..');
@@ -14,7 +15,7 @@ export async function gh(route) {
   for (let attempt = 1; ; attempt += 1) {
     const res = await fetch(`https://api.github.com/${route}`, {
       headers: {
-        'User-Agent': 'rhizomatics-hq-site',
+        'User-Agent': USER_AGENT,
         Accept: 'application/vnd.github+json',
         'X-GitHub-Api-Version': '2022-11-28',
         Authorization: `Bearer ${token}`,

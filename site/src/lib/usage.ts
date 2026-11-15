@@ -1,5 +1,5 @@
 import stats from '../data/stats.json';
-import { FAMILIES } from './families.mjs';
+import { FAMILIES } from './hq-config.mjs';
 
 export type Daily = Record<string, number>;
 export type Component = (typeof stats.components)[number];

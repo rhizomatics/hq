@@ -1,6 +1,6 @@
 ---
 name: pr-report
-description: Weekly report on lingering open pull requests across Rhizomatics repos — external contributions awaiting review, stuck dependency bumps, and stale drafts.
+description: Weekly report on lingering open pull requests across the org's repos — external contributions awaiting review, stuck dependency bumps, and stale drafts.
 context: fork
 agent: pm
 ---
@@ -8,8 +8,8 @@ agent: pm
 # Weekly lingering PR report
 
 For each repo in `repos.toml`:
-`gh api 'repos/rhizomatics/<repo>/pulls?state=open'`, with `gh api repos/rhizomatics/<repo>/pulls/<n>` for
-`mergeable`, `.../pulls/<n>/reviews`, and `gh api repos/rhizomatics/<repo>/commits/<sha>/check-runs` for CI (REST
+`gh api 'repos/<org>/<repo>/pulls?state=open'`, with `gh api repos/<org>/<repo>/pulls/<n>` for
+`mergeable`, `.../pulls/<n>/reviews`, and `gh api repos/<org>/<repo>/commits/<sha>/check-runs` for CI (REST
 only: GraphQL-based `gh pr list` doesn't work in cloud routines)
 
 ## Buckets
@@ -32,4 +32,4 @@ for green bumps, but do not run them.
 The PRs waiting on the maintainer go in one rolling hq issue per area (`<area>: review waiting PRs`,
 labels `prs` + area), one checklist item per PR with its suggested action (and merge command for
 green bumps), linking back to this report; tick PRs merged or closed since. See "Issues and PRs" in
-`CLAUDE.md`.
+`AGENTS.md`.

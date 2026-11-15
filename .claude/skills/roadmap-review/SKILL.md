@@ -1,6 +1,6 @@
 ---
 name: roadmap-review
-description: Quarterly review of product roadmaps across Rhizomatics repos — items already done, obsoleted by other changes (ours or the platform's), and items whose priority has changed.
+description: Quarterly review of product roadmaps across the org's repos — items already done, obsoleted by other changes (ours or the platform's), and items whose priority has changed.
 context: fork
 agent: pm
 ---
@@ -12,7 +12,7 @@ agent: pm
 For each repo in `repos.toml`, look for: `docs/developer/design/roadmap.md` (the standard location for major
 projects per `policies/design.md`; flag major projects without one), `ROADMAP.md`, roadmap pages under `docs/` (grep nav in
 `properdocs.yml`/`zensical.toml`), a roadmap section in the README, open milestones
-(`gh api repos/rhizomatics/<repo>/milestones`), issues labelled `roadmap`/`enhancement` that are
+(`gh api repos/<org>/<repo>/milestones`), issues labelled `roadmap`/`enhancement` that are
 referenced from those pages, and planning folders (e.g. `planning/`). Skip repos without one, but
 list them.
 

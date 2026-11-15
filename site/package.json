@@ -1,5 +1,5 @@
 {
-  "name": "rhizomatics-hq-site",
+  "name": "hq-site",
   "private": true,
   "type": "module",
   "engines": {

@@ -1,6 +1,6 @@
 ---
 name: support-sweep
-description: Daily sweep of unanswered GitHub issues and discussions across all Rhizomatics repos. Produces a ranked report of who is waiting on a maintainer reply.
+description: Daily sweep of unanswered GitHub issues and discussions across all the org's repos. Produces a ranked report of who is waiting on a maintainer reply.
 context: fork
 agent: pm
 ---
@@ -12,12 +12,12 @@ maintainer. Maintainers are listed in `repos.toml` under `[org].maintainers`.
 
 ## Gather
 
-- Issues: `gh api 'repos/rhizomatics/<repo>/issues?state=open&per_page=100'` (skip items with
-  `pull_request`), and `gh api repos/rhizomatics/<repo>/issues/<n>/comments` for the last commenter.
+- Issues: `gh api 'repos/<org>/<repo>/issues?state=open&per_page=100'` (skip items with
+  `pull_request`), and `gh api repos/<org>/<repo>/issues/<n>/comments` for the last commenter.
 - Discussions: in a cloud routine read `discussions` per repo from the latest `hq-private/data/github/` snapshot
   (open discussions with last commenter), then WebFetch a thread if you need its content. Locally, GraphQL:
   ```
-  gh api graphql -f query='query($o:String!,$r:String!){repository(owner:$o,name:$r){discussions(first:50,states:OPEN,orderBy:{field:UPDATED_AT,direction:DESC}){nodes{number title url createdAt author{login} answer{id} category{name} comments(last:1){nodes{author{login} createdAt}}}}}}' -f o=rhizomatics -f r=<repo>
+  gh api graphql -f query='query($o:String!,$r:String!){repository(owner:$o,name:$r){discussions(first:50,states:OPEN,orderBy:{field:UPDATED_AT,direction:DESC}){nodes{number title url createdAt author{login} answer{id} category{name} comments(last:1){nodes{author{login} createdAt}}}}}}' -f o=<org> -f r=<repo>
   ```
 - Ignore bot authors (`*[bot]`, renovate, dependabot) and the maintainers' own tracking issues.
 
@@ -33,7 +33,7 @@ close as duplicate). Keep drafts to a few sentences.
 
 ## Output
 
-Write `hq-private/reports/support-sweep/YYYY-MM-DD.md`, short (see "Working rules" in `CLAUDE.md`):
+Write `hq-private/reports/support-sweep/YYYY-MM-DD.md`, short (see "Working rules" in `AGENTS.md`):
 
 ```
 # Support sweep YYYY-MM-DD
@@ -52,6 +52,6 @@ Only items still waiting go in the table; things cleared since yesterday get one
 Nothing waiting → a one-line report.
 
 Then update the rolling hq issue per area (`<area>: reply to waiting users`, labels `support` +
-area), per "Issues and PRs" in `CLAUDE.md`: one checklist item per waiting thread, linking the
+area), per "Issues and PRs" in `AGENTS.md`: one checklist item per waiting thread, linking the
 thread and its draft (`hq-private/reports/support-sweep/YYYY-MM-DD.md#repo123`); tick items that are no longer
 waiting. Do not post anything in the product repos.

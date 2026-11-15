@@ -16,7 +16,7 @@ gates can use the fuller shape, as `aws-migration.md` does:
 title: Short name
 status: draft | active | blocked     # folder says proposed/done/shelved
 lead: infra-lead | pm | marketing | architect   # persona that drives it
-owner: jeyrb
+owner: <maintainer>
 started: YYYY-MM-DD
 ---
 
@@ -32,7 +32,7 @@ Tasks are checkboxes tagged with who executes them:
 `- [ ] @pair Write Terraform for the Route53 zones` · `- [x] @human Create AWS account (2026-10)`
 
 When a task becomes real work, link it: an `@human` task gets an hq issue (labels `project` + area),
-a `@pair` task gets the PR the agent built. See "Issues and PRs" in `CLAUDE.md`.
+a `@pair` task gets the PR the agent built. See "Issues and PRs" in `AGENTS.md`.
 
 Rules for agents working a project: work the first unblocked task you're allowed to; never cross a
 `@pair` gate without recorded approval in **Decisions**; add a **Log** entry each session; if
@@ -53,6 +53,7 @@ blocked, say on what (in frontmatter `status` if the file has it, otherwise in t
 | [remote_logger Silver](remote-logger-silver.md) | remote_logger at Quality Scale Silver by Feb 2027 |
 | [Agent diagnostics](agent-diagnostics.md) | Logs, HA API/DB, config, previews and agent accounts reachable the same way from every project |
 | [Docs PNGs compressed at commit](docs-png-hook.md) | No docs build needs pngquant; PNGs compressed by a prek hook, as each repo is next released |
+| [HQ as a product](hq-as-product.md) | Others seed their own HQ, adapt it with their own agents and keep taking core updates |
 
 ### Proposed
 
@@ -64,7 +65,6 @@ blocked, say on what (in frontmatter `status` if the file has it, otherwise in t
 | [OCI container client](proposed/oci-container-client.md) | Extract updates2mqtt's OCI registry client into a reusable Python library |
 | [Project alignment](proposed/project-alignment.md) | Reduce unnecessary variation across the stack |
 | [mise environments](proposed/mise-environments.md) | mise as the way into prod/dev/test environments, starting with secrets through fnox |
-| [HQ as a product](proposed/hq-as-product.md) | Others seed their own HQ, adapt it with their own agents and keep taking core updates |
 | [HQ Stats](proposed/hq-stats.md) | Usage stats and public site as a standalone product, shipped and marketed ahead of HQ |
 
 ### Done

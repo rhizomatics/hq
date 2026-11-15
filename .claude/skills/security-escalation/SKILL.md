@@ -1,6 +1,6 @@
 ---
 name: security-escalation
-description: Daily check for serious security issues across Rhizomatics repos (Dependabot, code scanning, secret scanning, private advisories, platform advisories). Escalates only what matters, excluding purely transitive vulnerabilities inherited from Home Assistant or SignalK.
+description: Daily check for serious security issues across the org's repos (Dependabot, code scanning, secret scanning, private advisories, platform advisories). Escalates only what matters, excluding purely transitive vulnerabilities inherited from Home Assistant or SignalK.
 context: fork
 agent: infra-lead
 ---
@@ -16,12 +16,12 @@ In a cloud routine the alert APIs are blocked: read the alert lists from the lat
 snapshot couldn't read it). Private advisories still work via `gh api`.
 
 
-- Dependabot: `gh api repos/rhizomatics/<repo>/dependabot/alerts?state=open --paginate`
+- Dependabot: `gh api repos/<org>/<repo>/dependabot/alerts?state=open --paginate`
   (fields: `security_advisory.severity`, `security_vulnerability.package`, `dependency.relationship`
   `direct|transitive|unknown`, `dependency.scope` `runtime|development`, `dependency.manifest_path`)
-- Code scanning: `gh api repos/rhizomatics/<repo>/code-scanning/alerts?state=open` (404/403 = not enabled; note it, don't fail)
-- Secret scanning: `gh api repos/rhizomatics/<repo>/secret-scanning/alerts?state=open`
-- Privately reported advisories: `gh api repos/rhizomatics/<repo>/security-advisories?state=triage`
+- Code scanning: `gh api repos/<org>/<repo>/code-scanning/alerts?state=open` (404/403 = not enabled; note it, don't fail)
+- Secret scanning: `gh api repos/<org>/<repo>/secret-scanning/alerts?state=open`
+- Privately reported advisories: `gh api repos/<org>/<repo>/security-advisories?state=triage`
 
 Once per run, not per repo:
 
@@ -98,13 +98,13 @@ unless it is older than 7 days and still open (then re-escalate as "still open")
 
 ## Output
 
-Always write `hq-private/reports/security/YYYY-MM-DD.md`, short (see "Working rules" in `CLAUDE.md`). Nothing
+Always write `hq-private/reports/security/YYYY-MM-DD.md`, short (see "Working rules" in `AGENTS.md`). Nothing
 to escalate → one line, plus a line per data gap (e.g. snapshot missing or stale). Otherwise the
 escalations, each with its hq issue link. Add the table of counts per repo (escalated /
 excluded-transitive / other open) only when a count changed, and only the changed rows; on the
 first run of each month write the full table and the repos with scanning not enabled.
 
-Escalations become hq issues per "Issues and PRs" in `CLAUDE.md`: labels `security-escalation` plus
+Escalations become hq issues per "Issues and PRs" in `AGENTS.md`: labels `security-escalation` plus
 the area (`homeassistant`, `signalk`, `mqtt`, `org` — from the repo's family), assigned to the
 maintainer, titled `<area>: clear security alerts`. Keep **one open issue per area**: if one exists,
 add new items to its checklist and comment, rather than opening another; tick items whose alerts

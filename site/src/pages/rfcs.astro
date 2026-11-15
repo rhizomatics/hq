@@ -1,6 +1,7 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import design from '../data/design.json';
+import { ORG } from '../lib/hq-config.mjs';
 const rfcs = design;
 
 type Rfc = { repo: string; number: string | null; title: string; status: string | null; created: string | null; updated: string | null; url: string; discussion: string | null };
@@ -13,7 +14,7 @@ const sections: [string, string, Rfc[], boolean][] = [
   ['Recently closed', `Done, built, cancelled or archived, and changed in the last ${rfcs.recentDays} days.`, rfcs.closed as Rfc[], false],
 ];
 ---
-<StarlightPage frontmatter={{ title: 'RFCs', description: 'Design proposals (RFCs) across the public Rhizomatics repos: ready for review, draft and recently closed.', tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'RFCs', description: `Design proposals (RFCs) across the public ${ORG.name} repos: ready for review, draft and recently closed.`, tableOfContents: false }}>
   <p>
     Major changes are planned as Requests for Comment, kept in each repo's <code>docs/developer</code> folder
     (see the <a href="/policies/design/">design policy</a>). This page lists them by stage, as of {asOf}, updated daily.

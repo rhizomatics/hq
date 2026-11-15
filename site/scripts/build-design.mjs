@@ -25,6 +25,7 @@ import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse as parseToml } from 'smol-toml';
+import { ORG, USER_AGENT } from '../src/lib/hq-config.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
@@ -38,7 +39,7 @@ async function gh(route) {
   for (let attempt = 1; ; attempt += 1) {
     const res = await fetch(`https://api.github.com/${route}`, {
       headers: {
-        'User-Agent': 'rhizomatics-hq-site',
+        'User-Agent': USER_AGENT,
         Accept: 'application/vnd.github+json',
         'X-GitHub-Api-Version': '2022-11-28',
         Authorization: `Bearer ${token}`,
@@ -96,7 +97,8 @@ function headerDate(text) {
   return null;
 }
 
-const discussionOf = (text) => text.match(/https:\/\/github\.com\/rhizomatics\/[\w.-]+\/discussions\/\d+/)?.[0] ?? null;
+const discussionRe = new RegExp(`https://github\\.com/${ORG.github}/[\\w.-]+/discussions/\\d+`);
+const discussionOf = (text) => text.match(discussionRe)?.[0] ?? null;
 
 const docLink = (repo, paths, file) => {
   const p = paths.find((x) => x.toLowerCase().startsWith('docs/') && path.basename(x).toLowerCase() === file);

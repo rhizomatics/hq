@@ -2,7 +2,7 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import Kpi from '../components/Kpi.astro';
 import actions from '../data/actions.json';
-import { FAMILIES } from '../lib/families.mjs';
+import { FAMILIES, META_LABEL, ORG, githubUrl } from '../lib/hq-config.mjs';
 
 type State = 'red' | 'flapping' | 'recovered' | 'green' | 'none';
 type Repo = {
@@ -17,7 +17,7 @@ type Repo = {
 const repos = actions.repos as Repo[];
 const ORDER: Record<State, number> = { red: 0, flapping: 1, recovered: 2, green: 3, none: 4 };
 const LABEL: Record<State, string> = { red: 'Broken', flapping: 'Flapping', recovered: 'Recovered', green: 'Passing', none: 'No runs' };
-const groups = [...FAMILIES, ['meta', 'Organisation']]
+const groups = [...FAMILIES, ['meta', META_LABEL]]
   .map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => ORDER[a.state] - ORDER[b.state] || a.id.localeCompare(b.id))] as const)
   .filter(([, list]) => list.length);
 const count = (s: State) => repos.filter((r) => r.state === s).length;
@@ -32,7 +32,7 @@ const detail = (w: Repo['workflows'][number]) =>
         ? `${w.failures24h} failed in the last day, passing now`
         : `${w.streaks7d} separate failures in 7 days, none in the last day`;
 ---
-<StarlightPage frontmatter={{ title: 'Deployments', description: 'GitHub Actions state of each public Rhizomatics repo, updated daily.', tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'Deployments', description: `GitHub Actions state of each public ${ORG.name} repo, updated daily.`, tableOfContents: false }}>
   <p>
     The GitHub Actions state of each public repo, as of {asOf}. Updated daily. A repo takes the state of its worst deployment:
   </p>

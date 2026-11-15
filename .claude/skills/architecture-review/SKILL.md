@@ -1,6 +1,6 @@
 ---
 name: architecture-review
-description: Quarterly rolling architecture review of each Rhizomatics product against its platform's architecture (Home Assistant or SignalK), including the Home Assistant Integration Quality Scale — code changes needed, level changes, and changes to the scale itself.
+description: Quarterly rolling architecture review of each of the org's products against its platform's architecture (Home Assistant or SignalK), including the Home Assistant Integration Quality Scale — code changes needed, level changes, and changes to the scale itself.
 context: fork
 agent: architect
 ---
@@ -83,4 +83,4 @@ Shallow-clone into the scratchpad. Cite `file:line` for every finding.
   (`Rule | Tier | Recorded | Actual | Change needed`) and a **Level** recommendation, then the
   proposed edit to `quality_scale.yaml`. Compare with the same product's file last quarter.
   File human to-dos as hq issues and build agent-ready changes (e.g. the
-  `quality_scale.yaml` update) as PRs, per "Issues and PRs" in `CLAUDE.md`.
+  `quality_scale.yaml` update) as PRs, per "Issues and PRs" in `AGENTS.md`.

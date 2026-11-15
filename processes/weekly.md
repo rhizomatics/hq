@@ -33,9 +33,9 @@
 ## Any day (human)
 
 ### Review reports and approve proposals
-- **Who:** jeyrb
+- **Who:** maintainer
 - Tick or annotate items in the week's reports; turn approved proposals into project tasks or issues.
 
 ### Review current betas
-- **Who:** jeyrb
+- **Who:** maintainer
 - Check open betas, look for log issues, decide if time to issue another beta or move to production release

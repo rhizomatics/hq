@@ -9,7 +9,7 @@ owner: jeyrb
 
 Any open source developer, even with a single product, can collect usage for their projects across every
 channel they publish to and show it on a public site, with no AI and little set-up. Shares branding with
-[HQ as a product](hq-as-product.md), ships before it and is marketed first, as the low-friction way in to HQ.
+[HQ as a product](../hq-as-product.md), ships before it and is marketed first, as the low-friction way in to HQ.
 
 ## Context
 
@@ -49,5 +49,5 @@ Open:
 
 ## Log
 
-- 2026-11-15 — Created from the [HQ as a product](hq-as-product.md) decision to ship stats and site first, as
+- 2026-11-15 — Created from the [HQ as a product](../hq-as-product.md) decision to ship stats and site first, as
   a separate product with shared branding.

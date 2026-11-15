@@ -1,6 +1,6 @@
 ---
 name: dependabot-sweep
-description: Daily merge or close of Dependabot PRs across Rhizomatics repos — merges trusted bumps (GitHub-owned actions, hassfest/HACS actions, rhizomatics/.github workflows, Astral and oxc tooling) once CI is green, and closes bumps of dependencies inherited from Home Assistant or SignalK.
+description: Daily merge or close of Dependabot PRs across the org's repos — merges trusted bumps (GitHub-owned actions, hassfest/HACS actions, <org>/.github workflows, Astral and oxc tooling) once CI is green, and closes bumps of dependencies inherited from Home Assistant or SignalK.
 context: fork
 agent: infra-lead
 ---
@@ -8,16 +8,16 @@ agent: infra-lead
 # Daily Dependabot sweep
 
 The maintainer has given this process standing approval to merge and close the Dependabot PRs
-described below (see "Issues and PRs" in `CLAUDE.md`). Anything outside these rules is left open
+described below (see "Issues and PRs" in `AGENTS.md`). Anything outside these rules is left open
 for the weekly `/pr-report`. Silence is the expected outcome.
 
 ## Gather, per repo in `repos.toml`
 
-- Open PRs by `dependabot[bot]`: `gh api 'repos/rhizomatics/<repo>/pulls?state=open&per_page=100'`.
-- For each: `gh api repos/rhizomatics/<repo>/pulls/<n>` (`head.sha`, `mergeable`,
+- Open PRs by `dependabot[bot]`: `gh api 'repos/<org>/<repo>/pulls?state=open&per_page=100'`.
+- For each: `gh api repos/<org>/<repo>/pulls/<n>` (`head.sha`, `mergeable`,
   `mergeable_state`), `.../pulls/<n>/files` (changed files), and the PR body, which lists every
   dependency and its from/to version (grouped PRs list several).
-- CI on the head commit: `gh api repos/rhizomatics/<repo>/commits/<sha>/check-runs` and
+- CI on the head commit: `gh api repos/<org>/<repo>/commits/<sha>/check-runs` and
   `.../commits/<sha>/status`.
 
 ## Classify each dependency in the PR
@@ -25,7 +25,7 @@ for the weekly `/pr-report`. Silence is the expected outcome.
 **Trusted** (merge):
 - GitHub-owned actions: `actions/*`.
 - Home Assistant validation actions: `home-assistant/actions/hassfest`, `hacs/action`.
-- Shared workflows from `rhizomatics/.github` (`uses: rhizomatics/.github/...`).
+- Shared workflows from `<org>/.github` (`uses: <org>/.github/...`).
 - Astral: `uv`, `uv_build`, `ruff`, `ty` and `astral-sh/*` actions.
 - oxc: `oxlint`, `oxfmt`, `oxlint-tsgolint`.
 
@@ -64,16 +64,16 @@ add each to the rolling `<area>: review waiting PRs` issue with a one-line summa
 changes from the release notes, so the maintainer can decide.
 
 Merge with a squash, pinned to the head you checked:
-`gh api -X PUT repos/rhizomatics/<repo>/pulls/<n>/merge -f merge_method=squash -f sha=<sha>`.
+`gh api -X PUT repos/<org>/<repo>/pulls/<n>/merge -f merge_method=squash -f sha=<sha>`.
 If the PR is behind or conflicting (`mergeable_state` `dirty`/`behind`), comment
 `@dependabot rebase` and leave it for tomorrow. Never use admin bypass.
 
 **Close** a PR whose dependencies are all inherited. Comment first, e.g. "Closing: `zeroconf` is
 pinned by Home Assistant, so we follow the platform's version rather than bumping it here.", then
-`gh api -X PATCH repos/rhizomatics/<repo>/pulls/<n> -f state=closed`. If the repo's
+`gh api -X PATCH repos/<org>/<repo>/pulls/<n> -f state=closed`. If the repo's
 `.github/dependabot.yml` doesn't already `ignore` that dependency, add it in one PR per repo
 (reuse an open one), so Dependabot stops raising it; if the same ignore belongs in the shared
-template in `rhizomatics/.github`, say so in the PR.
+template in `<org>/.github`, say so in the PR.
 
 **Not merged** despite the rules (CI failing for 2+ days, merge refused by branch protection):
 add it to the rolling hq issue for the area, `<area>: review waiting PRs` (labels `prs` + area),
@@ -83,7 +83,7 @@ requires checks that no longer run is a settings fix: file or update an hq issue
 
 ## Output
 
-`hq-private/reports/dependabot/YYYY-MM-DD.md`, short (see "Working rules" in `CLAUDE.md`):
+`hq-private/reports/dependabot/YYYY-MM-DD.md`, short (see "Working rules" in `AGENTS.md`):
 
 ```
 # Dependabot sweep YYYY-MM-DD

@@ -7,23 +7,28 @@ agent: pm
 
 # Policy review (Apr / Aug / Dec, 10th)
 
-Reviews `policies/`, `processes/`, `CLAUDE.md`, `team.md`, the skills in `.claude/skills/` and the
-cloud routines. No report: the outputs are a PR and an issue (see "Reports" in `CLAUDE.md`).
+Reviews `policies/`, `processes/`, `AGENTS.md` (and the agent-specific notes such as `CLAUDE.md`),
+`team.md`, the skills in `.claude/skills/` and the cloud routines. No report: the outputs are a PR and an
+issue (see "Reports only when there's a case for one" in `AGENTS.md`).
 
 ## 0. Pick up
 
 - Read the previous policy review issue (open or closed, labels `alignment` + `org`, title
   `org: policy review decisions, <Month YYYY>`) and its comments. Carry out anything approved there
   that isn't done yet, and note what you picked up in the new issue.
-- `git log --since=<last review date> -- policies processes CLAUDE.md .claude` shows what changed
+- `git log --since=<last review date> -- policies processes AGENTS.md CLAUDE.md .claude` shows what changed
   since; new or edited text is the most likely place for new inconsistencies.
 
 ## 1. Consistency
 
-Read every file under `policies/` and `processes/`, then `CLAUDE.md` and `team.md`. Look for:
+Read every file under `policies/` and `processes/`, then `AGENTS.md`, `CLAUDE.md` and `team.md`. Look for:
 
 - **Contradictions** between files: the same rule stated differently (versions windows, trusted
-  packages, file names and paths, cooldowns), or a process README rule that `CLAUDE.md` contradicts.
+  packages, file names and paths, cooldowns), or a process README rule that `AGENTS.md` contradicts.
+- **Org names outside config**: the org, maintainer, site URL and repo names belong in `repos.toml`
+  (`[org]`); everywhere else names the role (`<org>`, the maintainer, `hq-private`). A grep for them
+  outside `repos.toml` and instance content (`projects/`, `policies/`, `reference/`, the site's home page)
+  should find nothing.
 - **Duplication** that will drift: keep a rule in one place and point to it from the others.
 - **Stale facts**: examples whose dates have passed, deprecated tools still named, repos that were
   renamed or archived (check against `repos.toml`).
@@ -42,7 +47,7 @@ cadence entry, read its `SKILL.md` in full and check:
   weekly/monthly split) matches the cadence entry and its section heading.
 - **Who**: frontmatter `agent:` is the persona in **Who**.
 - **Output**: the paths, PR/issue shapes and labels the skill's **Output** names match the entry's
-  **Output**, and both follow the "Reports only when there's a case for one" rule in `CLAUDE.md`
+  **Output**, and both follow the "Reports only when there's a case for one" rule in `AGENTS.md`
   (a skill still writing a report the cadence entry has dropped, or the reverse, is drift).
 - **Report visibility**: the skill writes for the reader the entry's **Report** line implies, and a
   private-by-exception skill tells the agent when to set `visibility: private`.
@@ -79,7 +84,7 @@ Fixing a routine is the maintainer's: list the exact change in the issue.
 Only cheap checks, by REST (`gh api`), farmed to the `researcher` subagent for many repos:
 
 - `products.md`: Actions, Issues, PRs and Discussions on, Wiki and Projects off
-  (`gh api repos/rhizomatics/<repo> --jq '{has_issues,has_discussions,has_wiki,has_projects}'`);
+  (`gh api repos/<org>/<repo> --jq '{has_issues,has_discussions,has_wiki,has_projects}'`);
   "managed by hq" badge in the README.
 - `release.md`: latest release immutable (`.immutable` on `releases?per_page=1`), except
   `experimental` repos.
@@ -98,10 +103,10 @@ Anything deeper belongs to the process that owns it (`/github-review`, `/alignme
 
 ## Output
 
-- **PR on `hq`**, branch `policy-review/YYYY-MM`, review requested from `jeyrb`: every change that
+- **PR on `hq`**, branch `policy-review/YYYY-MM`, review requested from the maintainer: every change that
   needs no decision (wording, typos, cross-references, stale facts, schedule text, skill plumbing).
   One theme per PR; the description says why each change was made.
-- **One hq issue** in `rhizomatics/hq-private`, labels `alignment` + `org`, assigned `jeyrb`, title
+- **One hq issue** in `<org>/hq-private`, labels `alignment` + `org`, assigned to the maintainer, title
   `org: policy review decisions, <Month YYYY>`: a checklist of decisions only the maintainer can make,
   each with the evidence (repos, files) and the options in a line or two. Link it from the PR and
   the PR from it. Search open issues with the same labels first.

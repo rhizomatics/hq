@@ -1,6 +1,6 @@
 ---
 name: github-review
-description: Monthly review of GitHub Actions workflows and repo/org settings across Rhizomatics — consistency per app type (HACS, SignalK plugin, Docker/PyPI), adopting new GitHub features, and root causes of recurring build failures.
+description: Monthly review of GitHub Actions workflows and repo/org settings across the org — consistency per app type (HACS, SignalK plugin, Docker/PyPI), adopting new GitHub features, and root causes of recurring build failures.
 context: fork
 agent: infra-lead
 ---
@@ -9,7 +9,7 @@ agent: infra-lead
 
 ## 1. Recurring build failures (root causes)
 
-For each repo in `repos.toml`: `gh run list -R rhizomatics/<repo> --status failure --created ">=<date 35 days ago>" --json workflowName,headBranch,event,createdAt,url,databaseId`.
+For each repo in `repos.toml`: `gh run list -R <org>/<repo> --status failure --created ">=<date 35 days ago>" --json workflowName,headBranch,event,createdAt,url,databaseId`.
 Read failing logs (`gh run view <id> --log-failed`) and cluster by cause: flaky test, expired
 token/secret, rate limit, upstream action deprecation (Node version, `set-output`), dependency
 resolution, runner image change, publish credential (PyPI/npm OIDC, GHCR). For each cluster with
@@ -23,16 +23,16 @@ validation), `signalk-plugin` (npm publish with OIDC trusted publishing), `mqtt-
 to GHCR + PyPI), `cli`, `site`. Within each type compare `.github/workflows/*`: same jobs, triggers,
 action versions (pinned to SHA or major consistently), permissions blocks, concurrency, caching,
 release flow. Identify the best current version per type and the repos behind it. Where a type
-has 3+ repos with near-identical workflows, propose a reusable workflow in `rhizomatics/.github`.
+has 3+ repos with near-identical workflows, propose a reusable workflow in `<org>/.github`.
 
 ## 3. Settings
 
-Per repo (`gh api repos/rhizomatics/<repo>`, `/rulesets`, `/actions/permissions`,
+Per repo (`gh api repos/<org>/<repo>`, `/rulesets`, `/actions/permissions`,
 `/actions/permissions/workflow`, `/vulnerability-alerts`, `/private-vulnerability-reporting`):
 default branch protection or rulesets, default `GITHUB_TOKEN` permissions (read-only),
 allowed actions, Dependabot alerts/security updates, secret scanning + push protection, private
 vulnerability reporting, code scanning, discussions/issues enabled consistently, merge options,
-auto-delete head branches, topics/description/homepage set. Org level: `gh api orgs/rhizomatics`
+auto-delete head branches, topics/description/homepage set. Org level: `gh api orgs/<org>`
 and `/actions/permissions`. Flag drift from the majority or from a sensible baseline.
 
 Read every setting the API exposes, not only these, and compare against `policies/products.md`
@@ -54,7 +54,7 @@ Checks no other process makes (hq-private#110):
 - **Release notes** (`policies/release.md`): the latest non-beta release of each repo uses the
   Release Notes Format headings it needs, plus GitHub's generated notes (PR list and "Full Changelog" link).
 - **Immutable releases**: `immutable` is true on the latest release
-  (`gh api repos/rhizomatics/<repo>/releases?per_page=1 --jq '.[0].immutable'`), except repos with
+  (`gh api repos/<org>/<repo>/releases?per_page=1 --jq '.[0].immutable'`), except repos with
   `category = ["experimental"]`. GitHub applies immutability to all of a repo's releases, so it may be
   switched off briefly for a beta: flag it only if it's still off a week after the beta.
 - **Container rescans** (`policies/build.md`): every repo that publishes to GHCR (`ghcr` in
@@ -67,5 +67,5 @@ Checks no other process makes (hq-private#110):
 `hq-private/reports/github/YYYY-MM.md`: failure clusters with root cause and fix, a per-type workflow matrix
 with the recommended baseline, settings drift table, new features worth adopting. Changes to
 GitHub settings need approval: file them as an hq issue (area `org`) with the exact `gh` commands; run
-them only once approved there. Workflow changes go as PRs, per "Issues and PRs" in `CLAUDE.md`.
+them only once approved there. Workflow changes go as PRs, per "Issues and PRs" in `AGENTS.md`.
 Check last month's report and record what was adopted.

@@ -1,6 +1,6 @@
 ---
 name: ecosystem-review
-description: Monthly review of Home Assistant and SignalK — recent releases and upcoming architecture changes — for threats (breakage, deprecations, overlap) and opportunities for Rhizomatics products.
+description: Monthly review of Home Assistant and SignalK — recent releases and upcoming architecture changes — for threats (breakage, deprecations, overlap) and opportunities for the org's products.
 context: fork
 agent: architect
 ---
@@ -10,7 +10,7 @@ agent: architect
 Scheduled on the 10th, always after Home Assistant's monthly release (first Wednesday), so the new
 release is in scope.
 
-These repos are outside rhizomatics, so in a cloud routine read them with WebFetch of their
+These repos are outside the org, so in a cloud routine read them with WebFetch of their
 github.com pages (`/releases`, `/pulls?q=...`, `/discussions`); the `gh` commands below work locally only.
 
 ## Look back: releases in the last month
@@ -49,4 +49,4 @@ update who's still affected, and remove items every repo has caught up with. Com
 
 `hq-private/reports/ecosystem/YYYY-MM.md`: a summary, then **Threats** (`Change | Affects | When | Action`),
 **Opportunities**, **Watch list** (forward-looking items to recheck next month, carried over and
-updated from last month's report). File actions as hq issues per "Issues and PRs" in `CLAUDE.md`.
+updated from last month's report). File actions as hq issues per "Issues and PRs" in `AGENTS.md`.

@@ -1,8 +1,9 @@
 ---
 title: HQ as a product
-status: draft
+status: active
 lead: architect
 owner: jeyrb
+started: 2026-11-15
 ---
 
 ## Goal
@@ -13,11 +14,11 @@ improvements from the core product without losing their local changes. It's desi
 says honestly that it works best with Claude. It's built from existing skill packages wherever they exist, adding its own skills only to fill gaps.
 
 There should be value even for a single-product developer: usage stats and the public site are pulled out as
-a separate product, [HQ Stats](hq-stats.md), which ships and is marketed first.
+a separate product, [HQ Stats](proposed/hq-stats.md), which ships and is marketed first.
 
 ## Context
 
-- **Two products.** (1) [HQ Stats](hq-stats.md): deterministic collection of usage per channel (PyPI, npm,
+- **Two products.** (1) [HQ Stats](proposed/hq-stats.md): deterministic collection of usage per channel (PyPI, npm,
   ghcr, HACS, HA analytics) and its public site. No AI needed. (2) HQ, the agentic operating model: personas,
   policies, processes and skills. Different audiences and set-up costs; (1) is the low-friction way in to (2),
   so it goes first, under shared branding, and HQ uses it as a component.
@@ -29,7 +30,7 @@ a separate product, [HQ Stats](hq-stats.md), which ships and is marketed first.
   by a choice of engine (Copilot, Claude, Codex). Ready-made OSPO workflows overlap HQ: org health report,
   contributor report, open source compliance check, stale repo report. Maintained by GitHub and improving, and
   engine-neutral, which also helps non-Claude users.
-- **OpenSSF Allstar** looks unmaintained; not a candidate. OpenSSF Scorecard is (see [OpenSSF](../openssf.md)).
+- **OpenSSF Allstar** looks unmaintained; not a candidate. OpenSSF Scorecard is (see [OpenSSF](openssf.md)).
 - **What HQ adds** over gh-aw's examples: ecosystem-aware stats (HACS, HA analytics, SignalK), forum watching,
   policies aligned to an upstream platform, personas that disagree on purpose, private/public split, the site.
 
@@ -78,7 +79,7 @@ Which skills are used, and whether they're still the best choice, is reviewed re
 
 - **Core:** project and process model, issue/PR conventions, support, PRs, Dependabot, registry, projects,
   security merge step, provider config, the two reviews, brand kit structure. Stats and the site come from
-  [HQ Stats](hq-stats.md).
+  [HQ Stats](proposed/hq-stats.md).
 - **Packs:** `homeassistant` and `signalk`: forum watch sources and topic terms, platform alignment policies,
   platform change tracking, upstream advisories (`security_watch`), stats channels (HACS, HA analytics).
 - No language modules: channel fields in `repos.toml` (`pypi`, `npm`, `ghcr`, ...) already select collectors.
@@ -126,11 +127,14 @@ a separate domain only once there are outside users.
 
 ### Phase 0: parameterise (in hq)
 
-- [ ] @agent Move org, maintainer, private repo, areas, labels and families into `repos.toml`; skills, personas and site scripts read them
-- [ ] @agent Replace hardcoded `rhizomatics` / `jeyrb` / platform names outside config and packs; done when a grep finds none
-- [ ] @agent Make `AGENTS.md` canonical, `CLAUDE.md` a pointer plus Claude-only notes
+- [x] @agent Move org, maintainer, private repo, areas, labels and families into `repos.toml`; skills, personas and site scripts read them (2026-11-15)
+- [x] @agent Replace hardcoded `rhizomatics` / `jeyrb` outside config; done when a grep finds none (2026-11-15). Scope: `AGENTS.md`,
+      `CLAUDE.md`, personas, skills, processes, `team.md`, site scripts, pages and config. Instance content keeps its names:
+      `projects/`, `policies/`, `reference/`, the site home page, and the admin workflows synced from `<org>/.github`
+- [ ] @agent Platform names (Home Assistant, SignalK, HACS) out of core files: moved to Phase 2, where the packs they belong in are made
+- [x] @agent Make `AGENTS.md` canonical, `CLAUDE.md` a pointer plus Claude-only notes (2026-11-15)
 
-- [ ] @pair Pull usage stats and the site's Usage section out into [HQ Stats](hq-stats.md); it ships ahead of the phases below
+- [ ] @pair Pull usage stats and the site's Usage section out into [HQ Stats](proposed/hq-stats.md); it ships ahead of the phases below
 
 ### Phase 1: providers and skill packages
 
@@ -145,7 +149,8 @@ a separate domain only once there are outside users.
 
 ### Phase 2: core and packs
 
-- [ ] @pair Split skills, policies and reference into core and `homeassistant` / `signalk` packs; hq runs unchanged
+- [ ] @pair Split skills, policies and reference into core and `homeassistant` / `signalk` packs; hq runs unchanged;
+      done when core files name no platform (deferred from Phase 0)
 - [ ] @pair Brand kit structure in core; Rhizomatics images move to wherever its products keep them
 - [ ] @pair Per-agent adapters generated from personas and skills; try one non-Claude engine end to end
 
@@ -174,7 +179,7 @@ Rhizomatics alone.
 
 Decided:
 
-- 2026-11-15 — Stats and site become a separate project and product, [HQ Stats](hq-stats.md), with shared
+- 2026-11-15 — Stats and site become a separate project and product, [HQ Stats](proposed/hq-stats.md), with shared
   branding. It's pulled out in the first phase and marketed ahead of HQ itself.
 - 2026-11-15 — Reusing existing skill packages is fundamental, gh-aw being only one source. HQ adds skills only
   for gaps and never does what a vendor has a better skill for. Skills in use, obsolete or retirable in favour of
@@ -193,8 +198,16 @@ _None._
   seed + upstream review model for support burden; pluggable capability providers (several security auditors);
   gh-aw to replace skills where it does as well; agent-neutral; brand kit as structure only; Allstar dropped
   (unmaintained).
-- 2026-11-15 — Decisions recorded: stats split out as [HQ Stats](hq-stats.md), first to market; skill-package
+- 2026-11-15 — Decisions recorded: stats split out as [HQ Stats](proposed/hq-stats.md), first to market; skill-package
   reuse made fundamental, with the upstream review replaced by two reviews (product architecture, instance
   alignment). Plan updated to match.
 - 2026-11-15 — Agent-neutral by design, but stated honestly as best used with Claude; other engines listed
   with what has and hasn't been tested. gh-aw dropped as a runtime; it stays a skill source.
+- 2026-11-15 — Started (moved to active). Phase 0: `repos.toml` gained `[org]` name, `hq_repo`, `private_repo`,
+  `site_url`, plus `[families]` (site heading and issue area per family) and `[labels]`. The site reads them
+  through `site/src/lib/hq-config.mjs` (replaces `families.mjs`); site builds unchanged. `AGENTS.md` is now the
+  canonical instructions with a "Names used in these docs" section (`<org>`, the maintainer, `hq-private`);
+  `CLAUDE.md` imports it and keeps only Claude notes (Haiku researcher, cloud routine sandbox). Skills,
+  personas, processes and `team.md` name roles, not the org. Policy review now greps for org names outside
+  config. Platform names deferred to Phase 2. Stats extraction is the [HQ Stats](proposed/hq-stats.md) project's
+  work: its collectors already read the org from `repos.toml`.

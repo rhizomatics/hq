@@ -17,3 +17,7 @@ This is always within the limitations of the underlying platform, and its import
   - [Project Standards](../../policies/project_standards.md)
 
 - 2026-10-30 — project-review: moved to proposed; idea note with no tasks or next step. Move back up when a first task and a start date exist.
+
+## Completion
+
+Covered by monthly alignment and new Python Stack doc

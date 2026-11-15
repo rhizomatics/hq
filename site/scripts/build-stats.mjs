@@ -16,12 +16,13 @@ import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse as parseToml } from 'smol-toml';
+import { USER_AGENT } from '../src/lib/hq-config.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
 const privateRoot = path.resolve(process.env.HQ_PRIVATE ?? path.join(hqRoot, '..', 'hq-private'));
 const outPath = path.join(siteRoot, 'src', 'data', 'stats.json');
-const UA = { 'User-Agent': 'rhizomatics-hq-site' };
+const UA = { 'User-Agent': USER_AGENT };
 const DAY = 86_400_000;
 
 // hacs-downloads keyed some projects by a hyphenated id rather than the repo name.

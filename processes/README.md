@@ -11,7 +11,7 @@ Recurring routines, one file per cadence:
 Each agent process is a Claude Code skill in `.claude/skills/<name>/SKILL.md` (runnable by hand as
 `/<name>`) that runs as a persona from `.claude/agents/`. The cadence files say *when* and *who*; the skill says *how*.
 
-Process outputs are focused on *actionable results* rather than reports. Primary output of each process are PRs for identified changes and Issues for open questions, raised on the target repository. A report is written only where there's a case for one: an audit trail that the process ran and what it found (security escalation is the one known case), or memory the agent needs for its next run. Otherwise nobody reads it, so it isn't written (see "Reports" in `CLAUDE.md`).
+Process outputs are focused on *actionable results* rather than reports. Primary output of each process are PRs for identified changes and Issues for open questions, raised on the target repository. A report is written only where there's a case for one: an audit trail that the process ran and what it found (security escalation is the one known case), or memory the agent needs for its next run. Otherwise nobody reads it, so it isn't written (see "Reports only when there's a case for one" in `AGENTS.md`).
 
 ## Report Accessibility
 
@@ -19,7 +19,7 @@ Process outputs are focused on *actionable results* rather than reports. Primary
 
 Each process also declares who can read its report (`- **Report:**`):
 
-- **public**: published on the [HQ site](https://hq.rhizomatics.org.uk/reports/); never holds security findings, referrers, personal infrastructure or support triage.
+- **public**: published in the Reports section of the HQ site; never holds security findings, referrers, personal infrastructure or support triage.
 - **private by exception**: published unless the report's frontmatter says `visibility: private`, which the agent sets whenever the report holds anything sensitive.
 - **private**: stays in `hq-private`.
 
@@ -31,7 +31,7 @@ Monthly and quarterly work is spread across the calendar so it doesn't all land 
 
 ## Scheduling
 
-Every agent process runs as a Claude Code cloud routine (manage at https://claude.ai/code/routines), named `hq: <cadence> <process>`, with all rhizomatics repos attached. Times are UTC:
+Every agent process runs as a Claude Code cloud routine (manage at https://claude.ai/code/routines), named `hq: <cadence> <process>`, with all the org's repos attached. Times are UTC:
 
 - **Daily:** Dependabot sweep 05:40, support sweep 06:00, security escalation 06:20, forum watch 06:40 (after the 05:00
   stats and GitHub snapshot in Actions).

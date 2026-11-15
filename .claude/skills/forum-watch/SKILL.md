@@ -1,6 +1,6 @@
 ---
 name: forum-watch
-description: Daily scan of Home Assistant and SignalK community forums for discussions mentioning Rhizomatics products, or where a Rhizomatics product would be a good answer. Drafts replies; never posts.
+description: Daily scan of Home Assistant and SignalK community forums for discussions mentioning the org's products, or where one of them would be a good answer. Drafts replies; never posts.
 context: fork
 agent: marketing
 ---
@@ -16,7 +16,7 @@ Check only the sources whose cadence is due today (see the reference files), cov
 period since that source was last checked: one cadence period, or since the last report that
 listed it. Record in the report which sources were checked.
 
-1. **Mentions** — product and repo names (`supernotify`, `updates2mqtt`, `rhizomatics`, …).
+1. **Mentions** — product, repo and package names from `repos.toml`, and the org's own name (`[org].name`).
 2. **Opportunities** — threads matching the problem phrases where nobody has already given a good
    answer, the thread is recent and still open, and our product genuinely fits (version, platform,
    setup effort). Being useful beats being promotional; skip weak fits.
@@ -30,7 +30,7 @@ comparison with an alternative (note which) · announcement by us.
 
 ## Output
 
-`hq-private/reports/forums/YYYY-MM-DD.md`, short (see "Working rules" in `CLAUDE.md`):
+`hq-private/reports/forums/YYYY-MM-DD.md`, short (see "Working rules" in `AGENTS.md`):
 
 ```
 # Forum watch YYYY-MM-DD
@@ -49,7 +49,7 @@ issue; give a suggested issue title). Landscape notes (competitors, announcement
 each at most, and go to the reputation review rather than accumulating here.
 
 Then update the rolling hq issue per area (`<area>: forum replies and manual checks`, labels
-`forums` + area), per "Issues and PRs" in `CLAUDE.md`: one checklist item per thread to reply to,
+`forums` + area), per "Issues and PRs" in `AGENTS.md`: one checklist item per thread to reply to,
 linking the thread and its draft (`hq-private/reports/forums/YYYY-MM-DD.md#...`), plus the manual checks due
 today from the "Manual checks" tables in the `reference/*_discussion.md` files (what to look for,
 and any product or topic that came up today). Tick items already done (e.g. a reply is visible in
