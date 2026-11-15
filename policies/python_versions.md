@@ -17,7 +17,7 @@ For PyPi published libraries, maintain support for 2 or 3 major Python versions
     - Py3.13 will be supported until October 2027, when Py3.15 has been out for a year
     - Py3.14 remains primary
 
-## Policy - Dockerfiles
+## Policy - Dockerfiles
 
 - Switch to the latest Python version after its first patch release
   - e.g. Don't use `3.15.0`, start usage from `3.15.1`

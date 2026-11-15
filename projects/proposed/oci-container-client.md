@@ -1,3 +1,7 @@
+---
+summary: Extract updates2mqtt's OCI registry client into a reusable Python library
+---
+
 # OCI Container Python Client Library
 
 Updates2MQTT has acummulated a lot of OCI container registry client behaviour including from the CLI. Part of the reason is that there is no recently maintained Python library available.

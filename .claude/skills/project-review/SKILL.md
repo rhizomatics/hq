@@ -24,8 +24,10 @@ in `projects/README.md`. Respect their wording; suggest structure rather than im
 - **Next steps**: the 1–3 concrete next tasks, each tagged `@agent` / `@pair` / `@human`. For
   `@agent` tasks, say whether you could do them next run unattended.
 
-Apply clear factual updates directly (tick tasks evidenced as done, add a dated Log entry, fix the
-`projects/README.md` index). Leave goal/scope/priority changes as proposals.
+Apply clear factual updates directly (tick tasks evidenced as done, add a dated Log entry). The
+project tables are generated from each file's folder and `summary:`, so there's no index to edit:
+moving a file between folders is the whole change. Add a `summary:` to any project missing one
+(`mise run check-hq` lists them). Leave goal/scope/priority changes as proposals.
 
 ## Monthly, additionally
 

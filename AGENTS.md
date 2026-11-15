@@ -31,8 +31,8 @@ HQ is those two repos:
 ## Layout
 
 - `repos.toml` — registry of every repo, its family and where it's published, plus the org settings above. Source of truth for all processes; update it when a repo is added, renamed or starts publishing somewhere new.
-- `projects/` — active projects; `projects/proposed/` ideas not started, `projects/done/` finished, `projects/shelved/` rejected or postponed indefinitely. Format, task tags (`@agent`/`@pair`/`@human`) and index in `projects/README.md`.
-- `processes/` — recurring routines, one file per cadence (`daily.md` … `quarterly.md`): when, persona, output.
+- `projects/` — active projects; `projects/proposed/` ideas not started, `projects/done/` finished, `projects/shelved/` rejected or postponed indefinitely. Format, task tags (`@agent`/`@pair`/`@human`) in `projects/README.md`; the project tables there are generated from each file's folder and `summary:`.
+- `processes/` — recurring routines, one file per cadence (`daily.md` … `quarterly.md`): when, persona, environment, output. The schedule in `processes/README.md` and each persona's **Runs** in `team.md` are generated from them.
 - `team.md` — who owns what, character, handoffs between personas, disagreements.
 - `.claude/agents/` — personas: `pm`, `architect`, `infra-lead`, `marketing`, `tech-writer`; plus `researcher`, a cheap fast model for farmed-out gathering.
 - `.claude/skills/` — one skill per process.
@@ -81,6 +81,7 @@ HQ is those two repos:
   put such detail in the hq issue instead.
 - Keep reports short and compare with the previous one in the same folder; say what changed, not what's the same. **Daily reports**: a quiet day is one or two lines; otherwise a headline, the action items (each with its hq issue link) and then only the detail those items need, aiming for under ~20 lines plus drafts. No lists of sources checked or unchanged tables unless something failed or changed; data gaps are one line each.
 - Fix what an agent can fix (hq reference files, `repos.toml`, docs) in the same run, or as a PR for product repos, instead of listing it as a to-do.
+- **Scripts over agents** (`policies/scripts_over_agents.md`): never hand-edit a generated list; change its source. Run `mise run check-hq` after changing processes, skills, personas or projects. Mechanical work you find yourself repeating each run is a candidate for a script: say so in your report.
 - When working a project, update its **Log** and task checkboxes in the same session.
 - Farm out bulk gathering (the same query across many repos, fetching many forum threads, release notes or search results) to the `researcher` subagent. Give it the exact sources, fields and date range; keep ranking, judgement and drafting in your own persona.
 - Handoffs: when a finding belongs to another persona (see the table in `team.md`), add it under **For other roles** at the end of your report, naming the persona. At the start of each run, check the latest reports for items addressed to you and say in your report which you picked up.

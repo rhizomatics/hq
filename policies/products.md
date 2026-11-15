@@ -2,7 +2,7 @@
 
 Products will follow all the other HQ policies except where an exception listed.
 
-## Git Repositories
+## Git Repositories
 
 Each product will be listed in HQ in `repos.toml`.
 Products marked `category = ["experimental"]` there aren't shown publicly. All others are shown on the public HQ site and listed under the appropriate category at https://www.rhizomatics.org.uk (the `.github` project).

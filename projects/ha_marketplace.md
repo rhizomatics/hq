@@ -1,3 +1,7 @@
+---
+summary: Rename HACS badges, links and references to the Marketplace (2026.11)
+---
+
 # Home Assistant Marketplace
 
 2026.11 of Home Assistant integrates HACS as the "Home Assistant Marketplace"

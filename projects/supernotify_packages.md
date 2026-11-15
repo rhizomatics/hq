@@ -1,3 +1,7 @@
+---
+summary: Auto-discovered notification packages on top of Supernotify
+---
+
 # Supernotify Packages
 
 A new set of complementary plugins for Home Assistant that have the aim of completing automating notifications, so all users have to is install the plugin and everything needed is auto discovered and sensibly covered.

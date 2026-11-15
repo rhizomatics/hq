@@ -1,3 +1,7 @@
+---
+summary: Reduce unnecessary variation across the stack
+---
+
 # Project Alignment
 
 Reduce unncessary variation across the stack, and adopt successful packages, techniques etc across the products.

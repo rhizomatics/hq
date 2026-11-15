@@ -1,5 +1,6 @@
 ---
 title: Move Rhizomatics infrastructure to its own AWS account
+summary: Move Rhizomatics infrastructure to its own AWS account
 status: draft
 lead: infra-lead
 owner: jeyrb

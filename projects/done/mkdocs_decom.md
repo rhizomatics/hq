@@ -1,3 +1,7 @@
+---
+summary: Move docs off mkdocs to properdocs/materialx, Zensical for new projects
+---
+
 # mkdocs Decom
 
 `mkdocs` has gone off in a strange direction.

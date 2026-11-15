@@ -1,4 +1,4 @@
-# Project Standards
+# Project Standards
 
 Expectations of Rhizomatics projects
 

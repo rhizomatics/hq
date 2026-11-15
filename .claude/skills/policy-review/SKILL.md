@@ -32,20 +32,25 @@ Read every file under `policies/` and `processes/`, then `AGENTS.md`, `CLAUDE.md
 - **Duplication** that will drift: keep a rule in one place and point to it from the others.
 - **Stale facts**: examples whose dates have passed, deprecated tools still named, repos that were
   renamed or archived (check against `repos.toml`).
-- **Process plumbing**: every cadence entry has a skill in `.claude/skills/` and vice versa; the
-  schedule in `processes/README.md` matches the cadence files; owners in `team.md` match the
-  cadence files' **Who**.
+- **Process plumbing**: run `mise run check-hq` (or `node site/scripts/check-hq.mjs`) and fix or
+  raise what it reports. It covers the mechanical checks: every cadence entry has a skill and vice
+  versa, skill `name` and `agent:` match the entry, the persona exists, each entry has **When:**
+  (UTC), **Environment:** and **Report:**, every project has a `summary:`, no broken headings. The
+  schedule in `processes/README.md`, the project tables and each persona's **Runs** in `team.md` are
+  generated from those sources, so there's nothing to compare there.
+- **Scripts over agents** (`policies/scripts_over_agents.md`): any step in a skill that is the same
+  mechanical work every run, or any list someone still keeps by hand, is a candidate for a script or
+  a generated list. Propose it in the PR or the issue.
 
 ## 1a. Skills against the cadence files
 
 The cadence files in `processes/` are the source of truth for *when*, *who*, *output* and *scope*;
-the skill says *how*. Skills drift when a cadence entry is edited and the skill isn't. For every
-cadence entry, read its `SKILL.md` in full and check:
+the skill says *how*. Skills drift when a cadence entry is edited and the skill isn't. The script
+above has already checked names, personas and required fields; for every cadence entry, read its
+`SKILL.md` in full and check what needs reading:
 
-- **Name**: the skill named in the heading (`/<name>`) exists and its frontmatter `name` matches.
 - **When**: the timing the skill states (title, intro, "runs every …", rolling batch days, the
   weekly/monthly split) matches the cadence entry and its section heading.
-- **Who**: frontmatter `agent:` is the persona in **Who**.
 - **Output**: the paths, PR/issue shapes and labels the skill's **Output** names match the entry's
   **Output**, and both follow the "Reports only when there's a case for one" rule in `AGENTS.md`
   (a skill still writing a report the cadence entry has dropped, or the reverse, is drift).
@@ -63,8 +68,8 @@ file. Where it isn't clear which is intended, put it in the issue with both vers
 ## 2. Cloud routines
 
 List the routines (the `/schedule` skill, or `RemoteTrigger` list). For each `hq: ...` routine
-check its cron against the cadence files and `processes/README.md` (times are UTC), its environment
-against the README's environment lists, and that it runs the right skill.
+check its cron against the **When:** of its cadence entry (times are UTC), its environment against
+the entry's **Environment:**, and that it runs the right skill.
 
 **Attached repos**: compare each routine's attached repos with `repos.toml` exactly, not just for
 missing ones. The correct set is every repo in `repos.toml` without `archived = true`, including
@@ -76,7 +81,7 @@ missing ones. The correct set is every repo in `repos.toml` without `archived = 
   `repos.toml`; fix it in the PR);
 - routines whose repo sets differ from each other, since all `hq:` routines should carry the same set.
 
-A process with no routine is a gap unless the README says it runs by hand.
+A process with no routine is a gap unless its cadence entry says it runs by hand.
 Fixing a routine is the maintainer's: list the exact change in the issue.
 
 ## 3. Policies against reality

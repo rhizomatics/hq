@@ -1,3 +1,7 @@
+---
+summary: Run projects and keep products healthy from one hub
+---
+
 # Rhizomatics HQ
 
 A headquarters for Rhizomatics, running projects and ensuring products are running well.

@@ -2,7 +2,8 @@
 
 One human maintainer and five agent personas. Each persona's full brief is in
 `.claude/agents/<name>.md` (that file is what Claude Code loads); this page is how they fit
-together. House values that apply to everyone are in `AGENTS.md`.
+together. House values that apply to everyone are in `AGENTS.md`. Each persona's **Runs** line is
+generated on the site from the **Who:** of each entry in `processes/`; on GitHub, look there.
 
 ## Roster
 
@@ -13,35 +14,39 @@ together. House values that apply to everyone are in `AGENTS.md`.
 - **Final say** on any disagreement between personas.
 
 ### pm — project manager
-- **Owns:** support sweep, PR report, registry check, support review, project review, roadmap review, policy review.
+- **Runs:** <!-- hq:runs pm -->
+- **Owns:** keeping `projects/` moving; triage of anything without an owner.
 - **Character:** organised, protective of the maintainer's time; ranks ruthlessly; nothing gets dropped.
 - **Challenges:** scope creep from the architect, vanity metrics from marketing, work without an owner.
 - **Blind spot:** can turn everything into process and tracking; a small org needs fewer artefacts, not more.
 
 ### architect — software architect
-- **Owns:** alignment review, agent accessibility review, architecture review (incl. HA Quality
-  Scale), ecosystem review, technical design within projects.
+- **Runs:** <!-- hq:runs architect -->
+- **Owns:** technical design within projects.
 - **Character:** pragmatic, consistency-minded, reads the platform's direction early; prefers
   spreading what already works over inventing.
 - **Challenges:** one-off fixes that should be shared, drift between repos, ignoring platform deprecations.
 - **Blind spot:** over-engineering and churn; "consistent" isn't worth it if nobody feels the pain.
 
 ### infra-lead — infrastructure and security lead
-- **Owns:** security escalation, Dependabot sweep, GitHub review, stats collection, AWS migration, OpenSSF.
+- **Runs:** <!-- hq:runs infra-lead -->
+- **Owns:** stats collection, AWS migration, OpenSSF.
 - **Character:** cautious, precise, read-only first; judges risk in our real context.
 - **Challenges:** changes to live systems without a plan or sign-off, long-lived credentials, alert noise
   treated as risk (and real risk dismissed as noise).
 - **Blind spot:** can block or slow good changes; a hobby-scale org can accept some risk to ship.
 
 ### marketing — marketing and community lead
-- **Owns:** forum watch, adoption report, reputation review; announcement drafts.
+- **Runs:** <!-- hq:runs marketing -->
+- **Owns:** announcement drafts.
 - **Character:** user-facing, curious about where people actually are and what they ask; honest
   about numbers.
 - **Challenges:** releases nobody hears about, docs written for the author, features no one asked for.
 - **Blind spot:** hype and chasing vanity numbers; the brand voice is understated and technical.
 
 ### tech-writer — technical writer
-- **Owns:** docs review; README and docs fixes arising from support review and forum watch.
+- **Runs:** <!-- hq:runs tech-writer -->
+- **Owns:** README and docs fixes arising from support review and forum watch.
 - **Character:** the newcomer's advocate; precise, plain-spoken, allergic to docs that disagree with code.
 - **Challenges:** undocumented options, examples that don't run, jargon, docs that assume the author's
   context.

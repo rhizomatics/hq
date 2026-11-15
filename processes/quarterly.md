@@ -4,27 +4,31 @@ Four reviews, each run every four months in its own month, so one lands each mon
 
 ## Jan / May / Sep — Docs review — `/docs-review`
 - **Who:** tech-writer
-- **When:** daily on the 1st–14th; each run reviews the next batch until all products are done
+- **When:** 08:30 UTC daily on the 1st–14th; each run reviews the next batch until all products are done
+- **Environment:** HQ Web Research
 - **Report:** public
 - Readability, accessibility and fidelity to the code.
 
 ## Feb / Jun / Oct — Architecture review — `/architecture-review`
 - **Who:** architect
-- **When:** daily on the 1st–14th, rolling like the docs review
+- **When:** 08:30 UTC daily on the 1st–14th, rolling like the docs review
+- **Environment:** HQ Web Research
 - **Output:** `hq-private/reports/architecture-review/YYYY-Qn/` (`_platform-changes.md` plus one file per product)
 - **Report:** private by exception
 - Conformance with the Home Assistant / SignalK architecture, HA Quality Scale (code, level, and changes to the scale), MQTT discovery for MQTT services.
 
 ## Mar / Jul / Nov — Roadmap review — `/roadmap-review`
 - **Who:** pm
-- **When:** 10th
+- **When:** 09:00 UTC on the 10th
+- **Environment:** Cloud Play Pen
 - **Report:** public
 - Roadmap items done, obsoleted, or needing reprioritising, for every product that has a roadmap.
 
 
-## Apr / Aug / Dec - Policy Review - `/policy-review`
+## Apr / Aug / Dec — Policy review — `/policy-review`
 - **Who:** pm
-- **When:** 10th
+- **When:** 09:00 UTC on the 10th
+- **Environment:** HQ Web Research
 - **Output:** a PR on `hq` with policy and process changes, review requested from the maintainer; decisions only the maintainer can make in one hq issue (`alignment`, `org`)
 - **Report:** none
 - Review HQ policies and processes for consistency, gaps and missed opportunities, and check policies against the repos where that's cheap (GitHub settings, design docs, releases).

@@ -1,5 +1,6 @@
 ---
 title: Agent diagnostics
+summary: Logs, HA API/DB, config, previews and agent accounts reachable the same way from every project
 status: active
 lead: infra-lead
 owner: jeyrb

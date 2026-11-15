@@ -1,3 +1,7 @@
+---
+summary: HA components with zero YAML, or a small power-user set
+---
+
 # De-YAMLification
 
 All Home Assistant components will have either zero YAML, or a limited set needed only for power users.
@@ -11,7 +15,7 @@ All Home Assistant components will have either zero YAML, or a limited set neede
 ## Residual Power User YAML
 - Auto Arm (from v2)
 
-## In Progress
+## In Progress
 - Supernotify
   - Recipients
   - Transports

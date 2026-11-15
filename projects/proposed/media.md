@@ -1,3 +1,7 @@
+---
+summary: Supporting material aimed at a general audience that uses Rhizomatics products
+---
+
 # Media
 
 Produce supporting material that uses Rhizomatics products but is aimed at a more general use case.

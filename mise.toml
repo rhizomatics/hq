@@ -9,3 +9,8 @@ node = "lts"
 description = "Build the public site from hq and ../hq-private, then serve it at http://localhost:4321/"
 dir = "site"
 run = ["npm ci", "GITHUB_TOKEN=\"${GITHUB_TOKEN:-$(gh auth token)}\" npm run build", "npx astro preview"]
+
+[tasks.check-hq]
+description = "Mechanical checks on the hq docs: processes vs skills and personas, schedules, project summaries (policies/scripts_over_agents.md)"
+dir = "site"
+run = "node scripts/check-hq.mjs"

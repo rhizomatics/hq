@@ -1,5 +1,6 @@
 ---
 title: remote_logger to Quality Scale Silver
+summary: remote_logger at Quality Scale Silver by Feb 2027
 status: active
 lead: architect
 owner: jeyrb

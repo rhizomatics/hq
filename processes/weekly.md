@@ -4,18 +4,23 @@
 
 ### Adoption report — `/adoption-report`
 - **Who:** marketing
+- **When:** 07:00 UTC
+- **Environment:** Cloud Play Pen
 - **Output:** `hq-private/reports/adoption/YYYY-Www.md`
 - **Report:** private
 - Download, install and clone trends from `hq-private/data/stats/`.
 
 ### Lingering PRs — `/pr-report`
 - **Who:** pm
+- **When:** 07:20 UTC
+- **Environment:** Cloud Play Pen
 - **Output:** `hq-private/reports/prs/YYYY-Www.md`
 - **Report:** private
 
 ### Registry check — `/registry-check`
 - **Who:** pm
-- **When:** after the PR report
+- **When:** 07:40 UTC, after the PR report
+- **Environment:** HQ Web Research
 - **Output:** section in `hq-private/reports/prs/YYYY-Www.md`; clear-cut fixes committed to `repos.toml`
 - **Report:** private (a section of the PR report)
 - New, removed, renamed or archived repos in the org; new publishing channels.
@@ -24,6 +29,8 @@
 
 ### Project review — `/project-review`
 - **Who:** pm
+- **When:** 07:00 UTC
+- **Environment:** Cloud Play Pen
 - **Output:** `hq-private/reports/projects/YYYY-MM-DD.md`; factual updates to `projects/`
 - **Report:** public
 - Progress and next steps for every project, mark work that's done. 

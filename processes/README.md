@@ -31,16 +31,10 @@ Monthly and quarterly work is spread across the calendar so it doesn't all land 
 
 ## Scheduling
 
-Every agent process runs as a Claude Code cloud routine (manage at https://claude.ai/code/routines), named `hq: <cadence> <process>`, with all the org's repos attached. Times are UTC:
+Every agent process runs as a Claude Code cloud routine (manage at https://claude.ai/code/routines), named `hq: <cadence> <process>`, with all the org's repos attached.
+Each process's cadence entry is the one place its time (**When:**, UTC), persona (**Who:**) and environment (**Environment:**) are set; daily agent routines start after the 05:00 stats and GitHub snapshot in Actions. On the site, this table is generated from those entries:
 
-- **Daily:** Dependabot sweep 05:40, support sweep 06:00, security escalation 06:20, forum watch 06:40 (after the 05:00
-  stats and GitHub snapshot in Actions).
-- **Weekly:** Monday adoption 07:00, PR report 07:20, registry check 07:40; Friday project review 07:00.
-- **Monthly, 08:00:** alignment 1st, support review 4th, ecosystem 10th, GitHub 11th, agent
-  accessibility 18th, reputation 24th.
-- **Every four months** (`quarterly.md`): docs review 08:30 on the 1st–14th of Jan/May/Sep, architecture review 08:30 on the
-  1st–14th of Feb/Jun/Oct, roadmap review 09:00 on the 10th of Mar/Jul/Nov, policy review 09:00 on the 10th of Apr/Aug/Dec
-  (routine `hq: quarterly policy review`).
+<!-- hq:generated schedule -->
 
 Models: Sonnet for daily and weekly routines, Opus for monthly and quarterly ones, Haiku for
 the `researcher` subagent they farm gathering out to. What cloud routines can and can't reach is in
@@ -49,14 +43,13 @@ Run any process by hand with `/<skill-name>`; `hq-private/commands/collect-stats
 
 Environments: routines that read the web (WebFetch/WebSearch of forums, platform docs and blogs,
 github.com pages) run in **HQ Web Research**, which allowlists those domains but isn't meant for
-package installs: Dependabot sweep, support sweep, security escalation, forum watch, alignment, support review,
-ecosystem, GitHub, agent accessibility, reputation, architecture review, registry check, docs
-review, policy review. The rest (adoption, PR report, project review, roadmap review) run in **Cloud Play Pen**. When changing a routine's environment through the API, send the whole `job_config`; a partial one replaces it and drops the prompt and repos.
+package installs; the rest run in **Cloud Play Pen**. When changing a routine's environment through the API, send the whole `job_config`; a partial one replaces it and drops the prompt and repos.
 
 When adding a repo to the org, attach it to the routines too (the registry check will remind you).
 
 ## Adding a process
 
 1. Write `.claude/skills/<name>/SKILL.md` with `agent: <persona>` and a fixed output path.
-2. Add a section to the cadence file.
+2. Add a section to the cadence file with **Who:**, **When:** (UTC), **Environment:**, **Output:** and **Report:**.
+   `mise run check-hq` says if anything is missing or disagrees with the skill.
 3. Run it by hand twice and tune before scheduling it as a routine like the others.

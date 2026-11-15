@@ -1,5 +1,6 @@
 ---
 title: HQ Stats
+summary: Usage stats and public site as a standalone product, shipped and marketed ahead of HQ
 status: draft
 lead: architect
 owner: jeyrb

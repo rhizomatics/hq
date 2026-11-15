@@ -1,3 +1,7 @@
+---
+summary: OpenSSF Scorecard and checks feeding the security and alignment reviews
+---
+
 # OpenSSF
 
 Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the security and alignment reviews

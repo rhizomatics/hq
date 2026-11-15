@@ -1,5 +1,6 @@
 ---
 title: mise environments
+summary: mise as the way into prod/dev/test environments, starting with secrets through fnox
 status: draft
 lead: infra-lead
 owner: jeyrb

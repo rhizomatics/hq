@@ -13,6 +13,7 @@ import { copyFile, readFile, readdir, writeFile, mkdir, rm, stat } from 'node:fs
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ORG, githubUrl } from '../src/lib/hq-config.mjs';
+import { checkHq, expandGenerated } from './lib/hq-docs.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
@@ -132,12 +133,14 @@ async function syncDocs() {
     if (found.length) problems.push(`${rel}: ${found.join(', ')}`);
     const slug = slugFor(rel);
     const name = path.posix.basename(slug);
-    const { title, front, body } = titleAndBody(text, name);
+    const { title, front, body: raw } = titleAndBody(text, name);
+    const body = await expandGenerated(raw, rel, hqRoot);
     const order = rel.startsWith('processes/') ? CADENCE_ORDER[name === 'index' ? 'readme' : name] : (name === 'index' ? 0 : undefined);
     await writePage(slug, {
       title,
       label: name === 'index' && rel.includes('/') ? 'Overview' : undefined,
-      front: front.replace(/^(status|lead|owner|started):.*$/gm, '').trim(),
+      // A project's summary becomes the page description.
+      front: front.replace(/^(status|lead|owner|started):.*$/gm, '').replace(/^summary:/m, 'description:').trim(),
       body: rewriteLinks(body, rel, { linkBase: REPO }),
       editUrl: `${REPO}/edit/main/${rel}`,
       order,
@@ -232,6 +235,7 @@ if (docs.problems.length) {
   for (const p of docs.problems) console.error(`  ${p}`);
   process.exit(1);
 }
+for (const p of await checkHq(hqRoot)) console.warn(`  check: ${p}`);
 const reports = await syncReports();
 console.log(`content: ${docs.count} docs, ${reports.published} reports`);
 for (const w of reports.withheld) console.warn(`  withheld ${w}`);
