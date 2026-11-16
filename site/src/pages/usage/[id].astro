@@ -4,7 +4,6 @@ import Chart from '../../components/Chart.astro';
 import Kpi from '../../components/Kpi.astro';
 import {
   CHANNELS,
-  clonesSpec,
   data,
   downloadsSpecs,
   familyLabel,
@@ -14,6 +13,7 @@ import {
   lineSpec,
   pageViewSpecs,
   signed,
+  trafficSpec,
   viewsViews,
   VIEWS_NOTE,
   type Channel,
@@ -32,7 +32,9 @@ const hacsVersions = hacsVersionSpec(c.hacsVersions);
 const haVersions = haVersionSpec(c.haVersions as Record<string, number> | null);
 const haInstalls = lineSpec(c.haInstalls as Record<string, number>, 'Installations', 'Installations reporting');
 const stars = lineSpec(c.stars as Record<string, number>, 'Stars', 'Stars');
-const clones = clonesSpec(c.clones as Record<string, { count: number; uniques: number }>);
+type Traffic = Record<string, { count: number; uniques: number }>;
+const clones = trafficSpec(c.clones as Traffic);
+const repoViews = trafficSpec(c.repoViews as Traffic, ['Views', 'Unique visitors']);
 const used = CHANNELS.filter((ch) => c.channels.includes(ch.id));
 const views = c.website ? pageViewSpecs([{ product: true, daily: c.pageViews as Record<string, number> }]) : null;
 if (views) for (const d of [views.daily, views.weekly]) if (d) d.datasets[0].label = 'Page views';
@@ -50,6 +52,7 @@ const totalNote: Record<string, string> = { hacs: 'all time', npm: 'last 18 mont
     <Kpi label="GitHub stars" value={fmt(c.kpis.stars)} note={c.kpis.starsChange7 != null ? `${signed(c.kpis.starsChange7)} in 7 days` : undefined} />
     {c.kpis.haInstalls != null && <Kpi label="Home Assistant installs" value={fmt(c.kpis.haInstalls)} note="opted-in only" />}
     <Kpi label="Clones, last 14 days" value={fmt(c.kpis.clones14)} />
+    <Kpi label="GitHub repo views, 14 days" value={fmt(c.kpis.repoViews14)} />
     {c.kpis.views30 != null && <Kpi label="Page views, last 30 days" value={fmt(c.kpis.views30)} note={`${fmt(c.kpis.views7)} in 7 days`} />}
   </div>
 
@@ -87,6 +90,14 @@ const totalNote: Record<string, string> = { hacs: 'all time', npm: 'last 18 mont
 
   {clones && (
     <Chart title="Git clones" views={{ Clones: clones }} caption="From GitHub's traffic API, which includes CI and bots; unique cloners are counted per day." />
+  )}
+
+  {repoViews && (
+    <Chart
+      title="GitHub repo views"
+      views={{ Views: repoViews }}
+      caption={`Views of the repo's pages on github.com, from GitHub's traffic API (which includes bots); unique visitors are counted per day.${c.website ? " The website's own page views are below." : ''}`}
+    />
   )}
 
   {c.website && (

@@ -19,7 +19,7 @@ way in to HQ.
   launch without waiting for the agentic parts.
 - What exists today: daily collectors in `hq-private/scripts/collect_stats.py` (stdlib Python, no deps) run by
   `collect-stats.yml`, snapshots in `hq-private/data/stats/`, legacy HACS history, and the site's Usage section
-  (Downloads and Page views, split 2026-11-16) built by `site/scripts/build-stats.mjs`, which publishes only public
+  (Downloads and Page views, split 2026-11-16; GitHub repo views added the same day) built by `site/scripts/build-stats.mjs`, which publishes only public
   aggregates.
 - Channels are selected by fields in `repos.toml` (`pypi`, `npm`, `ghcr`, `hacs_zip`, `ha_domain`, `goatcounter`),
   so adding a user's repos is config, not code.

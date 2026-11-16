@@ -71,7 +71,7 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
   <h2>Sources</h2>
   <ul class="usage-notes">
     <li><strong>Page views</strong>: {VIEWS_NOTE}. No cookies, so no consent banner; no Google Analytics.</li>
-    <li>GitHub's own repo traffic (views of the code on github.com) isn't included; clones are on each component's page.</li>
+    <li>Views of the repos on github.com aren't included here; they're on each component's page, with clones.</li>
     {data.notes.filter((n) => n.startsWith('Page views')).map((n) => <li>{n}</li>)}
   </ul>
 </StarlightPage>

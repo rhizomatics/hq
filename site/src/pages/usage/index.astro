@@ -71,6 +71,7 @@ const firstDate = (id: string) =>
     {CHANNELS.map((c) => <li><strong>{c.label}</strong>: {c.note}.</li>)}
     <li><strong>Home Assistant installs</strong>: Home Assistant's public analytics for custom integrations; only installations that opted in, so a partial view.</li>
     <li><strong>Clones</strong>: GitHub traffic API, which includes CI and bots. GitHub keeps 14 days, so it is snapshotted daily.</li>
+    <li><strong>GitHub repo views</strong>: views of each repo's pages on github.com, on each component's page; from the same traffic API.</li>
     {data.notes.map((n) => <li>{n}</li>)}
   </ul>
 </StarlightPage>

@@ -125,15 +125,19 @@ export function lineSpec(series: Daily, label: string, yLabel: string): ChartSpe
   return { type: 'line', labels: dates, datasets: [{ label, slot: 1, data: dates.map((d) => series[d]) }], yLabel };
 }
 
-export function clonesSpec(clones: Record<string, { count: number; uniques: number }>): ChartSpec | null {
-  const dates = Object.keys(clones).sort();
+// GitHub traffic per day: a count as bars and its unique visitors or cloners as a line.
+export function trafficSpec(
+  series: Record<string, { count: number; uniques: number }>,
+  labels: [string, string] = ['Clones', 'Unique cloners'],
+): ChartSpec | null {
+  const dates = Object.keys(series).sort();
   if (dates.length < 2) return null;
   return {
     type: 'bar',
     labels: dates,
     datasets: [
-      { label: 'Clones', slot: 1, data: dates.map((d) => clones[d].count) },
-      { label: 'Unique cloners', slot: 2, type: 'line', data: dates.map((d) => clones[d].uniques) },
+      { label: labels[0], slot: 1, data: dates.map((d) => series[d].count) },
+      { label: labels[1], slot: 2, type: 'line', data: dates.map((d) => series[d].uniques) },
     ],
     yLabel: 'Per day',
   };

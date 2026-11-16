@@ -8,9 +8,9 @@
 //   - hq-private/data/legacy/hacs-downloads-history.json   the retired hacs-downloads site's history (2026-09-12 on)
 //   - live public APIs: npm daily downloads, PyPI daily downloads, Home Assistant analytics by version
 //
-// Only public aggregates are written: downloads, stars, clones, HA installs, and page views of the org's
-// own public websites (GoatCounter: daily totals and top pages). Never GitHub repo traffic views,
-// referrers, alerts or anything else in the private snapshots. Private, archived and `internal` repos are
+// Only public aggregates are written: downloads, stars, GitHub traffic (repo page views and clones), HA installs,
+// and page views of the org's own public websites (GoatCounter: daily totals and top pages). Never referrers,
+// popular paths, alerts or anything else in the private snapshots. Private, archived and `internal` repos are
 // left out; `meta` repos only appear as websites (www, the HQ site). Nothing from the private data is logged.
 
 import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
@@ -172,15 +172,15 @@ function seriesFromSnapshots(snapshots, legacy, repo, pick, legacyPick) {
   return out;
 }
 
-// GitHub keeps 14 days of clone traffic; every snapshot has an overlapping window. The latest
-// snapshot to mention a day wins, except its last day, which can be partial.
-function clones(snapshots, legacy, repo) {
+// GitHub keeps 14 days of traffic (clones, repo page views); every snapshot has an overlapping window. The
+// latest snapshot to mention a day wins, except its last day, which can be partial. Only clones have legacy history.
+function traffic(snapshots, legacy, repo, kind) {
   const out = {};
   for (const projects of Object.values(legacy)) {
-    for (const c of legacyProject(projects, repo)?.clones ?? []) out[c.date] = { count: c.count, uniques: c.uniques };
+    for (const c of legacyProject(projects, repo)?.[kind] ?? []) out[c.date] = { count: c.count, uniques: c.uniques };
   }
   for (const s of snapshots) {
-    const list = s.repos[repo]?.github?.clones;
+    const list = s.repos[repo]?.github?.[kind];
     if (!Array.isArray(list)) continue;
     for (const c of list) {
       const date = c.timestamp.slice(0, 10);
@@ -303,7 +303,9 @@ async function main() {
     for (const series of Object.values(downloads)) {
       for (const [d, v] of Object.entries(series)) allDaily[d] = (allDaily[d] ?? 0) + v;
     }
-    const cloneSeries = clones(snapshots, legacy, name);
+    const cloneSeries = traffic(snapshots, legacy, name, 'clones');
+    const repoViewSeries = traffic(snapshots, legacy, name, 'views');
+    const last14 = (series) => Object.entries(series).filter(([d]) => d > addDays(today, -14)).reduce((s, [, c]) => s + c.count, 0);
     const starNow = Object.entries(stars).sort().at(-1)?.[1] ?? null;
     const starWeekAgo = valueDaysAgo(stars, 7, today);
 
@@ -323,7 +325,8 @@ async function main() {
         haInstalls: haToday?.total ?? Object.entries(haInstalls).sort().at(-1)?.[1] ?? null,
         views7: websites.at(-1)?.id === name ? websites.at(-1).views7 : null,
         views30: websites.at(-1)?.id === name ? websites.at(-1).views30 : null,
-        clones14: Object.entries(cloneSeries).filter(([d]) => d > addDays(today, -14)).reduce((s, [, c]) => s + c.count, 0),
+        clones14: last14(cloneSeries),
+        repoViews14: last14(repoViewSeries),
       },
       downloads,
       pageViews: views,
@@ -331,6 +334,7 @@ async function main() {
       website: Boolean(repo.goatcounter),
       stars,
       clones: cloneSeries,
+      repoViews: repoViewSeries,
       haInstalls,
       haVersions,
       hacsVersions: repo.hacs_zip ? hacsVersions(snapshots, name, repo.hacs_zip) : [],
