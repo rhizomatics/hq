@@ -17,6 +17,8 @@ Expectations of Rhizomatics projects
   - For Python code defer to [Python Stack](./python_stack.md)
   - For JavaScript, `oxfmt` and `oxlint`
   - Linters to be identified for GitHub Actions, shellscript, Dockerfile, C and YAML
+- All dependencies will be managed via the platform, the standard package manager and Mise
+  - Licences must be compatibile with Apache 2.0 usage
 - Page views on every website the org publishes (docs sites, the HQ site, www) are counted with
   GoatCounter, cookieless, so no site needs a consent banner. No Google Analytics or other cookie-setting
   trackers. Each website has its own GoatCounter site, recorded as `goatcounter` on its repo in hq's
