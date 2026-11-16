@@ -15,6 +15,9 @@ bojieyang/indexnow-action@*,
 ossf/scorecard-action@*,
 github/codeql-action/*,
 bojieyang/indexnow-action@*,
+# Shared
+crazy-max/ghaction-github-labeler@*,
+dependabot/fetch-metadata@*
 # SignalK
 SignalK/signalk-server/.github/workflows/plugin-ci.yml@*,
 # Docker 
