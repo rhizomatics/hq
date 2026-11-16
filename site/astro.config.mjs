@@ -31,6 +31,8 @@ export default defineConfig({
       logo: { src: './src/assets/icon.svg' },
       favicon: '/favicon.svg',
       head: [
+        { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '128x128', href: '/favicon.png' } },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } },
         { tag: 'meta', attrs: { property: 'og:image', content: `${ORG.siteUrl}/og.png` } },
         // Lets feed readers find the releases feed from any page.
         { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: `${ORG.name} releases`, href: '/releases.xml' } },
