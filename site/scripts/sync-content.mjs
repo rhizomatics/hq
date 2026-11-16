@@ -230,7 +230,7 @@ await copyFile(path.join(hqRoot, 'assets', 'icon.svg'), path.join(siteRoot, 'src
 await copyFile(path.join(hqRoot, 'assets', 'icon.svg'), path.join(siteRoot, 'public', 'favicon.svg'));
 // PNG fallbacks for browsers without SVG favicons, and the home-screen icon on iOS.
 await copyFile(path.join(hqRoot, 'assets', 'icon-128.png'), path.join(siteRoot, 'public', 'favicon.png'));
-await copyFile(path.join(hqRoot, 'assets', 'icon-512.png'), path.join(siteRoot, 'public', 'apple-touch-icon.png'));
+await copyFile(path.join(hqRoot, 'assets', 'icon-180.png'), path.join(siteRoot, 'public', 'apple-touch-icon.png'));
 await copyFile(path.join(hqRoot, 'assets', 'social-preview.png'), path.join(siteRoot, 'public', 'og.png'));
 const docs = await syncDocs();
 if (docs.problems.length) {
