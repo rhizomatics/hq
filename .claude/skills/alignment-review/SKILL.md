@@ -31,7 +31,8 @@ against them, as well as differences between repos.
 Include OpenSSF Scorecard: list public repos with no `.github/workflows/scorecard.yml` (a gap, as for any
 baseline file), and for the rest the lowest checks from
 `https://api.securityscorecards.dev/projects/github.com/<org>/<repo>` (WebFetch; if the host is blocked, say so in one line). Recommend only fixes
-that are cheap and one pattern across repos (pinning actions, workflow `permissions:`), not score-chasing.
+that are cheap and one pattern across repos (pinning actions, workflow `permissions:`), not score-chasing, and
+skip the checks `policies/project_standards.md` lists as accepted. Scores stay internal: never put them in public reports.
 
 Within each `family`, compare the current versions of those files side by side: ruff/mypy/pytest
 config, Python version, hook versions, docs plugins and theme, lint/format tooling. Note who is ahead and who is behind.

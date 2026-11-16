@@ -99,8 +99,7 @@
   font-size: var(--sl-text-sm); font-weight: 600;
 }
 .ci-status--red { color: var(--ci-red); background: var(--ci-red-bg); }
-.ci-status--flapping,
-.ci-status--amber { color: var(--ci-amber); background: var(--ci-amber-bg); }
+.ci-status--flapping { color: var(--ci-amber); background: var(--ci-amber-bg); }
 .ci-status--recovered { color: var(--ci-lightgreen); background: var(--ci-lightgreen-bg); }
 .ci-status--green { color: var(--ci-green); background: var(--ci-green-bg); }
 .ci-status--none { color: var(--ci-none); background: var(--ci-none-bg); }

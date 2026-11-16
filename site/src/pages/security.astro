@@ -12,8 +12,6 @@ type Repo = {
   policy: string | null;
   codeql: boolean;
   dependabot: boolean;
-  scorecardWorkflow: boolean;
-  scorecard: { score: number; date: string; url: string; checks: Record<string, number> } | null;
   advisories: number;
   lastAdvisory: string | null;
 };
@@ -23,22 +21,6 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
   .map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => a.id.localeCompare(b.id))] as const)
   .filter(([, list]) => list.length);
 const count = (f: (r: Repo) => boolean) => `${repos.filter(f).length} of ${repos.length}`;
-// Scorecard: the average across repos with a published result, and each check across them, weakest first.
-const carded = repos.filter((r) => r.scorecard);
-const avgScore = carded.length ? (carded.reduce((s, r) => s + r.scorecard!.score, 0) / carded.length).toFixed(1) : '–';
-const median = (xs: number[]) => {
-  const s = [...xs].sort((a, b) => a - b);
-  return s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2;
-};
-const checks = [...new Set(carded.flatMap((r) => Object.keys(r.scorecard!.checks)))]
-  .map((name) => {
-    const scores = carded.filter((r) => name in r.scorecard!.checks).map((r) => r.scorecard!.checks[name]);
-    return { name, repos: scores.length, median: median(scores), low: scores.filter((x) => x < 5).length };
-  })
-  .sort((a, b) => a.median - b.median || b.low - a.low || a.name.localeCompare(b.name));
-const checkDoc = (name: string) => `https://github.com/ossf/scorecard/blob/main/docs/checks.md#${name.toLowerCase()}`;
-const scoreClass = (x: number) => (x >= 7 ? 'green' : x >= 5 ? 'amber' : 'red');
-
 const asOf = security.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 ---
 <StarlightPage frontmatter={{ title: 'Security', description: `Security measures in place on each public ${ORG.name} repo, and the advisories published, updated daily.`, tableOfContents: false }}>
@@ -50,7 +32,6 @@ const asOf = security.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
     <li><strong>Policy</strong>: the repo's own SECURITY.md, or else the <a href={security.orgPolicy ?? githubUrl('.github')}>organisation's</a>, which GitHub shows in its place.</li>
     <li><strong>CodeQL</strong>: GitHub code scanning runs on the code.</li>
     <li><strong>Dependabot</strong>: Dependabot opens pull requests to keep dependencies up to date.</li>
-    <li><strong>Scorecard</strong>: the <a href="https://scorecard.dev">OpenSSF Scorecard</a> score out of 10 for supply-chain practices (pinned dependencies, token permissions, code review, signed releases and more), run weekly by each repo and published by OpenSSF. "Pending" means the workflow is in place but hasn't published a result yet.</li>
     <li><strong>Advisories</strong>: security advisories published for the repo once a fix is out.</li>
   </ul>
   <p class="ci-meta">
@@ -63,7 +44,6 @@ const asOf = security.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
         <Kpi label="Private reporting" value={count((r) => r.reporting)} note="repos" />
         <Kpi label="CodeQL" value={count((r) => r.codeql)} note="repos" />
         <Kpi label="Dependabot" value={count((r) => r.dependabot)} note="repos" />
-        <Kpi label="Scorecard" value={avgScore} note={`average of ${carded.length} repos, out of 10`} />
         <Kpi label="Advisories" value={String(repos.reduce((s, r) => s + r.advisories, 0))} note="published" />
       </div>
 
@@ -78,7 +58,6 @@ const asOf = security.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
                 <th scope="col">Policy</th>
                 <th scope="col">CodeQL</th>
                 <th scope="col">Dependabot</th>
-                <th scope="col">Scorecard</th>
                 <th scope="col">Advisories</th>
               </tr>
             </thead>
@@ -95,11 +74,6 @@ const asOf = security.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
                   <td><span class={`ci-status ci-status--${r.codeql ? 'green' : 'none'}`}>{r.codeql ? 'On' : 'Off'}</span></td>
                   <td><span class={`ci-status ci-status--${r.dependabot ? 'green' : 'none'}`}>{r.dependabot ? 'On' : 'Off'}</span></td>
                   <td>
-                    {r.scorecard
-                      ? <a href={r.scorecard.url} title={`Scorecard of ${r.scorecard.date.slice(0, 10)}`}><span class={`ci-status ci-status--${scoreClass(r.scorecard.score)}`}>{r.scorecard.score.toFixed(1)}</span></a>
-                      : r.scorecardWorkflow ? <span class="ci-meta">Pending</span> : <span class="ci-status ci-status--none">Off</span>}
-                  </td>
-                  <td>
                     {r.advisories
                       ? <><a href={`${r.url}/advisories`}>{r.advisories}</a> <span class="ci-meta">last {r.lastAdvisory?.slice(0, 10)}</span></>
                       : <span class="ci-meta">None</span>}
@@ -110,36 +84,6 @@ const asOf = security.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
           </table>
         </>
       ))}
-
-      {checks.length > 0 && (
-        <>
-          <h2>Scorecard checks</h2>
-          <p>
-            Each Scorecard check across the {carded.length} repos with a result, weakest first. Checks that don't
-            apply to a repo (scored -1) are left out of its count.
-          </p>
-          <table class="usage-table">
-            <thead>
-              <tr>
-                <th scope="col">Check</th>
-                <th scope="col" class="num">Median</th>
-                <th scope="col" class="num">Below 5</th>
-                <th scope="col" class="num">Repos</th>
-              </tr>
-            </thead>
-            <tbody>
-              {checks.map((c) => (
-                <tr>
-                  <th scope="row"><a href={checkDoc(c.name)}>{c.name}</a></th>
-                  <td class="num"><span class={`ci-status ci-status--${scoreClass(c.median)}`}>{c.median}</span></td>
-                  <td class="num">{c.low}</td>
-                  <td class="num">{c.repos}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
     </>
   ) : (
     <p>Security settings weren't available at the last build.</p>

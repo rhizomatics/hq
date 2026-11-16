@@ -44,7 +44,8 @@ Once per run, not per repo:
   note it once). If the host is blocked in the routine's network, that is a one-line data gap, not a failure. Never escalate a score on its own. Escalate only a check that fell to 0 or dropped 3+
   points since the previous report in `hq-private/reports/security/` and bears on a real exposure
   (Dangerous-Workflow, Token-Permissions, Pinned-Dependencies, Vulnerabilities, Binary-Artifacts). Other
-  low checks (Fuzzing, CII-Best-Practices, Signed-Releases) go to the alignment review, not here.
+  low checks go to the alignment review, not here; the checks `policies/project_standards.md` lists as accepted
+  are never raised. Scores stay internal: never put them in public reports.
 - Exploitation: `kev_added` on Dependabot alerts and advisories is the date it entered CISA's Known
   Exploited Vulnerabilities catalog (null if it isn't there), and `epss` the estimated chance of
   exploitation (0 to 1). If `kev` in the snapshot is `{"error": ...}`, null means unknown: note the

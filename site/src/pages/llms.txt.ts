@@ -15,7 +15,7 @@ const PAGES: [string, string, string][] = [
   ['RFCs', 'rfcs', 'Open and decided requests for comments.'],
   ['Support', 'support', 'Open issues by type across the products.'],
   ['Deployments', 'deployments', 'GitHub Actions state of each public repo.'],
-  ['Security', 'security', 'Public security settings, OpenSSF Scorecard results and published advisories.'],
+  ['Security', 'security', 'Public security settings and published advisories.'],
 ];
 
 const SECTIONS: [string, string][] = [

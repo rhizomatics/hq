@@ -26,8 +26,14 @@ Expectations of Rhizomatics projects
   a product's name for its docs site). Count only the public production build, as the boat tech directory's
   `site/src/analytics.mjs` does, so dev servers and builds run elsewhere aren't counted (decided 2026-11-15)
 - Every public repo with releases runs OpenSSF Scorecard (`.github/workflows/scorecard.yml`, the same workflow
-  in each, weekly and on push to `main`, results published). Scores are shown on the HQ site's Security page
-  (decided 2026-11-15, extended to every released repo 2026-11-16)
+  in each, weekly and on push to `main`, results published to the Scorecard API). Scores are an input to the
+  routine security and alignment reviews only: not shown on the HQ site or in READMEs, since the headline score
+  is dragged down by checks a solo-maintainer org can't or won't pass (decided 2026-11-16)
+  - Accepted, never raised: Code-Review and Contributors (one maintainer), Branch-Protection above 3 (needs a
+    second reviewer), Fuzzing, CII-Best-Practices, and Maintained 0 on a repo under 90 days old (Scorecard's
+    rule for new repos, which clears itself)
+  - Acted on: Token-Permissions (top-level `permissions: {}` or read-only, writes granted per job),
+    Dependency-Update-Tool, SAST, License, Dangerous-Workflow, Pinned-Dependencies, Vulnerabilities, Binary-Artifacts
 - README badges
   - Every repo in `repos.toml` except `hq`, `.github` and internal repos shows the "managed by hq" badge,
     linking to the HQ site:
