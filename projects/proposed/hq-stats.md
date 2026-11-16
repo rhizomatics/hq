@@ -71,7 +71,7 @@ way in to HQ.
 - [ ] @pair Brand: HQ logo with `stats` beneath in a complementary colour; site look in the HQ family
 - [ ] @human Create the `hq-stats` repo, its npm package and trusted publishing
 - [ ] @pair Rhizomatics on the package: snapshots and legacy HACS history moved from `hq-private/data/stats` into
-      `hq/data/`, with non-public fields (GitHub traffic views and clones) stripped first, `hq-private`'s stats collector retired, the HQ site's Usage pages served by the package
+      `hq/data/`, with GitHub repo page views stripped first (clones kept), `hq-private`'s stats collector retired, the HQ site's Usage pages served by the package
 - [ ] @agent Seed a throwaway org end to end from the docs; fix whatever needed hand edits
 - [ ] @pair README and docs; announcement drafts for HA and SignalK developer forums
 - [ ] @human Post announcements
@@ -90,9 +90,9 @@ Decided:
 - 2026-11-16 — Shape: a plain npm package published like the org's other npm packages, with its configuration and
   outputs in the user's `hq` repo, usable through its built-in UI or the raw data. Replaces the 2026-11-15 shape
   (an `hq-stats` repo per user holding config and snapshots, its own subdomain and a navigation manifest).
-- 2026-11-16 — Daily snapshots live in `hq` and record only public data. GitHub traffic (repo views, clones) needs
-  push access and isn't public, so it isn't recorded there; if it's still wanted, it stays with `collect_github.py`
-  in `hq-private`.
+- 2026-11-16 — Daily snapshots live in `hq` and record only public data. Clones count as fine to publish and are
+  kept (they're already on the Usage pages). GitHub repo page views aren't recorded there; if they're still wanted,
+  they stay with `collect_github.py` in `hq-private`.
 
 Open:
 
@@ -111,4 +111,4 @@ _None._
   `hq`, built-in UI or raw data; no per-user `hq-stats` repo, subdomain or manifest. Plan rewritten to match.
   GoatCounter collection added to `collect_stats.py` and the Usage section split into Downloads and Page views;
   page views appear once the `GOATCOUNTER_TOKEN` secret exists.
-- 2026-11-16 — Decided: snapshots live in `hq`, public data only (GitHub traffic stays out).
+- 2026-11-16 — Decided: snapshots live in `hq`, public data only. Clones kept as publishable; GitHub repo page views stay out.
