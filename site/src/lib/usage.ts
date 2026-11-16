@@ -14,6 +14,7 @@ export const CHANNELS: { id: Channel; label: string; slot: number; note: string 
 ];
 
 export const data = stats;
+export type Website = (typeof stats.websites)[number];
 export const familyLabel = (family: string) => FAMILIES.find(([f]) => f === family)?.[1] ?? family;
 
 export type ChartSpec = {
@@ -38,11 +39,11 @@ function dateRange(from: string, to: string) {
   return out;
 }
 
-// Downloads across channels are additive, so they stack. Weekly buckets run Monday to Sunday;
+// Stacked series (downloads by channel, page views by kind of site). Weekly buckets run Monday to Sunday;
 // the current, incomplete week is left out. Daily view covers the last 90 days.
-export function downloadsSpecs(series: Partial<Record<Channel, Daily>>) {
-  const channels = CHANNELS.filter((c) => series[c.id] && Object.keys(series[c.id]!).length);
-  const allDates = channels.flatMap((c) => Object.keys(series[c.id]!)).sort();
+export function stackedSpecs(groups: { label: string; slot: number; daily: Daily }[], unit: string) {
+  const present = groups.filter((g) => Object.keys(g.daily).length);
+  const allDates = present.flatMap((g) => Object.keys(g.daily)).sort();
   if (!allDates.length) return null;
   const last = allDates.at(-1)!;
   const days = dateRange(allDates[0], last);
@@ -53,26 +54,57 @@ export function downloadsSpecs(series: Partial<Record<Channel, Daily>>) {
     type: 'bar',
     stacked: true,
     labels: weeks,
-    datasets: channels.map((c) => {
+    datasets: present.map((g) => {
       const sums: Record<string, number> = {};
-      for (const [d, v] of Object.entries(series[c.id]!)) sums[weekStart(d)] = (sums[weekStart(d)] ?? 0) + v;
-      return { label: c.label, slot: c.slot, data: weeks.map((w) => (w in sums ? Math.round(sums[w]) : null)) };
+      for (const [d, v] of Object.entries(g.daily)) sums[weekStart(d)] = (sums[weekStart(d)] ?? 0) + v;
+      return { label: g.label, slot: g.slot, data: weeks.map((w) => (w in sums ? Math.round(sums[w]) : null)) };
     }),
-    yLabel: 'Downloads per week',
+    yLabel: `${unit} per week`,
   };
   const recent = days.slice(-90);
   const daily: ChartSpec = {
     type: 'bar',
     stacked: true,
     labels: recent,
-    datasets: channels.map((c) => ({
-      label: c.label,
-      slot: c.slot,
-      data: recent.map((d) => (d in series[c.id]! ? Math.round(series[c.id]![d]) : null)),
+    datasets: present.map((g) => ({
+      label: g.label,
+      slot: g.slot,
+      data: recent.map((d) => (d in g.daily ? Math.round(g.daily[d]) : null)),
     })),
-    yLabel: 'Downloads per day',
+    yLabel: `${unit} per day`,
   };
-  return { weekly, daily, channels: channels.map((c) => c.id) };
+  // Too few full weeks for a weekly chart to say anything: show daily only.
+  return { weekly: weeks.length >= 2 ? weekly : null, daily, groups: present.map((g) => g.label) };
+}
+
+// Downloads across channels are additive, so they stack.
+export function downloadsSpecs(series: Partial<Record<Channel, Daily>>) {
+  const channels = CHANNELS.filter((c) => series[c.id] && Object.keys(series[c.id]!).length);
+  const specs = stackedSpecs(channels.map((c) => ({ label: c.label, slot: c.slot, daily: series[c.id]! })), 'Downloads');
+  return specs && { weekly: specs.weekly ?? specs.daily, daily: specs.daily, channels: channels.map((c) => c.id) };
+}
+
+// Page views: product websites (docs sites) and the org's own (www, the HQ site), stacked.
+export const VIEWS_NOTE =
+  'Page views counted by GoatCounter on each website: cookieless, bots excluded, and one count per page per visitor session, so a reload or return visit the same day may not count again';
+
+export function pageViewSpecs(sites: { product: boolean; daily: Daily }[]) {
+  const sum = (list: { daily: Daily }[]) => {
+    const out: Daily = {};
+    for (const s of list) for (const [d, v] of Object.entries(s.daily)) out[d] = (out[d] ?? 0) + v;
+    return out;
+  };
+  return stackedSpecs(
+    [
+      { label: 'Product sites', slot: 1, daily: sum(sites.filter((s) => s.product)) },
+      { label: 'Organisation sites', slot: 2, daily: sum(sites.filter((s) => !s.product)) },
+    ],
+    'Page views',
+  );
+}
+
+export function viewsViews(specs: { weekly: ChartSpec | null; daily: ChartSpec }): Record<string, ChartSpec> {
+  return specs.weekly ? { Weekly: specs.weekly, Daily: specs.daily } : { Daily: specs.daily };
 }
 
 // The org-wide view: every component's channels added together, per channel.

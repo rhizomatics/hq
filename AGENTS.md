@@ -64,7 +64,7 @@ HQ is those two repos:
   anything that looks private; `scripts/build-stats.mjs` writes only public aggregates;
   `scripts/build-actions.mjs` fetches each public repo's Actions state for the Operations › Deployments page;
   `scripts/build-issues.mjs` counts open issues by type for the Support and Design Process pages;
-  `scripts/build-security.mjs` gathers public security settings and published advisories (never alerts) for the Security page;
+  `scripts/build-security.mjs` gathers public security settings, OpenSSF Scorecard results and published advisories (never alerts) for the Security page;
   `scripts/build-design.mjs` gathers RFCs, roadmaps and design principles for the Design Process and RFCs pages;
   `scripts/build-community.mjs` lists `[community.*]` projects with their public GitHub figures for the Community page;
   `scripts/build-releases.mjs` builds the Releases page from the last month's releases and the daily digest's summaries. Run it with

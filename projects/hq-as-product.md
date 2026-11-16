@@ -20,7 +20,8 @@ a separate product, [HQ Stats](proposed/hq-stats.md), which ships and is markete
 ## Context
 
 - **Two products.** (1) [HQ Stats](proposed/hq-stats.md): deterministic collection of usage per channel (PyPI, npm,
-  ghcr, HACS, HA analytics) and its public site. No AI needed. (2) HQ, the agentic operating model: personas,
+  ghcr, HACS, HA analytics, website page views) and its public pages, as an npm package configured and stored
+  in the user's `hq` repo (reshaped 2026-11-16). No AI needed. (2) HQ, the agentic operating model: personas,
   policies, processes and skills. Different audiences and set-up costs; (1) is the low-friction way in to (2),
   so it goes first, under shared branding, and HQ uses it as a component.
 - **Coupling is lighter than it looks** (2026-11-15 count): most org-specific content is the org name and

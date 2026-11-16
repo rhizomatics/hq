@@ -26,6 +26,11 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
 
 - [x] @agent Add OpenSSF Scorecard to the security/alignment reviews (skills edited 2026-11-15)
 - [x] @human Add the Scorecard workflow to the product repos (15 repos, 2026-11-15)
+- [x] @pair Scorecard workflow on the remaining released repos: signalk-einklabel-genai, signalk-teltonika-sms,
+  signalk-delta-squelch, signalk-ble-sensors, pico-ais-reporter, `.github` and `hq` (PRs merged 2026-11-16).
+  agent-plugins has no releases, so it's left out; supernotify-cards is a community project, not ours
+- [x] @agent Scorecard on the HQ site's Security page: score per repo, average, and each check across repos,
+  weakest first (2026-11-16; read at site build in GitHub Actions, which can reach the API)
 - [ ] @human Let routines reach `api.securityscorecards.dev` (cloud environment network), then @agent check the first results next monthly run; move to `done/` if they are useful
 
 ## Log
@@ -36,3 +41,7 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
 - 2026-11-06 — project-review: no Scorecard work for the fourth week; open security-alert issue #55 was closed 10-31, so the alerts excuse has gone. Still `@agent` next step.
 - 2026-11-13 — project-review: fifth week with no Scorecard work and no agent has picked it up. Asked in hq-private issue whether to do it or shelve it.
 - 2026-11-15 — project-review: maintainer said "do it" on hq-private#109 (11-13). `scorecard.yml` is now in 15 repos (added 11-15), and `/security-escalation` and `/alignment-review` read Scorecard results. Not yet run: the Scorecard API host is blocked in routines (WebFetch failed), so the first real results need it allowed or another route. Not yet in: signalk-delta-squelch, signalk-einklabel-genai, signalk-teltonika-sms, signalk-ble-sensors, supernotify-cards, agent-plugins (check whether each is in scope).
+- 2026-11-16 — Scorecard added to every public repo with releases (7 PRs, all merged) and shown on the Security
+  page. First results across 16 repos average about 6.5/10; weakest checks org-wide (median 0) are Code-Review (a solo
+  maintainer's PRs aren't approved by anyone else), CII-Best-Practices, Fuzzing and Signed-Releases, then
+  Branch-Protection and Contributors (median 3). Worth deciding which of those to act on rather than chasing the number.

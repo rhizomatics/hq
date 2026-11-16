@@ -8,9 +8,10 @@
 //   - hq-private/data/legacy/hacs-downloads-history.json   the retired hacs-downloads site's history (2026-09-12 on)
 //   - live public APIs: npm daily downloads, PyPI daily downloads, Home Assistant analytics by version
 //
-// Only public aggregates are written: downloads, stars, clones, HA installs. Never views,
-// referrers, paths, alerts or anything else in the private snapshots. Private and archived
-// repos, `meta` repos and `internal` ones are left out. Nothing from the private data is logged.
+// Only public aggregates are written: downloads, stars, clones, HA installs, and page views of the org's
+// own public websites (GoatCounter: daily totals and top pages). Never GitHub repo traffic views,
+// referrers, alerts or anything else in the private snapshots. Private, archived and `internal` repos are
+// left out; `meta` repos only appear as websites (www, the HQ site). Nothing from the private data is logged.
 
 import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -201,6 +202,22 @@ const valueDaysAgo = (series, days, today) => {
   return dates.length ? series[dates.at(-1)] : null;
 };
 
+// GoatCounter page views per day. Each snapshot holds the 14 complete days before it; the latest to
+// mention a day wins.
+function pageViews(snapshots, repo) {
+  const out = {};
+  for (const s of snapshots) {
+    const daily = s.repos[repo]?.goatcounter?.daily;
+    if (daily && typeof daily === 'object') Object.assign(out, daily);
+  }
+  return out;
+}
+
+function topPages(snapshots, repo) {
+  const latest = [...snapshots].reverse().find((s) => Array.isArray(s.repos[repo]?.goatcounter?.top_pages_30d));
+  return latest ? latest.repos[repo].goatcounter.top_pages_30d.map(({ path, title, count }) => ({ path, title, count })) : [];
+}
+
 async function main() {
   const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
   const [snapshots, legacy, orgRepos] = await Promise.all([loadSnapshots(), loadLegacy(), latestGithubSnapshot()]);
@@ -211,11 +228,30 @@ async function main() {
   const today = snapshots.at(-1).date;
   const notes = [];
   const components = [];
+  const websites = [];
 
   for (const [name, repo] of Object.entries(registry.repos)) {
     const meta = orgRepos[name];
-    if (repo.archived || repo.family === 'meta' || repo.category?.includes('internal')) continue;
+    if (repo.archived || repo.category?.includes('internal')) continue;
     if (!meta || meta.visibility !== 'public' || meta.archived) continue;
+
+    const views = repo.goatcounter ? pageViews(snapshots, name) : {};
+    const product = repo.family !== 'meta' && !repo.category?.includes('experimental');
+    if (repo.goatcounter) {
+      const latestGc = snapshots.at(-1).repos[name]?.goatcounter;
+      if (latestGc?.error) notes.push(`Page views for ${name} unavailable in the latest snapshot.`);
+      websites.push({
+        id: name,
+        family: repo.family,
+        product,
+        description: meta.description ?? '',
+        daily: views,
+        views7: Object.keys(views).length ? sumRecent(views, 7, today) : null,
+        views30: Object.keys(views).length ? sumRecent(views, 30, today) : null,
+        topPages: topPages(snapshots, name),
+      });
+    }
+    if (repo.family === 'meta') continue;
 
     const downloads = {};
     const totals = {};
@@ -285,9 +321,14 @@ async function main() {
         stars: starNow,
         starsChange7: starNow != null && starWeekAgo != null ? starNow - starWeekAgo : null,
         haInstalls: haToday?.total ?? Object.entries(haInstalls).sort().at(-1)?.[1] ?? null,
+        views7: websites.at(-1)?.id === name ? websites.at(-1).views7 : null,
+        views30: websites.at(-1)?.id === name ? websites.at(-1).views30 : null,
         clones14: Object.entries(cloneSeries).filter(([d]) => d > addDays(today, -14)).reduce((s, [, c]) => s + c.count, 0),
       },
       downloads,
+      pageViews: views,
+      topPages: repo.goatcounter ? topPages(snapshots, name) : [],
+      website: Boolean(repo.goatcounter),
       stars,
       clones: cloneSeries,
       haInstalls,
@@ -302,10 +343,11 @@ async function main() {
     firstSnapshot: [...Object.keys(legacy), snapshots[0].date].sort()[0],
     notes,
     components,
+    websites,
   };
   await mkdir(path.dirname(outPath), { recursive: true });
   await writeFile(outPath, `${JSON.stringify(stats)}\n`);
-  console.log(`stats: ${components.length} components, snapshot ${today}${notes.length ? `; ${notes.length} source gaps` : ''}`);
+  console.log(`stats: ${components.length} components, ${websites.length} websites (${websites.filter((w) => w.views30 != null).length} with page views), snapshot ${today}${notes.length ? `; ${notes.length} source gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);
 }
 

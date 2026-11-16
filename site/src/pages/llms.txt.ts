@@ -8,13 +8,14 @@ const url = (p: string) => `${ORG.siteUrl}/${p.replace(/^\/|\/$/g, '')}${p === '
 // Pages built from src/pages rather than the docs collection.
 const PAGES: [string, string, string][] = [
   ['Releases', 'releases', 'New features and important fixes in the last month, summarised (RSS: /releases.xml).'],
-  ['Usage', 'usage', 'Downloads, installs and GitHub figures per component.'],
+  ['Downloads', 'usage', 'Downloads, installs and GitHub figures per component.'],
+  ['Page views', 'usage/page-views', 'Page views of each website: product docs sites, the main site and this one.'],
   ['Community', 'community', 'Projects other people build on our products.'],
   ['Design Process', 'design', 'How changes are proposed and decided; RFCs, roadmaps and design principles.'],
   ['RFCs', 'rfcs', 'Open and decided requests for comments.'],
   ['Support', 'support', 'Open issues by type across the products.'],
   ['Deployments', 'deployments', 'GitHub Actions state of each public repo.'],
-  ['Security', 'security', 'Public security settings and published advisories.'],
+  ['Security', 'security', 'Public security settings, OpenSSF Scorecard results and published advisories.'],
 ];
 
 const SECTIONS: [string, string][] = [

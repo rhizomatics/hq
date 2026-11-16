@@ -25,6 +25,9 @@ Expectations of Rhizomatics projects
   `repos.toml` (e.g. `rhizomatics` for www.rhizomatics.org.uk on `.github`, `rhizomatics-hq` for the HQ site,
   a product's name for its docs site). Count only the public production build, as the boat tech directory's
   `site/src/analytics.mjs` does, so dev servers and builds run elsewhere aren't counted (decided 2026-11-15)
+- Every public repo with releases runs OpenSSF Scorecard (`.github/workflows/scorecard.yml`, the same workflow
+  in each, weekly and on push to `main`, results published). Scores are shown on the HQ site's Security page
+  (decided 2026-11-15, extended to every released repo 2026-11-16)
 - README badges
   - Every repo in `repos.toml` except `hq`, `.github` and internal repos shows the "managed by hq" badge,
     linking to the HQ site:

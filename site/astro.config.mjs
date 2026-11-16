@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 import { defineConfig } from 'astro/config';
 import { FAMILIES, ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
 
-// Usage pages are listed in the sidebar by family; stats.json is built before Astro runs.
+// Usage: the Downloads and Page views overviews, then each component's page by family; stats.json is built before Astro runs.
 function usageSidebar() {
   let components = [];
   try {
@@ -17,7 +17,7 @@ function usageSidebar() {
     collapsed: true,
     items: components.filter((c) => c.family === family).map((c) => ({ label: c.id, link: `/usage/${c.id}/` })),
   })).filter((g) => g.items.length);
-  return [{ label: 'All components', link: '/usage/' }, ...groups];
+  return [{ label: 'Downloads', link: '/usage/' }, { label: 'Page views', link: '/usage/page-views/' }, ...groups];
 }
 
 export default defineConfig({

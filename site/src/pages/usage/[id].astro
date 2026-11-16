@@ -12,7 +12,10 @@ import {
   haVersionSpec,
   hacsVersionSpec,
   lineSpec,
+  pageViewSpecs,
   signed,
+  viewsViews,
+  VIEWS_NOTE,
   type Channel,
   type Component,
 } from '../../lib/usage';
@@ -31,6 +34,8 @@ const haInstalls = lineSpec(c.haInstalls as Record<string, number>, 'Installatio
 const stars = lineSpec(c.stars as Record<string, number>, 'Stars', 'Stars');
 const clones = clonesSpec(c.clones as Record<string, { count: number; uniques: number }>);
 const used = CHANNELS.filter((ch) => c.channels.includes(ch.id));
+const views = c.website ? pageViewSpecs([{ product: true, daily: c.pageViews as Record<string, number> }]) : null;
+if (views) for (const d of [views.daily, views.weekly]) if (d) d.datasets[0].label = 'Page views';
 const totalNote: Record<string, string> = { hacs: 'all time', npm: 'last 18 months', ghcr: 'all time' };
 ---
 <StarlightPage frontmatter={{ title: c.id, description: c.description, tableOfContents: false }}>
@@ -45,7 +50,10 @@ const totalNote: Record<string, string> = { hacs: 'all time', npm: 'last 18 mont
     <Kpi label="GitHub stars" value={fmt(c.kpis.stars)} note={c.kpis.starsChange7 != null ? `${signed(c.kpis.starsChange7)} in 7 days` : undefined} />
     {c.kpis.haInstalls != null && <Kpi label="Home Assistant installs" value={fmt(c.kpis.haInstalls)} note="opted-in only" />}
     <Kpi label="Clones, last 14 days" value={fmt(c.kpis.clones14)} />
+    {c.kpis.views30 != null && <Kpi label="Page views, last 30 days" value={fmt(c.kpis.views30)} note={`${fmt(c.kpis.views7)} in 7 days`} />}
   </div>
+
+  <h2>Downloads</h2>
 
   {downloads && (
     <Chart
@@ -79,5 +87,30 @@ const totalNote: Record<string, string> = { hacs: 'all time', npm: 'last 18 mont
 
   {clones && (
     <Chart title="Git clones" views={{ Clones: clones }} caption="From GitHub's traffic API, which includes CI and bots; unique cloners are counted per day." />
+  )}
+
+  {c.website && (
+    <>
+      <h2>Page views</h2>
+      {views ? (
+        <>
+          <Chart title="Website page views" views={viewsViews(views)} caption={`${VIEWS_NOTE}.`} />
+          {c.topPages.length > 0 && (
+            <table class="usage-table">
+              <thead>
+                <tr><th scope="col">Top pages, last 30 days</th><th scope="col" class="num">Views</th></tr>
+              </thead>
+              <tbody>
+                {c.topPages.map((p) => (
+                  <tr><td><code>{p.path}</code>{p.title && <span class="ci-meta"> {p.title}</span>}</td><td class="num">{fmt(p.count)}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </>
+      ) : (
+        <p>No page views collected yet for this website.</p>
+      )}
+    </>
   )}
 </StarlightPage>

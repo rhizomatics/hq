@@ -1,0 +1,77 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import Chart from '../../components/Chart.astro';
+import Kpi from '../../components/Kpi.astro';
+import { VIEWS_NOTE, data, fmt, pageViewSpecs, viewsViews } from '../../lib/usage';
+import { FAMILIES, META_LABEL, ORG } from '../../lib/hq-config.mjs';
+
+const base = import.meta.env.BASE_URL;
+const sites = data.websites;
+const counted = sites.filter((s) => s.views30 != null);
+const sum = (f: (s: (typeof sites)[number]) => number | null) => counted.reduce((n, s) => n + (f(s) ?? 0), 0);
+const specs = pageViewSpecs(sites);
+const firstDay = sites.flatMap((s) => Object.keys(s.daily)).sort()[0];
+const componentIds = new Set(data.components.map((c) => c.id));
+const groups = [...FAMILIES, ['meta', META_LABEL]]
+  .map(([family, label]) => [label, sites.filter((s) => s.family === family).sort((a, b) => (b.views30 ?? -1) - (a.views30 ?? -1))] as const)
+  .filter(([, list]) => list.length);
+---
+<StarlightPage frontmatter={{ title: 'Page views', description: `Page views of every ${ORG.name} website: product docs sites, the main site and this one.`, tableOfContents: false }}>
+  <p>
+    How often each {ORG.name} website is read: the docs site of each product, the main website and this HQ site.
+    Downloads are on the <a href={`${base}/usage/`.replace('//', '/')}>Downloads</a> page. Updated daily; numbers to {data.snapshotDate}.
+  </p>
+
+  {counted.length ? (
+    <>
+      <div class="kpis">
+        <Kpi label="Page views, last 7 days" value={fmt(sum((s) => s.views7))} note={`${counted.length} websites`} />
+        <Kpi label="Page views, last 30 days" value={fmt(sum((s) => s.views30))} note={`${counted.length} websites`} />
+        <Kpi label="Product sites, 30 days" value={fmt(sum((s) => (s.product ? s.views30 : 0)))} />
+      </div>
+
+      {specs && (
+        <Chart
+          title="Page views, all websites"
+          views={viewsViews(specs)}
+          caption={`Stacked: product docs sites and the organisation's own sites. Counting starts ${firstDay}.`}
+        />
+      )}
+    </>
+  ) : (
+    <p>No page views collected yet: they appear after the first daily snapshot that can read GoatCounter.</p>
+  )}
+
+  {groups.map(([label, list]) => (
+    <>
+      <h2>{label}</h2>
+      <table class="usage-table">
+        <thead>
+          <tr>
+            <th scope="col">Website</th>
+            <th scope="col" class="num">Views 7d</th>
+            <th scope="col" class="num">30d</th>
+            <th scope="col">Top page, 30 days</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((s) => (
+            <tr>
+              <th scope="row">{componentIds.has(s.id) ? <a href={`${base}/usage/${s.id}/`.replace('//', '/')}>{s.id}</a> : s.id}</th>
+              <td class="num">{fmt(s.views7)}</td>
+              <td class="num">{fmt(s.views30)}</td>
+              <td>{s.topPages[0] ? <><code>{s.topPages[0].path}</code> <span class="ci-meta">{fmt(s.topPages[0].count)}</span></> : <span class="ci-meta">–</span>}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ))}
+
+  <h2>Sources</h2>
+  <ul class="usage-notes">
+    <li><strong>Page views</strong>: {VIEWS_NOTE}. No cookies, so no consent banner; no Google Analytics.</li>
+    <li>GitHub's own repo traffic (views of the code on github.com) isn't included; clones are on each component's page.</li>
+    {data.notes.filter((n) => n.startsWith('Page views')).map((n) => <li>{n}</li>)}
+  </ul>
+</StarlightPage>

@@ -13,11 +13,12 @@ const families = FAMILIES.map(([family]) => [family, components.filter((c) => c.
 const firstDate = (id: string) =>
   components.flatMap((c) => Object.keys((c.downloads as Record<string, Record<string, number>>)[id] ?? {})).sort()[0];
 ---
-<StarlightPage frontmatter={{ title: 'Usage', description: `Downloads, installs, stars and clones across all ${ORG.name} components.`, tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'Downloads', description: `Downloads, installs, stars and clones across all ${ORG.name} components.`, tableOfContents: false }}>
   <p>
     How much each {ORG.name} component is used, from the public counters each channel offers.
     None of them counts people: downloads include updates, CI and mirrors, and Home Assistant
-    installs only cover installations that opted in to analytics. Updated daily; numbers to {data.snapshotDate}.
+    installs only cover installations that opted in to analytics. How often the websites are read is on the
+    <a href={`${base}/usage/page-views/`.replace('//', '/')}>Page views</a> page. Updated daily; numbers to {data.snapshotDate}.
   </p>
 
   <div class="kpis">
