@@ -29,8 +29,12 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
 - [x] @pair Scorecard workflow on the remaining released repos: signalk-einklabel-genai, signalk-teltonika-sms,
   signalk-delta-squelch, signalk-ble-sensors, pico-ais-reporter, `.github` and `hq` (PRs merged 2026-11-16).
   agent-plugins has no releases, so it's left out; supernotify-cards is a community project, not ours
-- [x] @agent Scorecard on the HQ site's Security page: score per repo, average, and each check across repos,
-  weakest first (2026-11-16; read at site build in GitHub Actions, which can reach the API)
+- [x] @agent Scorecard on the HQ site's Security page (2026-11-16), then removed the same day: scores are for the
+  internal security and alignment reviews only. Accepted checks listed in `policies/project_standards.md`
+- [ ] @human Review and merge the Token-Permissions PRs (21 repos, branch `scorecard-token-permissions`): empty
+  top-level permissions on the shared admin callers (template fixed in hq), release.yml writes moved to job level
+  (supernotify, appliance_autonotify, camera_autonotify), Dependabot on the pico repos, a LICENSE in `.github`
+- [ ] @human Default workflow token to read-only, and decide on signed release zips (hq-private#116)
 - [ ] @human Let routines reach `api.securityscorecards.dev` (cloud environment network), then @agent check the first results next monthly run; move to `done/` if they are useful
 
 ## Log
@@ -45,3 +49,9 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
   page. First results across 16 repos average about 6.5/10; weakest checks org-wide (median 0) are Code-Review (a solo
   maintainer's PRs aren't approved by anyone else), CII-Best-Practices, Fuzzing and Signed-Releases, then
   Branch-Protection and Contributors (median 3). Worth deciding which of those to act on rather than chasing the number.
+- 2026-11-16 — Maintainer: scores off the public site, internal review only. Breakdown: Maintained 0 on five repos
+  is Scorecard's rule for repos under 90 days old, not inactivity; Code-Review, Contributors and Branch-Protection
+  are structural for one maintainer; Token-Permissions 0 came from top-level write grants in release.yml, and every
+  repo warned on the shared admin callers having no top-level permissions (fixed in the template, PRs in 21 repos).
+  Every repo's default Actions token is `write`. Signed-Releases applies only to the 6 HA repos with release zips;
+  keyless Sigstore attestation in the existing release workflow adds no release friction (decision in hq-private#116).
