@@ -13,6 +13,10 @@ Expectations of Rhizomatics projects
   - `fix-spaces` from `sirosen/texthooks` in every repo: it replaces non-breaking and other irregular
     spaces with plain ones. They slip in from pastes and option-space on macOS, break Markdown headings
     and YAML, and look identical in review. A recurring problem across repos (found again in hq, 2026-11-15)
+- Linting configured using standard linters for all code and available config
+  - For Python code defer to [Python Stack](./python_stack.md)
+  - For JavaScript, `oxfmt` and `oxlint`
+  - Linters to be identified for GitHub Actions, shellscript, Dockerfile, C and YAML
 - Page views on every website the org publishes (docs sites, the HQ site, www) are counted with
   GoatCounter, cookieless, so no site needs a consent banner. No Google Analytics or other cookie-setting
   trackers. Each website has its own GoatCounter site, recorded as `goatcounter` on its repo in hq's
