@@ -17,7 +17,8 @@ github/codeql-action/*,
 bojieyang/indexnow-action@*,
 # Shared
 crazy-max/ghaction-github-labeler@*,
-dependabot/fetch-metadata@*
+dependabot/fetch-metadata@*,
+action-badges/create-orphan-branch@,
 # SignalK
 SignalK/signalk-server/.github/workflows/plugin-ci.yml@*,
 # Docker 
