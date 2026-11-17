@@ -102,7 +102,7 @@ const totalNote: Record<string, string> = { hacs: 'all time', npm: 'last 18 mont
 
   {c.website && (
     <>
-      <h2>Page views</h2>
+      <h2 id="page-views">Page views</h2>
       {views ? (
         <>
           <Chart title="Website page views" views={viewsViews(views)} caption={`${VIEWS_NOTE}.`} />

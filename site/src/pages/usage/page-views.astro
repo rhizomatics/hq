@@ -58,7 +58,7 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
         <tbody>
           {list.map((s) => (
             <tr>
-              <th scope="row">{componentIds.has(s.id) ? <a href={`${base}/usage/${s.id}/`.replace('//', '/')}>{s.id}</a> : s.id}</th>
+              <th scope="row">{componentIds.has(s.id) ? <a href={`${base}/usage/${s.id}/#page-views`.replace('//', '/')}>{s.id}</a> : s.id}</th>
               <td class="num">{fmt(s.views7)}</td>
               <td class="num">{fmt(s.views30)}</td>
               <td>{s.topPages[0] ? <><code>{s.topPages[0].path}</code> <span class="ci-meta">{fmt(s.topPages[0].count)}</span></> : <span class="ci-meta">–</span>}</td>
