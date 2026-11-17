@@ -53,6 +53,7 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
             <th scope="col" class="num">Views 7d</th>
             <th scope="col" class="num">30d</th>
             <th scope="col">Top page, 30 days</th>
+            <th scope="col">Analytics</th>
           </tr>
         </thead>
         <tbody>
@@ -62,6 +63,7 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
               <td class="num">{fmt(s.views7)}</td>
               <td class="num">{fmt(s.views30)}</td>
               <td>{s.topPages[0] ? <><code>{s.topPages[0].path}</code> <span class="ci-meta">{fmt(s.topPages[0].count)}</span></> : <span class="ci-meta">–</span>}</td>
+              <td><a href={s.analytics}>GoatCounter</a></td>
             </tr>
           ))}
         </tbody>
