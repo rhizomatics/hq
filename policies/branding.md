@@ -1,3 +1,8 @@
+---
+group: general
+summary: Light and dark logos in two sizes, platform branding rules, and what every website must have.
+---
+
 # Branding
 
 ## Logos

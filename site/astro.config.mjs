@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import starlight from '@astrojs/starlight';
 import { defineConfig } from 'astro/config';
 import { FAMILIES, ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
+import { policies, policyGroups } from './scripts/lib/hq-docs.mjs';
 
 // Usage: the Downloads and Page views overviews, then each component's page by family; stats.json is built before Astro runs.
 function usageSidebar() {
@@ -18,6 +19,16 @@ function usageSidebar() {
     items: components.filter((c) => c.family === family).map((c) => ({ label: c.id, link: `/usage/${c.id}/` })),
   })).filter((g) => g.items.length);
   return [{ label: 'Downloads', link: '/usage/' }, { label: 'Page views', link: '/usage/page-views/' }, ...groups];
+}
+
+// Policies: the list and how it works, then each policy under its `group:`, as on the list page.
+async function policiesSidebar() {
+  const list = await policies(new URL('..', import.meta.url).pathname);
+  const groups = policyGroups(list).map(({ label, items }) => ({
+    label,
+    items: items.map((p) => ({ slug: p.rel.replace(/\.md$/, '').toLowerCase() })),
+  }));
+  return [{ label: 'All policies', link: '/policies/' }, { label: 'How it works', link: '/policies/how-it-works/' }, ...groups];
 }
 
 export default defineConfig({
@@ -56,7 +67,7 @@ export default defineConfig({
         },
         { label: 'Projects', collapsed: true, items: [{ autogenerate: { directory: 'projects' } }] },
         { label: 'Processes', collapsed: true, items: [{ autogenerate: { directory: 'processes' } }] },
-        { label: 'Policies', collapsed: true, items: [{ autogenerate: { directory: 'policies' } }] },
+        { label: 'Policies', collapsed: true, items: await policiesSidebar() },
         { label: 'Reference', collapsed: true, items: [{ autogenerate: { directory: 'reference' } }] },
         { label: 'Team', link: '/team/' },
         { label: 'Reports', collapsed: true, items: [{ autogenerate: { directory: 'reports' } }] },

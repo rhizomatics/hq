@@ -6,14 +6,15 @@
 // Published: team.md, policies/, processes/, projects/, reference/ from hq; reports from
 // hq-private/reports/<area>/ for processes whose "**Report:**" line says public or
 // "private by exception" (minus any report with `visibility: private` in its frontmatter),
-// dated on or after REPORTS_FROM. Every page is scanned for private details first: a hit in an
+// dated on or after REPORTS_FROM. For the LIST_DIRS, the folder's README becomes <dir>/how-it-works
+// and the section's index page is a generated list with a "How it works" button. Every page is scanned for private details first: a hit in an
 // hq doc fails the build (fix the doc), a hit in a report leaves that report out.
 
 import { copyFile, readFile, readdir, writeFile, mkdir, rm, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ORG, githubUrl } from '../src/lib/hq-config.mjs';
-import { checkHq, expandGenerated } from './lib/hq-docs.mjs';
+import { checkHq, expandGenerated, listPage } from './lib/hq-docs.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
@@ -26,7 +27,14 @@ const REPO = githubUrl(ORG.hqRepo);
 const REPORTS_FROM = '2026-11-14';
 const DOC_DIRS = ['policies', 'processes', 'projects', 'reference'];
 const DOC_FILES = ['team.md'];
-const CADENCE_ORDER = { readme: 0, daily: 1, weekly: 2, fortnightly: 3, monthly: 4, quarterly: 5 };
+// Sections whose index is a generated list; the README explains how the section works.
+const LIST_DIRS = {
+  projects: 'Everything in progress, proposed, finished or shelved, with its goal.',
+  processes: 'Every agent process, when it runs and which persona runs it.',
+  policies: 'The maintainer\'s cross-project policies, each with what it says in a line.',
+};
+// Sidebar order: the list, then how it works, then the cadence files in order.
+const CADENCE_ORDER = { index: 0, 'how-it-works': 1, daily: 2, weekly: 3, fortnightly: 4, monthly: 5, quarterly: 6 };
 
 const PRIVATE_PATTERNS = [
   [/\b(?:10|127)\.\d{1,3}\.\d{1,3}\.\d{1,3}\b|\b192\.168\.\d{1,3}\.\d{1,3}\b|\b172\.(?:1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}\b/, 'private IP address'],
@@ -57,6 +65,7 @@ async function walk(dir) {
 function slugFor(rel) {
   const top = rel.split('/')[0];
   if (!DOC_FILES.includes(rel) && !DOC_DIRS.includes(top)) return null;
+  if (LIST_DIRS[top] && rel.toLowerCase() === `${top}/readme.md`) return `${top}/how-it-works`;
   return rel.replace(/(^|\/)README\.md$/i, '$1index.md').replace(/\.md$/, '').toLowerCase();
 }
 
@@ -96,7 +105,9 @@ function rewriteLinks(body, srcRel, { linkBase }) {
     if (rel.startsWith('..')) return match;
     const isDir = file.endsWith('/') || !path.posix.extname(rel);
     const docRel = isDir ? `${rel.replace(/\/$/, '')}/README.md` : rel;
-    const slug = rel.endsWith('.md') || isDir ? slugFor(docRel) : null;
+    // A link to a list section's folder goes to its list, one to its README to "How it works".
+    const slug = isDir && LIST_DIRS[rel.replace(/\/$/, '')] ? `${rel.replace(/\/$/, '')}/index`
+      : rel.endsWith('.md') || isDir ? slugFor(docRel) : null;
     const url = slug != null ? pageUrl(slug) : `${linkBase}/${isDir ? 'tree' : 'blob'}/main/${rel}`;
     return `](${url}${anchor ? `#${anchor}` : ''})`;
   }))).join('');
@@ -135,15 +146,27 @@ async function syncDocs() {
     const name = path.posix.basename(slug);
     const { title, front, body: raw } = titleAndBody(text, name);
     const body = await expandGenerated(raw, rel, hqRoot);
-    const order = rel.startsWith('processes/') ? CADENCE_ORDER[name === 'index' ? 'readme' : name] : (name === 'index' ? 0 : undefined);
+    const howItWorks = name === 'how-it-works';
+    const order = rel.startsWith('processes/') || howItWorks ? CADENCE_ORDER[name] : (name === 'index' ? 0 : undefined);
     await writePage(slug, {
-      title,
-      label: name === 'index' && rel.includes('/') ? 'Overview' : undefined,
+      title: howItWorks ? `How ${title.toLowerCase()} work` : title,
+      label: howItWorks ? 'How it works' : name === 'index' && rel.includes('/') ? 'Overview' : undefined,
       // A project's summary becomes the page description.
-      front: front.replace(/^(status|lead|owner|started):.*$/gm, '').replace(/^summary:/m, 'description:').trim(),
+      front: front.replace(/^(status|lead|owner|started|group):.*$/gm, '').replace(/^summary:/m, 'description:').trim(),
       body: rewriteLinks(body, rel, { linkBase: REPO }),
       editUrl: `${REPO}/edit/main/${rel}`,
       order,
+    });
+  }
+  for (const [dir, intro] of Object.entries(LIST_DIRS)) {
+    const { title } = titleAndBody(await readFile(path.join(hqRoot, dir, 'README.md'), 'utf8'), dir);
+    const list = await listPage(dir, hqRoot);
+    await writePage(`${dir}/index`, {
+      title,
+      label: `All ${dir}`,
+      front: `description: ${yamlString(intro)}`,
+      body: `<div class="hq-section-intro not-content">\n<p>${intro}</p>\n<a class="hq-button" href="${BASE}${dir}/how-it-works/">How it works</a>\n</div>\n\n${rewriteLinks(list, `${dir}/README.md`, { linkBase: REPO })}\n`,
+      order: 0,
     });
   }
   return { count: sources.length, problems };

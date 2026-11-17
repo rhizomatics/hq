@@ -1,3 +1,8 @@
+---
+group: general
+summary: "What every product gets: a repos.toml entry, GitHub features enabled, Apache-2.0 licence, the HQ badge."
+---
+
 # Products
 
 Products will follow all the other HQ policies except where an exception listed.

@@ -1,3 +1,8 @@
+---
+group: python
+summary: Which Python versions to support, for PyPI libraries, Docker images and Home Assistant components.
+---
+
 # Python Versions
 
 Scope: All Python based libraries

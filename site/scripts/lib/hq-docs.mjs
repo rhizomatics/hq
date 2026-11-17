@@ -5,6 +5,8 @@
 //   <!-- hq:generated schedule -->   routine schedule, from the cadence files' **When:** / **Who:** / **Environment:**
 //   <!-- hq:runs <persona> -->       the processes a persona runs, from the cadence files' **Who:**
 // The markers stay in the markdown (invisible on GitHub); the site build expands them.
+// The index pages of projects/, processes/ and policies/ on the site are generated lists too (listPage);
+// each folder's README becomes that section's "How it works" page.
 
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
@@ -22,6 +24,14 @@ const PROJECT_GROUPS = [
   ['proposed', 'Proposed'],
   ['done', 'Done'],
   ['shelved', 'Shelved'],
+];
+
+// Policy groups (`group:` in each policy's frontmatter), in the order the list shows them.
+export const POLICY_GROUPS = [
+  ['general', 'General'],
+  ['python', 'Python'],
+  ['signalk', 'SignalK'],
+  ['hq', 'HQ'],
 ];
 
 const exists = (p) => stat(p).then(() => true, () => false);
@@ -67,7 +77,40 @@ function projectTables(list, fromDir) {
   }).join('\n\n');
 }
 
+// ---- policies ----
+
+export async function policies(hqRoot) {
+  const dir = path.join(hqRoot, 'policies');
+  const out = [];
+  for (const f of (await readdir(dir)).filter((n) => n.endsWith('.md') && n !== 'README.md')) {
+    const { fields, body } = frontmatter(await readFile(path.join(dir, f), 'utf8'));
+    const title = fields.title || body.match(/^#\s+(.+)$/m)?.[1]?.trim() || f.replace(/\.md$/, '');
+    out.push({ rel: `policies/${f}`, title, group: fields.group || null, summary: fields.summary || null });
+  }
+  return out.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+// Policies by group, known groups first. A policy is never dropped: an unknown group gets its own heading
+// (named from its id) and one without a group goes under Other. check-hq flags both.
+export function policyGroups(list) {
+  const ids = [...POLICY_GROUPS.map(([id]) => id), ...new Set(list.map((p) => p.group ?? 'other'))];
+  const label = (id) => POLICY_GROUPS.find(([g]) => g === id)?.[1] ?? id.replace(/[-_]/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+  return [...new Set(ids)]
+    .map((id) => ({ id, label: label(id), items: list.filter((p) => (p.group ?? 'other') === id) }))
+    .filter((g) => g.items.length);
+}
+
+function policyTables(list, fromDir) {
+  return policyGroups(list).map(({ label, items }) => [`## ${label}`, '', '| Policy | What it says |', '|---|---|',
+    ...items.map((p) => `| [${cell(p.title)}](${path.posix.relative(fromDir, p.rel)}) | ${cell(p.summary ?? '_no summary_')} |`)].join('\n')).join('\n\n');
+}
+
 // ---- processes ----
+
+// Heading anchor as the site renders it (github-slugger rules).
+function anchor(heading) {
+  return heading.replace(/`/g, '').toLowerCase().replace(/[^\p{L}\p{N}\s_-]/gu, '').replace(/\s/g, '-');
+}
 
 // Every agent process entry (a heading naming a `/skill`) in the cadence files, with its fields.
 export async function processes(hqRoot) {
@@ -88,7 +131,7 @@ export async function processes(hqRoot) {
         }
         const parts = h[2].split(/\s+[—-]\s+/).filter((p) => !p.includes('`/'));
         const [day, name] = parts.length > 1 ? [parts[0], parts[1]] : [h[1].length > 2 ? parent : null, parts[0]];
-        entry = { cadence, cadenceLabel, rel: `processes/${cadence}.md`, skill, name, day, fields: {} };
+        entry = { cadence, cadenceLabel, rel: `processes/${cadence}.md`, anchor: anchor(h[2]), skill, name, day, fields: {} };
         out.push(entry);
         continue;
       }
@@ -105,7 +148,7 @@ function scheduleTable(list, fromDir) {
   const envs = list.some((e) => e.fields.environment);
   const rows = list.map((e) => {
     const when = e.fields.when ? [e.day, e.fields.when].filter(Boolean).join(', ') : '_not scheduled_';
-    const link = path.posix.relative(fromDir, e.rel);
+    const link = `${path.posix.relative(fromDir, e.rel)}#${e.anchor}`;
     const env = envs ? ` ${cell(e.fields.environment ?? 'default')} |` : '';
     const routine = e.fields.routine ? e.fields.routine.replace(/`/g, '') : `hq: ${e.cadence} ${e.name.toLowerCase()}`;
     return `| [${cell(e.name)}](${link}) | \`/${e.skill}\` | ${e.cadenceLabel} | ${cell(when)} | ${e.who ?? ''} | ${cell(routine)} |${env}`;
@@ -120,6 +163,17 @@ function runsList(list, persona, fromDir) {
   const mine = list.filter((e) => e.who === persona);
   if (!mine.length) return '_none_';
   return mine.map((e) => `[${e.name}](${path.posix.relative(fromDir, e.rel)}) (${e.cadence})`).join(', ');
+}
+
+// ---- section list pages ----
+
+// The generated body of a section's index page on the site, under its intro and "How it works" button.
+export async function listPage(section, hqRoot) {
+  const fromDir = section;
+  if (section === 'projects') return projectTables(await projects(hqRoot), fromDir);
+  if (section === 'processes') return scheduleTable(await processes(hqRoot), fromDir);
+  if (section === 'policies') return policyTables(await policies(hqRoot), fromDir);
+  throw new Error(`no list page for ${section}`);
 }
 
 // ---- expansion ----
@@ -179,6 +233,11 @@ export async function checkHq(hqRoot) {
 
   for (const p of await projects(hqRoot)) {
     if (!p.summary) problems.push(`${p.rel}: no summary: in frontmatter`);
+  }
+  const groups = POLICY_GROUPS.map(([id]) => id);
+  for (const p of await policies(hqRoot)) {
+    if (!p.summary) problems.push(`${p.rel}: no summary: in frontmatter`);
+    if (!groups.includes(p.group)) problems.push(`${p.rel}: group: should be one of ${groups.join(', ')}`);
   }
 
   const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));

@@ -1,3 +1,8 @@
+---
+group: general
+summary: RFCs, design principles and roadmaps kept in each product repo under docs/developer/design/.
+---
+
 # Design
 
 Design documents live in each product repo under `docs/developer/design/`, so they're public and versioned with the code.

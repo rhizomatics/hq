@@ -1,3 +1,8 @@
+---
+group: hq
+summary: Work that needs no judgement is done by a script, not an agent.
+---
+
 # Scripts over agents
 
 Scope: HQ itself (`hq`, `hq-private`), and product repos where an agent process does the same mechanical work each run.
@@ -21,9 +26,9 @@ miss things a script never would. Keep agents for ranking, judging, drafting and
 
 ## How it's done in HQ
 
-- The site build expands markers in the docs: `<!-- hq:generated projects -->` (project tables),
-  `<!-- hq:generated schedule -->` (routine schedule) and `<!-- hq:runs <persona> -->` (processes per persona),
-  in `site/scripts/lib/hq-docs.mjs`.
+- The site build generates the lists of projects, processes (the routine schedule) and policies that open those
+  sections, and expands markers in the docs, such as `<!-- hq:runs <persona> -->` (processes per persona), in
+  `site/scripts/lib/hq-docs.mjs`.
 - `mise run check-hq` (`site/scripts/check-hq.mjs`) runs the mechanical checks and exits non-zero on a problem;
   the site build prints the same problems as warnings.
 - Stats and GitHub snapshots are collected by scripts in `hq-private/scripts/` on GitHub Actions.

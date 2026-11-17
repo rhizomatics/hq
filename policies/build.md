@@ -1,3 +1,8 @@
+---
+group: general
+summary: "GitHub Actions for build and release: ci and ci-ok gates, pinned actions, release workflows, image scanning."
+---
+
 # Build Policies
 
 ## Automated Build
