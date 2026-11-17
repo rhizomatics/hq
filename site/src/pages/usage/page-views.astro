@@ -20,6 +20,7 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
   <p>
     How often each {ORG.name} website is read: the docs site of each product, the main website and this HQ site.
     Downloads are on the <a href={`${base}/usage/`.replace('//', '/')}>Downloads</a> page. Updated daily; numbers to {data.snapshotDate}.
+    {data.pageViewsSince && <>Page views were first collected on {data.pageViewsSince}.</>}
   </p>
 
   {counted.length ? (

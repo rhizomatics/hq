@@ -49,7 +49,7 @@ export default defineConfig({
         { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: `${ORG.name} releases`, href: '/releases.xml' } },
         ...analyticsHead(),
       ],
-      social: [{ icon: 'github', label: 'GitHub', href: githubUrl() }],
+      social: [{ icon: 'github', label: 'GitHub', href: githubUrl(ORG.hqRepo) }],
       customCss: ['./src/styles/site.css'],
       lastUpdated: false,
       sidebar: [

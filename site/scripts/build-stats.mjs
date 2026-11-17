@@ -341,10 +341,20 @@ async function main() {
     });
   }
 
+  // GoatCounter reports a zero for every day in its window, including those before a site started counting.
+  // Drop the days before any site counted a view, so charts start when counting did. Each site's daily is the
+  // same object as its component's pageViews, so this trims both.
+  const pageViewsFrom = websites.flatMap((w) => Object.entries(w.daily).filter(([, n]) => n > 0).map(([d]) => d)).sort()[0];
+  for (const w of websites) {
+    for (const d of Object.keys(w.daily)) if (!pageViewsFrom || d < pageViewsFrom) delete w.daily[d];
+  }
+
   const stats = {
     generatedAt: new Date().toISOString(),
     snapshotDate: today,
     firstSnapshot: [...Object.keys(legacy), snapshots[0].date].sort()[0],
+    // The first snapshot that read page views from GoatCounter (null until one has).
+    pageViewsSince: snapshots.find((s) => Object.values(s.repos).some((r) => r.goatcounter?.daily))?.date ?? null,
     notes,
     components,
     websites,
