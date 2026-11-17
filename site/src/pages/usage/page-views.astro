@@ -1,5 +1,6 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Icon } from '@astrojs/starlight/components';
 import Chart from '../../components/Chart.astro';
 import Kpi from '../../components/Kpi.astro';
 import { VIEWS_NOTE, data, fmt, pageViewSpecs, viewsViews } from '../../lib/usage';
@@ -63,7 +64,7 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
               <td class="num">{fmt(s.views7)}</td>
               <td class="num">{fmt(s.views30)}</td>
               <td>{s.topPages[0] ? <><code>{s.topPages[0].path}</code> <span class="ci-meta">{fmt(s.topPages[0].count)}</span></> : <span class="ci-meta">–</span>}</td>
-              <td><a href={s.analytics}>GoatCounter</a></td>
+              <td><a href={s.analytics} aria-label={`Analytics for ${s.id}`} title="Analytics"><Icon name="magnifier" /></a></td>
             </tr>
           ))}
         </tbody>
