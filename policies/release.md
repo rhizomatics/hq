@@ -1,3 +1,8 @@
+---
+group: general
+summary: Immutable, semantically versioned releases with notes in a standard format.
+---
+
 # Release
 
 - All releases will be immutable, except in `experimental` projects (`repos.toml`)

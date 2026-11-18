@@ -1,3 +1,8 @@
+---
+group: python
+summary: Preferred Python packages for new projects, with an exemplar repo and accepted alternatives.
+---
+
 # Python Stack
 
 Preferred packages for Python projects, to be used in new projects, and existing projects compared against it in architecture reviews.

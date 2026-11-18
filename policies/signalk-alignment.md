@@ -1,3 +1,8 @@
+---
+group: signalk
+summary: "SignalK plugins as exemplary citizens: TypeScript, npm release conventions, tested across six months of releases."
+---
+
 # SignalK Alignment
 
 Plugins will be exemplary citizens of the `npm` and `SignalK` ecosystems.

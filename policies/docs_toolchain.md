@@ -1,11 +1,29 @@
-# Docs toolchain
+---
+group: general
+summary: properdocs with the materialx theme for Python projects; Astro Starlight for the rest.
+---
 
-Scope: Python projects (Home Assistant components, updates2mqtt, CLIs).
+# Documentation Toolchain
+
+Projects may use Static Site Generators to build efficient web sites on Github Pages.
+
+## Simple Projects
+
+A Markdown formatted `README.md` and `CHANGELOG.md` may be sufficient.
+
+## Python Projects
 
 - Documentation uses `properdocs` with the `materialx` theme. No `mkdocs.yml`.
 - New projects with simple needs may use `zensical` as a trailblazer, until it supports the plugins the other projects rely on.
-- Non-Python projects use `astro` with `starlight`, to avoid adding dependencies.
 
-Exceptions: plugin packages keep their `mkdocs-` names.
+## JavaScript Projects
+
+- Use `astro` with `starlight`, to avoid adding dependencies.
+
+## Other Projects
+
+`astro` or `properdocs` may be used, with preference for `astro` to minimize dependency chain.
+
+## References
 
 Background: the migration project is in `projects/done/mkdocs_decom.md`.

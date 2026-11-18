@@ -1,3 +1,8 @@
+---
+group: python
+summary: "Home Assistant components as exemplary citizens: Quality Scale, UI configuration, new features within the month."
+---
+
 # Home Assistant Alignment
 
 Home Assistant custom components will be exemplary citizens of the community. 

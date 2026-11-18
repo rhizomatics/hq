@@ -46,8 +46,8 @@ HQ is those two repos:
 ## Layout
 
 - `repos.toml` — registry of every repo, its family and where it's published, plus the org settings above. Source of truth for all processes; update it when a repo is added, renamed or starts publishing somewhere new.
-- `projects/` — active projects; `projects/proposed/` ideas not started, `projects/done/` finished, `projects/shelved/` rejected or postponed indefinitely. Format, task tags (`@agent`/`@pair`/`@human`) in `projects/README.md`; the project tables there are generated from each file's folder and `summary:`.
-- `processes/` — recurring routines, one file per cadence (`daily.md` … `quarterly.md`): when, persona, environment, output. The schedule in `processes/README.md` and each persona's **Runs** in `team.md` are generated from them.
+- `projects/` — active projects; `projects/proposed/` ideas not started, `projects/done/` finished, `projects/shelved/` rejected or postponed indefinitely. Format, task tags (`@agent`/`@pair`/`@human`) in `projects/README.md`; the site's project list is generated from each file's folder and `summary:`.
+- `processes/` — recurring routines, one file per cadence (`daily.md` … `quarterly.md`): when, persona, environment, output. The site's process list (the schedule) and each persona's **Runs** in `team.md` are generated from them.
 - `team.md` — who owns what, character, handoffs between personas, disagreements.
 - `admin/` — shared repo admin for every product repo: caller templates, `sync-admin.sh` and the shared
   `labels.yml` ([admin/README.md](admin/README.md)). The reusable workflows they call are in `.github/workflows/reusable-*.yml`;
@@ -55,7 +55,7 @@ HQ is those two repos:
   SECURITY.md.
 - `.claude/agents/` — personas: `pm`, `architect`, `infra-lead`, `marketing`, `tech-writer`; plus `researcher`, a cheap fast model for farmed-out gathering.
 - `.claude/skills/` — one skill per process.
-- `policies/` — the maintainer's cross-project policies (e.g. supported Python versions), each with its scope and exceptions, including `project_standards.md` (the baseline every product repo should meet: tooling, cooldowns, shared admin workflows, Dependabot shape). Processes check repos against them; format in `policies/README.md`.
+- `policies/` — the maintainer's cross-project policies (e.g. supported Python versions), each with its scope and exceptions, including `project_standards.md` (the baseline every product repo should meet: tooling, cooldowns, shared admin workflows, Dependabot shape). Processes check repos against them; format (including the `summary:` the site's policy list shows) in `policies/README.md`.
 - `reference/` — lookup material for processes: `project_tooling.md`, forums to watch (`*_discussion.md`), per-product problem phrases (`topic_terms.md`) and platform changes still to act on (`*_platform_changes.md`).
 - `site/` — the public HQ site (Astro Starlight), built twice daily by
   `.github/workflows/site.yml`: the docs above, public reports, and a Usage section per component

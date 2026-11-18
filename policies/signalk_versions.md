@@ -1,3 +1,8 @@
+---
+group: signalk
+summary: Support a rolling six months of signalk-server releases, and the Node versions they need.
+---
+
 # SignalK Versions
 
 Scope: All SignalK plugins (`family = "signalk-plugin"` in `repos.toml`)

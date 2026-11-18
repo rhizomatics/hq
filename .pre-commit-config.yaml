@@ -5,3 +5,12 @@ repos:
     hooks:
       # Non-breaking and other irregular spaces break Markdown headings and YAML (policies/project_standards.md).
       - id: fix-spaces
+  # Generated lists (projects, processes, policies) need each page's frontmatter; catch gaps before they reach the site.
+  - repo: local
+    hooks:
+      - id: check-hq
+        name: check-hq
+        entry: mise run check-hq
+        language: system
+        pass_filenames: false
+        files: ^(policies|processes|projects|\.claude)/|^repos\.toml$

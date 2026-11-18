@@ -8,10 +8,29 @@ prek = "latest"
 
 [tasks.preview-site]
 description = "Build the public site from hq and ../hq-private, then serve it at http://localhost:4321/"
+depends = ["site-deps"]
 dir = "site"
-run = ["npm ci", "GITHUB_TOKEN=\"${GITHUB_TOKEN:-$(gh auth token)}\" npm run build", "npx astro preview"]
+run = ["GITHUB_TOKEN=\"${GITHUB_TOKEN:-$(gh auth token)}\" npm run build", "npx astro preview"]
+
+[tasks.dev-site]
+description = "Serve the site at http://localhost:4321/ with live reload of site/ changes (rerun after editing hq docs); it keeps running in the background until `mise run dev-site-stop`"
+depends = ["site-deps"]
+dir = "site"
+run = ["GITHUB_TOKEN=\"${GITHUB_TOKEN:-$(gh auth token)}\" npm run stats", "GITHUB_TOKEN=\"${GITHUB_TOKEN:-$(gh auth token)}\" npm run dev"]
+
+[tasks.site-deps]
+description = "Install the site's npm packages when package-lock.json has changed"
+sources = ["site/package-lock.json"]
+outputs = ["site/node_modules/.package-lock.json"]
+run = "npm ci --prefix site"
+
+[tasks.dev-site-stop]
+description = "Stop the dev server started by dev-site"
+dir = "site"
+run = "npx astro dev stop"
 
 [tasks.check-hq]
+depends = ["site-deps"]
 description = "Mechanical checks on the hq docs: processes vs skills and personas, schedules, project summaries (policies/scripts_over_agents.md)"
 dir = "site"
 run = "node scripts/check-hq.mjs"

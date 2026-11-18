@@ -1,3 +1,8 @@
+---
+group: general
+summary: "The baseline every repo should meet: tooling, cooldowns, shared admin workflows, Dependabot shape."
+---
+
 # Project Standards
 
 Expectations of Rhizomatics projects

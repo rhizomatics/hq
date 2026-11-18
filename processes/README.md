@@ -32,9 +32,7 @@ Monthly and quarterly work is spread across the calendar so it doesn't all land 
 ## Scheduling
 
 Every agent process runs in a Claude Code cloud routine (manage at https://claude.ai/code/routines), with all the org's repos attached. Processes run by the same persona at the same cadence share one routine, named `hq: <cadence> <persona>`, which runs them in order, each with its own skill, report and issues; one failing doesn't stop the next. That saves each routine's start-up (cloning every repo, reading the house rules). A process on its own has a routine named `hq: <cadence> <process>`. An entry's **Routine:** line names a shared routine.
-Each process's cadence entry is the one place its time (**When:**, UTC) and persona (**Who:**) are set; daily agent routines start after the 05:00 stats and GitHub snapshot in Actions. On the site, this table is generated from those entries:
-
-<!-- hq:generated schedule -->
+Each process's cadence entry is the one place its time (**When:**, UTC) and persona (**Who:**) are set; daily agent routines start after the 05:00 stats and GitHub snapshot in Actions. On the site, the [list of processes](./) is generated from those entries.
 
 Models: Sonnet for daily and weekly routines, Opus for monthly and quarterly ones, Haiku for
 the `researcher` subagent they farm gathering out to. What cloud routines can and can't reach is in
