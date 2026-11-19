@@ -54,9 +54,15 @@ overlap. Each writes one issue labelled `trial` (never assigned, so no one is pa
 - **Pinned** to awesome-copilot commit `1683f50`. The upstream instructions are unchanged. Local settings are the
   engine, the schedule (weekly for the trial), the `trial` label and a marked section at the end of each file.
   The compliance checker runs only on issues labelled `ospo-release-check`, not on every new issue.
+- **Question** (reframed 2026-11-19): is a workflow worth supporting as an optional HQ provider, off by default and
+  turned on per instance like a skill, perhaps as a quarterly audit? The HQ skills stay either way; nothing is
+  retired on the trial's result.
 - **Compare** on the same weeks: what each found that the other missed, false positives, whether the output
-  needs a human to act, and the cost per run. The skill is retired only if the workflow does as well or better.
-  Otherwise the workflow is removed. Results go in the project log.
+  needs a human to act, how much set-up and tuning it needed, and the cost per run. Results go in the project log.
+- **Findings so far:** the first org health run (2026-11-19) cost about $2.43 on Sonnet 5 and filed nothing. Told to
+  cover public repos only, it searched repo by repo, hit GitHub's search rate limit and ended without its safe
+  output. The local settings now keep searches org-wide with `is:public`, one at a time, and always file the issue
+  ([hq-private#129](https://github.com/rhizomatics/hq-private/pull/129)).
 
 ## Security
 

@@ -63,6 +63,10 @@ with one or more providers, each pinned to a version:
 
 Keep in HQ only what nobody else does well, mostly the platform packs and the glue between providers.
 
+A provider can also be **optional**: off by default and turned on per instance in config, like a skill, alongside
+the HQ provider rather than instead of it. That's the likely shape for gh-aw's OSPO workflows (perhaps as a
+quarterly audit), where the trial is about whether to support them at all.
+
 ### Two regular reviews
 
 Which skills are used, and whether they're still the best choice, is reviewed regularly, at two levels:
@@ -171,12 +175,15 @@ a separate domain only once there are outside users.
 - [x] @agent Survey existing skill packages for each HQ capability: vendors' own skills, skill marketplaces,
       agent plugin packages and gh-aw workflows. List per capability what exists, who maintains it and how it compares
       (2026-11-19, [skill providers](../reference/skill_providers.md))
-- [ ] @agent Evaluate the best candidates against HQ skills on Rhizomatics repos for two weeks, side by side.
-      First gh-aw candidates: org health report ↔ `support-sweep` + `pr-report`; stale repo report ↔ `registry-check`;
+- [ ] @agent Run the best candidates beside HQ skills on Rhizomatics repos for two weeks. The question (2026-11-19) is
+      whether HQ should support gh-aw/OSPO workflows at all, as an optional provider, not whether they replace the
+      HQ skills. First gh-aw candidates: org health report ↔ `support-sweep` + `pr-report`; stale repo report ↔ `registry-check`;
       compliance check ↔ `github-review` (community files part); contributor report ↔ part of `adoption-report`.
       Set up in [hq-private#121](https://github.com/rhizomatics/hq-private/pull/121); runs once merged with its
       engine secret ([hq-private#122](https://github.com/rhizomatics/hq-private/issues/122)), then compare for two weeks (plan in [skill providers](../reference/skill_providers.md#the-trial))
-- [ ] @pair Retire each HQ skill where a third-party one does as well or better; keep the HQ-specific remainder as a small add-on
+- [ ] @pair After the trial, decide whether HQ supports gh-aw/OSPO workflows as optional providers: off by default,
+      turned on per instance in config like a skill, perhaps at a slower cadence (e.g. a quarterly audit). The current
+      HQ skills stay either way. If yes, the opt-in becomes part of the provider config design (Phase 2)
 - [x] @agent Survey existing security auditing skills and workflows; pick at least two providers to run alongside Dependabot and CodeQL
       (2026-11-19: zizmor for Actions workflows, built as a shared admin workflow; Socket.dev for package supply chain,
       a GitHub App for the maintainer to decide on ([hq-private#124](https://github.com/rhizomatics/hq-private/issues/124)). Scorecard, Grype and secret scanning were already running)
@@ -227,6 +234,8 @@ Decided:
   alignment review in each HQ instance, Rhizomatics' own included.
 - 2026-11-15 — gh-aw is not HQ's runtime, only one of the reused skill sources. Each agent schedules with its
   own scheduler, Claude Code routines being the reference set-up.
+- 2026-11-19 — The gh-aw/OSPO trial decides whether HQ supports those workflows as an optional, opt-in provider
+  (possibly a quarterly audit), not whether they replace HQ skills. The current skills are kept.
 
 Open:
 
@@ -298,3 +307,8 @@ Open:
   `check-hq`: every skill provides exactly one capability, third-party providers are pinned), and
   `/security-escalation` merges and ranks findings across providers. Still open in Phase 1: the trial itself and
   the retire decisions after it.
+- 2026-11-19 — gh-aw trial running (engine key added). First org health run cost about $2.43 (Sonnet 5) and
+  filed no report: the "public repos only" local rule made it search per repo, it hit GitHub's search rate limit
+  and ended without its safe output. Fixed in [hq-private#129](https://github.com/rhizomatics/hq-private/pull/129)
+  (org-wide `is:public` searches, sequential, always file the issue). Trial reframed by the maintainer: it decides
+  whether to support gh-aw/OSPO as an optional provider, not whether to retire HQ skills.
