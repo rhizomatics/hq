@@ -17,5 +17,4 @@ jobs:
       contents: read
       security-events: write
       actions: read
-    # Pin moves to the release's SHA when hq is next tagged (admin/README.md, "To release one").
-    uses: rhizomatics/hq/.github/workflows/reusable-zizmor.yml@main
+    uses: rhizomatics/hq/.github/workflows/reusable-zizmor.yml@0b71f7ee4e19ea72a529b96395fa81eeb641a590 # v1.0.1
