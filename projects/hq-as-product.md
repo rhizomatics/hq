@@ -65,7 +65,9 @@ Keep in HQ only what nobody else does well, mostly the platform packs and the gl
 
 A provider can also be **optional**: off by default and turned on per instance in config, like a skill, alongside
 the HQ provider rather than instead of it. That's the likely shape for gh-aw's OSPO workflows (perhaps as a
-quarterly audit), where the trial is about whether to support them at all.
+quarterly audit), where the trial is about whether to support them at all. The defaults must work with no extra
+set-up: anything that needs its own keys, plans or tuning is opt-in, so it never stands between a small developer
+and a working HQ.
 
 ### Two regular reviews
 
@@ -235,7 +237,10 @@ Decided:
 - 2026-11-15 — gh-aw is not HQ's runtime, only one of the reused skill sources. Each agent schedules with its
   own scheduler, Claude Code routines being the reference set-up.
 - 2026-11-19 — The gh-aw/OSPO trial decides whether HQ supports those workflows as an optional, opt-in provider
-  (possibly a quarterly audit), not whether they replace HQ skills. The current skills are kept.
+  (possibly a quarterly audit), not whether they replace HQ skills. The current skills are kept. Why: an
+  individual developer with three or four projects should get a working HQ from the defaults. The extra set-up
+  gh-aw needs (an API key or Copilot plan, compiled workflows, tuning like the trial's rate-limit fix) could put
+  them off HQ altogether, so it's only ever opt-in.
 
 Open:
 

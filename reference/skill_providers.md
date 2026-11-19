@@ -56,7 +56,8 @@ overlap. Each writes one issue labelled `trial` (never assigned, so no one is pa
   The compliance checker runs only on issues labelled `ospo-release-check`, not on every new issue.
 - **Question** (reframed 2026-11-19): is a workflow worth supporting as an optional HQ provider, off by default and
   turned on per instance like a skill, perhaps as a quarterly audit? The HQ skills stay either way; nothing is
-  retired on the trial's result.
+  retired on the trial's result. The default HQ must stay low-friction for a developer with a handful of
+  projects, so set-up cost counts as much as output quality.
 - **Compare** on the same weeks: what each found that the other missed, false positives, whether the output
   needs a human to act, how much set-up and tuning it needed, and the cost per run. Results go in the project log.
 - **Findings so far:** the first org health run (2026-11-19) cost about $2.43 on Sonnet 5 and filed nothing. Told to
