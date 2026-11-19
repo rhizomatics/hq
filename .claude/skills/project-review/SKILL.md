@@ -28,6 +28,7 @@ projects, since they often move one. Most weeks there are few.
    account without the footer is the maintainer's.
 3. Also act on checklist items the maintainer has ticked or edited in the body when the issue
    says ticking is the approval.
+4. Look for branches without PRs, each one should either be a known working branch, e.g. 'badges', or an experimental branch that should be challenged if not active for more than 4 weeks. Otherwise refresh the branch from main, and raise a PR if clean or raise an Issue if there's doubt about automatically removing. If the maintainer has already commented on the branch, follow their instructions. If not, ask in a comment whether to delete or keep it.
 
 For each decision, in the persona that owns the issue's label (see `team.md`):
 
