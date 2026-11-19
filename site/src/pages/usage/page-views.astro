@@ -3,23 +3,27 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { Icon } from '@astrojs/starlight/components';
 import Chart from '../../components/Chart.astro';
 import Kpi from '../../components/Kpi.astro';
-import { VIEWS_NOTE, data, fmt, pageViewSpecs, viewsViews } from '../../lib/usage';
+import { REPO_VIEWS_NOTE, VIEWS_NOTE, data, fmt, pageViewSpecs, repoViewRows, viewsViews } from '../../lib/usage';
 import { FAMILIES, META_LABEL, ORG } from '../../lib/hq-config.mjs';
 
 const base = import.meta.env.BASE_URL;
 const sites = data.websites;
 const counted = sites.filter((s) => s.views30 != null);
 const sum = (f: (s: (typeof sites)[number]) => number | null) => counted.reduce((n, s) => n + (f(s) ?? 0), 0);
-const specs = pageViewSpecs(sites);
+const repos = repoViewRows();
+const repoSum = (f: (r: (typeof repos)[number]) => number) => repos.reduce((n, r) => n + f(r), 0);
+const specs = pageViewSpecs(sites, repos);
+const sourcesNote = `${counted.length} websites, ${repos.length} repos`;
 const firstDay = sites.flatMap((s) => Object.keys(s.daily)).sort()[0];
 const componentIds = new Set(data.components.map((c) => c.id));
 const groups = [...FAMILIES, ['meta', META_LABEL]]
   .map(([family, label]) => [label, sites.filter((s) => s.family === family).sort((a, b) => (b.views30 ?? -1) - (a.views30 ?? -1))] as const)
   .filter(([, list]) => list.length);
 ---
-<StarlightPage frontmatter={{ title: 'Page views', description: `Page views of every ${ORG.name} website: product docs sites, the main site and this one.`, tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'Page views', description: `Page views of every ${ORG.name} website and product repo: product docs sites, the main site, this one and the repos on GitHub.`, tableOfContents: false }}>
   <p>
-    How often each {ORG.name} website is read: the docs site of each product, the main website and this HQ site.
+    How often each {ORG.name} website is read: the docs site of each product, the main website, this HQ site and each
+    product's repo on GitHub.
     Downloads are on the <a href={`${base}/usage/`.replace('//', '/')}>Downloads</a> page. Updated daily; numbers to {data.snapshotDate}.
     {data.pageViewsSince && <>Page views were first collected on {data.pageViewsSince}.</>}
   </p>
@@ -27,16 +31,17 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
   {counted.length ? (
     <>
       <div class="kpis">
-        <Kpi label="Page views, last 7 days" value={fmt(sum((s) => s.views7))} note={`${counted.length} websites`} />
-        <Kpi label="Page views, last 30 days" value={fmt(sum((s) => s.views30))} note={`${counted.length} websites`} />
+        <Kpi label="Page views, last 7 days" value={fmt(sum((s) => s.views7) + repoSum((r) => r.views7))} note={sourcesNote} />
+        <Kpi label="Page views, last 30 days" value={fmt(sum((s) => s.views30) + repoSum((r) => r.views30))} note={sourcesNote} />
         <Kpi label="Product sites, 30 days" value={fmt(sum((s) => (s.product ? s.views30 : 0)))} />
+        {repos.length > 0 && <Kpi label="GitHub repos, 30 days" value={fmt(repoSum((r) => r.views30))} note={`${fmt(repoSum((r) => r.visitors30))} unique visitors`} />}
       </div>
 
       {specs && (
         <Chart
           title="Page views, all websites"
           views={viewsViews(specs)}
-          caption={`Stacked: product docs sites and the organisation's own sites. Counting starts ${firstDay}.`}
+          caption={`Stacked: product docs sites, the organisation's own sites and the product repos on GitHub. Counting starts ${firstDay}.`}
         />
       )}
     </>
@@ -72,10 +77,43 @@ const groups = [...FAMILIES, ['meta', META_LABEL]]
     </>
   ))}
 
+  {repos.length > 0 && (
+    <>
+      <h2>GitHub repos</h2>
+      <table class="usage-table">
+        <thead>
+          <tr>
+            <th scope="col">Repo</th>
+            <th scope="col" class="num">Views 7d</th>
+            <th scope="col" class="num">30d</th>
+            <th scope="col" class="num">Unique visitors 7d</th>
+            <th scope="col" class="num">30d</th>
+            <th scope="col">GitHub</th>
+          </tr>
+        </thead>
+        <tbody>
+          {repos.map((r) => (
+            <tr>
+              <th scope="row"><a href={`${base}/usage/${r.id}/#repo-views`.replace('//', '/')}>{r.id}</a></th>
+              <td class="num">{fmt(r.views7)}</td>
+              <td class="num">{fmt(r.views30)}</td>
+              <td class="num">{fmt(r.visitors7)}</td>
+              <td class="num">{fmt(r.visitors30)}</td>
+              <td><a href={r.url} aria-label={`${r.id} on GitHub`} title="GitHub"><Icon name="github" /></a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  )}
+
   <h2>Sources</h2>
   <ul class="usage-notes">
     <li><strong>Page views</strong>: {VIEWS_NOTE}. No cookies, so no consent banner; no Google Analytics.</li>
-    <li>Views of the repos on github.com aren't included here; they're on each component's page, with clones.</li>
+    <li>
+      <strong>GitHub repos</strong>: {REPO_VIEWS_NOTE}. Unique visitors over 7 or 30 days add up the days, so someone
+      who comes back on another day counts again. Each component's page also has them, with clones.
+    </li>
     {data.notes.filter((n) => n.startsWith('Page views')).map((n) => <li>{n}</li>)}
   </ul>
 </StarlightPage>

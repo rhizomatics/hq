@@ -12,6 +12,7 @@ type Release = {
   repoUrl: string;
   kind: 'enhancement' | 'critical-fix';
   summary: string;
+  rolledUp?: string[];
 };
 
 const list = releases.releases as Release[];
@@ -23,7 +24,8 @@ const asOf = releases.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 <StarlightPage frontmatter={{ title: 'Releases', description: `What's new in ${ORG.name} products over the last month: new features and critical fixes, summarised.`, tableOfContents: false }}>
   <p>
     What changed in our products over the last {releases.windowDays} days, newest first. Each release is summarised in a
-    line or two; follow the version for its full notes.
+    line or two; follow the version for its full notes. Several releases of one product on the same day are listed
+    together under the latest.
   </p>
   <p>
     Only releases with new features or fixes for something badly broken are listed. Pre-releases, small fixes and
@@ -42,6 +44,7 @@ const asOf = releases.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
             {items.map((r) => (
               <li>
                 <a href={r.repoUrl}><strong>{r.repo}</strong></a> <a href={r.url}>{r.tag}</a>
+                {r.rolledUp?.length > 0 && <span class="release-kind"> · includes {r.rolledUp.join(', ')}</span>}
                 {r.kind === 'critical-fix' && <span class="release-kind"> · Important fix</span>}
                 <br />
                 {r.summary}

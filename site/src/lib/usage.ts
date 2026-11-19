@@ -88,16 +88,49 @@ export function downloadsSpecs(series: Partial<Record<Channel, Daily>>) {
 export const VIEWS_NOTE =
   'Page views counted by GoatCounter on each website: cookieless, bots excluded, and one count per page per visitor session, so a reload or return visit the same day may not count again';
 
-export function pageViewSpecs(sites: { product: boolean; daily: Daily }[]) {
+export const REPO_VIEWS_NOTE =
+  "Views of each product's repo on github.com, from GitHub's traffic API: one count per page load, with unique visitors counted per day";
+
+// GitHub repo page views per component, as a page-views source alongside the websites. GitHub reports views and
+// unique visitors per day; the 7- and 30-day visitor figures add up the days, so someone who comes back on another
+// day counts again. Days run to the day before the snapshot, as the snapshot's own day is partial.
+export function repoViewRows() {
+  const today = stats.snapshotDate;
+  const from = (days: number) => iso(Date.parse(today) - days * DAY);
+  const total = (series: Record<string, { count: number; uniques: number }>, days: number, key: 'count' | 'uniques') =>
+    Object.entries(series).filter(([d]) => d > from(days) && d <= today).reduce((n, [, v]) => n + v[key], 0);
+  return stats.components
+    .map((c) => {
+      const series = c.repoViews as Record<string, { count: number; uniques: number }>;
+      if (!Object.keys(series).length) return null;
+      return {
+        id: c.id,
+        url: c.url,
+        daily: Object.fromEntries(Object.entries(series).map(([d, v]) => [d, v.count])) as Daily,
+        views7: total(series, 7, 'count'),
+        views30: total(series, 30, 'count'),
+        visitors7: total(series, 7, 'uniques'),
+        visitors30: total(series, 30, 'uniques'),
+      };
+    })
+    .filter((r) => r !== null)
+    .sort((a, b) => b.views30 - a.views30);
+}
+
+export function pageViewSpecs(sites: { product: boolean; daily: Daily }[], repos: { daily: Daily }[] = []) {
   const sum = (list: { daily: Daily }[]) => {
     const out: Daily = {};
     for (const s of list) for (const [d, v] of Object.entries(s.daily)) out[d] = (out[d] ?? 0) + v;
     return out;
   };
+  // GitHub traffic goes back further than GoatCounter: start the chart where the websites' counting did.
+  const firstSiteDay = sites.flatMap((s) => Object.keys(s.daily)).sort()[0];
+  const repoDaily = Object.fromEntries(Object.entries(sum(repos)).filter(([d]) => !firstSiteDay || d >= firstSiteDay));
   return stackedSpecs(
     [
       { label: 'Product sites', slot: 1, daily: sum(sites.filter((s) => s.product)) },
       { label: 'Organisation sites', slot: 2, daily: sum(sites.filter((s) => !s.product)) },
+      { label: 'GitHub repos', slot: 3, daily: repoDaily },
     ],
     'Page views',
   );

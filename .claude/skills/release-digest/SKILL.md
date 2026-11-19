@@ -37,7 +37,9 @@ Add one entry per pending release to `hq-private/data/releases/summaries.json`, 
 
 Summaries: one or two sentences for a user of the product, in the house voice (practical, understated).
 Say what they can now do or what's fixed, not how; name a breaking change or new minimum version in a
-clause. Don't copy the release notes, list PRs, or mention CI, typing, tests or badges.
+clause. Don't copy the release notes, list PRs, or mention CI, typing, tests or badges. Same-day releases of
+one product are shown as one entry under the latest, with their listed summaries joined oldest first, so
+judge each release on its own and keep each summary free of "also" or "this release" references to the others.
 
 Never change an existing entry unless it's wrong; it's the record of what was shown.
 

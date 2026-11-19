@@ -8,12 +8,13 @@ interface Props {
   title: string;
   caption?: string;
   views: Record<string, ChartSpec>;
+  id?: string;
 }
-const { title, caption, views } = Astro.props;
+const { title, caption, views, id } = Astro.props;
 const names = Object.keys(views);
 const first = views[names[0]];
 ---
-<figure class="usage-chart" data-chart>
+<figure class="usage-chart" data-chart id={id}>
   <div class="usage-chart__head">
     <h3>{title}</h3>
     {names.length > 1 && (

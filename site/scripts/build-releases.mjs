@@ -3,6 +3,7 @@
 // summaries the daily release digest (/release-digest) writes.
 //
 //   node scripts/build-releases.mjs            writes src/data/releases.json for the Releases page
+//                                              (same-day releases of a product rolled up into one entry)
 //   node scripts/build-releases.mjs --pending  lists releases in the window that have no summary yet, as JSON
 //                                              (what the digest works from; nothing is written)
 //
@@ -50,6 +51,28 @@ async function recentReleases(org, repos, since) {
   return lists.flat().sort((a, b) => b.date.localeCompare(a.date));
 }
 
+// Several releases of one product on the same (UTC) day make one entry, rolled up to the latest of them: its tag,
+// link and date, with the summaries of the ones worth listing, oldest first. A day with nothing worth listing is
+// left out, and an important fix in any of them marks the entry. `releases` is newest first.
+function rollUpByDay(releases, summaries) {
+  const groups = new Map();
+  for (const r of releases) {
+    const id = `${r.repo}|${r.date.slice(0, 10)}`;
+    groups.set(id, [...(groups.get(id) ?? []), r]);
+  }
+  return [...groups.values()].flatMap((group) => {
+    const listed = group.filter((r) => summaries[r.key]?.include).reverse();
+    if (!listed.length) return [];
+    const latest = group[0];
+    return [{
+      ...latest,
+      kind: listed.some((r) => summaries[r.key].kind === 'critical-fix') ? 'critical-fix' : 'enhancement',
+      summary: listed.map((r) => summaries[r.key].summary.trim()).join(' '),
+      rolledUp: group.slice(1).reverse().map((r) => r.tag),
+    }];
+  });
+}
+
 async function main() {
   if (!token) {
     if (pendingMode) throw new Error('needs GITHUB_TOKEN (or GH_TOKEN)');
@@ -66,7 +89,7 @@ async function main() {
     return;
   }
 
-  const shown = releases.filter((r) => summaries[r.key]?.include).map((r) => ({ ...r, kind: summaries[r.key].kind, summary: summaries[r.key].summary }));
+  const shown = rollUpByDay(releases, summaries);
   const leftOut = releases.filter((r) => summaries[r.key] && !summaries[r.key].include).length;
   const pending = releases.filter((r) => !summaries[r.key]).length;
   await mkdir(path.dirname(outPath), { recursive: true });
