@@ -13,7 +13,7 @@
 # --check reports repos that are out of date and exits non-zero, changing nothing.
 set -euo pipefail
 
-here=$(cd "$(dirname "$0")/.." && pwd)
+here=$(cd "$(dirname "$0")" && pwd) # admin/, which holds templates/
 check=false
 [[ ${1:-} == --check ]] && { check=true; shift; }
 root=${1:-$HOME/Projects}
@@ -37,11 +37,12 @@ while IFS= read -r gitdir; do
   [[ $url =~ github\.com[:/]rhizomatics/ ]] || continue
 
   changes=()
-  skip=()
-  [[ -f $repo/.github/admin-skip ]] && mapfile -t skip < <(sed -e 's/#.*//' -e 's/[[:space:]]//g' -e '/^$/d' "$repo/.github/admin-skip")
+  # Space-separated, not an array: macOS ships bash 3.2 (no mapfile, and `set -u` rejects empty arrays).
+  skip=
+  [[ -f $repo/.github/admin-skip ]] && skip=$(sed -e 's/#.*//' -e 's/[[:space:]]//g' -e '/^$/d' "$repo/.github/admin-skip" | tr '\n' ' ')
   for tpl in "$here"/templates/workflows/*.yml; do
     dest=$repo/.github/workflows/$(basename "$tpl")
-    if [[ " ${skip[*]} " == *" $(basename "$tpl") "* ]]; then
+    if [[ " $skip " == *" $(basename "$tpl") "* ]]; then
       [[ -e $dest ]] || continue
       changes+=("remove $(basename "$tpl") (admin-skip)")
       $check || rm "$dest"

@@ -75,9 +75,9 @@ way in to HQ.
 - [ ] @pair Brand: HQ logo with `stats` beneath in a complementary colour; site look in the HQ family
 - [x] @human Create the `hq-stats` repo, its npm package and trusted publishing ([hq-private#123](https://github.com/rhizomatics/hq-private/issues/123)); then @agent pushes the local
       repo (`../hq-stats`, one commit) and drafts the 0.1.0 release (2026-11-19: the maintainer pushed and released 0.1.0 and 0.1.1)
-- [ ] @pair Rhizomatics on the package: snapshots and legacy HACS history moved from `hq-private/data/stats` into
+- [x] @pair Rhizomatics on the package: snapshots and legacy HACS history moved from `hq-private/data/stats` into
       `hq/data/`, GitHub traffic (views, clones) kept, `hq-private`'s stats collector retired, the HQ site's Usage pages served by the package
-      (2026-11-19: built as [hq#14](https://github.com/rhizomatics/hq/pull/14) and [hq-private#126](https://github.com/rhizomatics/hq-private/pull/126))
+      (2026-11-19: built as [hq#14](https://github.com/rhizomatics/hq/pull/14) and [hq-private#126](https://github.com/rhizomatics/hq-private/pull/126)); merged the same day, first `hq` snapshot 2026-11-19 with no errors
 - [ ] @agent Seed a throwaway org end to end from the docs; fix whatever needed hand edits
 - [ ] @pair README and docs; announcement drafts for HA and SignalK developer forums
 - [ ] @human Post announcements
@@ -134,3 +134,6 @@ _None._
   in `hq` running the version in the site's lockfile (so Dependabot updates it), and the site's Usage pages, sidebar
   and chart code replaced by the package's. The package's aggregate matched the old script's exactly on the same
   data, apart from its added `org` and `format` fields. `hq-private` keeps only the GitHub snapshot.
+- 2026-11-19 — Both PRs merged. `STATS_TOKEN` added to `hq`; the first run of `collect-stats.yml` collected all 22
+  public repos with no errors (GitHub views and clones, 14 GoatCounter sites), and the site deployed with the
+  package's Usage pages. No snapshots were lost in the switch.
