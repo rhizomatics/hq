@@ -59,9 +59,9 @@ HQ is those two repos:
 - `reference/` — lookup material for processes: `project_tooling.md`, forums to watch (`*_discussion.md`), per-product problem phrases (`topic_terms.md`) and platform changes still to act on (`*_platform_changes.md`).
 - `site/` — the public HQ site (Astro Starlight), built twice daily by
   `.github/workflows/site.yml`: the docs above, public reports, and a Usage section per component
-  from `hq-private/data/`. Org name, URLs and family headings come from `repos.toml` via
+  from the snapshots in `data/stats/` (the pages are [@rhizomatics/hq-stats](https://github.com/rhizomatics/hq-stats)'s, configured by `[stats]`). Org name, URLs and family headings come from `repos.toml` via
   `site/src/lib/hq-config.mjs`. `scripts/sync-content.mjs` publishes docs and reports and fails on
-  anything that looks private; `scripts/build-stats.mjs` writes only public aggregates;
+  anything that looks private;
   `scripts/build-actions.mjs` fetches each public repo's Actions state for the Operations › Deployments page;
   `scripts/build-issues.mjs` counts open issues by type for the Support and Design Process pages;
   `scripts/build-security.mjs` gathers public security settings and published advisories (never alerts) for the Security page;
@@ -69,11 +69,12 @@ HQ is those two repos:
   `scripts/build-community.mjs` lists `[community.*]` projects with their public GitHub figures for the Community page;
   `scripts/build-releases.mjs` builds the Releases page from the last month's releases and the daily digest's summaries. Run it with
   `mise run preview-site`.
+- `data/stats/` — daily usage snapshots, public data only, written by `hq-stats collect` from
+  `.github/workflows/collect-stats.yml` (committed; GitHub traffic is lost after 14 days otherwise).
+- `data/legacy/` — frozen HACS download history from before the snapshots began, used by the site.
 - `hq-private/commands/` — helper shell commands for the maintainer.
-- `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-stats.yml`.
+- `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-github.yml`.
 - `hq-private/reference/` — private reference notes (e.g. the real-world test environments).
-- `hq-private/data/stats/` — daily metric snapshots (committed; GitHub traffic is lost after 14 days otherwise).
-- `hq-private/data/legacy/` — frozen history from before the snapshots began, used by the site.
 - `hq-private/reports/<area>/` — dated process outputs (`YYYY-MM-DD.md`, `YYYY-Www.md` for weekly, `YYYY-MM.md` for monthly).
 
 ## House values
@@ -112,7 +113,7 @@ HQ is those two repos:
 Some data needs credentials or APIs that scheduled runs don't have. A daily GitHub Actions job
 (`hq-private/scripts/collect_github.py`, 05:00 UTC) snapshots it to `hq-private/data/github/YYYY-MM-DD.json`:
 security alerts, traffic referrers and paths, the org's repo list, discussions with their last commenter.
-Read the latest snapshot and say which date you used. Download stats are in `hq-private/data/stats/`.
+Read the latest snapshot and say which date you used. Download stats are in `hq/data/stats/`.
 If something you need is unavailable, say so in the report rather than guessing.
 
 ## Issues and PRs

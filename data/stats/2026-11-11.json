@@ -1,0 +1,4038 @@
+{
+ "collected_at": "2026-11-11T12:19:02+00:00",
+ "repos": {
+  ".github": {
+   "github": {
+    "clones": [
+     {
+      "count": 3,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 26,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 62,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 74,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 20,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 77,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 31
+     },
+     {
+      "count": 65,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 34,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 16
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "1.0.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "agent-plugins": {
+   "github": {
+    "clones": [
+     {
+      "count": 3,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 33,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {},
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "anpr2mqtt": {
+   "ghcr": {
+    "total": 1247
+   },
+   "github": {
+    "clones": [
+     {
+      "count": 13,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 21,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 122,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 31
+     },
+     {
+      "count": 76,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 30
+     },
+     {
+      "count": 57,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 141,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 32
+     },
+     {
+      "count": 177,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 49
+     },
+     {
+      "count": 25,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 159,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 43
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 235,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 47
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.10.0": {},
+     "v0.10.1": {},
+     "v0.10.2": {},
+     "v0.5.0": {},
+     "v0.6.0": {},
+     "v0.7.1": {},
+     "v0.8.0": {},
+     "v0.9.0": {},
+     "v0.9.2": {},
+     "v1.0.0": {},
+     "v1.1.0": {},
+     "v1.1.15": {},
+     "v1.1.2": {},
+     "v1.1.4": {},
+     "v1.2.0": {},
+     "v1.2.1": {},
+     "v1.2.2": {}
+    },
+    "stars": 1,
+    "views": [
+     {
+      "count": 5,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "watchers": 0
+   },
+   "pypi": {
+    "last_day": 97,
+    "last_month": 132,
+    "last_week": 272
+   }
+  },
+  "appliance_autonotify": {
+   "github": {
+    "clones": [
+     {
+      "count": 26,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 44,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 36,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 88,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 46,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 67,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 71,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 51,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 184,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 48
+     },
+     {
+      "count": 118,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 30
+     },
+     {
+      "count": 70,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 21
+     }
+    ],
+    "forks": 1,
+    "open_issues_and_prs": 4,
+    "release_assets": {
+     "v0.10.0": {
+      "appliance_autonotify.zip": 9
+     },
+     "v0.11.0": {
+      "appliance_autonotify.zip": 10
+     },
+     "v0.12.0": {
+      "appliance_autonotify.zip": 13
+     },
+     "v0.13.0": {
+      "appliance_autonotify.zip": 47
+     },
+     "v0.14.0-beta1": {
+      "appliance_autonotify.zip": 3
+     },
+     "v0.2.2": {},
+     "v0.3.0": {},
+     "v0.3.1": {},
+     "v0.4.0": {},
+     "v0.5.0": {},
+     "v0.6.0": {},
+     "v0.6.1": {
+      "appliances_autonotify.zip": 10
+     },
+     "v0.7.0": {
+      "appliances_autonotify.zip": 10
+     },
+     "v0.7.1": {
+      "appliances_autonotify.zip": 10
+     },
+     "v0.8.0": {
+      "appliances_autonotify.zip": 9
+     },
+     "v0.8.1": {
+      "appliances_autonotify.zip": 10
+     },
+     "v0.8.2": {
+      "appliance_autonotify.zip": 10
+     },
+     "v0.9.0": {
+      "appliance_autonotify.zip": 11
+     }
+    },
+    "stars": 3,
+    "views": [
+     {
+      "count": 2,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 5
+     }
+    ],
+    "watchers": 0
+   },
+   "ha_installs": 6
+  },
+  "autoarm": {
+   "github": {
+    "clones": [
+     {
+      "count": 28,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 43,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 121,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 29
+     },
+     {
+      "count": 82,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 62,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 59,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 49,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 43,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 66,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 262,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 74
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 87,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 24
+     }
+    ],
+    "forks": 1,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.6.3": {},
+     "v0.6.4": {},
+     "v0.6.5": {},
+     "v0.6.6": {},
+     "v0.7.0": {},
+     "v0.7.1": {},
+     "v0.8.0": {},
+     "v1.0.0": {},
+     "v1.1.0": {},
+     "v1.1.1": {},
+     "v1.1.13": {},
+     "v1.1.14": {},
+     "v1.1.2": {},
+     "v1.1.5": {
+      "v1.1.5.zip": 4
+     },
+     "v1.2.0": {},
+     "v1.3.0": {
+      "autoarm.zip": 75
+     },
+     "v1.4.0": {
+      "autoarm.zip": 85
+     },
+     "v2.0.0": {
+      "autoarm.zip": 83
+     },
+     "v2.1.0": {
+      "autoarm.zip": 168
+     }
+    },
+    "stars": 5,
+    "views": [
+     {
+      "count": 1,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "ha_installs": 5
+  },
+  "boat-tech-directory": {
+   "github": {
+    "clones": [
+     {
+      "count": 7,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 22,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 53,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 25,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 90,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 4
+     }
+    ],
+    "forks": 4,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v1.2.4": {},
+     "v1.2.5": {}
+    },
+    "stars": 6,
+    "views": [
+     {
+      "count": 16,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 34,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 20,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 7
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "camera_autonotify": {
+   "github": {
+    "clones": [
+     {
+      "count": 24,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 85,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 53,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 21,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 53,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 126,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 42
+     },
+     {
+      "count": 54,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 28
+     },
+     {
+      "count": 131,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 36
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 8
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.0.1": {
+      "frigate_autonotify.zip": 1
+     },
+     "v0.0.2": {
+      "frigate_autonotify.zip": 1
+     },
+     "v0.3.0": {
+      "camera_autonotify.zip": 1
+     },
+     "v0.3.1": {
+      "camera_autonotify.zip": 25
+     },
+     "v0.4.0": {
+      "camera_autonotify.zip": 34
+     }
+    },
+    "stars": 1,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 22,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 3
+     }
+    ],
+    "watchers": 0
+   },
+   "ha_installs": 5
+  },
+  "hacs-downloads": {
+   "github": {
+    "clones": [
+     {
+      "count": 6,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 23,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 35,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 39,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 9
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {},
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "homeassistant-repl": {
+   "github": {
+    "clones": [
+     {
+      "count": 27,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 185,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 60
+     },
+     {
+      "count": 133,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 56
+     },
+     {
+      "count": 91,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 34
+     },
+     {
+      "count": 130,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 40
+     },
+     {
+      "count": 128,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 49
+     },
+     {
+      "count": 41,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 133,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 43
+     },
+     {
+      "count": 135,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 44
+     },
+     {
+      "count": 37,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 46,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 169,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 50
+     },
+     {
+      "count": 37,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 32,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 11
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.0": {},
+     "v0.1.1": {},
+     "v0.1.1-beta1": {},
+     "v0.10.0": {},
+     "v0.11.0": {},
+     "v0.11.1": {},
+     "v0.12.0": {},
+     "v0.13.0": {},
+     "v0.14.0": {
+      "ha_repl_server.zip": 5
+     },
+     "v0.14.1": {
+      "ha_repl_server.zip": 19
+     },
+     "v0.2.0": {},
+     "v0.3.0": {},
+     "v0.3.0-beta1": {},
+     "v0.4.0": {},
+     "v0.5.1": {},
+     "v0.6.0": {},
+     "v0.7.0": {},
+     "v0.8.0": {},
+     "v0.9.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 24,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "watchers": 0
+   },
+   "ha_installs": null,
+   "pypi": {
+    "last_day": 20,
+    "last_month": 304,
+    "last_week": 412
+   }
+  },
+  "hq": {
+   "github": {
+    "clones": [
+     {
+      "count": 3,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 22,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 41,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 21
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 37,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 21
+     },
+     {
+      "count": 24,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 32,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 53,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 112,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 49
+     },
+     {
+      "count": 72,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 35
+     },
+     {
+      "count": 87,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 36
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {},
+    "stars": 0,
+    "views": [
+     {
+      "count": 7,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "pico-ais-reporter": {
+   "github": {
+    "clones": [
+     {
+      "count": 2,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 46,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 27
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 6
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "pico-ble-proxy": {
+   "github": {
+    "clones": [
+     {
+      "count": 12,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 14,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 46,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 21
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 6
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 1,
+    "release_assets": {
+     "v0.2.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "remote_logger": {
+   "github": {
+    "clones": [
+     {
+      "count": 7,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 62,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 22,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 282,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 71
+     },
+     {
+      "count": 163,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 57
+     },
+     {
+      "count": 94,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 33
+     },
+     {
+      "count": 89,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 29
+     },
+     {
+      "count": 55,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 27
+     },
+     {
+      "count": 26,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 162,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 48
+     },
+     {
+      "count": 58,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 382,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 80
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "0.4.0-beta": {},
+     "1.0.0": {},
+     "v1.1.0": {},
+     "v1.2.0": {},
+     "v1.3.0": {},
+     "v1.3.1": {},
+     "v1.4.0": {},
+     "v1.4.1": {},
+     "v1.4.2": {},
+     "v1.4.3": {},
+     "v1.4.4": {},
+     "v1.4.5": {},
+     "v1.4.6": {},
+     "v1.4.7": {},
+     "v1.4.8": {},
+     "v1.4.9": {},
+     "v1.5.0": {},
+     "v1.5.1": {},
+     "v1.5.2": {},
+     "v1.5.3": {},
+     "v1.5.4": {},
+     "v1.5.5": {},
+     "v1.6.0": {},
+     "v2.0.0": {},
+     "v2.0.1": {},
+     "v2.0.2": {},
+     "v2.0.2-beta2": {},
+     "v2.0.3": {},
+     "v2.0.4": {
+      "v2.0.4.zip": 7
+     },
+     "v2.0.5": {
+      "remote_logger.zip": 199
+     },
+     "v2.0.5-beta1": {
+      "remote_logger.zip": 6
+     },
+     "v2.0.6": {
+      "remote_logger.zip": 141
+     },
+     "v2.0.7": {
+      "remote_logger.zip": 323
+     },
+     "v2.10.0": {
+      "remote_logger.zip": 243
+     },
+     "v2.11.0": {
+      "remote_logger.zip": 166
+     }
+    },
+    "stars": 14,
+    "views": [
+     {
+      "count": 3,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 50,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 5
+     }
+    ],
+    "watchers": 0
+   },
+   "ha_installs": 66
+  },
+  "signalk-ble-sensors-plugin": {
+   "github": {
+    "clones": [
+     {
+      "count": 38,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 14,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 105,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 37
+     },
+     {
+      "count": 26,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 147,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 39
+     },
+     {
+      "count": 149,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 45
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.5": {},
+     "v1.0.0": {},
+     "v1.0.2": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 71,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 772,
+    "last_week": 772
+   }
+  },
+  "signalk-bluetti-plugin": {
+   "github": {
+    "clones": [
+     {
+      "count": 4,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 55,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 56,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 25,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 53,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 162,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 47
+     },
+     {
+      "count": 48,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 66,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 17
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v1.4.0": {},
+     "v1.4.1": {},
+     "v1.5.0": {},
+     "v1.5.1": {},
+     "v2.0.1": {},
+     "v2.1.1": {},
+     "v2.2.2": {},
+     "v2.2.3": {}
+    },
+    "stars": 1,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 1139,
+    "last_week": 713
+   }
+  },
+  "signalk-cli": {
+   "github": {
+    "clones": [
+     {
+      "count": 14,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 45,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 153,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 38
+     },
+     {
+      "count": 55,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 22
+     },
+     {
+      "count": 59,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 23
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 47,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 155,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 46
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 47,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 17
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.0": {},
+     "v1.0.0": {},
+     "v1.1.0": {},
+     "v1.2.0": {},
+     "v2.0.1": {},
+     "v2.1.0": {},
+     "v2.2.0": {},
+     "v2.2.1": {},
+     "v3.0.0": {},
+     "v3.0.0-beta1": {},
+     "v3.0.0-beta2": {},
+     "v3.0.1": {},
+     "v3.0.2": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "pypi": {
+    "last_day": 12,
+    "last_month": 224,
+    "last_week": 96
+   }
+  },
+  "signalk-datalab-plugin": {
+   "github": {
+    "clones": [
+     {
+      "count": 5,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 63,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 21,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 74,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 97,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 38
+     },
+     {
+      "count": 25,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 107,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 29
+     },
+     {
+      "count": 129,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 32
+     },
+     {
+      "count": 68,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 25
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.3.0": {},
+     "v0.4.0": {},
+     "v0.5.0": {},
+     "v0.5.3": {},
+     "v0.5.5": {},
+     "v0.6.0": {},
+     "v0.7.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 28,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 94,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 1280,
+    "last_week": 934
+   }
+  },
+  "signalk-delta-squelch-plugin": {
+   "github": {
+    "clones": [
+     {
+      "count": 3,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 43,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 226,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 48
+     },
+     {
+      "count": 77,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 34
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "forks": 1,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.3.1": {},
+     "v0.4.6": {},
+     "v0.5.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 388,
+    "last_week": 283
+   }
+  },
+  "signalk-einklabel-genai-plugin": {
+   "github": {
+    "clones": [
+     {
+      "count": 2,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 44,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 46,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 23,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 116,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 33
+     },
+     {
+      "count": 135,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 42
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 12
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.0": {},
+     "v0.1.1": {},
+     "v0.1.2": {},
+     "v0.3.0": {},
+     "v0.3.2": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 426,
+    "last_week": 274
+   }
+  },
+  "signalk-einklabel-plugin": {
+   "github": {
+    "clones": [
+     {
+      "count": 2,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 52,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 26,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 149,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 35
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 174,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 46
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 60,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 24
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "0.9.0": {},
+     "v.0.7.0": {},
+     "v0.10.0": {},
+     "v0.10.1": {},
+     "v0.4.5": {},
+     "v0.4.6": {},
+     "v0.4.7": {},
+     "v0.5.0": {},
+     "v0.5.1": {},
+     "v0.6.0": {},
+     "v0.6.1": {},
+     "v0.6.2": {},
+     "v0.6.3": {},
+     "v0.6.4": {},
+     "v0.7.1": {},
+     "v0.8.0": {},
+     "v0.8.1": {},
+     "v0.8.2": {},
+     "v0.9.1": {},
+     "v1.2.1": {},
+     "v1.2.2": {},
+     "v1.3.0": {},
+     "v1.3.1": {},
+     "v1.3.2": {},
+     "v1.3.3": {}
+    },
+    "stars": 2,
+    "views": [
+     {
+      "count": 1,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 27,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 1287,
+    "last_week": 800
+   }
+  },
+  "signalk-teltonika-sms-plugin": {
+   "github": {
+    "clones": [
+     {
+      "count": 5,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 14,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 27,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 48,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 151,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 37
+     },
+     {
+      "count": 39,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 7
+     }
+    ],
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.3.2": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 610,
+    "last_week": 495
+   }
+  },
+  "supernotify": {
+   "github": {
+    "clones": [
+     {
+      "count": 16,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 93,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 157,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 32
+     },
+     {
+      "count": 161,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 59
+     },
+     {
+      "count": 220,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 59
+     },
+     {
+      "count": 140,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 51
+     },
+     {
+      "count": 71,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 41
+     },
+     {
+      "count": 119,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 37
+     },
+     {
+      "count": 171,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 41
+     },
+     {
+      "count": 163,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 51
+     },
+     {
+      "count": 588,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 147
+     },
+     {
+      "count": 858,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 206
+     },
+     {
+      "count": 245,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 86
+     },
+     {
+      "count": 112,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 36
+     }
+    ],
+    "forks": 1,
+    "open_issues_and_prs": 4,
+    "release_assets": {
+     "v1.0.0": {},
+     "v1.0.3": {},
+     "v1.0.4": {},
+     "v1.1.1": {},
+     "v1.1.3": {},
+     "v1.1.4": {},
+     "v1.1.5": {},
+     "v1.10.0": {},
+     "v1.10.1": {},
+     "v1.11.0": {},
+     "v1.11.1": {},
+     "v1.12.0": {},
+     "v1.12.1": {},
+     "v1.12.2": {},
+     "v1.13.0": {},
+     "v1.14.0": {},
+     "v1.15.0": {},
+     "v1.16.0": {},
+     "v1.16.1": {},
+     "v1.16.2": {},
+     "v1.16.3": {},
+     "v1.16.4": {},
+     "v1.16.5": {},
+     "v1.17.0": {},
+     "v1.17.1": {},
+     "v1.2.0": {},
+     "v1.2.1": {},
+     "v1.2.2": {},
+     "v1.2.3": {},
+     "v1.3.0": {},
+     "v1.3.2": {},
+     "v1.3.3": {},
+     "v1.3.4": {},
+     "v1.3.5": {},
+     "v1.4.0": {},
+     "v1.5.0": {},
+     "v1.5.1": {},
+     "v1.5.2": {},
+     "v1.5.3": {},
+     "v1.6.0": {},
+     "v1.7.0": {},
+     "v1.8.0": {},
+     "v1.8.1": {},
+     "v1.8.2": {},
+     "v1.9.0": {},
+     "v1.9.1": {},
+     "v1.9.2-beta1": {},
+     "v1.9.3": {},
+     "v1.9.4": {},
+     "v2.0.0": {},
+     "v2.1.0": {},
+     "v2.10.0": {
+      "v2.10.0.zip": 5
+     },
+     "v2.10.1": {
+      "supernotify.zip": 238
+     },
+     "v2.10.2": {
+      "supernotify.zip": 197
+     },
+     "v2.10.3": {
+      "supernotify.zip": 352
+     },
+     "v2.11.0": {
+      "supernotify.zip": 263
+     },
+     "v2.11.1": {
+      "supernotify.zip": 253
+     },
+     "v2.12.0": {
+      "supernotify.zip": 307
+     },
+     "v2.13.0": {
+      "supernotify.zip": 246
+     },
+     "v2.13.1": {
+      "supernotify.zip": 258
+     },
+     "v2.13.2": {
+      "supernotify.zip": 358
+     },
+     "v2.14.0": {
+      "supernotify.zip": 332
+     },
+     "v2.15.0": {
+      "supernotify.zip": 393
+     },
+     "v2.16.0": {
+      "supernotify.zip": 503
+     },
+     "v2.16.1": {
+      "supernotify.zip": 31
+     },
+     "v2.16.2": {
+      "supernotify.zip": 324
+     },
+     "v2.17.0": {
+      "supernotify.zip": 277
+     },
+     "v2.17.1": {
+      "supernotify.zip": 16
+     },
+     "v2.18.0": {
+      "supernotify.zip": 386
+     },
+     "v2.18.0-beta7": {
+      "supernotify.zip": 2
+     },
+     "v2.2.0": {},
+     "v2.2.1": {},
+     "v2.2.2": {},
+     "v2.2.3": {},
+     "v2.3.0": {},
+     "v2.3.1": {},
+     "v2.4.0": {},
+     "v2.4.1": {},
+     "v2.4.2": {
+      "v2.4.2.zip": 4
+     },
+     "v2.5.0": {
+      "v2.5.0.zip": 6
+     },
+     "v2.5.1": {
+      "v2.5.1.zip": 5
+     },
+     "v2.5.2": {
+      "v2.5.2.zip": 5
+     },
+     "v2.5.3-version-fix": {
+      "v2.5.3.zip": 5
+     },
+     "v2.6.0": {
+      "v2.6.0.zip": 5
+     },
+     "v2.7.0": {
+      "v2.7.0.zip": 7
+     },
+     "v2.8.0": {
+      "v2.8.0.zip": 6
+     },
+     "v2.9.0": {
+      "v2.9.0.zip": 5
+     },
+     "v2.9.1": {}
+    },
+    "stars": 23,
+    "views": [
+     {
+      "count": 9,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 24,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 21,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 44,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 114,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 4
+     }
+    ],
+    "watchers": 1
+   },
+   "ha_installs": 82
+  },
+  "updates2mqtt": {
+   "ghcr": {
+    "total": 82646
+   },
+   "github": {
+    "clones": [
+     {
+      "count": 27,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 48,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 322,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 50
+     },
+     {
+      "count": 133,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 36
+     },
+     {
+      "count": 126,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 48
+     },
+     {
+      "count": 148,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 34
+     },
+     {
+      "count": 145,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 47
+     },
+     {
+      "count": 23,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 215,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 58
+     },
+     {
+      "count": 294,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 91
+     },
+     {
+      "count": 266,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 65
+     },
+     {
+      "count": 374,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 74
+     }
+    ],
+    "forks": 2,
+    "open_issues_and_prs": 4,
+    "release_assets": {
+     "v1.10.0": {},
+     "v1.10.0-beta1": {},
+     "v1.11.0": {},
+     "v1.11.1": {},
+     "v1.12.0": {},
+     "v1.13.0": {},
+     "v1.14.0": {},
+     "v1.14.0-beta1": {},
+     "v1.14.1": {},
+     "v1.14.2": {},
+     "v1.14.3": {},
+     "v1.14.4": {},
+     "v1.15.0": {},
+     "v1.16.0": {},
+     "v1.17.0": {},
+     "v1.17.1": {},
+     "v1.17.2": {},
+     "v1.17.3": {},
+     "v1.17.4": {},
+     "v1.3.3": {},
+     "v1.3.4": {},
+     "v1.3.5": {},
+     "v1.3.6": {},
+     "v1.3.7": {},
+     "v1.4.0": {},
+     "v1.4.1": {},
+     "v1.4.2": {},
+     "v1.5.0": {},
+     "v1.5.1": {},
+     "v1.6.0": {},
+     "v1.7.0": {},
+     "v1.7.2": {},
+     "v1.7.3": {},
+     "v1.8.0": {},
+     "v1.8.1": {},
+     "v1.8.2": {},
+     "v1.8.3": {},
+     "v1.8.5": {},
+     "v1.9.0": {},
+     "v1.9.2": {},
+     "v1.9.3": {},
+     "v1.9.4": {},
+     "v1.9.5": {},
+     "v1.9.6": {},
+     "v1.9.7": {}
+    },
+    "stars": 20,
+    "views": [
+     {
+      "count": 5,
+      "timestamp": "2026-10-28T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-10-29T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-10-30T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-10-31T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-01T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-02T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-03T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-04T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 22,
+      "timestamp": "2026-11-05T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 24,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 26,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 4
+     }
+    ],
+    "watchers": 0
+   },
+   "pypi": {
+    "last_day": 108,
+    "last_month": 328,
+    "last_week": 600
+   }
+  }
+ }
+}

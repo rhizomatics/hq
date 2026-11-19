@@ -1,25 +1,13 @@
 // @ts-check
-import { readFileSync } from 'node:fs';
 import starlight from '@astrojs/starlight';
+import hqStats from '@rhizomatics/hq-stats/astro';
+import { usageSidebar } from '@rhizomatics/hq-stats/sidebar';
 import { defineConfig } from 'astro/config';
-import { FAMILIES, ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
+import { ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
 import { policies, policyGroups } from './scripts/lib/hq-docs.mjs';
 
-// Usage: the Downloads and Page views overviews, then each component's page by family; stats.json is built before Astro runs.
-function usageSidebar() {
-  let components = [];
-  try {
-    components = JSON.parse(readFileSync(new URL('./src/data/stats.json', import.meta.url), 'utf8')).components;
-  } catch {
-    // No stats yet (e.g. `astro dev` before `npm run stats`): the overview link still works.
-  }
-  const groups = FAMILIES.map(([family, label]) => ({
-    label,
-    collapsed: true,
-    items: components.filter((c) => c.family === family).map((c) => ({ label: c.id, link: `/usage/${c.id}/` })),
-  })).filter((g) => g.items.length);
-  return [{ label: 'Downloads', link: '/usage/' }, { label: 'Page views', link: '/usage/page-views/' }, ...groups];
-}
+// Usage pages from @rhizomatics/hq-stats: repos.toml's [stats] says where the snapshots and stats.json are.
+const stats = { config: '../repos.toml' };
 
 // Policies: the list and how it works, then each policy under its `group:`, as on the list page.
 async function policiesSidebar() {
@@ -54,7 +42,7 @@ export default defineConfig({
       lastUpdated: false,
       sidebar: [
         { label: 'Releases', link: '/releases/' },
-        { label: 'Usage', items: usageSidebar() },
+        { label: 'Usage', items: usageSidebar(stats) },
         { label: 'Community', link: '/community/' },
         { label: 'Design Process', items: [{ label: 'Overview', link: '/design/' }, { label: 'RFCs', link: '/rfcs/' }] },
         {
@@ -73,5 +61,6 @@ export default defineConfig({
         { label: 'Reports', collapsed: true, items: [{ autogenerate: { directory: 'reports' } }] },
       ],
     }),
+    hqStats(stats),
   ],
 });

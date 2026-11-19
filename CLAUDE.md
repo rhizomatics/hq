@@ -23,6 +23,6 @@ What doesn't, and what to use instead:
 - **Security alerts, traffic referrers/paths, org repo list, discussions with last-commenter**
   → the daily snapshot (see "Data you can't fetch live" in `AGENTS.md`).
 - **Repos outside the org** (upstream platforms, other projects) → WebFetch their github.com pages.
-- **Direct downloads** (`curl` to package registries, forums) → WebFetch the URL; download stats are already in `hq-private/data/stats/`.
+- **Direct downloads** (`curl` to package registries, forums) → WebFetch the URL; download stats are already in `hq/data/stats/`.
 
 If something you need is unavailable, say so in the report rather than guessing.

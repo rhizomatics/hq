@@ -7,8 +7,9 @@ agent: marketing
 
 # Weekly adoption report
 
-Data comes from the daily snapshots in `hq-private/data/stats/YYYY-MM-DD.json` written by
-`hq-private/scripts/collect_stats.py` (run by CI). If today's snapshot is missing, run the script first.
+Data comes from the daily snapshots in `hq/data/stats/YYYY-MM-DD.json` written by `hq-stats collect`
+(`.github/workflows/collect-stats.yml`; format in the package's `docs/data-format.md`). If today's snapshot is
+missing, say so and use the latest; `hq-private/scripts/adoption_diff.py` compares two of them.
 
 ## Compute (this week vs last week, and vs 4-week average)
 

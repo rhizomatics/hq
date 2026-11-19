@@ -1,10 +1,10 @@
 name: Site
 
 # Builds the public HQ site (site/) and deploys it to GitHub Pages: hq's docs, the reports that
-# processes declare public, usage stats derived from hq-private's daily snapshots, and each public
+# processes declare public, the Usage pages from the daily snapshots in data/stats (@rhizomatics/hq-stats), and each public
 # repo's Actions state, open issue counts and public security settings (read with this run's token;
 # actions: read). Security alerts are never read or published.
-# Runs daily after hq-private's 05:00 stats collection, again at 17:40 to refresh the Operations pages,
+# Runs at 00:40, 08:40 (after collect-stats.yml's 04:23 snapshot) and 16:40 to refresh the Operations pages,
 # and on doc or site changes.
 # Logs are public: the build scripts only print counts, file names and public source errors.
 
@@ -19,6 +19,7 @@ on:
       - reference/**
       - team.md
       - repos.toml
+      - data/**
       - assets/**
       - .github/workflows/site.yml
   schedule:
@@ -42,7 +43,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      # Snapshots and reports from the private repo (repos.toml org.private_repo). Fine-grained PAT: that repo only, read-only Contents.
+      # Reports, release and community data from the private repo (repos.toml org.private_repo). Fine-grained PAT: that repo only, read-only Contents.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ${{ github.repository_owner }}/hq-private
@@ -50,9 +51,7 @@ jobs:
           persist-credentials: false
           path: hq-private
           sparse-checkout: |
-            data/stats
             data/github
-            data/legacy
             data/releases
             data/community
             reports
