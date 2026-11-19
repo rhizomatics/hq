@@ -48,12 +48,18 @@ Checked: <sources, one line>. Gaps: <one line per source that failed, if any>
 issue; give a suggested issue title). Landscape notes (competitors, announcements) get one line
 each at most, and go to the reputation review rather than accumulating here.
 
-Then update the rolling hq issue per area (`<area>: forum replies and manual checks`, labels
-`forums` + area), per "Issues and PRs" in `AGENTS.md`: one checklist item per thread to reply to,
-linking the thread and its draft (`hq-private/reports/forums/YYYY-MM-DD.md#...`), plus the manual checks due
-today from the "Manual checks" tables in the `reference/*_discussion.md` files (what to look for,
-and any product or topic that came up today). Tick items already done (e.g. a reply is visible in
-the thread) and drop manual checks that are past due by a full cadence.
+Then file one hq issue per thread worth replying to (labels `forums` + area), per "Issues and PRs"
+in `AGENTS.md`, never a rolling issue. The title names the thread and what's at stake, with a
+date when the chance passes (`homeassistant: reply on WTH "Notifying people is hard" by 2026-11-24
+(frontend wants mockup feedback)`); the body says in a line why it matters and why now, and links
+the thread and its draft (`hq-private/reports/forums/YYYY-MM-DD.md#...`). Rank the time-sensitive
+ones first in the report: a platform team asking for feedback, a WTH or feature-request thread
+about something a product already does, an RFC or design discussion we could shape. Close an issue,
+saying how, once a reply from us is visible in the thread or the thread has gone cold.
+
+Manual checks (the "Manual checks" tables in `reference/*_discussion.md`) don't get issues on a
+schedule. File one only when there is a specific reason to look, e.g. a release or a complaint
+theme found today that is likely being discussed there, saying what to look for.
 
 Fix stale reference files (`reference/*_discussion.md`, `topic_terms.md`) directly in the same
 run instead of reporting them. Nothing found → a one-line report. Do not post anywhere.

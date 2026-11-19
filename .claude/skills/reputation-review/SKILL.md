@@ -50,9 +50,8 @@ forum post for supernotify 2.13 YAML-free config", "add sitemap to remote_logger
 Actions the maintainer must do or approve become hq issues (labels `reputation` + area) linking
 back here, per "Issues and PRs" in `AGENTS.md`.
 
-Add every "Manual checks" row in `reference/*_discussion.md` to the rolling forums issue for its
-area (`<area>: forum replies and manual checks`), since this review can't see those places: for
-each, what to look for this month (product names, competitors and complaint themes found above).
-
-The maintainer ticks manual checks and writes notes as comments on those issues; treat notes from
-the past month as mentions like any other.
+The "Manual checks" places in `reference/*_discussion.md` are ones this review can't see. Don't file
+a routine issue for them; when this month's findings give a specific reason to look in one (a
+competitor launch, a complaint theme, a release likely to be discussed there), file one hq issue for
+it (labels `forums` + area) saying where and what to look for. Treat the maintainer's notes on those
+issues from the past month as mentions like any other.

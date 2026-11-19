@@ -29,7 +29,9 @@ only: GraphQL-based `gh pr list` doesn't work in cloud routines)
 week's report ("lingering 2+ weeks"). Suggested actions may include exact `gh pr merge` commands
 for green bumps, but do not run them.
 
-The PRs waiting on the maintainer go in one rolling hq issue per area (`<area>: review waiting PRs`,
-labels `prs` + area), one checklist item per PR with its suggested action (and merge command for
-green bumps), linking back to this report; tick PRs merged or closed since. See "Issues and PRs" in
-`AGENTS.md`.
+PRs waiting on the maintainer, per "Issues and PRs" in `AGENTS.md` (never a rolling issue): where
+review and merge is all that's needed, make sure review is requested from the maintainer and leave
+it at that. A PR needing a decision (an external contribution to accept or not, a stale draft to
+close, a major bump) gets its own hq issue (labels `prs` + area), titled with the PR and the
+decision, e.g. `homeassistant: decide on supernotify#320 (external: WebOS transport)`, linking back
+to this report. Close issues for PRs merged or closed since.

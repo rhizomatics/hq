@@ -113,9 +113,11 @@ first run of each month write the full table and the repos with scanning not ena
 
 Escalations become hq issues per "Issues and PRs" in `AGENTS.md`: labels `security-escalation` plus
 the area (`homeassistant`, `signalk`, `mqtt`, `org` — from the repo's family), assigned to the
-maintainer, titled `<area>: clear security alerts`. Keep **one open issue per area**: if one exists,
-add new items to its checklist and comment, rather than opening another; tick items whose alerts
-have closed. Each item: repo, alert link, severity, why it matters, and what the human must do.
+maintainer, one issue per escalation, never a rolling one: titled with the fix and severity, e.g.
+`homeassistant: upgrade aiohttp in supernotify (high, CVE-2026-1234)`. Alerts fixed by the same
+action (one package across repos) share an issue, one checklist item each: repo, alert link,
+severity, why it matters, and what the human must do. If an issue for the same package is open, add
+to it and post a flagged comment; close issues whose alerts have all closed.
 Where the fix is a change an agent can make (a pin bump, a CodeQL config, a small code fix), build
 it as a PR in the product repo and link it, so the human only reviews and merges. This is what pages
 the maintainer.

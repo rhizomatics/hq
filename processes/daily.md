@@ -46,7 +46,7 @@
 - **Output:** `hq-private/reports/forums/YYYY-MM-DD.md`
 - **Report:** private
 - Runs daily but only checks sources due by their own cadence (see `reference/*_discussion.md`).
-  Ends with the manual checks due that day.
+  Files one hq issue per thread worth replying to, never a rolling one.
 
 ## Release digest — `/release-digest`
 - **Who:** marketing

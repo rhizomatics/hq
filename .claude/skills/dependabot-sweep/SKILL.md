@@ -60,9 +60,11 @@ inherited, leave it open for `/pr-report`.
 
 **Never merge major version bumps**, trusted or not. They can break things CI doesn't exercise
 (workflows that only run on release or tag), and in a published library raising a dependency's
-lower bound to a new major (e.g. `polars` 1 → 2) breaks people who import it. Leave majors open:
-add each to the rolling `<area>: review waiting PRs` issue with a one-line summary of the breaking
-changes from the release notes, so the maintainer can decide.
+lower bound to a new major (e.g. `polars` 1 → 2) breaks people who import it. Leave majors open
+and file an hq issue (labels `prs` + area) per dependency, e.g. `homeassistant: decide on pytest 9
+bumps (3 repos)`, listing its PRs with a one-line summary of the breaking changes from the release
+notes, so the maintainer can decide. If one is already open for that dependency, add the new PRs and
+post a flagged comment.
 
 Merge with a squash, pinned to the head you checked:
 `gh api -X PUT repos/<org>/<repo>/pulls/<n>/merge -f merge_method=squash -f sha=<sha>`.
@@ -77,8 +79,8 @@ pinned by Home Assistant, so we follow the platform's version rather than bumpin
 template in `<org>/hq` (`admin/templates/`), say so in the PR.
 
 **Not merged** despite the rules (CI failing for 2+ days, merge refused by branch protection):
-add it to the rolling hq issue for the area, `<area>: review waiting PRs` (labels `prs` + area),
-with the reason in a few words. A merge refused because branch protection
+file an hq issue for it (labels `prs` + area), e.g. `homeassistant: fix CI on supernotify#318
+(ruff 0.15 bump)`, with the reason in a few words. A merge refused because branch protection
 requires checks that no longer run is a settings fix: file or update an hq issue (labels
 `github` + area) naming the stale check names.
 

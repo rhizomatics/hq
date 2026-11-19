@@ -13,8 +13,8 @@ even ISO weeks) | monthly (1st). `How to search` tells the agent which access me
 
 ## Manual checks
 
-Places agents can't read (login walls, chat apps). Due checks go on the rolling forums hq issue
-for the area (`<area>: forum replies and manual checks`). Cadence as above. See also [Home Assistant Help](https://www.home-assistant.io/help/) for more support and discussion links.
+Places agents can't read (login walls, chat apps). The cadence is a guide for
+the maintainer; agents file an hq issue for one only when there's a specific reason to look. See also [Home Assistant Help](https://www.home-assistant.io/help/) for more support and discussion links.
 
 | Community | URL | Cadence | What to look for |
 |---|---|---|---|

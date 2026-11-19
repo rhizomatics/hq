@@ -40,7 +40,7 @@
 - **When:** 08:00 UTC
 - **Output:** `hq-private/reports/reputation/YYYY-MM.md`
 - **Report:** private
-- Mentions and sentiment trends, search visibility, listings, competitors. Ends with manual checks.
+- Mentions and sentiment trends, search visibility, listings, competitors. Files an hq issue for a manual check only when there's a specific reason to look.
 - Reviews the main site, www.rhizomatics.org.uk (source in `docs/` of the `.github` repo): products covered and
   current, positioning for newcomers, discoverability. Fixes as a PR on `.github`.
 
