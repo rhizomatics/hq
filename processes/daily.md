@@ -1,14 +1,14 @@
 # Daily
 
 ## Stats snapshot
-- **When:** 05:00 UTC
-- **Who:** GitHub Actions (`hq-private/.github/workflows/collect-stats.yml`, `hq-private/scripts/collect_stats.py`)
-- **Output:** `hq-private/data/stats/YYYY-MM-DD.json`
-- **Report:** private (raw data); its public aggregates feed the site's Usage pages
+- **When:** 04:23 UTC
+- **Who:** GitHub Actions (`.github/workflows/collect-stats.yml`, running `hq-stats collect` from [@rhizomatics/hq-stats](https://github.com/rhizomatics/hq-stats))
+- **Output:** `data/stats/YYYY-MM-DD.json` (public data only); the site's Usage pages are built from it
+- **Report:** public (raw data)
 - Must stay daily: GitHub traffic data is only kept for 14 days.
 
 ## Site build
-- **When:** 05:40 UTC, after the stats snapshot, and 17:40 UTC to refresh the Operations pages; also on any push that changes docs or `site/`
+- **When:** 00:40, 08:40 (after the stats snapshot) and 16:40 UTC, to refresh the Operations pages; also on any push that changes docs, data or `site/`
 - **Who:** GitHub Actions (`.github/workflows/site.yml`)
 - **Output:** the HQ site (`[org].site_url` in `repos.toml`) — docs, public reports and per-component usage
 - **Report:** public (it is the site)

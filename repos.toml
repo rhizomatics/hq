@@ -10,6 +10,10 @@
 #   private_repo:  repo for reports, data snapshots and hq issues, checked out next to hq_repo;
 #                  omit for an entirely public set-up (hq issues then go in hq_repo)
 #   site_url:      where the public HQ site is served
+# [stats]:         usage stats by @rhizomatics/hq-stats (projects/hq-stats.md); paths relative to this file
+#   data_dir:      daily snapshots, written by .github/workflows/collect-stats.yml
+#   legacy_hacs:   history from the retired hacs-downloads site
+#   out:           the aggregate the site's Usage pages are built from (not committed)
 # [families]:      each repo family, in display order: its heading on the site and its hq issue area
 # [labels]:        hq issue labels; an issue gets one source and one area (the areas are the `area`
 #                  values in [families])
@@ -65,6 +69,11 @@ maintainers = ["jeyrb"]
 hq_repo = "hq"
 private_repo = "hq-private"
 site_url = "https://hq.rhizomatics.org.uk"
+
+[stats]
+data_dir = "data/stats"
+legacy_hacs = "data/legacy/hacs-downloads-history.json"
+out = "site/src/data/stats.json"
 
 [families]
 ha-integration = { label = "Home Assistant", area = "homeassistant" }

@@ -7,7 +7,7 @@
 - **When:** 07:00 UTC
 - **Output:** `hq-private/reports/adoption/YYYY-Www.md`
 - **Report:** private
-- Download, install and clone trends from `hq-private/data/stats/`.
+- Download, install and clone trends from `data/stats/`.
 
 ### Lingering PRs — `/pr-report`
 - **Who:** pm

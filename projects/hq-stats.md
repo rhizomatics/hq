@@ -18,10 +18,9 @@ way in to HQ.
 
 - Pulled out of HQ as a product (decided 2026-11-15): stats need no agents, so they suit a wider audience and can
   launch without waiting for the agentic parts.
-- What exists today: daily collectors in `hq-private/scripts/collect_stats.py` (stdlib Python, no deps) run by
-  `collect-stats.yml`, snapshots in `hq-private/data/stats/`, legacy HACS history, and the site's Usage section
-  (Downloads and Page views, split 2026-11-16; GitHub repo views added the same day) built by `site/scripts/build-stats.mjs`, which publishes only public
-  aggregates.
+- Released: [`@rhizomatics/hq-stats`](https://www.npmjs.com/package/@rhizomatics/hq-stats) 0.1.1 (2026-11-19),
+  source in [rhizomatics/hq-stats](https://github.com/rhizomatics/hq-stats). Before it: `hq-private/scripts/collect_stats.py`,
+  snapshots in `hq-private/data/stats/` and the site's own `build-stats.mjs` and Usage pages.
 - Channels are selected by fields in `repos.toml` (`pypi`, `npm`, `ghcr`, `hacs_zip`, `ha_domain`, `goatcounter`),
   so adding a user's repos is config, not code.
 - Platform channels (HACS, HA analytics, SignalK) are what nobody else offers; generic ones (PyPI, npm, ghcr,
@@ -56,7 +55,8 @@ way in to HQ.
 - [x] @agent Site views: `collect_stats.py` collects daily page views (14-day overlapping window) and top pages per
       website from the GoatCounter API, `goatcounter` field per repo, `GOATCOUNTER_TOKEN` secret; the HQ site's Usage
       is split into Downloads and Page views, with page views on each component's page (2026-11-16)
-- [ ] @human `GOATCOUNTER_TOKEN` secret in `hq-private` (API key with "Read statistics"); check one key reads every site
+- [x] @human `GOATCOUNTER_TOKEN` secret in `hq-private` (API key with "Read statistics"); check one key reads every site
+      (2026-11-17, [hq-private#115](https://github.com/rhizomatics/hq-private/issues/115); also in `hq`)
 - [x] @pair Package skeleton: `hq-stats` repo, npm package with a `collect` and a `build` command, CI and the
       staged npm release workflow the other npm packages use (2026-11-19, local only until the repo exists)
 - [x] @pair Port the collectors (`collect_stats.py`) to JavaScript in the package, with org and repos from
@@ -73,10 +73,11 @@ way in to HQ.
       sources only, stored apart, never in the org's totals
 - [x] @pair Workflow for users to copy: schedule and manual dispatch only, `npx` the pinned version, commit to `hq` (2026-11-19)
 - [ ] @pair Brand: HQ logo with `stats` beneath in a complementary colour; site look in the HQ family
-- [ ] @human Create the `hq-stats` repo, its npm package and trusted publishing ([hq-private#123](https://github.com/rhizomatics/hq-private/issues/123)); then @agent pushes the local
-      repo (`../hq-stats`, one commit) and drafts the 0.1.0 release
+- [x] @human Create the `hq-stats` repo, its npm package and trusted publishing ([hq-private#123](https://github.com/rhizomatics/hq-private/issues/123)); then @agent pushes the local
+      repo (`../hq-stats`, one commit) and drafts the 0.1.0 release (2026-11-19: the maintainer pushed and released 0.1.0 and 0.1.1)
 - [ ] @pair Rhizomatics on the package: snapshots and legacy HACS history moved from `hq-private/data/stats` into
       `hq/data/`, GitHub traffic (views, clones) kept, `hq-private`'s stats collector retired, the HQ site's Usage pages served by the package
+      (2026-11-19: built as [hq#14](https://github.com/rhizomatics/hq/pull/14) and [hq-private#126](https://github.com/rhizomatics/hq-private/pull/126))
 - [ ] @agent Seed a throwaway org end to end from the docs; fix whatever needed hand edits
 - [ ] @pair README and docs; announcement drafts for HA and SignalK developer forums
 - [ ] @human Post announcements
@@ -127,3 +128,9 @@ _None._
   CI and the staged npm release workflow are in place; README and `docs/data-format.md` document the config and
   both data formats. Generalised on the way: no hard-coded family (the HA installs column shows where a family
   has installs), components outside `[families]` go under "Other".
+- 2026-11-19 — Released by the maintainer as 0.1.0 and 0.1.1. Rhizomatics moved onto it ([hq#14](https://github.com/rhizomatics/hq/pull/14) and [hq-private#126](https://github.com/rhizomatics/hq-private/pull/126)): the
+  36 snapshots and the legacy HACS history copied into `hq/data/` with the three repos that aren't public now
+  (`hq-private`, `brands`, `appliances_autonotify`) removed, `[stats]` in `repos.toml`, a daily `collect-stats.yml`
+  in `hq` running the version in the site's lockfile (so Dependabot updates it), and the site's Usage pages, sidebar
+  and chart code replaced by the package's. The package's aggregate matched the old script's exactly on the same
+  data, apart from its added `org` and `format` fields. `hq-private` keeps only the GitHub snapshot.

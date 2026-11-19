@@ -37,7 +37,7 @@ Each process's cadence entry is the one place its time (**When:**, UTC) and pers
 Models: Sonnet for daily and weekly routines, Opus for monthly and quarterly ones, Haiku for
 the `researcher` subagent they farm gathering out to. What cloud routines can and can't reach is in
 `CLAUDE.md` ("Running as a cloud routine"); the probe behind it is `reference/cloud-access-probe.md`.
-Run any process by hand with `/<skill-name>`; `hq-private/commands/collect-stats.sh` triggers the data snapshot.
+Run any process by hand with `/<skill-name>`; `hq-private/commands/collect-stats.sh` triggers the stats and GitHub snapshots.
 
 Environment: every routine runs in **HQ Web Research**, which allowlists the sites they read (forums, platform
 docs and blogs, github.com pages) but isn't meant for package installs. An entry that ever needs another one
