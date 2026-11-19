@@ -1,7 +1,6 @@
 ---
 name: project-review
 description: Weekly and monthly review of everything in projects/ — first acting on the maintainer's decisions left as comments on hq issues, then progress updates and next steps weekly; monthly, also refine each project itself (goal, scope, shape, whether it's still worth doing).
-context: fork
 agent: pm
 ---
 
