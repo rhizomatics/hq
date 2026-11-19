@@ -9,6 +9,7 @@ even ISO weeks) | monthly (1st). `How to search` tells the agent which access me
 | r/homeassistant | https://www.reddit.com/r/homeassistant | daily | Reddit API blocks anonymous calls (403) — WebSearch `site:reddit.com/r/homeassistant <terms>` |
 | Feature Requests | https://github.com/orgs/home-assistant/discussions | daily | Regular Github Discussions|
 | Architecture | https://github.com/home-assistant/architecture/discussions | daily | Regular Github discussions |
+| What the Heck | https://community.home-assistant.io/c/month-of-what-the-heck/ | daily | Home Assistant's way of prompting to users to share frustrations with core or integrations |
 
 ## Manual checks
 
