@@ -73,7 +73,7 @@ way in to HQ.
       sources only, stored apart, never in the org's totals
 - [x] @pair Workflow for users to copy: schedule and manual dispatch only, `npx` the pinned version, commit to `hq` (2026-11-19)
 - [ ] @pair Brand: HQ logo with `stats` beneath in a complementary colour; site look in the HQ family
-- [ ] @human Create the `hq-stats` repo, its npm package and trusted publishing; then @agent pushes the local
+- [ ] @human Create the `hq-stats` repo, its npm package and trusted publishing ([hq-private#123](https://github.com/rhizomatics/hq-private/issues/123)); then @agent pushes the local
       repo (`../hq-stats`, one commit) and drafts the 0.1.0 release
 - [ ] @pair Rhizomatics on the package: snapshots and legacy HACS history moved from `hq-private/data/stats` into
       `hq/data/`, GitHub traffic (views, clones) kept, `hq-private`'s stats collector retired, the HQ site's Usage pages served by the package

@@ -175,13 +175,14 @@ a separate domain only once there are outside users.
       First gh-aw candidates: org health report ↔ `support-sweep` + `pr-report`; stale repo report ↔ `registry-check`;
       compliance check ↔ `github-review` (community files part); contributor report ↔ part of `adoption-report`.
       Set up in [hq-private#121](https://github.com/rhizomatics/hq-private/pull/121); runs once merged with its
-      engine secret, then compare for two weeks (plan in [skill providers](../reference/skill_providers.md#the-trial))
+      engine secret ([hq-private#122](https://github.com/rhizomatics/hq-private/issues/122)), then compare for two weeks (plan in [skill providers](../reference/skill_providers.md#the-trial))
 - [ ] @pair Retire each HQ skill where a third-party one does as well or better; keep the HQ-specific remainder as a small add-on
 - [x] @agent Survey existing security auditing skills and workflows; pick at least two providers to run alongside Dependabot and CodeQL
       (2026-11-19: zizmor for Actions workflows, built as a shared admin workflow; Socket.dev for package supply chain,
-      a GitHub App for the maintainer to decide on. Scorecard, Grype and secret scanning were already running)
+      a GitHub App for the maintainer to decide on ([hq-private#124](https://github.com/rhizomatics/hq-private/issues/124)). Scorecard, Grype and secret scanning were already running)
 - [ ] @pair Capability/provider config and the security merge step: `[capabilities]` in `repos.toml`, checked by
-      `check-hq`; "Providers and merging" in `/security-escalation` (PR on hq, 2026-11-19)
+      `check-hq`; "Providers and merging" in `/security-escalation` ([hq#13](https://github.com/rhizomatics/hq/pull/13);
+      zizmor's roll-out after it in [hq-private#125](https://github.com/rhizomatics/hq-private/issues/125))
 
 ### Phase 2: core and packs
 
@@ -230,8 +231,8 @@ Decided:
 Open:
 
 - 2026-11-19 — Engine for the gh-aw trial: Claude with an `ANTHROPIC_API_KEY` (as proposed in hq-private#121), or
-  Copilot-hosted inference (no secret, needs a Copilot plan).
-- 2026-11-19 — Socket.dev for npm and PyPI supply-chain checks: install its GitHub App on the org, or not.
+  Copilot-hosted inference (no secret, needs a Copilot plan). [hq-private#122](https://github.com/rhizomatics/hq-private/issues/122)
+- 2026-11-19 — Socket.dev for npm and PyPI supply-chain checks: install its GitHub App on the org, or not. [hq-private#124](https://github.com/rhizomatics/hq-private/issues/124)
 
 ## Log
 
