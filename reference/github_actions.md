@@ -13,6 +13,7 @@ pypa/gh-action-pypi-publish@*,
 jlumbroso/free-disk-space@*,
 bojieyang/indexnow-action@*, 
 ossf/scorecard-action@*,
+zizmorcore/zizmor-action@*,
 github/codeql-action/*,
 bojieyang/indexnow-action@*,
 # Shared
