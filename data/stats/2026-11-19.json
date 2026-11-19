@@ -1,8 +1,9 @@
 {
- "collected_at": "2026-11-19T13:31:36+00:00",
+ "collected_at": "2026-11-19T20:11:35+00:00",
  "repos": {
   ".github": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 9,
@@ -75,6 +76,7 @@
       "uniques": 2
      }
     ],
+    "description": "Rhizomatics Open Source",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -189,6 +191,7 @@
   },
   "agent-plugins": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 0,
@@ -261,6 +264,7 @@
       "uniques": 2
      }
     ],
+    "description": "Agent plugin marketplace for Rhizomatics open source tools",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {},
@@ -345,6 +349,7 @@
     "total": 1283
    },
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 177,
@@ -417,6 +422,7 @@
       "uniques": 4
      }
     ],
+    "description": "Integrate ANPR / ALPR Cameras via FTP and MQTT to Home Assistant with optional DVLA integration, OCR and image processing. Also listens to ANPR messages from Frigate.",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -594,6 +600,7 @@
   },
   "appliance_autonotify": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 16,
@@ -666,8 +673,9 @@
       "uniques": 3
      }
     ],
+    "description": "Easy notifications and Live Activities for household appliances using Home Assistant and Supernotify",
     "forks": 1,
-    "open_issues_and_prs": 3,
+    "open_issues_and_prs": 2,
     "release_assets": {
      "v0.10.0": {
       "appliance_autonotify.zip": 9
@@ -694,7 +702,7 @@
       "appliance_autonotify.zip": 46
      },
      "v0.14.3": {
-      "appliance_autonotify.zip": 0
+      "appliance_autonotify.zip": 11
      },
      "v0.2.2": {},
      "v0.3.0": {},
@@ -722,6 +730,9 @@
      },
      "v0.9.0": {
       "appliance_autonotify.zip": 11
+     },
+     "v1.0.0-beta1": {
+      "appliance_autonotify.zip": 3
      }
     },
     "stars": 4,
@@ -849,6 +860,7 @@
   },
   "autoarm": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 49,
@@ -921,6 +933,7 @@
       "uniques": 10
      }
     ],
+    "description": "Automated alarm control panel arming for Home Assistant, with automatic profile switching for Frigate",
     "forks": 1,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -954,7 +967,7 @@
       "autoarm.zip": 177
      },
      "v2.2.0": {
-      "autoarm.zip": 5
+      "autoarm.zip": 36
      }
     },
     "stars": 5,
@@ -1107,6 +1120,7 @@
   },
   "boat-tech-directory": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 13,
@@ -1179,6 +1193,7 @@
       "uniques": 12
      }
     ],
+    "description": "Awesome List format for boat software, hardware and data with focus on open source and standards",
     "forks": 7,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -1334,6 +1349,7 @@
   },
   "camera_autonotify": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 53,
@@ -1406,8 +1422,9 @@
       "uniques": 61
      }
     ],
+    "description": "Auto notify camera events for Frigate etc using Supernotify and Home Assistant with optional UK DVLA and OpenALPR integration",
     "forks": 0,
-    "open_issues_and_prs": 0,
+    "open_issues_and_prs": 2,
     "release_assets": {
      "v0.0.1": {
       "frigate_autonotify.zip": 1
@@ -1419,10 +1436,10 @@
       "camera_autonotify.zip": 13
      },
      "v0.11.0": {
-      "camera_autonotify.zip": 19
+      "camera_autonotify.zip": 20
      },
      "v0.11.1": {
-      "camera_autonotify.zip": 33
+      "camera_autonotify.zip": 38
      },
      "v0.3.0": {
       "camera_autonotify.zip": 1
@@ -1456,6 +1473,9 @@
      },
      "v0.9.1": {
       "camera_autonotify.zip": 15
+     },
+     "v1.0.0-beta1": {
+      "camera_autonotify.zip": 2
      }
     },
     "stars": 1,
@@ -1568,6 +1588,7 @@
   },
   "homeassistant-repl": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 135,
@@ -1640,6 +1661,7 @@
       "uniques": 9
      }
     ],
+    "description": "Developer Shell for Home Assistant",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -1822,6 +1844,7 @@
   },
   "hq": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 24,
@@ -1894,10 +1917,12 @@
       "uniques": 35
      }
     ],
+    "description": "Headquarters for the Rhizomatics open source projects: processes, agent skills, policies and standards",
     "forks": 0,
-    "open_issues_and_prs": 0,
+    "open_issues_and_prs": 2,
     "release_assets": {
-     "v1.0.0": {}
+     "v1.0.0": {},
+     "v1.0.1": {}
     },
     "stars": 0,
     "views": [
@@ -2048,6 +2073,7 @@
   },
   "pico-ais-reporter": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 0,
@@ -2120,6 +2146,7 @@
       "uniques": 9
      }
     ],
+    "description": "Minimal AIS reporter, ideal to run on a GPS enabled cellular router",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -2203,6 +2230,7 @@
   },
   "pico-ble-proxy": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 2,
@@ -2275,6 +2303,7 @@
       "uniques": 24
      }
     ],
+    "description": "Home Assistant compatible BLE proxy using ESP32 and a tiny Linux daemon that can run on a router",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -2358,6 +2387,7 @@
   },
   "remote_logger": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 55,
@@ -2430,6 +2460,7 @@
       "uniques": 10
      }
     ],
+    "description": "Home Assistant Remote Logging with Syslog or OpenTelemetry (Otel)",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -2486,7 +2517,7 @@
       "remote_logger.zip": 249
      },
      "v2.12.0": {
-      "remote_logger.zip": 197,
+      "remote_logger.zip": 203,
       "remote_logger.zip.sha256": 1
      }
     },
@@ -2640,6 +2671,7 @@
   },
   "signalk-ble-sensors-plugin": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 105,
@@ -2712,6 +2744,7 @@
       "uniques": 2
      }
     ],
+    "description": "BLE Manager based SignalK sensors",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -2801,6 +2834,7 @@
   },
   "signalk-bluetti-plugin": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 53,
@@ -2873,6 +2907,7 @@
       "uniques": 4
      }
     ],
+    "description": "SignalK plugin to monitor Bluetti power stations",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -2967,6 +3002,7 @@
   },
   "signalk-cli": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 47,
@@ -3039,6 +3075,7 @@
       "uniques": 2
      }
     ],
+    "description": "Command line access to SignalK APIs",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -3165,6 +3202,7 @@
   },
   "signalk-datalab-plugin": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 97,
@@ -3237,6 +3275,7 @@
       "uniques": 2
      }
     ],
+    "description": "Interactive data analysis notebooks for SignalK, running as WebAssembly in the browser",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -3357,6 +3396,7 @@
   },
   "signalk-delta-squelch-plugin": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 2,
@@ -3429,6 +3469,7 @@
       "uniques": 3
      }
     ],
+    "description": "Squelch noisy SignalK data to minimize pointless deltas",
     "forks": 1,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -3518,6 +3559,7 @@
   },
   "signalk-einklabel-genai-plugin": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 3,
@@ -3590,6 +3632,7 @@
       "uniques": 7
      }
     ],
+    "description": "GenAI generated images for cheap eInk Electronic Shelf Labels",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -3681,6 +3724,7 @@
   },
   "signalk-einklabel-plugin": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 149,
@@ -3753,6 +3797,7 @@
       "uniques": 2
      }
     ],
+    "description": "Display SignalK data on eInk Electronic Shelf Labels, with tide clock and watch schedule examples",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -3895,6 +3940,7 @@
   },
   "signalk-teltonika-sms-plugin": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 2,
@@ -3967,6 +4013,7 @@
       "uniques": 1
      }
     ],
+    "description": "Use a Teltonika modem / router to send SignalK Notifications via SMS",
     "forks": 0,
     "open_issues_and_prs": 0,
     "release_assets": {
@@ -4054,6 +4101,7 @@
   },
   "supernotify": {
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 171,
@@ -4126,6 +4174,7 @@
       "uniques": 50
      }
     ],
+    "description": "Advanced notification grouping, routing and alternative channels for Home Assistant",
     "forks": 1,
     "open_issues_and_prs": 4,
     "release_assets": {
@@ -4238,10 +4287,10 @@
       "supernotify.zip": 360
      },
      "v2.18.2": {
-      "supernotify.zip": 403
+      "supernotify.zip": 405
      },
      "v2.19.0": {
-      "supernotify.zip": 12
+      "supernotify.zip": 148
      },
      "v2.2.0": {},
      "v2.2.1": {},
@@ -4430,9 +4479,10 @@
   },
   "updates2mqtt": {
    "ghcr": {
-    "total": 90380
+    "total": 90663
    },
    "github": {
+    "archived": false,
     "clones": [
      {
       "count": 145,
@@ -4505,6 +4555,7 @@
       "uniques": 23
      }
     ],
+    "description": "Automated checks and optional upgrades of Docker containers via MQTT with Home Assistant compatibility",
     "forks": 2,
     "open_issues_and_prs": 4,
     "release_assets": {
