@@ -1,0 +1,27 @@
+# Reusable: audit the repo's GitHub Actions workflows with zizmor (https://docs.zizmor.sh): template
+# injection, unpinned or impostor actions, excess token permissions, credential persistence and more.
+# Public repos upload findings to code scanning (tool "zizmor"), where /security-escalation reads them
+# beside CodeQL, Grype and Scorecard; it doesn't fail the build on findings. Private repos without
+# Advanced Security can't upload, so there it fails the job on findings instead.
+# Callers trigger on push to main, pull_request and a weekly schedule (new audits arrive with new versions).
+name: zizmor
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  zizmor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run zizmor
+        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
+        with:
+          advanced-security: ${{ !github.event.repository.private }}

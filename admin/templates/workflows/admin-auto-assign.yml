@@ -5,7 +5,7 @@ on:
   issues:
     types: [opened, reopened]
   # pull_request_target so fork PRs get a writable token; the called workflow never runs PR code.
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers] only assigns, never checks out the PR
     types: [opened, reopened]
 
 # Nothing by default; each job grants only what it needs (OpenSSF Scorecard Token-Permissions).

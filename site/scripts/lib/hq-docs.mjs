@@ -263,6 +263,43 @@ export async function checkHq(hqRoot) {
     if (e.extends && !registry.repos?.[e.extends]) problems.push(`repos.toml [community.${id}]: extends "${e.extends}", which isn't in [repos]`);
   }
 
+  // Capabilities: every provider well formed and third-party ones pinned; every skill provides exactly one.
+  const KINDS = ['hq', 'gh-aw', 'skill', 'action', 'service'];
+  const STATUSES = ['active', 'trial', 'candidate'];
+  const providedBy = {};
+  for (const [id, cap] of Object.entries(registry.capabilities ?? {})) {
+    const where = `repos.toml [capabilities.${id}]`;
+    if (!Array.isArray(cap.providers) || !cap.providers.length) {
+      problems.push(`${where}: no providers`);
+      continue;
+    }
+    for (const p of cap.providers) {
+      if (!KINDS.includes(p.kind)) problems.push(`${where}: kind "${p.kind}" isn't one of ${KINDS.join(', ')}`);
+      if (!p.ref) problems.push(`${where}: a ${p.kind} provider has no ref`);
+      if (p.status && !STATUSES.includes(p.status)) problems.push(`${where}: status "${p.status}" isn't one of ${STATUSES.join(', ')}`);
+      if (p.kind === 'hq' && p.ref) {
+        if (!skills.includes(p.ref)) problems.push(`${where}: hq provider "${p.ref}" isn't a skill in .claude/skills`);
+        (providedBy[p.ref] ??= []).push(id);
+      }
+      // Third-party code runs pinned, so a change to it reaches us only when we move the pin. The org's own
+      // shared workflows are pinned by their callers instead (admin/README.md).
+      const ownWorkflow = p.ref?.startsWith(`${registry.org.github}/${registry.org.hq_repo ?? 'hq'}/`);
+      if (['gh-aw', 'skill', 'action'].includes(p.kind) && p.ref && !ownWorkflow && !/@[\w.-]+$/.test(p.ref)) {
+        problems.push(`${where}: ${p.kind} provider "${p.ref}" isn't pinned (@version or @sha)`);
+      }
+      if (p.kind === 'gh-aw' && p.ref && !/^[\w.-]+\/[\w.-]+\/.+\.md@[0-9a-f]{40}$/.test(p.ref)) {
+        problems.push(`${where}: gh-aw provider should be owner/repo/path.md@<full sha>`);
+      }
+    }
+  }
+  if (registry.capabilities) {
+    for (const s of skills) {
+      if (!(await exists(path.join(skillsDir, s, 'SKILL.md')))) continue;
+      const caps = providedBy[s] ?? [];
+      if (caps.length !== 1) problems.push(`.claude/skills/${s}: hq provider of ${caps.length ? caps.join(', ') : 'no capability'} in repos.toml (should be one)`);
+    }
+  }
+
   // Markdown headings broken by a non-breaking space after the #s.
   for (const dir of ['policies', 'processes', 'projects', 'reference']) {
     const walk = async (d) => {

@@ -1,16 +1,17 @@
 ---
 title: HQ Stats
 summary: Usage stats as an npm package, configured and stored in an hq repo, with a built-in UI or raw data
-status: draft
+status: active
 lead: architect
 owner: jeyrb
+started: 2026-11-19
 ---
 
 ## Goal
 
 Any open source developer, even with a single product, can collect usage for their projects across every channel
 they publish to (downloads and website page views) and show it publicly, with no AI and little set-up. Shares
-branding with [HQ as a product](../hq-as-product.md), ships before it and is marketed first, as the low-friction
+branding with [HQ as a product](hq-as-product.md), ships before it and is marketed first, as the low-friction
 way in to HQ.
 
 ## Context
@@ -26,7 +27,7 @@ way in to HQ.
 - Platform channels (HACS, HA analytics, SignalK) are what nobody else offers; generic ones (PyPI, npm, ghcr,
   GitHub traffic, GoatCounter page views) make it useful beyond those platforms.
 - **Shape (2026-11-16): a plain npm package, `@<org>/hq-stats`**, published the same way as the org's other npm
-  packages ([release policy](../../policies/release.md): GitHub Actions, gated on CI, staged npm release with
+  packages ([release policy](../policies/release.md): GitHub Actions, gated on CI, staged npm release with
   manual approval, immutable semver releases). Its source lives in its own repo; nothing about a user lives there.
   - **Configuration and outputs live in the user's `hq` repo**: `repos.toml` (or a skeleton one for someone without
     HQ), an `hq-stats` section for options, and the snapshots and public aggregates under `data/`. Snapshots record
@@ -43,7 +44,7 @@ way in to HQ.
   only, never on PR code.
 - Branding: the HQ logo with `stats` beneath in a complementary colour, a similar binary style at a smaller size.
 - **Community**: contributed projects built on the org's products (`[community.<id>]` in `repos.toml`, design in
-  [HQ as a product](../hq-as-product.md#community-contributed-projects)) are collected from public sources only:
+  [HQ as a product](hq-as-product.md#community-contributed-projects)) are collected from public sources only:
   stars, forks, releases, downloads per channel; no traffic or clones. Kept apart from the org's own figures:
   separate in the data, their own pages, never in the org's totals.
 - **Not stats**: `collect_github.py` (alerts, referrers, discussions) stays in `hq-private`. Security (incl. OpenSSF
@@ -56,20 +57,24 @@ way in to HQ.
       website from the GoatCounter API, `goatcounter` field per repo, `GOATCOUNTER_TOKEN` secret; the HQ site's Usage
       is split into Downloads and Page views, with page views on each component's page (2026-11-16)
 - [ ] @human `GOATCOUNTER_TOKEN` secret in `hq-private` (API key with "Read statistics"); check one key reads every site
-- [ ] @pair Package skeleton: `hq-stats` repo, npm package with a `collect` and a `build` command, CI and the
-      staged npm release workflow the other npm packages use
-- [ ] @pair Port the collectors (`collect_stats.py`) to JavaScript in the package, with org and repos from
-      `repos.toml`; done when nothing outside config names Rhizomatics
-- [ ] @pair Config: an `hq-stats` section (in `repos.toml` or its own file in `hq`) for the data directory, site
-      options and the parent site's label and URL; skeleton `repos.toml` in the docs
-- [ ] @pair Document the snapshot and aggregate formats as the raw-data interface, versioned with the package
-- [ ] @pair Built-in UI: move `build-stats.mjs`, `usage.ts`, the Usage pages and `Chart`/`Kpi` into the package;
-      standalone static site plus pages the HQ site mounts in its own sidebar
+- [x] @pair Package skeleton: `hq-stats` repo, npm package with a `collect` and a `build` command, CI and the
+      staged npm release workflow the other npm packages use (2026-11-19, local only until the repo exists)
+- [x] @pair Port the collectors (`collect_stats.py`) to JavaScript in the package, with org and repos from
+      `repos.toml`; done when nothing outside config names Rhizomatics (2026-11-19)
+- [x] @pair Config: an `hq-stats` section (in `repos.toml` or its own file in `hq`) for the data directory, site
+      options and the parent site's label and URL; skeleton `repos.toml` in the docs (2026-11-19: `[stats]`;
+      the parent site's label and URL weren't needed, as the pages mount in the host site)
+- [x] @pair Document the snapshot and aggregate formats as the raw-data interface, versioned with the package (2026-11-19)
+- [x] @pair Built-in UI: move `build-stats.mjs`, `usage.ts`, the Usage pages and `Chart`/`Kpi` into the package;
+      standalone static site plus pages the HQ site mounts in its own sidebar (2026-11-19: an Astro integration
+      and sidebar helper, plus a standalone Starlight example; the HQ site still uses its own copy until 0.1.0 is
+      published)
 - [ ] @pair Community: move `build-community.mjs` and its page into the package; `[community.*]` from public
       sources only, stored apart, never in the org's totals
-- [ ] @pair Workflow for users to copy: schedule and manual dispatch only, `npx` the pinned version, commit to `hq`
+- [x] @pair Workflow for users to copy: schedule and manual dispatch only, `npx` the pinned version, commit to `hq` (2026-11-19)
 - [ ] @pair Brand: HQ logo with `stats` beneath in a complementary colour; site look in the HQ family
-- [ ] @human Create the `hq-stats` repo, its npm package and trusted publishing
+- [ ] @human Create the `hq-stats` repo, its npm package and trusted publishing ([hq-private#123](https://github.com/rhizomatics/hq-private/issues/123)); then @agent pushes the local
+      repo (`../hq-stats`, one commit) and drafts the 0.1.0 release
 - [ ] @pair Rhizomatics on the package: snapshots and legacy HACS history moved from `hq-private/data/stats` into
       `hq/data/`, GitHub traffic (views, clones) kept, `hq-private`'s stats collector retired, the HQ site's Usage pages served by the package
 - [ ] @agent Seed a throwaway org end to end from the docs; fix whatever needed hand edits
@@ -100,7 +105,7 @@ _None._
 
 ## Log
 
-- 2026-11-15 — Created from the [HQ as a product](../hq-as-product.md) decision to ship stats and site first, as
+- 2026-11-15 — Created from the [HQ as a product](hq-as-product.md) decision to ship stats and site first, as
   a separate product with shared branding.
 - 2026-11-15 — Collectors plus optional pages on a subdomain, with a navigation manifest for HQ's menu; everything
   public. `hq-private/scripts/collect_stats.py` now skips private repos. Community projects added, collected from
@@ -112,3 +117,13 @@ _None._
   GoatCounter collection added to `collect_stats.py` and the Usage section split into Downloads and Page views;
   page views appear once the `GOATCOUNTER_TOKEN` secret exists.
 - 2026-11-16 — Decided: snapshots live in `hq`, public data only. GitHub traffic (repo page views, clones) counts as public and is kept.
+- 2026-11-19 — Started (moved to active) as the last Phase 0 task of [HQ as a product](hq-as-product.md). Built in a
+  local `hq-stats` repo next to `hq`, not yet on GitHub (the repo is the maintainer's to create):
+  `hq-stats collect` (the JS port of `collect_stats.py`, same snapshot format plus each repo's description and
+  archive state, so `build` no longer needs the private GitHub snapshot), `hq-stats build` (from `build-stats.mjs`),
+  and the Usage pages as an Astro integration (`@rhizomatics/hq-stats/astro`) with a sidebar helper. Checked
+  against Rhizomatics' data: `build` gives the same aggregate as the site's own (descriptions aside, which old
+  snapshots lack), and an HQ site built with the packed package renders the same 21 Usage pages. Tests, lint,
+  CI and the staged npm release workflow are in place; README and `docs/data-format.md` document the config and
+  both data formats. Generalised on the way: no hard-coded family (the HA installs column shows where a family
+  has installs), components outside `[families]` go under "Other".
