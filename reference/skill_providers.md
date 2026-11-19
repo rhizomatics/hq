@@ -63,7 +63,12 @@ overlap. Each writes one issue labelled `trial` (never assigned, so no one is pa
 - **Findings so far:** the first org health run (2026-11-19) cost about $2.43 on Sonnet 5 and filed nothing. Told to
   cover public repos only, it searched repo by repo, hit GitHub's search rate limit and ended without its safe
   output. The local settings now keep searches org-wide with `is:public`, one at a time, and always file the issue
-  ([hq-private#129](https://github.com/rhizomatics/hq-private/pull/129)).
+  ([hq-private#129](https://github.com/rhizomatics/hq-private/pull/129)). The re-run the same evening cost about $1.09 and filed
+  [hq-private#130](https://github.com/rhizomatics/hq-private/issues/130): an accurate snapshot (activity, merge
+  times, four stale issues) that says which figures it couldn't get (commit search blocked in its sandbox, PRs
+  sampled at 100), but with nothing to act on. It has no notion of someone waiting on the maintainer, counts the
+  maintainer's own roadmap items as stale, and its thresholds suit a large org (a 94% merge rate shows yellow).
+  So far it fits as an optional periodic snapshot, not a replacement for `support-sweep` or `pr-report`.
 
 ## Security
 
