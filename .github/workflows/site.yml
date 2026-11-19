@@ -40,11 +40,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       # Snapshots and reports from the private repo (repos.toml org.private_repo). Fine-grained PAT: that repo only, read-only Contents.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ${{ github.repository_owner }}/hq-private
           token: ${{ secrets.HQ_PRIVATE_READ_TOKEN }}
+          persist-credentials: false
           path: hq-private
           sparse-checkout: |
             data/stats

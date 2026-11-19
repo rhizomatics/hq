@@ -8,6 +8,7 @@ Shared GitHub admin automation for rhizomatics repos. Moved here from the `.gith
 | `admin-labels.yml` | `reusable-labels.yml` | Weekly sync of [`labels.yml`](labels.yml) into the repo; repo-only labels are kept |
 | `admin-dependency-review.yml` | `reusable-dependency-review.yml` | Flags known-vulnerable dependencies on PRs, commenting only when it fails |
 | `admin-dependabot-automerge.yml` | `reusable-dependabot-automerge.yml` | Squash-merges Dependabot PRs touching only trusted deps (`TRUSTED` regex) once every other check passes |
+| `admin-zizmor.yml` | `reusable-zizmor.yml` | Audits the repo's Actions workflows with [zizmor](https://docs.zizmor.sh) on push, PRs and weekly; findings go to code scanning (public repos) for `/security-escalation` |
 
 Callers pin the reusable workflows to a release tag's commit SHA (`@<sha> # 1.0.0`), so a
 change to a reusable workflow reaches a repo only when its pin moves. To release one, tag this

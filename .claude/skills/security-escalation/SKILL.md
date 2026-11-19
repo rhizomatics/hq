@@ -56,11 +56,34 @@ Once per run, not per repo:
   base-image bump fixes a Grype/Trivy alert). Don't WebFetch osv.dev, NVD or distro trackers from a
   cloud routine; they're blocked. Only an `{"error": ...}` entry or a missing id is a data gap.
 
+## Providers and merging
+
+The providers are listed under `[capabilities.security]` in `repos.toml` (evidence in
+`reference/skill_providers.md`). This skill is the step that merges them: it doesn't scan anything itself.
+
+- Code scanning holds several tools: group its alerts by `tool.name` (CodeQL, Grype, Scorecard, zizmor, and any
+  other provider added there). A tool name that isn't a provider in `repos.toml` is still read; mention it once
+  so the list can be updated.
+- A provider whose `status` is `candidate` may not be running yet. Its absence isn't a data gap.
+- **One finding, several reports**: merge before applying the rules below, keeping every source's link.
+  - The same advisory (GHSA or CVE id) in the same repo, from Dependabot and Grype: one finding. Dependabot's
+    relationship and scope decide rule 4. Grype's says whether it's in the published image.
+  - The same workflow file and line from CodeQL (`actions/` queries) and zizmor: one finding. Use zizmor's audit
+    name, which is more specific.
+  - A Scorecard check failing for the same cause as a zizmor finding (Token-Permissions ↔ `excessive-permissions`,
+    Dangerous-Workflow ↔ `dangerous-triggers` or `template-injection`, Pinned-Dependencies ↔ `unpinned-uses`):
+    report the zizmor finding, which has the location, and leave the Scorecard check out of the count.
+  - zizmor findings ignored in the workflow itself (`# zizmor: ignore[...]` with a reason) aren't alerts. Don't
+    second-guess the reason in a daily run. The alignment review looks at them.
+- **Rank** what's left: `kev_added` set, then severity, then `epss`, then direct runtime over transitive or
+  development, then the number of repos affected. Escalations are listed in that order.
+- In the counts table, count a merged finding once, under the tool that decides it.
+
 ## Escalate if any of
 
 1. Any open secret-scanning alert.
 2. Any privately reported advisory in `triage` (a researcher is waiting on us).
-3. Critical/high code-scanning alert.
+3. Critical/high code-scanning alert, from any tool (after merging). zizmor's `high` counts as high.
 4. Critical/high Dependabot alert, **unless** it is purely transitive from the upstream platform:
    the repo has `upstream = "homeassistant"` or `"signalk"` in `repos.toml`, the relationship is
    `transitive` (or `unknown` and the package is not declared in our own manifest), and it arrives

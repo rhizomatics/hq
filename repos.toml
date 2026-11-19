@@ -40,6 +40,20 @@
 #     author:   the byline the blog itself uses
 #     note:     optional, shown with it (e.g. that it's the maintainer's personal blog)
 #
+# [capabilities.<id>]: who provides each recurring capability, so an HQ skill can be swapped for a better one
+# made by someone else (projects/hq-as-product.md, "Reuse skill packages first"; the survey behind these is
+# reference/skill_providers.md). `providers` is a list, in order of preference, each:
+#   kind:    "hq"      a skill in .claude/skills (ref: its name)
+#            "gh-aw"   a GitHub agentic workflow (ref: owner/repo/path.md@<sha>; where: the repo it runs in)
+#            "skill"   a third-party agent skill or plugin (ref: package@version)
+#            "action"  a scanner run in CI (ref: owner/repo@<version>; where: "admin" for the shared callers,
+#                      or the repos that run it)
+#            "service" a GitHub feature, app or hosted service (ref: its name)
+#   ref, where, note
+#   status:  "active" (default) | "trial" (runs beside the active ones until compared) | "candidate" (chosen,
+#            not running yet)
+# Every skill in .claude/skills is the hq provider of exactly one capability; `mise run check-hq` checks this.
+
 # security_watch: platform packages our users run but we don't patch, so Dependabot's alerts don't
 # reach the decision that matters. Advisories for them are snapshotted by collect_github.py.
 # ecosystem is the GitHub advisory API's name (pip, npm); area is the hq issue label.
@@ -81,6 +95,92 @@ area = "signalk"
 ecosystem = "pip"
 package = "homeassistant"
 area = "homeassistant"
+
+# Capabilities and their providers (header above). Trials started 2026-11-19 run two weeks.
+
+[capabilities.support]
+providers = [
+  { kind = "hq", ref = "support-sweep" },
+  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-org-health.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "OSPO Organization Health Report; stale issues and items needing a human" },
+]
+
+[capabilities.pull-requests]
+providers = [
+  { kind = "hq", ref = "pr-report" },
+  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-org-health.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "the same report's stale-PR and merge-time sections" },
+]
+
+[capabilities.dependency-updates]
+providers = [
+  { kind = "hq", ref = "dependabot-sweep" },
+  { kind = "action", ref = "rhizomatics/hq/.github/workflows/reusable-dependabot-automerge.yml", where = "admin", note = "merges the trusted bumps itself; the sweep handles the rest" },
+]
+
+[capabilities.security]
+providers = [
+  { kind = "hq", ref = "security-escalation", note = "merges, de-duplicates and ranks every provider below; applies the escalation rules" },
+  { kind = "service", ref = "dependabot-alerts" },
+  { kind = "service", ref = "codeql" },
+  { kind = "service", ref = "secret-scanning" },
+  { kind = "action", ref = "ossf/scorecard-action@v2.4.1", where = "every released repo (scorecard.yml)" },
+  { kind = "action", ref = "anchore/scan-action@v7.4.2", where = "image repos (image-scan.yml)", note = "Grype, container images" },
+  { kind = "action", ref = "zizmorcore/zizmor-action@v0.8.1", where = "admin", status = "candidate", note = "Actions workflow audit; reaches repos with the next hq release and sync-admin" },
+  { kind = "service", ref = "socket.dev", status = "candidate", note = "malicious and risky npm/PyPI packages with no CVE; GitHub App, the maintainer's decision" },
+]
+
+[capabilities.registry]
+providers = [
+  { kind = "hq", ref = "registry-check" },
+  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-stale-repos.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "inactive repos and archival candidates; covers part of the check" },
+]
+
+[capabilities.github-settings]
+providers = [
+  { kind = "hq", ref = "github-review" },
+  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-release-compliance-checker.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "community files and security settings, one repo per labelled issue" },
+]
+
+[capabilities.adoption]
+providers = [
+  { kind = "hq", ref = "adoption-report" },
+  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-contributors-report.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "contributor activity only; downloads have no third-party provider" },
+]
+
+[capabilities.alignment]
+providers = [{ kind = "hq", ref = "alignment-review" }]
+
+[capabilities.docs]
+providers = [{ kind = "hq", ref = "docs-review" }]
+
+[capabilities.agent-accessibility]
+providers = [{ kind = "hq", ref = "agent-accessibility-review" }]
+
+[capabilities.releases]
+providers = [{ kind = "hq", ref = "release-digest" }]
+
+[capabilities.forums]
+providers = [{ kind = "hq", ref = "forum-watch" }]
+
+[capabilities.reputation]
+providers = [{ kind = "hq", ref = "reputation-review" }]
+
+[capabilities.support-themes]
+providers = [{ kind = "hq", ref = "support-review" }]
+
+[capabilities.roadmaps]
+providers = [{ kind = "hq", ref = "roadmap-review" }]
+
+[capabilities.architecture]
+providers = [{ kind = "hq", ref = "architecture-review" }]
+
+[capabilities.platforms]
+providers = [{ kind = "hq", ref = "platform-review" }]
+
+[capabilities.policies]
+providers = [{ kind = "hq", ref = "policy-review" }]
+
+[capabilities.projects]
+providers = [{ kind = "hq", ref = "project-review" }]
 
 [repos.supernotify]
 goatcounter = "supernotify"
