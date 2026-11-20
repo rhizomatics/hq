@@ -137,3 +137,4 @@ _None._
 - 2026-11-19 — Both PRs merged. `STATS_TOKEN` added to `hq`; the first run of `collect-stats.yml` collected all 22
   public repos with no errors (GitHub views and clones, 14 GoatCounter sites), and the site deployed with the
   package's Usage pages. No snapshots were lost in the switch.
+- 2026-11-20 — project-review: no new entries since the 11-19 switch. Next: community page, brand, throwaway-org test.

@@ -317,3 +317,4 @@ Open:
   and ended without its safe output. Fixed in [hq-private#129](https://github.com/rhizomatics/hq-private/pull/129)
   (org-wide `is:public` searches, sequential, always file the issue). Trial reframed by the maintainer: it decides
   whether to support gh-aw/OSPO as an optional provider, not whether to retire HQ skills.
+- 2026-11-20 — project-review: gh-aw trial running. hq-private#121 merged and the engine key added (#122 ticked); first OSPO Organization Health Report succeeded 11-19, rate-limit fixes merged (hq-private#129). Two-week comparison ends about 12-03, then the `@pair` decision. Zizmor roll-out merged in 23 repos but blocked by the org's allowed-actions list (hq-private#125). No new Phase 2 work. Reminder: the routine rename for the monthly ecosystem review still needs fixing before 2026-12-10.
