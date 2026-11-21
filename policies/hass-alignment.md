@@ -28,8 +28,17 @@ Custom components don't use `strings.json`: it's for core integrations only
 
 ## Platform changes
 
-Platform changes still to act on (Marketplace, the Contributors site, deprecated test and type packages) are
-tracked in `reference/hass_platform_changes.md`, picked up by the platform and alignment reviews.
+Platform changes still to act on (Marketplace, the Contributors site, deprecated test and type packages) are tracked in `reference/hass_platform_changes.md`, picked up by the platform and alignment reviews.
+
+## Marketplace Confidence
+
+Use whatever measures available to reassure Marketplace users of the robustness, quality and safety of the products.
+
+For example,
+
+- Meeting the Home Assistant Quality Scale
+- Shields on the readme for code coverage, security scanning etc
+- Clean reports from security checks like HA Security Sandbox, Marketplace Guard and HA Barkley
 
 ## References
 
