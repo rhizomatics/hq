@@ -28,4 +28,4 @@ summary: "GitHub Actions for build and release: ci and ci-ok gates, pinned actio
 - All workflows will be audited automatically
   - Current preferred tool is `zizmor`
     - Audit rules at https://docs.zizmor.sh/audits/
-    
+- Write permissions will be set at step level only, not workflow level
