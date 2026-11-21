@@ -1,0 +1,4791 @@
+{
+ "collected_at": "2026-11-21T12:47:22+00:00",
+ "repos": {
+  ".github": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 15,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 77,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 31
+     },
+     {
+      "count": 65,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 34,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 59,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 69,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 29
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "description": "Rhizomatics Open Source",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "1.0.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 2,
+     "2026-11-16": 2,
+     "2026-11-17": 2,
+     "2026-11-18": 0,
+     "2026-11-19": 1,
+     "2026-11-20": 1
+    },
+    "site": "rhizomatics",
+    "top_pages_30d": [
+     {
+      "count": 7,
+      "path": "/",
+      "title": "Open Source Home Assistant, MQTT & SignalK Tools - Rhizomatics"
+     },
+     {
+      "count": 1,
+      "path": "/home-automation",
+      "title": "Home Automation - Rhizomatics"
+     }
+    ]
+   }
+  },
+  "agent-plugins": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 2,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 33,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 26,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "description": "Agent plugin marketplace for Rhizomatics open source tools",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {},
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "anpr2mqtt": {
+   "ghcr": {
+    "total": 1289
+   },
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 25,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 159,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 43
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 235,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 47
+     },
+     {
+      "count": 228,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 64
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 158,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 41,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 238,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 71
+     },
+     {
+      "count": 86,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 42
+     },
+     {
+      "count": 23,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 40,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 11
+     }
+    ],
+    "description": "Integrate ANPR / ALPR Cameras via FTP and MQTT to Home Assistant with optional DVLA integration, OCR and image processing. Also listens to ANPR messages from Frigate.",
+    "forks": 0,
+    "open_issues_and_prs": 1,
+    "release_assets": {
+     "v0.10.0": {},
+     "v0.10.1": {},
+     "v0.10.2": {},
+     "v0.5.0": {},
+     "v0.6.0": {},
+     "v0.7.1": {},
+     "v0.8.0": {},
+     "v0.9.0": {},
+     "v0.9.2": {},
+     "v1.0.0": {},
+     "v1.1.0": {},
+     "v1.1.15": {},
+     "v1.1.2": {},
+     "v1.1.4": {},
+     "v1.2.0": {},
+     "v1.2.1": {},
+     "v1.2.2": {},
+     "v1.3.0": {},
+     "v1.3.1": {}
+    },
+    "stars": 1,
+    "views": [
+     {
+      "count": 4,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 20,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 15,
+     "2026-11-16": 16,
+     "2026-11-17": 14,
+     "2026-11-18": 14,
+     "2026-11-19": 17,
+     "2026-11-20": 18
+    },
+    "site": "anpr2mqtt",
+    "top_pages_30d": [
+     {
+      "count": 11,
+      "path": "/",
+      "title": "ANPR2MQTT - ANPR2MQTT"
+     },
+     {
+      "count": 7,
+      "path": "/developer/coverage",
+      "title": "Coverage - ANPR2MQTT"
+     },
+     {
+      "count": 7,
+      "path": "/debug_tools",
+      "title": "Debug Tools - ANPR2MQTT"
+     },
+     {
+      "count": 7,
+      "path": "/examples/ha_automation",
+      "title": "Home Assistant Automation - ANPR2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/examples/env",
+      "title": "Environment File - ANPR2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/examples/config_minimal",
+      "title": "Minimal Configuration - ANPR2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/homeassistant",
+      "title": "HomeAssistant Integration - ANPR2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/examples/config_maximal",
+      "title": "Maximal Configuration - ANPR2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/camera",
+      "title": "ANPR Camera Configuration - ANPR2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/examples/docker_compose",
+      "title": "Docker Compose - ANPR2MQTT"
+     }
+    ]
+   },
+   "pypi": {
+    "last_day": 0,
+    "last_month": 497,
+    "last_week": 64
+   }
+  },
+  "appliance_autonotify": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 51,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 184,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 48
+     },
+     {
+      "count": 118,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 30
+     },
+     {
+      "count": 70,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 21
+     },
+     {
+      "count": 107,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 22
+     },
+     {
+      "count": 128,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 28
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 174,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 39
+     },
+     {
+      "count": 67,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 22
+     },
+     {
+      "count": 20,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 419,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 70
+     },
+     {
+      "count": 100,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 31
+     }
+    ],
+    "description": "Easy notifications and Live Activities for household appliances using Home Assistant and Supernotify",
+    "forks": 1,
+    "open_issues_and_prs": 2,
+    "release_assets": {
+     "v0.10.0": {
+      "appliance_autonotify.zip": 9
+     },
+     "v0.11.0": {
+      "appliance_autonotify.zip": 10
+     },
+     "v0.12.0": {
+      "appliance_autonotify.zip": 13
+     },
+     "v0.13.0": {
+      "appliance_autonotify.zip": 49
+     },
+     "v0.14.0": {
+      "appliance_autonotify.zip": 28
+     },
+     "v0.14.0-beta4": {
+      "appliance_autonotify.zip": 4
+     },
+     "v0.14.1": {
+      "appliance_autonotify.zip": 3
+     },
+     "v0.14.2": {
+      "appliance_autonotify.zip": 46
+     },
+     "v0.14.3": {
+      "appliance_autonotify.zip": 28
+     },
+     "v0.2.2": {},
+     "v0.3.0": {},
+     "v0.3.1": {},
+     "v0.4.0": {},
+     "v0.5.0": {},
+     "v0.6.0": {},
+     "v0.6.1": {
+      "appliances_autonotify.zip": 10
+     },
+     "v0.7.0": {
+      "appliances_autonotify.zip": 10
+     },
+     "v0.7.1": {
+      "appliances_autonotify.zip": 10
+     },
+     "v0.8.0": {
+      "appliances_autonotify.zip": 9
+     },
+     "v0.8.1": {
+      "appliances_autonotify.zip": 10
+     },
+     "v0.8.2": {
+      "appliance_autonotify.zip": 10
+     },
+     "v0.9.0": {
+      "appliance_autonotify.zip": 11
+     },
+     "v1.0.0": {
+      "appliance_autonotify.zip": 27
+     },
+     "v1.0.0-beta1": {
+      "appliance_autonotify.zip": 3
+     },
+     "v1.0.0-beta2": {
+      "appliance_autonotify.zip": 3
+     }
+    },
+    "stars": 4,
+    "views": [
+     {
+      "count": 3,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 75,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 28,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 61,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 112,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 3
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 6,
+     "2026-11-16": 4,
+     "2026-11-17": 4,
+     "2026-11-18": 7,
+     "2026-11-19": 23,
+     "2026-11-20": 14
+    },
+    "site": "appliance-autonotify",
+    "top_pages_30d": [
+     {
+      "count": 33,
+      "path": "/",
+      "title": "Appliance AutoNotify for Home Assistant"
+     },
+     {
+      "count": 6,
+      "path": "/developer/coverage",
+      "title": "Coverage - Appliance AutoNotify for Home Assistant"
+     },
+     {
+      "count": 6,
+      "path": "/changelog",
+      "title": "What's New - Appliance AutoNotify for Home Assistant"
+     },
+     {
+      "count": 6,
+      "path": "/developer/design/roadmap",
+      "title": "Roadmap - Appliance AutoNotify for Home Assistant"
+     },
+     {
+      "count": 5,
+      "path": "/mobile_platforms",
+      "title": "Mobile Platforms - Appliance AutoNotify for Home Assistant"
+     },
+     {
+      "count": 2,
+      "path": "/mobile_platforms/index.md",
+      "title": "Appliance AutoNotify for Home Assistant"
+     }
+    ]
+   },
+   "ha_installs": 12
+  },
+  "autoarm": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 66,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 262,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 74
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 87,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 80,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 34
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 32,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 205,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 46
+     },
+     {
+      "count": 74,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 72,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 113,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 137,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 46
+     }
+    ],
+    "description": "Automated alarm control panel arming for Home Assistant, with automatic profile switching for Frigate",
+    "forks": 1,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.6.3": {},
+     "v0.6.4": {},
+     "v0.6.5": {},
+     "v0.6.6": {},
+     "v0.7.0": {},
+     "v0.7.1": {},
+     "v0.8.0": {},
+     "v1.0.0": {},
+     "v1.1.0": {},
+     "v1.1.1": {},
+     "v1.1.13": {},
+     "v1.1.14": {},
+     "v1.1.2": {},
+     "v1.1.5": {
+      "v1.1.5.zip": 5
+     },
+     "v1.2.0": {},
+     "v1.3.0": {
+      "autoarm.zip": 76
+     },
+     "v1.4.0": {
+      "autoarm.zip": 86
+     },
+     "v2.0.0": {
+      "autoarm.zip": 84
+     },
+     "v2.1.0": {
+      "autoarm.zip": 177
+     },
+     "v2.2.0": {
+      "autoarm.zip": 66
+     }
+    },
+    "stars": 5,
+    "views": [
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 3
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 30,
+     "2026-11-16": 28,
+     "2026-11-17": 22,
+     "2026-11-18": 34,
+     "2026-11-19": 43,
+     "2026-11-20": 35
+    },
+    "site": "autoarm",
+    "top_pages_30d": [
+     {
+      "count": 17,
+      "path": "/",
+      "title": "Auto Arm for HomeAssistant - Home Assistant Auto Arm"
+     },
+     {
+      "count": 9,
+      "path": "/help/troubleshooting",
+      "title": "Troubleshooting - Home Assistant Auto Arm"
+     },
+     {
+      "count": 7,
+      "path": "/configuration/removal",
+      "title": "Removing Auto Arm - Home Assistant Auto Arm"
+     },
+     {
+      "count": 7,
+      "path": "/help/known_limitations",
+      "title": "Known Limitations - Home Assistant Auto Arm"
+     },
+     {
+      "count": 7,
+      "path": "/quick_start",
+      "title": "Quick Start - Home Assistant Auto Arm"
+     },
+     {
+      "count": 7,
+      "path": "/configuration/frigate",
+      "title": "Frigate Profile Switching - Home Assistant Auto Arm"
+     },
+     {
+      "count": 7,
+      "path": "/help/ai_help",
+      "title": "Google and AI Assisted Help - Home Assistant Auto Arm"
+     },
+     {
+      "count": 6,
+      "path": "/configuration",
+      "title": "Configuring Auto Arm - Home Assistant Auto Arm"
+     },
+     {
+      "count": 6,
+      "path": "/configuration/create_panel",
+      "title": "Create an Alarm Panel - Home Assistant Auto Arm"
+     },
+     {
+      "count": 6,
+      "path": "/configuration/examples/minimal",
+      "title": "Minimal Configuration - Home Assistant Auto Arm"
+     }
+    ]
+   },
+   "ha_installs": 6
+  },
+  "boat-tech-directory": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 3,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 90,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 25,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 48,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 28,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 56,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 36,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 44,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 53,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 16
+     }
+    ],
+    "description": "Awesome List format for boat software, hardware and data with focus on open source and standards",
+    "forks": 7,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v1.2.4": {},
+     "v1.2.5": {},
+     "v1.3.0": {},
+     "v1.3.1": {},
+     "v1.3.2": {}
+    },
+    "stars": 7,
+    "views": [
+     {
+      "count": 3,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 20,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 5,
+     "2026-11-16": 12,
+     "2026-11-17": 9,
+     "2026-11-18": 9,
+     "2026-11-19": 33,
+     "2026-11-20": 60
+    },
+    "site": "boat-tech-directory",
+    "top_pages_30d": [
+     {
+      "count": 31,
+      "path": "/",
+      "title": "Boat Tech Directory | Boat Tech Directory"
+     },
+     {
+      "count": 23,
+      "path": "/open-source-projects",
+      "title": "Open Source Projects | Boat Tech Directory"
+     },
+     {
+      "count": 8,
+      "path": "/vendors",
+      "title": "Vendors | Boat Tech Directory"
+     },
+     {
+      "count": 8,
+      "path": "/contributing",
+      "title": "Contributing | Boat Tech Directory"
+     },
+     {
+      "count": 8,
+      "path": "/charts",
+      "title": "Charts and Data | Boat Tech Directory"
+     },
+     {
+      "count": 7,
+      "path": "/protocols",
+      "title": "Standards and Protocols | Boat Tech Directory"
+     },
+     {
+      "count": 5,
+      "path": "/downloads/example-checklists",
+      "title": "Example Checklists | Boat Tech Directory"
+     },
+     {
+      "count": 5,
+      "path": "/education",
+      "title": "Education | Boat Tech Directory"
+     },
+     {
+      "count": 4,
+      "path": "/signalk-plugins",
+      "title": "SignalK Plugins | Boat Tech Directory"
+     },
+     {
+      "count": 4,
+      "path": "/social",
+      "title": "Social | Boat Tech Directory"
+     }
+    ]
+   }
+  },
+  "camera_autonotify": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 126,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 42
+     },
+     {
+      "count": 54,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 28
+     },
+     {
+      "count": 131,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 36
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 250,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 44
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 202,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 61
+     },
+     {
+      "count": 26,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 128,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 30
+     },
+     {
+      "count": 83,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 174,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 33
+     },
+     {
+      "count": 139,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 61
+     },
+     {
+      "count": 179,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 34
+     }
+    ],
+    "description": "Auto notify camera events for Frigate etc using Supernotify and Home Assistant with optional UK DVLA and OpenALPR integration",
+    "forks": 0,
+    "open_issues_and_prs": 1,
+    "release_assets": {
+     "v0.0.1": {
+      "frigate_autonotify.zip": 1
+     },
+     "v0.0.2": {
+      "frigate_autonotify.zip": 1
+     },
+     "v0.10.0": {
+      "camera_autonotify.zip": 13
+     },
+     "v0.11.0": {
+      "camera_autonotify.zip": 20
+     },
+     "v0.11.1": {
+      "camera_autonotify.zip": 47
+     },
+     "v0.3.0": {
+      "camera_autonotify.zip": 1
+     },
+     "v0.3.1": {
+      "camera_autonotify.zip": 25
+     },
+     "v0.4.0": {
+      "camera_autonotify.zip": 35
+     },
+     "v0.5.0": {
+      "camera_autonotify.zip": 15
+     },
+     "v0.6.0": {
+      "camera_autonotify.zip": 6
+     },
+     "v0.7.0": {
+      "camera_autonotify.zip": 2
+     },
+     "v0.7.1": {
+      "camera_autonotify.zip": 2
+     },
+     "v0.7.2": {
+      "camera_autonotify.zip": 26
+     },
+     "v0.8.0": {
+      "camera_autonotify.zip": 33
+     },
+     "v0.9.0": {
+      "camera_autonotify.zip": 2
+     },
+     "v0.9.1": {
+      "camera_autonotify.zip": 15
+     },
+     "v1.0.0-beta1": {
+      "camera_autonotify.zip": 2
+     },
+     "v1.0.0-beta2": {
+      "camera_autonotify.zip": 2
+     },
+     "v1.0.0-beta3": {
+      "camera_autonotify.zip": 2
+     },
+     "v1.0.0-beta4": {
+      "camera_autonotify.zip": 2
+     },
+     "v1.0.0-beta5": {
+      "camera_autonotify.zip": 2
+     }
+    },
+    "stars": 1,
+    "views": [
+     {
+      "count": 22,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 32,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 28,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 54,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 2,
+     "2026-11-16": 2,
+     "2026-11-17": 6,
+     "2026-11-18": 2,
+     "2026-11-19": 9,
+     "2026-11-20": 4
+    },
+    "site": "camera-autonotify",
+    "top_pages_30d": [
+     {
+      "count": 17,
+      "path": "/",
+      "title": "Camera AutoNotify for Home Assistant"
+     },
+     {
+      "count": 8,
+      "path": "/changelog",
+      "title": "What's New - Camera AutoNotify for Home Assistant"
+     }
+    ]
+   },
+   "ha_installs": 13
+  },
+  "homeassistant-repl": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 37,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 46,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 169,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 50
+     },
+     {
+      "count": 37,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 32,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 43,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 21,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 157,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 68,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 109,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 32
+     },
+     {
+      "count": 205,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 52
+     },
+     {
+      "count": 106,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 60,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 22
+     }
+    ],
+    "description": "Developer Shell for Home Assistant",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.0": {},
+     "v0.1.1": {},
+     "v0.1.1-beta1": {},
+     "v0.10.0": {},
+     "v0.11.0": {},
+     "v0.11.1": {},
+     "v0.12.0": {},
+     "v0.13.0": {},
+     "v0.14.0": {
+      "ha_repl_server.zip": 5
+     },
+     "v0.14.1": {
+      "ha_repl_server.zip": 19
+     },
+     "v0.2.0": {},
+     "v0.3.0": {},
+     "v0.3.0-beta1": {},
+     "v0.4.0": {},
+     "v0.5.1": {},
+     "v0.6.0": {},
+     "v0.7.0": {},
+     "v0.8.0": {},
+     "v0.9.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 26,
+     "2026-11-16": 25,
+     "2026-11-17": 23,
+     "2026-11-18": 21,
+     "2026-11-19": 23,
+     "2026-11-20": 29
+    },
+    "site": "homeassistant-repl",
+    "top_pages_30d": [
+     {
+      "count": 10,
+      "path": "/",
+      "title": "Home Assistant REPL"
+     },
+     {
+      "count": 8,
+      "path": "/configuration/alternative_integration",
+      "title": "Alternative Integration - Home Assistant REPL"
+     },
+     {
+      "count": 8,
+      "path": "/developer",
+      "title": "Developer Documentation - Home Assistant REPL"
+     },
+     {
+      "count": 7,
+      "path": "/developer/design/debug_console",
+      "title": "Home Assistant's Debug Console - Home Assistant REPL"
+     },
+     {
+      "count": 6,
+      "path": "/developer/design",
+      "title": "Design - Home Assistant REPL"
+     },
+     {
+      "count": 6,
+      "path": "/modes/api_mode",
+      "title": "API Mode - Home Assistant REPL"
+     },
+     {
+      "count": 6,
+      "path": "/configuration/client_configuration",
+      "title": "Client Configuration - Home Assistant REPL"
+     },
+     {
+      "count": 6,
+      "path": "/configuration/server_install",
+      "title": "Server Installation - Home Assistant REPL"
+     },
+     {
+      "count": 6,
+      "path": "/modes",
+      "title": "REPL Modes - Home Assistant REPL"
+     },
+     {
+      "count": 6,
+      "path": "/developer/design/roadmap",
+      "title": "Roadmap - Home Assistant REPL"
+     }
+    ]
+   },
+   "ha_installs": null,
+   "pypi": {
+    "last_day": 39,
+    "last_month": 1207,
+    "last_week": 320
+   }
+  },
+  "hq": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 32,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 53,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 112,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 49
+     },
+     {
+      "count": 72,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 35
+     },
+     {
+      "count": 87,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 36
+     },
+     {
+      "count": 115,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 44
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 64,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 57,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 22
+     },
+     {
+      "count": 208,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 32
+     },
+     {
+      "count": 234,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 60
+     },
+     {
+      "count": 71,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 22
+     },
+     {
+      "count": 92,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 35
+     },
+     {
+      "count": 224,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 40
+     }
+    ],
+    "description": "Headquarters for the Rhizomatics open source projects: processes, agent skills, policies and standards",
+    "forks": 0,
+    "open_issues_and_prs": 1,
+    "release_assets": {
+     "v1.0.0": {},
+     "v1.0.1": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-06T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 53,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 14,
+     "2026-11-16": 14,
+     "2026-11-17": 25,
+     "2026-11-18": 33,
+     "2026-11-19": 15,
+     "2026-11-20": 25
+    },
+    "site": "rhizomatics-hq",
+    "top_pages_30d": [
+     {
+      "count": 29,
+      "path": "/",
+      "title": "Rhizomatics HQ | Rhizomatics HQ"
+     },
+     {
+      "count": 20,
+      "path": "/usage/page-views",
+      "title": "Page views | Rhizomatics HQ"
+     },
+     {
+      "count": 20,
+      "path": "/usage",
+      "title": "Usage | Rhizomatics HQ"
+     },
+     {
+      "count": 14,
+      "path": "/releases",
+      "title": "Releases | Rhizomatics HQ"
+     },
+     {
+      "count": 4,
+      "path": "/security",
+      "title": "Security | Rhizomatics HQ"
+     },
+     {
+      "count": 3,
+      "path": "/usage/updates2mqtt",
+      "title": "updates2mqtt | Rhizomatics HQ"
+     },
+     {
+      "count": 2,
+      "path": "/usage/boat-tech-directory",
+      "title": "boat-tech-directory | Rhizomatics HQ"
+     },
+     {
+      "count": 2,
+      "path": "/usage/autoarm",
+      "title": "autoarm | Rhizomatics HQ"
+     },
+     {
+      "count": 2,
+      "path": "/usage/supernotify",
+      "title": "supernotify | Rhizomatics HQ"
+     },
+     {
+      "count": 2,
+      "path": "/deployments",
+      "title": "Deployments | Rhizomatics HQ"
+     }
+    ]
+   }
+  },
+  "pico-ais-reporter": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 3,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 46,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 27
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 55,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 22
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 23,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "description": "Minimal AIS reporter, ideal to run on a GPS enabled cellular router",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 2,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "pico-ble-proxy": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 46,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 21
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 44,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 61,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 34,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "description": "Home Assistant compatible BLE proxy using ESP32 and a tiny Linux daemon that can run on a router",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.2.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   }
+  },
+  "remote_logger": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 10,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 162,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 48
+     },
+     {
+      "count": 58,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 382,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 80
+     },
+     {
+      "count": 153,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 49
+     },
+     {
+      "count": 34,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 67,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 41,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 141,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 33
+     },
+     {
+      "count": 101,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 29
+     },
+     {
+      "count": 84,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 48,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 39,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 7
+     }
+    ],
+    "description": "Home Assistant Remote Logging with Syslog or OpenTelemetry (Otel)",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "0.4.0-beta": {},
+     "1.0.0": {},
+     "v1.1.0": {},
+     "v1.2.0": {},
+     "v1.3.0": {},
+     "v1.3.1": {},
+     "v1.4.0": {},
+     "v1.4.1": {},
+     "v1.4.2": {},
+     "v1.4.3": {},
+     "v1.4.4": {},
+     "v1.4.5": {},
+     "v1.4.6": {},
+     "v1.4.7": {},
+     "v1.4.8": {},
+     "v1.4.9": {},
+     "v1.5.0": {},
+     "v1.5.1": {},
+     "v1.5.2": {},
+     "v1.5.3": {},
+     "v1.5.4": {},
+     "v1.5.5": {},
+     "v1.6.0": {},
+     "v2.0.0": {},
+     "v2.0.1": {},
+     "v2.0.2": {},
+     "v2.0.2-beta2": {},
+     "v2.0.3": {},
+     "v2.0.4": {
+      "v2.0.4.zip": 7
+     },
+     "v2.0.5": {
+      "remote_logger.zip": 199
+     },
+     "v2.0.5-beta1": {
+      "remote_logger.zip": 6
+     },
+     "v2.0.6": {
+      "remote_logger.zip": 141
+     },
+     "v2.0.7": {
+      "remote_logger.zip": 323
+     },
+     "v2.10.0": {
+      "remote_logger.zip": 243
+     },
+     "v2.11.0": {
+      "remote_logger.zip": 187
+     },
+     "v2.11.1": {
+      "remote_logger.zip": 249
+     },
+     "v2.12.0": {
+      "remote_logger.zip": 226,
+      "remote_logger.zip.sha256": 2
+     }
+    },
+    "stars": 14,
+    "views": [
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 50,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 28,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 27,
+     "2026-11-16": 24,
+     "2026-11-17": 18,
+     "2026-11-18": 27,
+     "2026-11-19": 33,
+     "2026-11-20": 29
+    },
+    "site": "remote-logger",
+    "top_pages_30d": [
+     {
+      "count": 11,
+      "path": "/",
+      "title": "HomeAssistant Remote Logger - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 8,
+      "path": "/developer/coverage",
+      "title": "Coverage - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 8,
+      "path": "/examples/vector_greptimedb/greptime.toml",
+      "title": "Example GreptimeDB config - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 8,
+      "path": "/examples",
+      "title": "Index - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 7,
+      "path": "/examples/vector_openobserve",
+      "title": "Example Configuration - OpenObserve with Vector - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 7,
+      "path": "/zh",
+      "title": "HomeAssistant Remote Logger - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 6,
+      "path": "/examples/vector_openobserve/docker-compose",
+      "title": "Example Docker Compose - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 6,
+      "path": "/pl",
+      "title": "HomeAssistant Remote Logger - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 6,
+      "path": "/fr",
+      "title": "HomeAssistant Remote Logger - Remote Logger for Home Assistant"
+     },
+     {
+      "count": 6,
+      "path": "/events",
+      "title": "Event Logging - Remote Logger for Home Assistant"
+     }
+    ]
+   },
+   "ha_installs": 73
+  },
+  "signalk-ble-sensors-plugin": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 147,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 39
+     },
+     {
+      "count": 149,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 45
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 50,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 59,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 97,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 43,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 3
+     }
+    ],
+    "description": "BLE Manager based SignalK sensors",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.5": {},
+     "v1.0.0": {},
+     "v1.0.2": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 71,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 840,
+    "last_week": 35
+   }
+  },
+  "signalk-bluetti-plugin": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 162,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 47
+     },
+     {
+      "count": 48,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 66,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 23,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 36,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 13
+     },
+     {
+      "count": 39,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 48,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 88,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 23
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 14,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 10
+     }
+    ],
+    "description": "SignalK plugin to monitor Bluetti power stations",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v1.4.0": {},
+     "v1.4.1": {},
+     "v1.5.0": {},
+     "v1.5.1": {},
+     "v2.0.1": {},
+     "v2.1.1": {},
+     "v2.2.2": {},
+     "v2.2.3": {}
+    },
+    "stars": 1,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 1270,
+    "last_week": 139
+   }
+  },
+  "signalk-cli": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 3,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 155,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 46
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 47,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 67,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 164,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 37
+     },
+     {
+      "count": 93,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 29
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 37,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 18,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 5
+     }
+    ],
+    "description": "Command line access to SignalK APIs",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.0": {},
+     "v1.0.0": {},
+     "v1.1.0": {},
+     "v1.2.0": {},
+     "v2.0.1": {},
+     "v2.1.0": {},
+     "v2.2.0": {},
+     "v2.2.1": {},
+     "v3.0.0": {},
+     "v3.0.0-beta1": {},
+     "v3.0.0-beta2": {},
+     "v3.0.1": {},
+     "v3.0.2": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 1,
+     "2026-11-16": 0,
+     "2026-11-17": 0,
+     "2026-11-18": 0,
+     "2026-11-19": 0,
+     "2026-11-20": 0
+    },
+    "site": "signalk-cli",
+    "top_pages_30d": [
+     {
+      "count": 1,
+      "path": "/",
+      "title": "SignalK CLI - SignalK CLI"
+     }
+    ]
+   },
+   "pypi": {
+    "last_day": 2,
+    "last_month": 240,
+    "last_week": 12
+   }
+  },
+  "signalk-datalab-plugin": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 107,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 29
+     },
+     {
+      "count": 129,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 32
+     },
+     {
+      "count": 68,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 49,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 50,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 19
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 132,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 57,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 4
+     }
+    ],
+    "description": "Interactive data analysis notebooks for SignalK, running as WebAssembly in the browser",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.3.0": {},
+     "v0.4.0": {},
+     "v0.5.0": {},
+     "v0.5.3": {},
+     "v0.5.5": {},
+     "v0.6.0": {},
+     "v0.7.0": {},
+     "v0.7.1": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 1,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 94,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 17,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 32,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 0,
+     "2026-11-16": 0,
+     "2026-11-17": 1,
+     "2026-11-18": 0,
+     "2026-11-19": 0,
+     "2026-11-20": 0
+    },
+    "site": "signalk-datalab",
+    "top_pages_30d": [
+     {
+      "count": 1,
+      "path": "/",
+      "title": "SignalK Data Lab | SignalK Data Lab Plugin"
+     }
+    ]
+   },
+   "npm": {
+    "last_month": 1619,
+    "last_week": 171
+   }
+  },
+  "signalk-delta-squelch-plugin": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 226,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 48
+     },
+     {
+      "count": 77,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 34
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 43,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 75,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 14
+     },
+     {
+      "count": 97,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 25
+     },
+     {
+      "count": 27,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 27,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 5
+     }
+    ],
+    "description": "Squelch noisy SignalK data to minimize pointless deltas",
+    "forks": 1,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.3.1": {},
+     "v0.4.6": {},
+     "v0.5.0": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 409,
+    "last_week": 23
+   }
+  },
+  "signalk-einklabel-genai-plugin": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 116,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 33
+     },
+     {
+      "count": 135,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 42
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 56,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 16
+     },
+     {
+      "count": 76,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 15,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 28,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 10
+     }
+    ],
+    "description": "GenAI generated images for cheap eInk Electronic Shelf Labels",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.1.0": {},
+     "v0.1.1": {},
+     "v0.1.2": {},
+     "v0.3.0": {},
+     "v0.3.2": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 544,
+    "last_week": 106
+   }
+  },
+  "signalk-einklabel-plugin": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 4,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 174,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 46
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 15
+     },
+     {
+      "count": 60,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 28,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 42,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 152,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 37
+     },
+     {
+      "count": 56,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 9,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 33,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 4
+     }
+    ],
+    "description": "Display SignalK data on eInk Electronic Shelf Labels, with tide clock and watch schedule examples",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "0.9.0": {},
+     "v.0.7.0": {},
+     "v0.10.0": {},
+     "v0.10.1": {},
+     "v0.4.5": {},
+     "v0.4.6": {},
+     "v0.4.7": {},
+     "v0.5.0": {},
+     "v0.5.1": {},
+     "v0.6.0": {},
+     "v0.6.1": {},
+     "v0.6.2": {},
+     "v0.6.3": {},
+     "v0.6.4": {},
+     "v0.7.1": {},
+     "v0.8.0": {},
+     "v0.8.1": {},
+     "v0.8.2": {},
+     "v0.9.1": {},
+     "v1.2.1": {},
+     "v1.2.2": {},
+     "v1.3.0": {},
+     "v1.3.1": {},
+     "v1.3.2": {},
+     "v1.3.3": {}
+    },
+    "stars": 2,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 2,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 1
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 1,
+     "2026-11-16": 2,
+     "2026-11-17": 0,
+     "2026-11-18": 0,
+     "2026-11-19": 0,
+     "2026-11-20": 0
+    },
+    "site": "signalk-einklabel",
+    "top_pages_30d": [
+     {
+      "count": 2,
+      "path": "/",
+      "title": "Overview | eInk Labels for SignalK"
+     },
+     {
+      "count": 1,
+      "path": "/examples/tide-clock",
+      "title": "Tide Clock | eInk Labels for SignalK"
+     }
+    ]
+   },
+   "npm": {
+    "last_month": 1491,
+    "last_week": 251
+   }
+  },
+  "signalk-teltonika-sms-plugin": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 8,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 151,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 37
+     },
+     {
+      "count": 39,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 12
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 30,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 71,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 17
+     },
+     {
+      "count": 88,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 29,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 2
+     }
+    ],
+    "description": "Use a Teltonika modem / router to send SignalK Notifications via SMS",
+    "forks": 0,
+    "open_issues_and_prs": 0,
+    "release_assets": {
+     "v0.3.2": {}
+    },
+    "stars": 0,
+    "views": [
+     {
+      "count": 0,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 10,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 2
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 5,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 0
+     }
+    ],
+    "watchers": 0
+   },
+   "npm": {
+    "last_month": 644,
+    "last_week": 45
+   }
+  },
+  "supernotify": {
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 588,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 147
+     },
+     {
+      "count": 858,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 206
+     },
+     {
+      "count": 245,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 86
+     },
+     {
+      "count": 112,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 36
+     },
+     {
+      "count": 31,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 18
+     },
+     {
+      "count": 34,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 8
+     },
+     {
+      "count": 141,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 20
+     },
+     {
+      "count": 144,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 271,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 54
+     },
+     {
+      "count": 300,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 78
+     },
+     {
+      "count": 160,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 45
+     },
+     {
+      "count": 189,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 50
+     },
+     {
+      "count": 193,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 56
+     },
+     {
+      "count": 190,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 53
+     }
+    ],
+    "description": "Advanced notification grouping, routing and alternative channels for Home Assistant",
+    "forks": 1,
+    "open_issues_and_prs": 4,
+    "release_assets": {
+     "v1.0.0": {},
+     "v1.0.3": {},
+     "v1.0.4": {},
+     "v1.1.1": {},
+     "v1.1.3": {},
+     "v1.1.4": {},
+     "v1.1.5": {},
+     "v1.10.0": {},
+     "v1.10.1": {},
+     "v1.11.0": {},
+     "v1.11.1": {},
+     "v1.12.0": {},
+     "v1.12.1": {},
+     "v1.12.2": {},
+     "v1.13.0": {},
+     "v1.14.0": {},
+     "v1.15.0": {},
+     "v1.16.0": {},
+     "v1.16.1": {},
+     "v1.16.2": {},
+     "v1.16.3": {},
+     "v1.16.4": {},
+     "v1.16.5": {},
+     "v1.17.0": {},
+     "v1.17.1": {},
+     "v1.2.0": {},
+     "v1.2.1": {},
+     "v1.2.2": {},
+     "v1.2.3": {},
+     "v1.3.0": {},
+     "v1.3.2": {},
+     "v1.3.3": {},
+     "v1.3.4": {},
+     "v1.3.5": {},
+     "v1.4.0": {},
+     "v1.5.0": {},
+     "v1.5.1": {},
+     "v1.5.2": {},
+     "v1.5.3": {},
+     "v1.6.0": {},
+     "v1.7.0": {},
+     "v1.8.0": {},
+     "v1.8.1": {},
+     "v1.8.2": {},
+     "v1.9.0": {},
+     "v1.9.1": {},
+     "v1.9.2-beta1": {},
+     "v1.9.3": {},
+     "v1.9.4": {},
+     "v2.0.0": {},
+     "v2.1.0": {},
+     "v2.10.0": {
+      "v2.10.0.zip": 5
+     },
+     "v2.10.1": {
+      "supernotify.zip": 238
+     },
+     "v2.10.2": {
+      "supernotify.zip": 197
+     },
+     "v2.10.3": {
+      "supernotify.zip": 352
+     },
+     "v2.11.0": {
+      "supernotify.zip": 263
+     },
+     "v2.11.1": {
+      "supernotify.zip": 253
+     },
+     "v2.12.0": {
+      "supernotify.zip": 307
+     },
+     "v2.13.0": {
+      "supernotify.zip": 246
+     },
+     "v2.13.1": {
+      "supernotify.zip": 258
+     },
+     "v2.13.2": {
+      "supernotify.zip": 358
+     },
+     "v2.14.0": {
+      "supernotify.zip": 333
+     },
+     "v2.15.0": {
+      "supernotify.zip": 393
+     },
+     "v2.16.0": {
+      "supernotify.zip": 503
+     },
+     "v2.16.1": {
+      "supernotify.zip": 31
+     },
+     "v2.16.2": {
+      "supernotify.zip": 324
+     },
+     "v2.17.0": {
+      "supernotify.zip": 277
+     },
+     "v2.17.1": {
+      "supernotify.zip": 16
+     },
+     "v2.18.0": {
+      "supernotify.zip": 448
+     },
+     "v2.18.1": {
+      "supernotify.zip": 360
+     },
+     "v2.18.2": {
+      "supernotify.zip": 406
+     },
+     "v2.19.0": {
+      "supernotify.zip": 355
+     },
+     "v2.2.0": {},
+     "v2.2.1": {},
+     "v2.2.2": {},
+     "v2.2.3": {},
+     "v2.3.0": {},
+     "v2.3.1": {},
+     "v2.4.0": {},
+     "v2.4.1": {},
+     "v2.4.2": {
+      "v2.4.2.zip": 4
+     },
+     "v2.5.0": {
+      "v2.5.0.zip": 6
+     },
+     "v2.5.1": {
+      "v2.5.1.zip": 5
+     },
+     "v2.5.2": {
+      "v2.5.2.zip": 5
+     },
+     "v2.5.3-version-fix": {
+      "v2.5.3.zip": 5
+     },
+     "v2.6.0": {
+      "v2.6.0.zip": 5
+     },
+     "v2.7.0": {
+      "v2.7.0.zip": 7
+     },
+     "v2.8.0": {
+      "v2.8.0.zip": 6
+     },
+     "v2.9.0": {
+      "v2.9.0.zip": 5
+     },
+     "v2.9.1": {}
+    },
+    "stars": 25,
+    "views": [
+     {
+      "count": 44,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 114,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 11,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 13,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 45,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 19,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 7
+     },
+     {
+      "count": 43,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 62,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 44,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 16,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 71,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 9
+     },
+     {
+      "count": 6,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 3
+     }
+    ],
+    "watchers": 1
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 0,
+     "2026-11-16": 7,
+     "2026-11-17": 20,
+     "2026-11-18": 26,
+     "2026-11-19": 35,
+     "2026-11-20": 16
+    },
+    "site": "supernotify",
+    "top_pages_30d": [
+     {
+      "count": 34,
+      "path": "/latest",
+      "title": "Supernotify - Home Assistant Supernotify"
+     },
+     {
+      "count": 6,
+      "path": "/latest/configuration/multimedia",
+      "title": "Images, Streaming and Cameras - Home Assistant Supernotify"
+     },
+     {
+      "count": 6,
+      "path": "/latest/configuration",
+      "title": "Configuration - Home Assistant Supernotify"
+     },
+     {
+      "count": 4,
+      "path": "/latest/quick_start/basic_concepts",
+      "title": "Basic Concepts - Home Assistant Supernotify"
+     },
+     {
+      "count": 3,
+      "path": "/latest/recipes/frigate_emails",
+      "title": "Frigate Blueprint for Email and Mobile Notification - Home Assistant Supernotify"
+     },
+     {
+      "count": 3,
+      "path": "/latest/recipes/move_a_camera_for_snapshot",
+      "title": "Camera PTZ For Notifications - Home Assistant Supernotify"
+     },
+     {
+      "count": 3,
+      "path": "/latest/recipes",
+      "title": "Recipes for Home Assistant Notifications using Supernotify - Home Assistant Supernotify"
+     },
+     {
+      "count": 2,
+      "path": "/latest/help/faqs",
+      "title": "Frequently Asked Questions - Home Assistant Supernotify"
+     },
+     {
+      "count": 2,
+      "path": "/latest/transports/mobile_push",
+      "title": "Mobile Push Transport Adaptor - Home Assistant Supernotify"
+     },
+     {
+      "count": 2,
+      "path": "/latest/fr",
+      "title": "Supernotify - Home Assistant Supernotify"
+     }
+    ]
+   },
+   "ha_installs": 96
+  },
+  "updates2mqtt": {
+   "ghcr": {
+    "total": 92323
+   },
+   "github": {
+    "archived": false,
+    "clones": [
+     {
+      "count": 215,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 58
+     },
+     {
+      "count": 294,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 91
+     },
+     {
+      "count": 266,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 65
+     },
+     {
+      "count": 374,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 74
+     },
+     {
+      "count": 63,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 26
+     },
+     {
+      "count": 7,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 37,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 11
+     },
+     {
+      "count": 252,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 56
+     },
+     {
+      "count": 263,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 54
+     },
+     {
+      "count": 123,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 40
+     },
+     {
+      "count": 91,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 24
+     },
+     {
+      "count": 50,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 23
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 10
+     },
+     {
+      "count": 162,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 35
+     }
+    ],
+    "description": "Automated checks and optional upgrades of Docker containers via MQTT with Home Assistant compatibility",
+    "forks": 2,
+    "open_issues_and_prs": 4,
+    "release_assets": {
+     "v1.10.0": {},
+     "v1.10.0-beta1": {},
+     "v1.11.0": {},
+     "v1.11.1": {},
+     "v1.12.0": {},
+     "v1.13.0": {},
+     "v1.14.0": {},
+     "v1.14.0-beta1": {},
+     "v1.14.1": {},
+     "v1.14.2": {},
+     "v1.14.3": {},
+     "v1.14.4": {},
+     "v1.15.0": {},
+     "v1.16.0": {},
+     "v1.17.0": {},
+     "v1.17.1": {},
+     "v1.17.2": {},
+     "v1.17.3": {},
+     "v1.17.4": {},
+     "v1.17.6": {},
+     "v1.18.0": {},
+     "v1.19.0": {},
+     "v1.19.1-beta1": {},
+     "v1.3.3": {},
+     "v1.3.4": {},
+     "v1.3.5": {},
+     "v1.3.6": {},
+     "v1.3.7": {},
+     "v1.4.0": {},
+     "v1.4.1": {},
+     "v1.4.2": {},
+     "v1.5.0": {},
+     "v1.5.1": {},
+     "v1.6.0": {},
+     "v1.7.0": {},
+     "v1.7.2": {},
+     "v1.7.3": {},
+     "v1.8.0": {},
+     "v1.8.1": {},
+     "v1.8.2": {},
+     "v1.8.3": {},
+     "v1.8.5": {},
+     "v1.9.0": {},
+     "v1.9.2": {},
+     "v1.9.3": {},
+     "v1.9.4": {},
+     "v1.9.5": {},
+     "v1.9.6": {},
+     "v1.9.7": {}
+    },
+    "stars": 20,
+    "views": [
+     {
+      "count": 11,
+      "timestamp": "2026-11-07T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 24,
+      "timestamp": "2026-11-08T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 26,
+      "timestamp": "2026-11-09T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 8,
+      "timestamp": "2026-11-10T00:00:00Z",
+      "uniques": 4
+     },
+     {
+      "count": 3,
+      "timestamp": "2026-11-11T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-12T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 1,
+      "timestamp": "2026-11-13T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 38,
+      "timestamp": "2026-11-14T00:00:00Z",
+      "uniques": 6
+     },
+     {
+      "count": 22,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 34,
+      "timestamp": "2026-11-16T00:00:00Z",
+      "uniques": 5
+     },
+     {
+      "count": 4,
+      "timestamp": "2026-11-17T00:00:00Z",
+      "uniques": 3
+     },
+     {
+      "count": 12,
+      "timestamp": "2026-11-18T00:00:00Z",
+      "uniques": 1
+     },
+     {
+      "count": 0,
+      "timestamp": "2026-11-19T00:00:00Z",
+      "uniques": 0
+     },
+     {
+      "count": 41,
+      "timestamp": "2026-11-20T00:00:00Z",
+      "uniques": 3
+     }
+    ],
+    "watchers": 0
+   },
+   "goatcounter": {
+    "daily": {
+     "2026-11-07": 0,
+     "2026-11-08": 0,
+     "2026-11-09": 0,
+     "2026-11-10": 0,
+     "2026-11-11": 0,
+     "2026-11-12": 0,
+     "2026-11-13": 0,
+     "2026-11-14": 0,
+     "2026-11-15": 18,
+     "2026-11-16": 27,
+     "2026-11-17": 19,
+     "2026-11-18": 22,
+     "2026-11-19": 23,
+     "2026-11-20": 32
+    },
+    "site": "updates2mqtt",
+    "top_pages_30d": [
+     {
+      "count": 16,
+      "path": "/",
+      "title": "Updates2MQTT - Updates2MQTT"
+     },
+     {
+      "count": 7,
+      "path": "/nl",
+      "title": "Updates2MQTT - Updates2MQTT"
+     },
+     {
+      "count": 7,
+      "path": "/developer/coverage",
+      "title": "Updates2MQTT"
+     },
+     {
+      "count": 7,
+      "path": "/fr",
+      "title": "Updates2MQTT - Updates2MQTT"
+     },
+     {
+      "count": 7,
+      "path": "/home_assistant",
+      "title": "HomeAssistant Integration - Updates2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/de",
+      "title": "Updates2MQTT - Updates2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/zh-Hans",
+      "title": "Updates2MQTT - Updates2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/ja",
+      "title": "Updates2MQTT - Updates2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/installation",
+      "title": "Installation - Updates2MQTT"
+     },
+     {
+      "count": 6,
+      "path": "/hi",
+      "title": "Updates2MQTT - Updates2MQTT"
+     }
+    ]
+   },
+   "pypi": {
+    "last_day": 5,
+    "last_month": 1172,
+    "last_week": 339
+   }
+  }
+ }
+}
