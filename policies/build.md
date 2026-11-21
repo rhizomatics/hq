@@ -21,3 +21,11 @@ summary: "GitHub Actions for build and release: ci and ci-ok gates, pinned actio
 - GitHub security will be used for code scanning and dependency analysis
 - All container image builds will be scanned weekly
   - If there are critical or high CVEs resolved by either an updated base image, or `apt` dependencies layered on the image then a new image will be built and released. Manual action is required if the updated dependencies both resolve and introduce vulnerabilities
+
+## Github Actions Workflows
+
+- All actions will be pinned by hash, even Github owned ones
+- All workflows will be audited automatically
+  - Current preferred tool is `zizmor`
+    - Audit rules at https://docs.zizmor.sh/audits/
+    
