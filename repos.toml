@@ -304,6 +304,8 @@ pypi = "signalk-cli"
 [repos.boat-tech-directory]
 goatcounter = "boat-tech-directory"
 family = "site"
+npm = "@rhizomatics/signalk-boat-tech-directory-plugin"
+upstream = "signalk"
 category = ["major"]
 
 [repos.agent-plugins]
@@ -316,6 +318,9 @@ family = "meta"
 [repos.hq]
 goatcounter = "rhizomatics-hq"
 family = "meta"
+
+[repos.hq-stats]
+npm = "@rhizomatics/hq-stats"
 
 [repos.hq-private]
 family = "meta"
