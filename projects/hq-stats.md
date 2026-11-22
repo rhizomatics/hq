@@ -69,11 +69,11 @@ way in to HQ.
       standalone static site plus pages the HQ site mounts in its own sidebar (2026-11-19: an Astro integration
       and sidebar helper, plus a standalone Starlight example; the HQ site still uses its own copy until 0.1.0 is
       published)
-- [ ] @pair Community: move `build-community.mjs` and its page into the package; `[community.*]` from public
+- [x] @pair Community: move `build-community.mjs` and its page into the package; `[community.*]` from public
       sources only, stored apart, never in the org's totals (2026-11-22: built as
-      [hq-stats#3](https://github.com/rhizomatics/hq-stats/pull/3) and draft [hq#21](https://github.com/rhizomatics/hq/pull/21); awaiting review, then release 0.2.0)
+      [hq-stats#3](https://github.com/rhizomatics/hq-stats/pull/3) and draft [hq#21](https://github.com/rhizomatics/hq/pull/21); merged, released in 0.2.0)
 - [x] @pair Workflow for users to copy: schedule and manual dispatch only, `npx` the pinned version, commit to `hq` (2026-11-19)
-- [ ] @pair Brand: HQ logo with `stats` beneath in a complementary colour; site look in the HQ family (2026-11-22:
+- [x] @pair Brand: HQ logo with `stats` beneath in a complementary colour; site look in the HQ family (2026-11-22:
       in [hq-stats#3](https://github.com/rhizomatics/hq-stats/pull/3): teal `stats`, an optional `theme.css`)
 - [x] @human Create the `hq-stats` repo, its npm package and trusted publishing ([hq-private#123](https://github.com/rhizomatics/hq-private/issues/123)); then @agent pushes the local
       repo (`../hq-stats`, one commit) and drafts the 0.1.0 release (2026-11-19: the maintainer pushed and released 0.1.0 and 0.1.1)
@@ -82,7 +82,7 @@ way in to HQ.
       (2026-11-19: built as [hq#14](https://github.com/rhizomatics/hq/pull/14) and [hq-private#126](https://github.com/rhizomatics/hq-private/pull/126)); merged the same day, first `hq` snapshot 2026-11-19 with no errors
 - [x] @agent Seed a throwaway org end to end from the docs; fix whatever needed hand edits (2026-11-22: on a
       personal account, fixes in [hq-stats#3](https://github.com/rhizomatics/hq-stats/pull/3))
-- [ ] @pair README and docs; announcement drafts for HA and SignalK developer forums (2026-11-22: docs in
+- [x] @pair README and docs; announcement drafts for HA and SignalK developer forums (2026-11-22: docs in
       [hq-stats#3](https://github.com/rhizomatics/hq-stats/pull/3); drafts in `hq-private/reports/marketing/2026-11-22-hq-stats-announcement.md`)
 - [ ] @human Post announcements, after 0.2.0 ([hq-private#137](https://github.com/rhizomatics/hq-private/issues/137) Home Assistant,
       [hq-private#138](https://github.com/rhizomatics/hq-private/issues/138) SignalK)
@@ -156,3 +156,6 @@ _None._
   [hq-private#137](https://github.com/rhizomatics/hq-private/issues/137) and [#138](https://github.com/rhizomatics/hq-private/issues/138).
   Next: review and release 0.2.0, merge the site bump and hq#21, post, then watch for the first outside user
   (success test).
+- 2026-11-22 — hq-stats#3 merged, 0.2.0 tagged, released and approved on npm (`latest`); hq#21 merged with the site on
+  0.2.0. Community figures appear from the next daily snapshot. Left: post the announcements
+  ([hq-private#137](https://github.com/rhizomatics/hq-private/issues/137), [#138](https://github.com/rhizomatics/hq-private/issues/138)), then the success test.
