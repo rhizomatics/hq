@@ -133,7 +133,7 @@ providers = [
   { kind = "service", ref = "secret-scanning" },
   { kind = "action", ref = "ossf/scorecard-action@v2.4.1", where = "every released repo (scorecard.yml)" },
   { kind = "action", ref = "anchore/scan-action@v7.4.2", where = "image repos (image-scan.yml)", note = "Grype, container images" },
-  { kind = "action", ref = "zizmorcore/zizmor-action@v0.8.1", where = "admin", status = "candidate", note = "Actions workflow audit; reaches repos with the next hq release and sync-admin" },
+  { kind = "action", ref = "zizmorcore/zizmor-action@v0.8.1", where = "admin", note = "Actions workflow audit, in every repo since hq v1.0.1; patterns in policies/release_workflows.md" },
   { kind = "service", ref = "socket.dev", status = "candidate", note = "malicious and risky npm/PyPI packages with no CVE; GitHub App, the maintainer's decision" },
 ]
 
