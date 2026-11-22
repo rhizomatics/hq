@@ -10,10 +10,10 @@
 //     copy is used when a fetch fails. `node scripts/build-community.mjs --update-feeds` only refreshes that copy
 //     (the daily release digest runs it), exiting 1 if any feed couldn't be read.
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parse as parseToml } from 'smol-toml';
-import { hqRoot, privateRoot, siteRoot } from './lib/github.mjs';
+import { hqRoot, privateRoot, siteRoot, writeJson } from './lib/github.mjs';
 import { ORG, USER_AGENT } from '../src/lib/hq-config.mjs';
 
 const outPath = path.join(siteRoot, 'src', 'data', 'community.json');
@@ -69,8 +69,7 @@ async function blogs(entries, notes, copies) {
 }
 
 async function saveFeedCopies(copies) {
-  await mkdir(path.dirname(feedsPath), { recursive: true });
-  await writeFile(feedsPath, `${JSON.stringify(copies, null, 1)}\n`);
+  await writeJson(feedsPath, copies, 1);
 }
 
 async function main() {
@@ -94,9 +93,8 @@ async function main() {
     process.exit(failed.length ? 1 : 0);
   }
   const notes = [];
-  await mkdir(path.dirname(outPath), { recursive: true });
   const blogList = await blogs(blogEntries, notes, copies);
-  await writeFile(outPath, `${JSON.stringify({ generatedAt: new Date().toISOString(), notes, blogs: blogList })}\n`);
+  await writeJson(outPath, { generatedAt: new Date().toISOString(), notes, blogs: blogList });
   console.log(`community: ${blogList.length} blogs${notes.length ? `; ${notes.length} gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);
 }

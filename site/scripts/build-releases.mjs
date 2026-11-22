@@ -14,9 +14,9 @@
 //       { "include": bool, "kind": "enhancement" | "critical-fix" | "maintenance", "summary": "..." }
 // Needs GITHUB_TOKEN (or GH_TOKEN).
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { gh, inBatches, privateRoot, publicRepos, siteRoot, token } from './lib/github.mjs';
+import { gh, inBatches, privateRoot, publicRepos, siteRoot, token, writeJson } from './lib/github.mjs';
 
 const WINDOW_DAYS = 31;
 const outPath = path.join(siteRoot, 'src', 'data', 'releases.json');
@@ -92,11 +92,7 @@ async function main() {
   const shown = rollUpByDay(releases, summaries);
   const leftOut = releases.filter((r) => summaries[r.key] && !summaries[r.key].include).length;
   const pending = releases.filter((r) => !summaries[r.key]).length;
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(
-    outPath,
-    `${JSON.stringify({ generatedAt: new Date().toISOString(), available: Boolean(token), windowDays: WINDOW_DAYS, total: releases.length, leftOut, pending, releases: shown })}\n`,
-  );
+  await writeJson(outPath, { generatedAt: new Date().toISOString(), available: Boolean(token), windowDays: WINDOW_DAYS, total: releases.length, leftOut, pending, releases: shown });
   console.log(`releases: ${releases.length} in ${WINDOW_DAYS} days, ${shown.length} shown, ${leftOut} maintenance only, ${pending} not yet summarised`);
 }
 

@@ -5,13 +5,15 @@ name: Sync labels
 on:
   workflow_call:
 
-permissions:
-  issues: write
-  contents: read
+# Nothing by default; the job grants only what it needs (OpenSSF Scorecard Token-Permissions).
+permissions: {}
 
 jobs:
   labels:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
     steps:
       - name: Fetch shared label set
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

@@ -11,9 +11,8 @@
 // match the GitHub searches the pages link to. An issue with no type is unclassified. Labels aren't read.
 // Needs GITHUB_TOKEN (or GH_TOKEN).
 
-import { writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
-import { gh, ghAll, inBatches, publicRepos, siteRoot, token } from './lib/github.mjs';
+import { gh, ghAll, inBatches, publicRepos, siteRoot, token, writeJson } from './lib/github.mjs';
 
 const outPath = path.join(siteRoot, 'src', 'data', 'issues.json');
 
@@ -51,8 +50,7 @@ async function main() {
       })
     ).filter(Boolean);
   }
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(outPath, `${JSON.stringify({ generatedAt: new Date().toISOString(), available: Boolean(token), notes, repos: out })}\n`);
+  await writeJson(outPath, { generatedAt: new Date().toISOString(), available: Boolean(token), notes, repos: out });
   const sum = (t) => out.reduce((n, r) => n + (r.counts[t] ?? 0), 0);
   console.log(`issues: ${out.length} repos, ${sum('feature')} features, ${sum('bug')} bugs, ${sum('unclassified')} unclassified${notes.length ? `; ${notes.length} gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);

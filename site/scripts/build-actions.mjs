@@ -19,11 +19,12 @@
 // A repo takes its worst workflow's state. Dependabot's update jobs don't set the state; their
 // failures are listed separately.
 
-import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse as parseToml } from 'smol-toml';
 import { USER_AGENT } from '../src/lib/hq-config.mjs';
+import { writeJson } from './lib/github.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
@@ -165,8 +166,7 @@ async function main() {
     }
   }
 
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(outPath, `${JSON.stringify({ generatedAt: new Date(now).toISOString(), available: Boolean(token), notes, repos })}\n`);
+  await writeJson(outPath, { generatedAt: new Date(now).toISOString(), available: Boolean(token), notes, repos });
   const count = (s) => repos.filter((r) => r.state === s).length;
   console.log(`actions: ${repos.length} repos, ${count('red')} red, ${count('flapping')} flapping, ${count('recovered')} recovered${notes.length ? `; ${notes.length} gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);

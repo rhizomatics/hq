@@ -9,9 +9,8 @@ name: Dependabot auto-merge
 on:
   workflow_call:
 
-permissions:
-  contents: write
-  pull-requests: write
+# Nothing by default; the job grants only what it needs (OpenSSF Scorecard Token-Permissions).
+permissions: {}
 
 env:
   # Dependency names (anchored regex) trusted enough to merge without review.
@@ -21,6 +20,9 @@ jobs:
   automerge:
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     timeout-minutes: 60
     steps:
       - name: Dependabot metadata

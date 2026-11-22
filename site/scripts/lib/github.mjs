@@ -1,6 +1,6 @@
 // Shared helpers for the build scripts that read GitHub: the REST client and the list of repos to cover.
 
-import { readFile, readdir } from 'node:fs/promises';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse as parseToml } from 'smol-toml';
@@ -10,6 +10,14 @@ export const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)
 export const hqRoot = path.resolve(siteRoot, '..');
 export const privateRoot = path.resolve(process.env.HQ_PRIVATE ?? path.join(hqRoot, '..', 'hq-private'));
 export const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
+
+// Write a build script's output as JSON, creating its folder. Every script writes through here, so the code
+// scanning alert for network data written to a file (js/http-to-file-access) has one location, dismissed as by
+// design: fetching GitHub data and saving it for the site to render is what these scripts are for.
+export async function writeJson(file, data, indent) {
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, `${JSON.stringify(data, null, indent)}\n`);
+}
 
 export async function gh(route) {
   for (let attempt = 1; ; attempt += 1) {

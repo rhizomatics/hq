@@ -11,9 +11,8 @@
 // Never alerts: open Dependabot, code scanning and secret scanning alerts are unfixed findings and stay
 // in hq-private (CLAUDE.md). This token couldn't read them anyway. Needs GITHUB_TOKEN (or GH_TOKEN).
 
-import { writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
-import { gh, ghAll, inBatches, publicRepos, siteRoot, token } from './lib/github.mjs';
+import { gh, ghAll, inBatches, publicRepos, siteRoot, token, writeJson } from './lib/github.mjs';
 
 const outPath = path.join(siteRoot, 'src', 'data', 'security.json');
 const POLICY = /^(\.github\/|docs\/)?security\.md$/i;
@@ -60,8 +59,7 @@ async function main() {
   }
   // GitHub shows the org's .github SECURITY.md on repos without their own.
   const orgPolicy = out.find((r) => r.id === '.github')?.policy ?? null;
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(outPath, `${JSON.stringify({ generatedAt: new Date().toISOString(), available: Boolean(token), orgPolicy, notes, repos: out })}\n`);
+  await writeJson(outPath, { generatedAt: new Date().toISOString(), available: Boolean(token), orgPolicy, notes, repos: out });
   const count = (f) => out.filter(f).length;
   console.log(
     `security: ${out.length} repos, ${count((r) => r.reporting)} with private reporting, ${count((r) => r.policy)} with their own policy, ${count((r) => r.codeql)} with CodeQL, ${out.reduce((n, r) => n + r.advisories, 0)} advisories${notes.length ? `; ${notes.length} gaps` : ''}`,

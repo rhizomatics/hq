@@ -21,11 +21,12 @@
 // the header (`Created:`, `Date:` or the byline) and the file's first commit; changed is its last commit.
 // Needs GITHUB_TOKEN (or GH_TOKEN).
 
-import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse as parseToml } from 'smol-toml';
 import { ORG, USER_AGENT } from '../src/lib/hq-config.mjs';
+import { writeJson } from './lib/github.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
@@ -185,11 +186,7 @@ async function main() {
   const closed = all.filter((r) => r.stage === 'closed' && r.updated && Date.parse(r.updated) >= now - RECENT_DAYS * DAY).sort(byUpdated);
   const drafts = all.filter((r) => r.stage === 'draft').sort(byUpdated);
 
-  await mkdir(path.dirname(outPath), { recursive: true });
-  await writeFile(
-    outPath,
-    `${JSON.stringify({ generatedAt: new Date(now).toISOString(), available: Boolean(token), recentDays: RECENT_DAYS, total: all.length, notes, drafts, products, open, closed })}\n`,
-  );
+  await writeJson(outPath, { generatedAt: new Date(now).toISOString(), available: Boolean(token), recentDays: RECENT_DAYS, total: all.length, notes, drafts, products, open, closed });
   console.log(`design: ${products.length} products, ${all.length} RFCs, ${open.length} open, ${closed.length} recently closed, ${drafts.length} drafts${notes.length ? `; ${notes.length} gaps` : ''}`);
   for (const n of notes) console.warn(`  ${n}`);
 }
