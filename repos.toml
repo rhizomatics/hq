@@ -24,6 +24,7 @@
 # ghcr:       container image name under ghcr.io/<org.github>/
 # ha_domain:  Home Assistant integration domain (for HA analytics install counts)
 # hacs_zip:   release asset name HACS downloads, a zip or a card's .js (counts = HACS installs/updates)
+# formerly:   names a renamed product had before, still counted: { name, hacs_zip, npm, pypi, ha_domain }
 # upstream:   platform whose transitive vulns are excluded from security escalation
 # goatcounter: GoatCounter site code counting page views of the repo's website (docs site, www, the HQ site);
 #             cookieless, so no consent banner (policies/project_standards.md)
@@ -220,6 +221,7 @@ goatcounter = "appliance-autonotify"
 family = "ha-integration"
 ha_domain = "appliance_autonotify"
 hacs_zip = "appliance_autonotify.zip"
+formerly = { hacs_zip = "appliances_autonotify.zip" }
 upstream = "homeassistant"
 
 [repos.camera_autonotify]
@@ -235,6 +237,7 @@ goatcounter = "homeassistant-repl"
 family = "ha-integration"
 pypi = "homeassistant-repl"
 ha_domain = "ha_repl_server"
+hacs_zip = "ha_repl_server.zip"
 upstream = "homeassistant"
 
 [repos.updates2mqtt]
