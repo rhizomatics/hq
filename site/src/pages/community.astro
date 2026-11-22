@@ -1,22 +1,23 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import community from '../data/community.json';
+import stats from '../data/stats.json';
 import { ORG } from '../lib/hq-config.mjs';
 
+// Projects other people have built on our products, with their figures, from @rhizomatics/hq-stats (stats.json,
+// written by `hq-stats build`); the full figures are on its Usage › Community page. Blogs from build-community.mjs.
 type Project = {
   id: string;
   name: string;
   url: string;
   author: string;
   authorUrl: string;
-  description?: string | null;
-  stars?: number;
-  license?: string | null;
-  archived?: boolean;
-  latestRelease?: { tag: string; date: string; url: string } | null;
-  hacsDownloads?: number | null;
+  extends: string | null;
+  description: string;
+  archived: boolean;
+  latestRelease: { tag: string; date: string; url: string } | null;
+  kpis: { stars: number | null };
 };
-type Product = { id: string; url: string; projects: Project[] };
 type Blog = {
   id: string;
   url: string;
@@ -29,9 +30,15 @@ type Blog = {
 };
 const blogs = (community.blogs ?? []) as Blog[];
 
-const products = community.products as Product[];
-const count = products.reduce((n, p) => n + p.projects.length, 0);
+const projects = ((stats as { community?: Project[] }).community ?? []) as Project[];
+const products = [...new Set(projects.map((p) => p.extends ?? ''))].map((id) => ({
+  id,
+  url: `https://github.com/${ORG.github}/${id}`,
+  projects: projects.filter((p) => (p.extends ?? '') === id),
+}));
+const count = projects.length;
 const day = (t: string) => t.slice(0, 10);
+const usage = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/usage/community/`;
 const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 ---
 <StarlightPage frontmatter={{ title: 'Community', description: `Projects other people have built on ${ORG.name} products: plugins, cards and more.`, tableOfContents: false }}>
@@ -44,10 +51,12 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
     If you'd rather yours wasn't listed, say so the same way.
   </p>
 
+  {count > 0 && <p>Downloads and trends for each project are on <a href={usage}>Usage › Community</a>.</p>}
+
   {count ? (
     products.map((product) => (
       <>
-        <h2>For <a href={product.url}>{product.id}</a></h2>
+        <h2>{product.id ? <>For <a href={product.url}>{product.id}</a></> : 'Other'}</h2>
         <table class="usage-table">
           <thead>
             <tr>
@@ -56,7 +65,6 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
               <th scope="col">What it does</th>
               <th scope="col">Latest release</th>
               <th scope="col" class="num">Stars</th>
-              <th scope="col" class="num">HACS downloads</th>
             </tr>
           </thead>
           <tbody>
@@ -64,10 +72,9 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
               <tr>
                 <th scope="row"><a href={p.url}>{p.name}</a>{p.archived && <span class="ci-meta"> (archived)</span>}</th>
                 <td><a href={p.authorUrl}>{p.author}</a></td>
-                <td>{p.description ?? ''}</td>
+                <td>{p.description}</td>
                 <td>{p.latestRelease ? <a href={p.latestRelease.url}>{p.latestRelease.tag}</a> : ''}{p.latestRelease && <span class="ci-meta"> {day(p.latestRelease.date)}</span>}</td>
-                <td class="num">{p.stars ?? ''}</td>
-                <td class="num">{p.hacsDownloads ?? <span class="ci-meta">n/a</span>}</td>
+                <td class="num">{p.kpis.stars ?? ''}</td>
               </tr>
             ))}
           </tbody>
@@ -105,8 +112,7 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
   )}
 
   <ul class="usage-notes">
-    <li>As of {asOf}. Figures come from each project's public GitHub data and are never added to {ORG.name}'s own usage.</li>
-    <li>HACS downloads count every download of the release asset HACS installs, so updates count too.</li>
+    <li>Projects as of {stats.snapshotDate}, blogs as of {asOf}. Figures come from each project's public GitHub data and are never added to {ORG.name}'s own usage.</li>
     {community.notes.map((note) => <li>{note}</li>)}
   </ul>
 </StarlightPage>
