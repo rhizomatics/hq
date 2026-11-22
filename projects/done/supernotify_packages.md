@@ -10,8 +10,8 @@ The design proposal is at [RFC0003](https://supernotify.rhizomatics.org.uk/lates
 
 ## First Packages
 
-- Appliances - working bets
-- Frigate - TBD
+- Appliances - DONE
+- Frigate - DONE
 
 ## Supernotify Support
 
