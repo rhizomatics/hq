@@ -66,7 +66,7 @@ HQ is those two repos:
   `scripts/build-issues.mjs` counts open issues by type for the Support and Design Process pages;
   `scripts/build-security.mjs` gathers public security settings and published advisories (never alerts) for the Security page;
   `scripts/build-design.mjs` gathers RFCs, roadmaps and design principles for the Design Process and RFCs pages;
-  `scripts/build-community.mjs` lists `[community.*]` projects with their public GitHub figures for the Community page;
+  `scripts/build-community.mjs` reads the community blogs' feeds for the Community page (its projects and their figures come from hq-stats' `stats.json`);
   `scripts/build-releases.mjs` builds the Releases page from the last month's releases and the daily digest's summaries. Run it with
   `mise run preview-site`.
 - `data/stats/` — daily usage snapshots, public data only, written by `hq-stats collect` from
