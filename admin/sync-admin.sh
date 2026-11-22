@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Copy the admin workflow callers in templates/workflows into every rhizomatics repo
+# Copy the admin workflow callers in templates/workflows, the optional shared workflows in
+# templates/workflows-optional and zizmor's configuration into every rhizomatics repo
 # checked out under a root directory (default ~/Projects), and remove the per-repo
 # workflows and label files they replace. Only touches working trees; review and commit
 # in each repo afterwards.
@@ -52,6 +53,20 @@ while IFS= read -r gitdir; do
     changes+=("update $(basename "$tpl")")
     $check || { mkdir -p "$(dirname "$dest")"; cp "$tpl" "$dest"; }
   done
+  # Optional workflows are kept in step only where the repo already has them: scorecard.yml in public repos
+  # with releases, github-release.yml in repos whose release workflow calls it. A new repo copies them in once.
+  for tpl in "$here"/templates/workflows-optional/*.yml; do
+    dest=$repo/.github/workflows/$(basename "$tpl")
+    [[ -e $dest ]] || continue
+    cmp -s "$tpl" "$dest" && continue
+    changes+=("update $(basename "$tpl")")
+    $check || cp "$tpl" "$dest"
+  done
+  # zizmor's shared configuration, read by admin-zizmor.yml's audit
+  if [[ " $skip " != *" zizmor.yml "* ]] && ! cmp -s "$here/templates/zizmor.yml" "$repo/.github/zizmor.yml"; then
+    changes+=("update .github/zizmor.yml")
+    $check || { mkdir -p "$repo/.github"; cp "$here/templates/zizmor.yml" "$repo/.github/zizmor.yml"; }
+  fi
   # Shared mise file tasks: uv-managed Python repos get templates/python/tasks, npm repos
   # templates/node/tasks. A task the repo defines in its own mise.toml is left out, since
   # the file task would otherwise shadow it.

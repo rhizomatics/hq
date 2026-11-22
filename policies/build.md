@@ -26,6 +26,10 @@ summary: "GitHub Actions for build and release: ci and ci-ok gates, pinned actio
 
 - All actions will be pinned by hash, even Github owned ones
 - All workflows will be audited automatically
-  - Current preferred tool is `zizmor`
+  - Current preferred tool is `zizmor`, run by the shared `admin-zizmor.yml`, with no findings left open
     - Audit rules at https://docs.zizmor.sh/audits/
-- Write permissions will be set at step level only, not workflow level
+    - An accepted finding is ignored inline with its reason (`# zizmor: ignore[<audit>] <reason>`)
+- Write permissions will be set at job level only (the finest GitHub allows), never at workflow level, which
+  is `permissions: {}`
+- How these rules are applied, and the release workflows for each kind of artefact:
+  [Release workflows](./release_workflows.md)
