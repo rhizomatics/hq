@@ -10,6 +10,17 @@ Shared GitHub admin automation for rhizomatics repos. Moved here from the `.gith
 | `admin-dependabot-automerge.yml` | `reusable-dependabot-automerge.yml` | Squash-merges Dependabot PRs touching only trusted deps (`TRUSTED` regex) once every other check passes |
 | `admin-zizmor.yml` | `reusable-zizmor.yml` | Audits the repo's Actions workflows with [zizmor](https://docs.zizmor.sh) on push, PRs and weekly; findings go to code scanning (public repos) for `/security-escalation` |
 
+Alongside the callers, `sync-admin.sh` keeps three more files in step
+([policies/release_workflows.md](../policies/release_workflows.md) says how they're used):
+
+| File (in each repo) | Template | Copied to |
+|---|---|---|
+| `.github/zizmor.yml` | `templates/zizmor.yml` | every repo; turns off zizmor's style-only `self-repository` audit |
+| `.github/workflows/github-release.yml` | `templates/workflows-optional/` | repos that already have it; the release workflow calls it to publish the GitHub release with its notes and files |
+| `.github/workflows/scorecard.yml` | `templates/workflows-optional/` | repos that already have it (Scorecard can't publish results from a reusable workflow) |
+
+A new repo copies the optional workflows in once by hand; from then on `sync-admin.sh` updates them.
+
 Callers pin the reusable workflows to a release tag's commit SHA (`@<sha> # 1.0.0`), so a
 change to a reusable workflow reaches a repo only when its pin moves. To release one, tag this
 repo (immutable release), update the pins in `admin/templates/workflows/`, and run `sync-admin.sh`;
