@@ -35,8 +35,9 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
   top-level permissions on the shared admin callers (template fixed in hq), release.yml writes moved to job level
   (supernotify, appliance_autonotify, camera_autonotify), Dependabot on the pico repos, a LICENSE in `.github`
 - [x] @human Default workflow token to read-only, and decide on signed release zips (hq-private#116: both agreed)
-- [ ] @human Merge the five attestation PRs: [supernotify#333](https://github.com/rhizomatics/supernotify/pull/333), [autoarm#157](https://github.com/rhizomatics/autoarm/pull/157), [appliance_autonotify#61](https://github.com/rhizomatics/appliance_autonotify/pull/61), [camera_autonotify#32](https://github.com/rhizomatics/camera_autonotify/pull/32), [homeassistant-repl#43](https://github.com/rhizomatics/homeassistant-repl/pull/43) (remote_logger already attests)
-- [ ] @human Let routines reach `api.securityscorecards.dev` (cloud environment network), then @agent check the first results next monthly run; move to `done/` if they are useful
+- [x] @human Merge the five attestation PRs: [supernotify#333](https://github.com/rhizomatics/supernotify/pull/333), [autoarm#157](https://github.com/rhizomatics/autoarm/pull/157), [appliance_autonotify#61](https://github.com/rhizomatics/appliance_autonotify/pull/61), [camera_autonotify#32](https://github.com/rhizomatics/camera_autonotify/pull/32), [homeassistant-repl#43](https://github.com/rhizomatics/homeassistant-repl/pull/43) (remote_logger already attests; all five merged 2026-11-20)
+- [x] @human Let routines reach `api.securityscorecards.dev` (cloud environment network), then @agent check the first results next monthly run; move to `done/` if they are useful (access granted
+  2026-11-15 on hq-private#112; Scorecard is read by `/security-escalation` and `/alignment-review` from here on)
 
 ## Log
 
@@ -57,3 +58,6 @@ Upgrade the HQ with OpenSSF Scorecard and checks, and use as input to the securi
   Every repo's default Actions token is `write`. Signed-Releases applies only to the 6 HA repos with release zips;
   keyless Sigstore attestation in the existing release workflow adds no release friction (decision in hq-private#116).
 - 2026-11-20 — project-review: token-permission PRs all merged (none open). Maintainer approved the default read-only token and attestations on hq-private#116 (11-17, 11-19); remote_logger already attests, and the other five zip workflows have PRs. zizmor, rolled out from hq v1.0.1, fails with `startup_failure` in every repo until `zizmorcore/zizmor-action@*` is allowed in org Actions settings (hq-private#125). The Scorecard API host is still unverified from routines.
+- 2026-11-22 — Done, confirmed by the maintainer. The five attestation PRs merged 2026-11-20, so all six HA repos
+  with release zips now attest. Routines can reach the Scorecard API (hq-private#112), and Scorecard results are now
+  part of the security and alignment reviews.

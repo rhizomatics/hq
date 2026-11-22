@@ -32,7 +32,7 @@ a separate product, [HQ Stats](hq-stats.md), which ships and is marketed first.
   by a choice of engine (Copilot, Claude, Codex). Ready-made OSPO workflows overlap HQ: org health report,
   contributor report, open source compliance check, stale repo report. Maintained by GitHub and improving, and
   engine-neutral, which also helps non-Claude users.
-- **OpenSSF Allstar** looks unmaintained; not a candidate. OpenSSF Scorecard is (see [OpenSSF](openssf.md)).
+- **OpenSSF Allstar** looks unmaintained; not a candidate. OpenSSF Scorecard is (see [OpenSSF](done/openssf.md)).
 - **What HQ adds** over gh-aw's examples: platform-aware stats (HACS, HA analytics, SignalK), forum watching,
   policies aligned to an upstream platform, personas that disagree on purpose, private/public split, the site.
 
