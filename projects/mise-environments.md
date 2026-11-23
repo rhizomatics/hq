@@ -127,8 +127,8 @@ and the maintainer's own logins.
   `config.toml`) and import its `~/Projects/.hq.env/` files (2026-11-23)
 - [x] @human Record the hosts for EMQX, LibreNMS and Frigate; an agent added them and their
   `prod-*` sandbox profiles to hq-private (2026-11-23)
-- [ ] @human Delete the plaintext copies: `Prod2Dev/openobserve.env`, `Prod2Dev/prod_env.tar`, and in
-  time `~/Projects/.hq.env/prod/` on the MacBook (the only remaining originals)
+- [x] @human Delete the plaintext copies: `Prod2Dev/openobserve.env`, `Prod2Dev/prod_env.tar`, and in
+  time `~/Projects/.hq.env/prod/` on the MacBook (the only remaining originals) (2026-11-23)
 - [x] @pair Add EMQX, LibreNMS and Frigate to `hq-private/reference/diagnostics.md` (2026-11-23)
 - [ ] @pair Package the generic parts as the `secrets` module in `hq-seed`. Its `module.toml` says
   when the module applies (a repo with `.env.example`, or an HQ with production diagnostics). Do
@@ -266,4 +266,4 @@ Secrets are done when:
   - Without a lease, reads are refused. Under a `lease-start hass` lease, `prod-run hass` was served
     and `prod-run mqtt` was refused. `lease-end` revoked it, and the audit log recorded reads by name.
     No production system was contacted.
-  - Next: the maintainer deletes `~/Projects/.hq.env` and `~/Prod2Dev` on the MacBook.
+  - The maintainer deleted `~/Projects/.hq.env` and the shared-folder copies: no plaintext originals remain.
