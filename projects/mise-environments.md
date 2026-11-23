@@ -213,3 +213,29 @@ Secrets are done when:
   - **Found:** after `fnox.toml` changed, the open lease's daemon stopped serving the secrets
     without an error (the cause is a guess). `prod-run` now passes `--if-missing error`, so a
     missing lease fails loudly.
+- 2026-11-23: remote_logger is the first product repo trialling the lease and `prod-run` (the
+  maintainer, in its own session). If it works, that's the second repo after hq, which the
+  `project_standards.md` task waits for.
+- 2026-11-23: the remote_logger session's prod check passed (HA and OpenObserve), but it found
+  three bugs in the lease tasks. All three are confirmed here, with dev-key test profiles and
+  `cached` in the audit log:
+  1. fnox 1.48.0 runs one daemon per profile set and global flags. `--if-missing` counts;
+     `--non-interactive` doesn't; `-P a,b` and `-P a -P b` are the same. So `prod-run`'s
+     `--if-missing error` never reached the lease, and a lease on two services didn't serve one.
+  2. `daemon stop` without `-P` stops only the default daemon, so `lease-end` didn't revoke.
+  3. Every new combination of profiles and flags leaves its own daemon behind.
+
+  Rewrote the tasks:
+  - `lease-start` ends any old lease, opens the new one and records its profile set in
+    `~/.local/state/fnox/lease-profiles`.
+  - `prod-run` reuses exactly that set, with no `--if-missing`. It passes on only its own
+    service's keys (`exec --only`), and stops with exit 97 if the first key is empty, so an
+    ended lease fails loudly. It also keeps quoted arguments now (`eval set -- $usage_command`).
+  - `lease-end` stops every fnox daemon of the user by its own flags, deletes the state file,
+    and fails if any daemon is left.
+  - `lease-status` lists the daemons.
+
+  Tested end to end: lease, cached reads, an unleased service refused, an ended lease refused,
+  and no daemons left afterwards. The earlier "lease stopped after `fnox.toml` changed" may have
+  been the config change or these bugs; that's unconfirmed. Check whether 1.50.0 changes how
+  daemons are keyed when upgrading.
