@@ -28,6 +28,11 @@ community, agent neutrality) and the launch; this one builds the seed and the up
 - **Coupling is light** (2026-11-15 count): org name and maintainer are already config (`repos.toml` `[org]`);
   four skills are platform-specific and become module content. Platform names in core files are the main
   extraction work.
+- **Products and product lines** ([Product Catalogue](hq-product-catalog.md)): the seed's `repos.toml` skeleton
+  is the schema every HQ inherits, so how it defines a product and a product line should be settled before the
+  seed's first release; changing it afterwards means a migration in every instance. Today `family` does three jobs:
+  the product line heading on the site, the hq issue area, and in effect the platform. Modules are chosen by
+  platform and technology (`upstream`, a `pyproject.toml`), not by family, so the seed needs those kept apart.
 - **Provenance, not a template copy:** a template drifts from day one. The seed records per file whether it is
   `upstream` (unchanged), `modified` or `local`, against the seed version it came from (`hq.lock`), so an update
   is a three-way comparison rather than guesswork.
@@ -156,6 +161,8 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 - [x] @agent Check what Claude Code picks up from a neutral layout (2026-11-23, on 2.1.327: `AGENTS.md` yes;
       `skills/` and `team/` only through symlinks from `.claude/`; see [Agents](#agents-decided-2026-11-23))
 - [x] @pair Skill frontmatter (2026-11-23: keep `agent:` and `context: fork` beside `role:`)
+- [ ] @pair `repos.toml` schema for products and product lines, settled with the [Product Catalogue](hq-product-catalog.md)
+      project: product line, issue area and platform as separate fields, `[families]` migrated
 - [ ] @pair Formats: `hq.lock`, `module.toml`, the module markers in skills, the `seed:` policy setting; `check-hq` validates them
 - [ ] @human Create the public `<org>/hq-seed` repo
 
@@ -236,3 +243,5 @@ _None._
   One question opened: whether skills keep `agent:`/`context: fork` beside `role:`.
 - 2026-11-23 — Skill frontmatter decided: option (a), `agent:` and `context: fork` kept beside `role:`. Phase 1 is
   left with the formats (`hq.lock`, `module.toml`, module markers, `seed:`) and the repo itself.
+- 2026-11-23 — Linked to the new [Product Catalogue](hq-product-catalog.md) project: the seed's `repos.toml`
+  schema needs its definitions of product and product line, so that's a Phase 1 task here, ahead of the first release.
