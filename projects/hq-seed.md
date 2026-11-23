@@ -49,15 +49,32 @@ community, agent neutrality) and the launch; this one builds the seed and the up
   `AGENTS.md` can run the HQ.
 - `team/<role>.md`: one file per role, including the human **maintainer** role (what only they decide, approve or
   do, and how agents reach them), and `team/README.md` for how the roles fit together (today's `team.md`).
-- `skills/<name>/SKILL.md`: the open skill format, frontmatter limited to `name`, `description` and a neutral
-  `role:` naming the team member who runs it.
+- `skills/<name>/SKILL.md`: the open skill format. Frontmatter: `name`, `description`, a neutral `role:` naming the
+  team member who runs it, and Claude Code's `agent:` (the same role) and `context: fork`, which other agents
+  ignore (decided 2026-11-23). `check-hq` checks `agent:` matches `role:`.
 - `processes/`: cadence entries say **when** and **who**, never how they're scheduled.
 - `modules/`: see below.
 
 ### Agents (decided 2026-11-23)
 
-No adapters in the seed. **Claude Code 2.1.277 or later** reads `AGENTS.md` itself, and the README says so. Anyone
-who insists on an older version adds a `CLAUDE.md` holding only a pointer to `AGENTS.md`, as a `local` file.
+No adapters in the seed. **Claude Code 2.1.277 or later** is required: it reads `AGENTS.md` itself, and the README
+says so. Older versions aren't catered for (decided 2026-11-23). An instance that adds a `CLAUDE.md` of its own
+should know Claude Code then follows `CLAUDE.md` rather than `AGENTS.md`.
+
+**Tested 2026-11-23 on Claude Code 2.1.327** (headless, fresh repo; the 2.1.277 minimum wasn't tested):
+
+- `AGENTS.md` is loaded as project instructions with no `CLAUDE.md`.
+- Skills are discovered only in `.claude/skills/`, roles only in `.claude/agents/`. `skills/`, `.agents/skills/`
+  and `team/` are ignored, even with `AGENTS.md` pointing at them: Claude then reads a skill as a file when told
+  to, but `/skill-name`, automatic use by description and running a role as a subagent (with its own model, as
+  the researcher does) are lost.
+- Symlinks fix it: `.claude/skills -> ../skills` and one link per AI role, `.claude/agents/<role>.md ->
+  ../../team/<role>.md` (per file, so `team/maintainer.md` and `team/README.md` don't become agent types). Both are
+  then discovered. Symlinks survive git, so cloud routines see them too.
+- Instance set-up therefore makes those links (`/hq-init`, recorded as `local` in `hq.lock`); the seed holds no
+  `.claude/`. A check in `check-hq` can confirm each AI role has its link when `.claude/` exists.
+- Testing note: neither `CLAUDE.md` nor `AGENTS.md` was loaded in a repo under the system temp directory; the same
+  repo under the home directory loaded both. Test seeds outside temp directories.
 Other agents that read `AGENTS.md` work the same way; one is called supported only once it has run an HQ end to end.
 
 How processes get run is the instance's own choice and stays out of the seed's process files: Claude Code
@@ -136,15 +153,16 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 - [x] @pair Decide the shape and update mechanism (2026-11-23: plain git repo, tags, `hq.lock`; no package, no agent specifics)
 - [x] @pair Decide the questions the inventory raised (2026-11-23: `team/` and `skills/`, `AGENTS.md` only, scheduling
       out of the seed, modules with `seed:` policy settings and a fortnightly seed review)
-- [ ] @agent Check what Claude Code 2.1.277 picks up from a neutral layout: `AGENTS.md` certainly; whether it finds
-      skills in `skills/` and roles in `team/` by itself or only through `AGENTS.md`'s pointers. Say which in the README
+- [x] @agent Check what Claude Code picks up from a neutral layout (2026-11-23, on 2.1.327: `AGENTS.md` yes;
+      `skills/` and `team/` only through symlinks from `.claude/`; see [Agents](#agents-decided-2026-11-23))
+- [x] @pair Skill frontmatter (2026-11-23: keep `agent:` and `context: fork` beside `role:`)
 - [ ] @pair Formats: `hq.lock`, `module.toml`, the module markers in skills, the `seed:` policy setting; `check-hq` validates them
 - [ ] @human Create the public `<org>/hq-seed` repo
 
 ### Phase 2: build
 
 - [ ] @pair Move `hq` to the neutral layout first (`team/`, `skills/`, the maintainer role, `AGENTS.md` without
-      `.claude/` paths, `CLAUDE.md` reduced to a pointer); `hq` runs unchanged
+      `.claude/` paths, `CLAUDE.md` kept only as hq's own Claude notes, importing `AGENTS.md`); `hq` runs unchanged
 - [ ] @pair Split skills, policies and reference into core and modules (`python`, `node`, `github-actions`,
       `homeassistant`, `signalk`); done when core files name no platform (moved from HQ as a product, Phase 2)
 - [ ] @pair Extract core and modules into `hq-seed`, with placeholders where Rhizomatics content was; `check-hq`
@@ -182,14 +200,18 @@ Decided:
 
 - 2026-11-23 — The inventory's questions, by the maintainer:
   1. Layout: `team/` (not "personas"), including the human maintainer's role, and `skills/` at the root.
-  2. Agents: `AGENTS.md` only, noting Claude Code 2.1.277 or later is needed; anyone on an older version adds a
-     `CLAUDE.md` pointer themselves.
+  2. Agents: `AGENTS.md` only, noting Claude Code 2.1.277 or later is needed. Older versions aren't catered
+     for: no `CLAUDE.md` pointer, not even as a documented workaround.
   3. Scheduling: when and who in the process files, how in the instance's own set-up; the docs carry a note on
      GitHub Actions cron reliability.
   4. Modules (`python`, `node`, `signalk`, `github-actions`, `homeassistant`, ...), each with default policies and
      whatever it adds to processes and skills, chosen at set-up (usually by the owner's agent) and built in. A
      default fortnightly seed review recommends changes and new modules: PRs when likely to fit, issues when
      uncertain. Each copied-in policy's front matter says `diverged`, `auto` or (default) `review`.
+
+- 2026-11-23 — Skill frontmatter: skills keep Claude Code's `agent: <role>` and `context: fork` beside the neutral
+  `role:`. Why: Claude Code runs a skill as its role, with the role's model, only through those keys; other agents
+  ignore keys they don't know. The cheapest option, and no local edits for seed updates to merge around.
 
 Open:
 
@@ -209,3 +231,8 @@ _None._
   a maintainer role, `skills/`, `AGENTS.md` only, scheduling out of the seed with a GitHub cron note, modules in
   place of packs, `seed:` on policies, and a fortnightly seed review in place of `/hq-update`. Next: check what
   Claude Code 2.1.277 finds in the neutral layout, then the formats.
+- 2026-11-23 — Tested Claude Code 2.1.327 on a neutral-layout repo: `AGENTS.md` loads; skills and roles are found
+  only under `.claude/`, and symlinks from there to `skills/` and `team/` work. Instances get the links at set-up.
+  One question opened: whether skills keep `agent:`/`context: fork` beside `role:`.
+- 2026-11-23 — Skill frontmatter decided: option (a), `agent:` and `context: fork` kept beside `role:`. Phase 1 is
+  left with the formats (`hq.lock`, `module.toml`, module markers, `seed:`) and the repo itself.

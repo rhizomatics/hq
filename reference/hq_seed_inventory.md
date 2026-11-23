@@ -39,7 +39,7 @@ Layout, agents and modules were decided on 2026-11-23 ([HQ Seed](../projects/hq-
 | `processes/daily.md`, `monthly.md`, `quarterly.md` | platform processes' entries move to modules; `**Routine:**` lines → out of the seed |
 | Team: `pm`, `infra-lead`, `researcher` | path wording only |
 | Team: `architect`, `marketing`, `tech-writer` | platform names (1–3 each) → "the platforms in `repos.toml`" |
-| Skills with no platform content: `support-sweep`, `support-review`, `pr-report`, `release-digest`, `registry-check`, `project-review`, `roadmap-review`, `docs-review`, `alignment-review` | frontmatter → neutral; `registry-check` checks routines' attached repos (→ out of the seed) |
+| Skills with no platform content: `support-sweep`, `support-review`, `pr-report`, `release-digest`, `registry-check`, `project-review`, `roadmap-review`, `docs-review`, `alignment-review` | frontmatter gains `role:` (keeping `agent:` and `context: fork`); `registry-check` checks routines' attached repos (→ out of the seed) |
 | Skills with platform examples: `adoption-report` (HACS, HA analytics), `github-review`, `reputation-review` (also names the org), `agent-accessibility-review`, `forum-watch` | examples out; forum sources and platform channels read from modules |
 | `policy-review` | its "Cloud routines" section (19 mentions) → out of the seed; the rest core |
 | `policies/README.md`, `policies/scripts_over_agents.md` | none beyond one SignalK example |
