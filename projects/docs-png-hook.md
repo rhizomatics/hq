@@ -47,7 +47,7 @@ As done in camera_autonotify (the first, 2026-11-11):
 
 - [x] @pair camera_autonotify (2026-11-11), pending its first green CI run
 - [ ] @pair anpr2mqtt
-- [ ] @pair appliance_autonotify
+- [x] @pair appliance_autonotify
 - [ ] @pair autoarm
 - [ ] @pair remote_logger
 - [ ] @pair supernotify
