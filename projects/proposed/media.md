@@ -12,7 +12,7 @@ Produce supporting material that uses Rhizomatics products but is aimed at a mor
   - Not set up
 - YouTube
   - @rhizomatics set up, though only as a subchannel of personal account
-- Podcase
+- Podcast
   - Nothing set up
   - Needs a collaborator for conversations
 
