@@ -95,7 +95,8 @@ Actions cron:
 ### Modules (decided 2026-11-23)
 
 The seed is a core plus **modules**, one per technology or platform: `python`, `node`, `github-actions`,
-`homeassistant`, `signalk` to start (candidates found in the inventory: `docs`, `containers`). This supersedes
+`homeassistant`, `signalk` to start (candidates found in the inventory: `docs`, `containers`; planned: `secrets`, from
+[environment separation](env-separation.md)). This supersedes
 "platform packs" and the earlier "no language modules" in the HQ as a product design. Each module holds:
 
 - its default policies (e.g. `python`: the Python stack and versions; `homeassistant`: platform alignment and

@@ -10,8 +10,12 @@
 
 ## Diagnostics
 
-- Local secrets for diagnostics and agent accounts live in `~/Projects/.hq.env/<service>.env`, outside
-  every repo; never copy them into a checkout. Load at run time, never print.
+- Local secrets for diagnostics and agent accounts are encrypted with [fnox](https://fnox.jdx.dev) (age) in
+  `~/Projects/.hq.env/fnox.toml`, outside every repo, one profile per environment and service
+  (`prod-hass`, `dev-signalk`). Never copy them into a checkout or print them. `dev-*` profiles run
+  unattended; `prod-*` ones only under a lease the maintainer opens with a passphrase:
+  `mise run lease-start <service>`, then `mise run prod-run <service> -- <command>`
+  (tasks in `~/Projects/mise.toml`).
 - Agents use dedicated, least-privilege accounts on local services (OpenObserve, SignalK, Home Assistant,
   routers), not the maintainer's logins.
 - Browser automation: Claude in Chrome (MCP extension) for UI checks against real instances, using a
