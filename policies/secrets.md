@@ -109,6 +109,7 @@ Then delete the plaintext source.
   `--if-missing` value, so a hand-written `fnox exec` misses the lease and leaves an empty daemon behind.
 - **No hardware key.** The passphrase is the human step; fnox's `fido2` and `yubikey` providers could
   replace it where a hardware key is available.
+- Adding a key to a profile while its lease is open breaks that lease.
 
 **Other implementations of the same policy** include:
 - a password manager's CLI with per-use approval (1Password with biometric unlock);
