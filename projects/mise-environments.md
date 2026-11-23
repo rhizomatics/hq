@@ -111,19 +111,23 @@ and the maintainer's own logins.
 - [x] @pair Import from the MacBook through the shared folder (`/Volumes/My Shared Files/Prod2Dev/`)
   with `fnox import -p prod`: 10 production files, 28 keys, piped from the tarball so nothing was
   unpacked to disk (2026-11-23)
-- [x] @pair mise entry point: tasks `lease-start`, `lease-end`, `lease-status` and `prod-run` in
-  `~/Projects/mise.toml` (2026-11-23). `MISE_ENV` selection moves to "Environments (later)"
+- [x] @pair mise entry point: tasks `lease-start`, `lease-end`, `lease-status` and `prod-run`, first
+  in `~/Projects/mise.toml`, now in the global mise config (2026-11-23). `MISE_ENV` selection moves to "Environments (later)"
 - [x] @pair Move the `openobserve` skill to `mise run prod-run openobserve -- python3 oo.py ...`;
   `oo.py` already read the environment, so only its help text and the skill changed (2026-11-23)
 - [x] @pair Update `hq-private/reference/diagnostics.md` (secrets section, break-glass lease) and
   `reference/project_tooling.md` to the new loading command (2026-11-23)
-- [ ] @pair `policies/secrets.md` in `hq`, written for any org: the tiers, no plaintext, how agents
-  load a secret, and break-glass (who turns it on, how long it lasts, what's logged, how it's
-  revoked). Only our own values go in `hq-private/reference/diagnostics.md`
+- [x] @pair `policies/secrets.md` in `hq`, written for any org, with the policy and its fnox
+  implementation in separate sections, so another implementation could meet the same policy
+  (2026-11-23)
+- [x] @pair Move the mise lease tasks and the fnox pin from `~/Projects/mise.toml` to the global mise
+  config in the chezmoi dotfiles, so every machine gets them (2026-11-23)
+- [ ] @human Apply the dotfiles on the MacBook, then move its `~/Projects/.hq.env/` over to fnox
+- [ ] @human Record the hosts for EMQX, LibreNMS and Frigate in `hq-private/reference/diagnostics.md`
+  (only in their encrypted `*_URL` values now). Then an agent adds their sandbox profiles
 - [ ] @human Delete the plaintext copies: `Prod2Dev/openobserve.env`, `Prod2Dev/prod_env.tar`, and in
   time `~/Projects/.hq.env/prod/` on the MacBook (the only remaining originals)
-- [ ] @pair Add the systems that have secrets but no row or sandbox profile yet to
-  `hq-private/reference/diagnostics.md`: EMQX, LibreNMS, Frigate
+- [x] @pair Add EMQX, LibreNMS and Frigate to `hq-private/reference/diagnostics.md` (2026-11-23)
 - [ ] @pair Package the generic parts as the `secrets` module in `hq-seed`. Its `module.toml` says
   when the module applies (a repo with `.env.example`, or an HQ with production diagnostics). Do
   this once HQ Seed's module formats exist (its Phase 1)
@@ -163,7 +167,7 @@ Secrets are done when:
   environment; the maintainer imports it through the shared folders once fnox is ready. envforge
   uninstalled. Next: the spike.
 - 2026-11-23: spike on fnox 1.48.0 (v1.50.0 is too new for the cooldown), installed from
-  `~/Projects/mise.toml` with `minimum_release_age = "7d"`. Dummy values in a scratch dir.
+  `~/Projects/mise.toml` (since moved to the global mise config) with `minimum_release_age = "7d"`. Dummy values in a scratch dir.
   - **Fits:**
     - `-c <path>` loads a config outside any repo, and nothing was written into the repo dir.
     - `.env` import works into age, quotes included.
@@ -239,3 +243,10 @@ Secrets are done when:
   and no daemons left afterwards. The earlier "lease stopped after `fnox.toml` changed" may have
   been the config change or these bugs; that's unconfirmed. Check whether 1.50.0 changes how
   daemons are keyed when upgrading.
+- 2026-11-23: wrote `policies/secrets.md`, with the policy and its fnox, age and mise implementation
+  kept apart.
+  - Moved the lease tasks and the fnox pin to the global mise config in the chezmoi dotfiles
+    (committed and pushed), and removed `~/Projects/mise.toml`. Re-tested from the global config.
+  - That file's `minimum_release_age = "7d"` didn't move: the global config uses `latest` for its
+    other tools. fnox is pinned exactly, so it doesn't need it.
+  - Added EMQX, LibreNMS and Frigate to diagnostics.md; their hosts still need recording.

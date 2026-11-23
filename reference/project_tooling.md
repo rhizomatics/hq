@@ -15,7 +15,7 @@
   (`prod-hass`, `dev-signalk`). Never copy them into a checkout or print them. `dev-*` profiles run
   unattended; `prod-*` ones only under a lease the maintainer opens with a passphrase:
   `mise run lease-start <service>`, then `mise run prod-run <service> -- <command>`
-  (tasks in `~/Projects/mise.toml`).
+  (tasks in the global mise config). Rules and how they're met: [policies/secrets.md](../policies/secrets.md).
 - Agents use dedicated, least-privilege accounts on local services (OpenObserve, SignalK, Home Assistant,
   routers), not the maintainer's logins.
 - Browser automation: Claude in Chrome (MCP extension) for UI checks against real instances, using a
