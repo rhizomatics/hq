@@ -46,8 +46,9 @@ laptop (later phases of environment separation) does that.
 
 **Shape (to confirm in the spike):**
 
-- One `fnox.toml` in `~/Projects/.hq.env/`, outside every repo as now. It holds names and
-  provider references, with no plaintext values.
+- fnox's global config, `~/.config/fnox/config.toml`, outside every repo and out of the dotfiles. It
+  holds names, providers and ciphertext, with no plaintext values. (First `~/Projects/.hq.env/fnox.toml`,
+  moved 2026-11-23.)
 - One fnox profile per environment and service, e.g. `prod-openobserve`, `dev-signalk`, mirroring
   today's one-file-per-service and the `prod-*` sandbox profiles. A command gets only the secrets
   for the service it uses.
@@ -122,7 +123,8 @@ and the maintainer's own logins.
   (2026-11-23)
 - [x] @pair Move the mise lease tasks and the fnox pin from `~/Projects/mise.toml` to the global mise
   config in the chezmoi dotfiles, so every machine gets them (2026-11-23)
-- [ ] @human Apply the dotfiles on the MacBook, then move its `~/Projects/.hq.env/` over to fnox
+- [ ] @human Apply the dotfiles on the MacBook, then set up `~/.config/fnox/` there (keys and
+  `config.toml`) and import its `~/Projects/.hq.env/` files
 - [x] @human Record the hosts for EMQX, LibreNMS and Frigate; an agent added them and their
   `prod-*` sandbox profiles to hq-private (2026-11-23)
 - [ ] @human Delete the plaintext copies: `Prod2Dev/openobserve.env`, `Prod2Dev/prod_env.tar`, and in
@@ -250,3 +252,10 @@ Secrets are done when:
   - That file's `minimum_release_age = "7d"` didn't move: the global config uses `latest` for its
     other tools. fnox is pinned exactly, so it doesn't need it.
   - Added EMQX, LibreNMS and Frigate to diagnostics.md; their hosts still need recording.
+- 2026-11-23: moved the secrets from `~/Projects/.hq.env/fnox.toml` into fnox's standard global
+  config, `~/.config/fnox/config.toml`, next to the keys and the `[audit]` setting. It stays out of
+  chezmoi and is set up by hand where needed (maintainer).
+  - `FNOX_SECRETS` now defaults to the global config, and `~/Projects/.hq.env` is removed.
+  - The tasks still pass `-c` explicitly. Tested with a temporary dev profile: without it, a
+    folder with its own `fnox.toml` loads a different set of configs and missed the lease. With it,
+    one daemon served `~`, supernotify and that folder.

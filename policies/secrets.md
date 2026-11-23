@@ -69,7 +69,7 @@ see the end of this section.
 
 | Rule | How |
 |---|---|
-| 1. No plaintext | [fnox](https://fnox.jdx.dev) stores every secret as [age](https://age-encryption.org) ciphertext in one config outside every repo: `~/Projects/.hq.env/fnox.toml` |
+| 1. No plaintext | [fnox](https://fnox.jdx.dev) stores every secret as [age](https://age-encryption.org) ciphertext in fnox's global config, `~/.config/fnox/config.toml`, outside every repo. It's set up by hand on each machine that needs it and kept out of dotfile sync |
 | 2. Tiers | one fnox profile per environment and service (`dev-signalk`, `prod-hass`). Two age keys in `~/.config/fnox/` (mode 600): `dev-key.txt`, no passphrase, for `dev-*`; `prod-key.age`, passphrase-protected, for production and cost. The critical tier is never added |
 | 3. Least privilege | a command gets one profile's keys only (`fnox exec --only`) |
 | 4. Break-glass | mise tasks (below). The passphrase is the human step: without a terminal, fnox can't ask for it and refuses. The lease is the fnox daemon's in-memory cache, ended by `[daemon] idle_timeout` or `lease-end`. Reads are logged by name in `~/.local/state/fnox/audit.log` (`[audit] enabled = true` in the global `~/.config/fnox/config.toml`) |
@@ -93,7 +93,9 @@ mise run lease-end                      # ends every lease at once
 - `prod-run` reuses exactly that set, passes only the named service's keys, and fails loudly when the
   lease has ended or doesn't cover the service.
 - `lease-end` stops every fnox daemon of the user.
-- Dev secrets need no lease: `fnox -c ~/Projects/.hq.env/fnox.toml -P dev-<service> exec -- <command>`.
+- Dev secrets need no lease: `fnox -c ~/.config/fnox/config.toml -P dev-<service> exec -- <command>`.
+- Every call passes `-c` with the global config's path, even though fnox loads it anyway: in a repo
+  with its own `fnox.toml`, fnox would otherwise load a different set of configs and miss the lease.
 
 **Adding secrets:** pipe the env file into fnox, e.g. from an archive straight off a shared folder, so
 nothing is unpacked or printed:

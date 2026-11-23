@@ -24,7 +24,8 @@ accounts and gaps, is `hq-private/reference/diagnostics.md`.
 
 **Where things live:**
 
-- **Secret values**: `~/Projects/.hq.env/<service>.env` on the laptop, outside every git repo,
+- **Secret values**: encrypted in fnox's global config (`~/.config/fnox/config.toml`, see
+  [mise environments](mise-environments.md)); until 2026-11-23 `~/Projects/.hq.env/<service>.env` on the laptop, outside every git repo,
   mode 600. `ha-repl` tokens stay in its own user-level config. Never in hq or hq-private.
 - **Docs, skills, sandbox profiles, account list**: hq-private, because they name private hosts;
   generic skills that name nothing private go in the agent-plugins marketplace.

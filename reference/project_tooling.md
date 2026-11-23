@@ -11,7 +11,7 @@
 ## Diagnostics
 
 - Local secrets for diagnostics and agent accounts are encrypted with [fnox](https://fnox.jdx.dev) (age) in
-  `~/Projects/.hq.env/fnox.toml`, outside every repo, one profile per environment and service
+  fnox's global config (`~/.config/fnox/config.toml`), outside every repo, one profile per environment and service
   (`prod-hass`, `dev-signalk`). Never copy them into a checkout or print them. `dev-*` profiles run
   unattended; `prod-*` ones only under a lease the maintainer opens with a passphrase:
   `mise run lease-start <service>`, then `mise run prod-run <service> -- <command>`
