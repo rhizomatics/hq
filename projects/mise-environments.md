@@ -123,8 +123,8 @@ and the maintainer's own logins.
   (2026-11-23)
 - [x] @pair Move the mise lease tasks and the fnox pin from `~/Projects/mise.toml` to the global mise
   config in the chezmoi dotfiles, so every machine gets them (2026-11-23)
-- [ ] @human Apply the dotfiles on the MacBook, then set up `~/.config/fnox/` there (keys and
-  `config.toml`) and import its `~/Projects/.hq.env/` files
+- [x] @human Apply the dotfiles on the MacBook, then set up `~/.config/fnox/` there (keys and
+  `config.toml`) and import its `~/Projects/.hq.env/` files (2026-11-23)
 - [x] @human Record the hosts for EMQX, LibreNMS and Frigate; an agent added them and their
   `prod-*` sandbox profiles to hq-private (2026-11-23)
 - [ ] @human Delete the plaintext copies: `Prod2Dev/openobserve.env`, `Prod2Dev/prod_env.tar`, and in
@@ -259,3 +259,11 @@ Secrets are done when:
   - The tasks still pass `-c` explicitly. Tested with a temporary dev profile: without it, a
     folder with its own `fnox.toml` loads a different set of configs and missed the lease. With it,
     one daemon served `~`, supernotify and that folder.
+- 2026-11-23: MacBook moved over to fnox.
+  - The maintainer made its own `prod` key (not shared with virtdevmac). The agent wrote
+    `~/.config/fnox/config.toml` and imported the 10 production files: 28 keys, nothing printed.
+    `dev/` was skipped: its details wait for the new dev server.
+  - Without a lease, reads are refused. Under a `lease-start hass` lease, `prod-run hass` was served
+    and `prod-run mqtt` was refused. `lease-end` revoked it, and the audit log recorded reads by name.
+    No production system was contacted.
+  - Next: the maintainer deletes `~/Projects/.hq.env` and `~/Prod2Dev` on the MacBook.
