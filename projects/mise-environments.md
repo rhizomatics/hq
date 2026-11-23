@@ -123,8 +123,8 @@ and the maintainer's own logins.
 - [x] @pair Move the mise lease tasks and the fnox pin from `~/Projects/mise.toml` to the global mise
   config in the chezmoi dotfiles, so every machine gets them (2026-11-23)
 - [ ] @human Apply the dotfiles on the MacBook, then move its `~/Projects/.hq.env/` over to fnox
-- [ ] @human Record the hosts for EMQX, LibreNMS and Frigate in `hq-private/reference/diagnostics.md`
-  (only in their encrypted `*_URL` values now). Then an agent adds their sandbox profiles
+- [x] @human Record the hosts for EMQX, LibreNMS and Frigate; an agent added them and their
+  `prod-*` sandbox profiles to hq-private (2026-11-23)
 - [ ] @human Delete the plaintext copies: `Prod2Dev/openobserve.env`, `Prod2Dev/prod_env.tar`, and in
   time `~/Projects/.hq.env/prod/` on the MacBook (the only remaining originals)
 - [x] @pair Add EMQX, LibreNMS and Frigate to `hq-private/reference/diagnostics.md` (2026-11-23)
