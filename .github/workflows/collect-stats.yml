@@ -1,6 +1,6 @@
 name: Collect stats
 
-# Daily usage snapshot by @rhizomatics/hq-stats (projects/hq-stats.md): downloads per channel, GitHub stars,
+# Daily usage snapshot by @rhizomatics/hq-stats (projects/done/hq-stats.md): downloads per channel, GitHub stars,
 # repo views and clones, and website page views for the repos in repos.toml, committed to data/stats/.
 # The site builds its Usage pages from them (site.yml, next scheduled run).
 # The package version is the one in site/package-lock.json, so Dependabot keeps it current.

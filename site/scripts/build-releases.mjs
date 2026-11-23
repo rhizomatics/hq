@@ -9,7 +9,8 @@
 //
 // Sources, all read-only:
 //   - repos.toml + hq-private/data/github/<latest>   which repos are public products (lib/github.mjs)
-//   - GitHub REST API                                each product's releases (drafts left out)
+//   - GitHub REST API                                each product's releases (drafts and pre-releases left out:
+//                                                    flagged on GitHub, or tagged like -beta4, b1, rc2)
 //   - hq-private/data/releases/summaries.json        the digest's judgement per release, keyed "<repo>@<tag>":
 //       { "include": bool, "kind": "enhancement" | "critical-fix" | "maintenance", "summary": "..." }
 // Needs GITHUB_TOKEN (or GH_TOKEN).
@@ -31,11 +32,15 @@ async function readSummaries() {
   }
 }
 
+// Pre-releases never appear, not even rolled up under a final release: GitHub's flag isn't always set, so the tag counts too.
+const PRERELEASE_TAG = /\d[-.]?(?:alpha|beta|a|b|rc|dev|pre)\.?\d*$/i;
+const isPrerelease = (rel) => rel.prerelease || PRERELEASE_TAG.test(rel.tag_name);
+
 async function recentReleases(org, repos, since) {
   const lists = await inBatches(repos, async (r) => {
     const items = (await gh(`repos/${org}/${r.name}/releases?per_page=50`)) ?? [];
     return items
-      .filter((rel) => !rel.draft && rel.published_at >= since)
+      .filter((rel) => !rel.draft && !isPrerelease(rel) && rel.published_at >= since)
       .map((rel) => ({
         key: `${r.name}@${rel.tag_name}`,
         repo: r.name,
@@ -43,7 +48,6 @@ async function recentReleases(org, repos, since) {
         tag: rel.tag_name,
         name: rel.name || rel.tag_name,
         date: rel.published_at,
-        prerelease: rel.prerelease,
         url: rel.html_url,
         repoUrl: `https://github.com/${org}/${r.name}`,
       }));
@@ -84,7 +88,7 @@ async function main() {
   const summaries = await readSummaries();
 
   if (pendingMode) {
-    const pending = releases.filter((r) => !summaries[r.key]).map(({ key, repo, tag, date, prerelease, url }) => ({ key, repo, tag, date, prerelease, url }));
+    const pending = releases.filter((r) => !summaries[r.key]).map(({ key, repo, tag, date, url }) => ({ key, repo, tag, date, url }));
     console.log(JSON.stringify(pending, null, 1));
     return;
   }

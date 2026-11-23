@@ -10,7 +10,7 @@
 #   private_repo:  repo for reports, data snapshots and hq issues, checked out next to hq_repo;
 #                  omit for an entirely public set-up (hq issues then go in hq_repo)
 #   site_url:      where the public HQ site is served
-# [stats]:         usage stats by @rhizomatics/hq-stats (projects/hq-stats.md); paths relative to this file
+# [stats]:         usage stats by @rhizomatics/hq-stats (projects/done/hq-stats.md); paths relative to this file
 #   data_dir:      daily snapshots, written by .github/workflows/collect-stats.yml
 #   legacy_hacs:   history from the retired hacs-downloads site
 #   out:           the aggregate the site's Usage pages are built from (not committed)
@@ -106,19 +106,14 @@ ecosystem = "pip"
 package = "homeassistant"
 area = "homeassistant"
 
-# Capabilities and their providers (header above). Trials started 2026-11-19 run two weeks.
+# Capabilities and their providers (header above). The gh-aw OSPO trial ended 2026-11-23: none kept
+# (reference/skill_providers.md).
 
 [capabilities.support]
-providers = [
-  { kind = "hq", ref = "support-sweep" },
-  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-org-health.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "OSPO Organization Health Report; stale issues and items needing a human" },
-]
+providers = [{ kind = "hq", ref = "support-sweep" }]
 
 [capabilities.pull-requests]
-providers = [
-  { kind = "hq", ref = "pr-report" },
-  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-org-health.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "the same report's stale-PR and merge-time sections" },
-]
+providers = [{ kind = "hq", ref = "pr-report" }]
 
 [capabilities.dependency-updates]
 providers = [
@@ -135,26 +130,17 @@ providers = [
   { kind = "action", ref = "ossf/scorecard-action@v2.4.1", where = "every released repo (scorecard.yml)" },
   { kind = "action", ref = "anchore/scan-action@v7.4.2", where = "image repos (image-scan.yml)", note = "Grype, container images" },
   { kind = "action", ref = "zizmorcore/zizmor-action@v0.8.1", where = "admin", note = "Actions workflow audit, in every repo since hq v1.0.1; patterns in policies/release_workflows.md" },
-  { kind = "service", ref = "socket.dev", status = "candidate", note = "malicious and risky npm/PyPI packages with no CVE; GitHub App, the maintainer's decision" },
+  { kind = "service", ref = "socket.dev", note = "malicious and risky npm/PyPI packages with no CVE; GitHub App on every repo" },
 ]
 
 [capabilities.registry]
-providers = [
-  { kind = "hq", ref = "registry-check" },
-  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-stale-repos.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "inactive repos and archival candidates; covers part of the check" },
-]
+providers = [{ kind = "hq", ref = "registry-check" }]
 
 [capabilities.github-settings]
-providers = [
-  { kind = "hq", ref = "github-review" },
-  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-release-compliance-checker.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "community files and security settings, one repo per labelled issue" },
-]
+providers = [{ kind = "hq", ref = "github-review" }]
 
 [capabilities.adoption]
-providers = [
-  { kind = "hq", ref = "adoption-report" },
-  { kind = "gh-aw", ref = "github/awesome-copilot/workflows/ospo-contributors-report.md@1683f50e94c9fd489191f73d7c8f7e2bd871bd0c", where = "hq-private", status = "trial", note = "contributor activity only; downloads have no third-party provider" },
-]
+providers = [{ kind = "hq", ref = "adoption-report" }]
 
 [capabilities.alignment]
 providers = [{ kind = "hq", ref = "alignment-review" }]

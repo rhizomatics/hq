@@ -84,7 +84,7 @@ way in to HQ.
       personal account, fixes in [hq-stats#3](https://github.com/rhizomatics/hq-stats/pull/3))
 - [x] @pair README and docs; announcement drafts for HA and SignalK developer forums (2026-11-22: docs in
       [hq-stats#3](https://github.com/rhizomatics/hq-stats/pull/3); drafts in `hq-private/reports/marketing/2026-11-22-hq-stats-announcement.md`)
-- [ ] @human Post announcements, after 0.2.0 ([hq-private#137](https://github.com/rhizomatics/hq-private/issues/137) Home Assistant,
+- [x] @human Post announcements, after 0.2.0 ([hq-private#137](https://github.com/rhizomatics/hq-private/issues/137) Home Assistant,
       [hq-private#138](https://github.com/rhizomatics/hq-private/issues/138) SignalK)
 
 ## Success test
@@ -159,3 +159,6 @@ _None._
 - 2026-11-22 — hq-stats#3 merged, 0.2.0 tagged, released and approved on npm (`latest`); hq#21 merged with the site on
   0.2.0. Community figures appear from the next daily snapshot. Left: post the announcements
   ([hq-private#137](https://github.com/rhizomatics/hq-private/issues/137), [#138](https://github.com/rhizomatics/hq-private/issues/138)), then the success test.
+- 2026-11-22 - announced on SignalK and HomeAssistant development discord channels. First developer and feature request within a few hours
+- 2026-11-23 — Known outside users, per the maintainer: [HQ as a product](../hq-as-product.md) moves on to
+  [HQ Seed](../hq-seed.md), and HQ Stats users are the first people to offer it to.

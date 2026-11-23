@@ -15,7 +15,8 @@ writing (`policies/scripts_over_agents.md`).
 
 From `hq/site`: `GITHUB_TOKEN=$(gh auth token) node scripts/build-releases.mjs --pending` lists, as JSON,
 every release from the last 31 days of a public product that has no entry yet in
-`hq-private/data/releases/summaries.json`. Most days it's empty or one or two; when it's empty, go straight
+`hq-private/data/releases/summaries.json`. Pre-releases (betas, release candidates) are left out by the script,
+so they never need an entry. Most days it's empty or one or two; when it's empty, go straight
 to the community blog feeds below. Read each pending release's notes (`gh api repos/<org>/<repo>/releases/tags/<tag>`).
 
 ## Judge and summarise
@@ -32,7 +33,7 @@ Add one entry per pending release to `hq-private/data/releases/summaries.json`, 
   wouldn't start or install, gave wrong readings, lost or duplicated data, cost money (e.g. paid API calls),
   reported failure as success, or a security issue in the product's own code.
 - **kind `maintenance`**, `include: false`: everything else, e.g. small fixes, docs, tests, dependency or CVE
-  rebuilds, pre-releases (the final release gets its own entry), a package move. Give a few words of
+  rebuilds, a package move. Give a few words of
   reason as the summary; it isn't shown.
 
 Summaries: one or two sentences for a user of the product, in the house voice (practical, understated).

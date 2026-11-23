@@ -7,7 +7,7 @@ summary: "Home Assistant components as exemplary citizens: Quality Scale, UI con
 
 Home Assistant custom components will be exemplary citizens of the community. 
 
-Components will be regularly checked against the Quality Scale , with aspirations towards the highest level, and the results checked in. The potential will be kept open for possible migration from Marketplace to Core.
+Components will be regularly checked against the [Quality Scale](https://www.home-assistant.io/docs/quality_scale/), with aspirations towards the highest level, and the results checked in. The potential will be kept open for possible migration from Marketplace to Core.
 
 This extends to documentation standards.
 
@@ -37,7 +37,7 @@ Use whatever measures available to reassure Marketplace users of the robustness,
 For example,
 
 - Meeting the Home Assistant Quality Scale
-- Shields on the readme for code coverage, security scanning etc
+- Shields on the readme for code coverage, security scanning, quality scale etc
 - Clean reports from security checks like HA Security Sandbox, Marketplace Guard and HA Barkley
 
 ## References
