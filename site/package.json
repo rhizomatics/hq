@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.9",
-    "@rhizomatics/hq-stats": "^0.2.2",
+    "@rhizomatics/hq-stats": "^0.2.3",
     "astro": "^7.4.7",
     "chart.js": "^4.6.1",
     "smol-toml": "^1.9.1"
