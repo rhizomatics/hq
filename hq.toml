@@ -1,7 +1,7 @@
 # The org, its product lines and platforms, and the org-specific settings every process, skill and site script
 # reads instead of naming the org itself. Products are in products.toml, community projects in community.toml.
 # Read through @rhizomatics/hq-stats' loadConfig (site/src/lib/hq-config.mjs); terms in AGENTS.md
-# ("Names used in these docs") and projects/hq-product-catalog.md.
+# ("Names used in these docs") and projects/active/hq-product-catalog.md.
 #
 # [org]
 #   name:          display name, used in prose and on the site
@@ -32,7 +32,7 @@
 # ecosystem is the GitHub advisory API's name (pip, npm); area is the hq issue label.
 #
 # [capabilities.<id>]: who provides each recurring capability, so an HQ skill can be swapped for a better one
-# made by someone else (projects/hq-as-product.md, "Reuse skill packages first"; the survey behind these is
+# made by someone else (projects/active/hq-as-product.md, "Reuse skill packages first"; the survey behind these is
 # reference/skill_providers.md). `providers` is a list, in order of preference, each:
 #   kind:    "hq"      a skill in .claude/skills (ref: its name)
 #            "gh-aw"   a GitHub agentic workflow (ref: owner/repo/path.md@<sha>; where: the repo it runs in)

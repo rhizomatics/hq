@@ -29,7 +29,7 @@ const DOC_DIRS = ['policies', 'processes', 'projects', 'reference'];
 const DOC_FILES = ['team.md'];
 // Sections whose index is a generated list; the README explains how the section works.
 const LIST_DIRS = {
-  projects: 'Everything in progress, proposed, finished or shelved, with its goal.',
+  projects: 'Everything in progress, queued, proposed, finished or shelved, with its goal.',
   processes: 'Every agent process, when it runs and which persona runs it.',
   policies: 'The maintainer\'s cross-project policies, each with what it says in a line.',
 };

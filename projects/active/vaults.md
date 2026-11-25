@@ -13,7 +13,7 @@ started: 2026-11-23
 Hold all secrets (passwords, tokens, API keys etc) and private information (real usernames, IP addresses, local URLs) in environment scoped vaults.
 
 Production vaults can selectively be made available to agents on a `break-glass` basis, where a temporary lease granted by human authority (e.g. password entry, biometrics).
-Mise-en-place is defined in [Project Standards](../policies/project_standards.md) as the one way to build and configure an environment (production, dev, test). 
+Mise-en-place is defined in [Project Standards](../../policies/project_standards.md) as the one way to build and configure an environment (production, dev, test). 
 
 Secrets are all encrypted at rest, scoped to one command and ready to move to a different vaulting technology, e.g. 
 AWS Secrets Manager, without changing how agents ask for them.

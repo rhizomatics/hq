@@ -31,7 +31,7 @@ accounts and gaps, is `hq-private/reference/diagnostics.md`.
 **Where things live:**
 
 - **Secret values**: encrypted in fnox's global config (`~/.config/fnox/config.toml`, see
-  [mise environments](mise-environments.md)); until 2026-11-23 `~/Projects/.hq.env/<service>.env` on the laptop, outside every git repo,
+  [mise environments](vaults.md)); until 2026-11-23 `~/Projects/.hq.env/<service>.env` on the laptop, outside every git repo,
   mode 600. `ha-repl` tokens stay in its own user-level config. Never in hq or hq-private.
 - **Docs, skills, sandbox profiles, account list**: hq-private, because they name private hosts;
   generic skills that name nothing private go in the agent-plugins marketplace.
@@ -68,7 +68,7 @@ that environment a spec to build to.
 ### Later (developer environment)
 
 - [ ] @human Decide which resources move to the remote dev environment (preview, starters, mounted config)
-- [ ] @pair Move `.hq.env` secrets to AWS Secrets Manager and resolve them at runtime (now planned in [mise environments](mise-environments.md), through fnox profiles)
+- [ ] @pair Move `.hq.env` secrets to AWS Secrets Manager and resolve them at runtime (now planned in [mise environments](vaults.md), through fnox profiles)
 
 ## Decisions
 
@@ -86,7 +86,7 @@ that environment a spec to build to.
 - 2026-11-10: agent accounts: OpenObserve confirmed; HA `home` non-admin user (`hass.env`, ha-repl stays on the user-level admin config); boat router (`rutos.env`). Read-only `homeassistant` skill (hq-private#98) and boat router in the `signalk` sandbox profile (hq-private#99).
 - 2026-11-10: environments split into production and dev/test (maintainer); production access is by exception, routers especially. Secrets under `.hq.env/prod/` (hq-private#102); production hosts removed from every checkout's sandbox, one opt-in `prod-*` profile per system with `--remove` (hq-private#103). MQTT agent account added; login not yet confirmed (broker rejects the client id).
 - 2026-11-10: `homeassistant` skill removed again (hq-private#100): it duplicated `ha-repl`'s API client mode, which works with the non-admin token. The maintainer will add the gaps (history, logbook, services list, clearer empty/401 messages) to ha-repl itself.
-- 2026-11-10: proposed [mise environments](mise-environments.md), which loads `.hq.env` secrets through mise and fnox instead of sourcing plaintext files. The Secrets Manager task moves there.
+- 2026-11-10: proposed [mise environments](vaults.md), which loads `.hq.env` secrets through mise and fnox instead of sourcing plaintext files. The Secrets Manager task moves there.
 - 2026-11-13 — project-review: no commits since 11-10. Open: preview pattern, home dev SignalK, browser guidance, snapshot sweep, stale MCP entry. Not stalled yet (3 days).
 - 2026-11-15 — project-review: no change since 11-10; five items still open.
 - 2026-11-20 — project-review: no change since 11-10; five items still open. Stalled at 10 days; the maintainer's local work (preview pattern, home dev SignalK) is the gate.

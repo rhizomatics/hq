@@ -4,7 +4,7 @@ summary: The repo anyone seeds their own HQ from, and keeps taking improvements 
 status: active
 lead: architect
 owner: jeyrb
-programme: hq-as-a-product
+programme: hq-as-product
 started: 2026-11-23
 ---
 
@@ -20,7 +20,7 @@ community, agent neutrality) and the launch; this one builds the seed and the up
 
 ## Context
 
-- **Why now (2026-11-23):** [HQ Stats](done/hq-stats.md) has known outside users, the low-friction way in has worked,
+- **Why now (2026-11-23):** [HQ Stats](../done/hq-stats.md) has known outside users, the low-friction way in has worked,
   and they're the first people to offer a full HQ to.
 - **What a seed holds** (from the HQ as a product design): the core (project and process model, issue and PR
   conventions, personas, the core skills and policies, `check-hq`, the site with HQ Stats), the `homeassistant` and
@@ -148,7 +148,7 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 | Core skills (`skills/`) | `hq` (`.claude/skills`) | neutral frontmatter, module markers |
 | `repos.toml` skeleton, `check-hq`, site with HQ Stats | `hq` | the site's home page and branding become placeholders |
 | Shared admin workflows (`admin/`, `reusable-*.yml`) | `hq` | callers point at the instance's own `hq`, not Rhizomatics' |
-| `modules/<name>/` | `hq` | policies, skills and sections, reference, templates; per-file sorting in the [inventory](../reference/hq_seed_inventory.md) |
+| `modules/<name>/` | `hq` | policies, skills and sections, reference, templates; per-file sorting in the [inventory](../../reference/hq_seed_inventory.md) |
 | Private skeleton: `private/` | `hq-private` | optional; omitted for an all-public HQ |
 
 ## Plan
@@ -156,7 +156,7 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 ### Phase 1: shape
 
 - [x] @agent Inventory every file in `hq` and `hq-private`: core, module, instance-only or private skeleton, and what
-      each needs before it can be seeded (2026-11-23, [HQ Seed inventory](../reference/hq_seed_inventory.md))
+      each needs before it can be seeded (2026-11-23, [HQ Seed inventory](../../reference/hq_seed_inventory.md))
 - [x] @pair Decide the shape and update mechanism (2026-11-23: plain git repo, tags, `hq.lock`; no package, no agent specifics)
 - [x] @pair Decide the questions the inventory raised (2026-11-23: `team/` and `skills/`, `AGENTS.md` only, scheduling
       out of the seed, modules with `seed:` policy settings and a fortnightly seed review)
@@ -231,7 +231,7 @@ _None._
 - 2026-11-23 — Created. HQ Stats has known outside users, so HQ as a product moves on to the seed. Plan drawn
   from HQ as a product's Phases 2 and 3; first task is the file inventory.
 - 2026-11-23 — Shape decided by the maintainer: plain git repo, no package, no agent specifics. Inventory done
-  ([HQ Seed inventory](../reference/hq_seed_inventory.md)). Org names are cheap to template; platform names are the
+  ([HQ Seed inventory](../../reference/hq_seed_inventory.md)). Org names are cheap to template; platform names are the
   bulk of the core edits (about 20 files, plus four skills to split into a core frame and per-pack sections).
   Agent specifics go deeper than expected: the `.claude/` layout is wired into `check-hq`, `AGENTS.md` and the
   process docs, every skill has Claude Code frontmatter, and scheduling is written as Claude routines. That needs

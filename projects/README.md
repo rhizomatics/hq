@@ -8,8 +8,9 @@ Nobody edits it by hand; on GitHub, browse the folders instead.
 
 One markdown file per project.
 
-- `projects/*.md` — active projects.
-- `projects/proposed/*.md` — ideas not started yet. Move the file up into `projects/` when work starts.
+- `projects/active/*.md` — active projects.
+- `projects/proposed/*.md` — ideas not started yet, either a bare idea, or a draft being worked up. 
+- `projects/queued/*.md` — projects drafted and waiting for work to start.
 - `projects/done/*.md` — finished projects.
 - `projects/shelved/*.md` — rejected or postponed indefinitely. Add a dated line saying why.
 
@@ -22,14 +23,29 @@ gates can use the fuller shape, as `aws-migration.md` does:
 ---
 title: Short name
 summary: One line: the goal, as shown in the project tables
-status: draft | active | blocked     # folder says proposed/done/shelved
+status: draft | active | blocked     # folder says active/queued/proposed/done/shelved
 lead: infra-lead | pm | marketing | architect   # persona that drives it
 owner: <maintainer>
 started: YYYY-MM-DD
+productline: applies across 1 or more product lines
+programme: <slug of the owning project>   # optional, see Programmes below
 ---
 
 ## Goal / ## Context / ## Plan (tagged tasks) / ## Decisions / ## Log
 ```
+
+## Programmes
+
+Bigger programmes of work span several projects. Each project in one says so with `programme:` in its
+frontmatter, naming the project that owns the programme by its file name without `.md` (e.g.
+`programme: env-separation`). The owning project is an ordinary project file, in whatever folder fits its own
+status; its members stay in theirs, since they're often at different stages.
+
+On the site, each project's programme is shown beside it, and a Programmes section lists each programme with all
+its projects and their status. `mise run check-hq` checks that every `programme:` names an existing project.
+
+Considered and dropped: a directory per programme. Its projects are rarely all at the same status, so one
+folder can't say where each stands.
 
 Tasks are checkboxes tagged with who executes them:
 

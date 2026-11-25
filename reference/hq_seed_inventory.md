@@ -1,6 +1,6 @@
 # HQ Seed inventory
 
-Every file in `hq` and `hq-private` sorted by where it goes in [HQ Seed](../projects/hq-seed.md), and what each
+Every file in `hq` and `hq-private` sorted by where it goes in [HQ Seed](../projects/active/hq-seed.md), and what each
 needs first. Taken 2026-11-23 from `git ls-files`, with mentions counted by regex (org or maintainer name; Home
 Assistant/HACS; SignalK; Claude, `.claude`, routines, model names) and the files with mentions then read.
 Generated and data files (`data/`, `site/src/content/`, images) are left out. Counts are a guide to the work,
@@ -9,7 +9,7 @@ not exact: "HA" matches some prose that isn't about the platform.
 **Destinations:** **core** (every HQ), **module** (`python`, `node`, `github-actions`, `homeassistant`,
 `signalk`, chosen per HQ), **instance** (Rhizomatics only, stays in `hq`), **private** (optional private-repo
 skeleton), **agent-specific** (not in the seed: Claude Code reads `AGENTS.md`, and scheduling is the instance's own).
-Layout, agents and modules were decided on 2026-11-23 ([HQ Seed](../projects/hq-seed.md#decisions)).
+Layout, agents and modules were decided on 2026-11-23 ([HQ Seed](../projects/active/hq-seed.md#decisions)).
 
 ## Summary
 
@@ -86,4 +86,4 @@ the product, so it moves to `hq-seed`'s own docs rather than into what's seeded.
 
 The questions this inventory raised were settled by the maintainer on 2026-11-23: `team/` (with the maintainer
 role) and `skills/` at the root; `AGENTS.md` only (Claude Code 2.1.277 or later); scheduling out of the seed;
-modules with `seed:` policy settings and a fortnightly seed review. Details in [HQ Seed](../projects/hq-seed.md#design).
+modules with `seed:` policy settings and a fortnightly seed review. Details in [HQ Seed](../projects/active/hq-seed.md#design).

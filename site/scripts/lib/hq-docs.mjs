@@ -19,8 +19,10 @@ const CADENCES = [
   ['monthly', 'Monthly'],
   ['quarterly', 'Every four months'],
 ];
-const PROJECT_GROUPS = [
-  ['', 'Active'],
+// Project folders, in the order the list shows them. The folder is the status; nothing sits in projects/ itself.
+export const PROJECT_GROUPS = [
+  ['active', 'Active'],
+  ['queued', 'Queued'],
   ['proposed', 'Proposed'],
   ['done', 'Done'],
   ['shelved', 'Shelved'],
@@ -61,20 +63,45 @@ export async function projects(hqRoot) {
       const rel = path.posix.join('projects', dir, f);
       const { fields, body } = frontmatter(await readFile(path.join(abs, f), 'utf8'));
       const title = fields.title || body.match(/^#\s+(.+)$/m)?.[1]?.trim() || f.replace(/\.md$/, '');
-      out.push({ rel, group, title, summary: fields.summary || null });
+      out.push({ rel, slug: f.replace(/\.md$/, ''), group, title, summary: fields.summary || null, programme: fields.programme || null });
     }
   }
   return out;
 }
 
+// The project a `programme:` names (by file name, in any status folder), or null.
+const programmeOf = (list, p) => (p.programme ? (list.find((x) => x.slug === p.programme) ?? null) : null);
+
 function projectTables(list, fromDir) {
-  return PROJECT_GROUPS.map(([, group]) => {
+  const link = (p) => `[${cell(p.title)}](${path.posix.relative(fromDir, p.rel)})`;
+  const programmeCell = (p) => {
+    const owner = programmeOf(list, p);
+    return owner ? link(owner) : p.programme ? cell(p.programme) : '';
+  };
+  const byStatus = PROJECT_GROUPS.map(([, group]) => {
     const rows = list.filter((p) => p.group === group).sort((a, b) => a.title.localeCompare(b.title));
     const table = rows.length
-      ? ['| Project | Goal |', '|---|---|', ...rows.map((p) => `| [${cell(p.title)}](${path.posix.relative(fromDir, p.rel)}) | ${cell(p.summary ?? '_no summary_')} |`)].join('\n')
+      ? [
+          '| Project | Goal | Programme |',
+          '|---|---|---|',
+          ...rows.map((p) => `| ${link(p)} | ${cell(p.summary ?? '_no summary_')} | ${programmeCell(p)} |`),
+        ].join('\n')
       : '_None._';
     return `## ${group}\n\n${table}`;
-  }).join('\n\n');
+  });
+  // Programmes: each owning project with its member projects, whatever their status.
+  const owners = [...new Set(list.map((p) => p.programme).filter(Boolean))]
+    .map((slug) => list.find((x) => x.slug === slug))
+    .filter(Boolean)
+    .sort((a, b) => a.title.localeCompare(b.title));
+  if (!owners.length) return byStatus.join('\n\n');
+  const order = Object.fromEntries(PROJECT_GROUPS.map(([, g], i) => [g, i]));
+  const programmes = owners.map((owner) => {
+    const members = list.filter((p) => p.programme === owner.slug).sort((a, b) => order[a.group] - order[b.group] || a.title.localeCompare(b.title));
+    const rows = [owner, ...members].map((p) => `| ${link(p)}${p === owner ? ' _(programme)_' : ''} | ${p.group} | ${cell(p.summary ?? '_no summary_')} |`);
+    return `### ${cell(owner.title)}\n\n| Project | Status | Goal |\n|---|---|---|\n${rows.join('\n')}`;
+  });
+  return [...byStatus, `## Programmes\n\nProjects grouped by the programme they belong to (\`programme:\` in their frontmatter).\n\n${programmes.join('\n\n')}`].join('\n\n');
 }
 
 // ---- policies ----
@@ -231,8 +258,21 @@ export async function checkHq(hqRoot) {
     if (!used.has(s) && (await exists(path.join(skillsDir, s, 'SKILL.md')))) problems.push(`.claude/skills/${s}: not in any cadence file`);
   }
 
-  for (const p of await projects(hqRoot)) {
+  const projectList = await projects(hqRoot);
+  for (const p of projectList) {
     if (!p.summary) problems.push(`${p.rel}: no summary: in frontmatter`);
+    if (p.programme && !programmeOf(projectList, p)) problems.push(`${p.rel}: programme: "${p.programme}" isn't a project file name`);
+    if (p.programme === p.slug) problems.push(`${p.rel}: programme: names itself`);
+  }
+  for (const [slug, n] of Object.entries(Object.groupBy(projectList, (p) => p.slug)).map(([k, v]) => [k, v.length])) {
+    if (n > 1) problems.push(`projects: ${slug}.md is in ${n} status folders`);
+  }
+  // Every project is in one of the status folders: a file or folder anywhere else isn't listed on the site.
+  const projectDirs = PROJECT_GROUPS.map(([dir]) => dir);
+  for (const ent of await readdir(path.join(hqRoot, 'projects'), { withFileTypes: true })) {
+    if (ent.isDirectory() ? !projectDirs.includes(ent.name) : ent.name.endsWith('.md') && ent.name !== 'README.md') {
+      problems.push(`projects/${ent.name}: not in a status folder (${projectDirs.join(', ')})`);
+    }
   }
   const groups = POLICY_GROUPS.map(([id]) => id);
   for (const p of await policies(hqRoot)) {

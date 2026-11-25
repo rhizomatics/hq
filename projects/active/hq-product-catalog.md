@@ -1,6 +1,6 @@
 ---
 summary: A product catalogue on the site, each product a home for its downloads, page views, RFCs and reports
-programme: hq-as-a-product
+programme: hq-as-product
 ---
 
 # HQ Product Catalogue
@@ -323,8 +323,10 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 - [x] @human Confirm TOML
 - [ ] @agent Research how agent plugin marketplaces are discovered and consumed, to settle whether
       `agent-plugins` stays org-wide or splits by domain
-- [ ] @agent hq-stats: normalised model, both readers, `migrate`, `schema: 2` in `stats.json`, release 0.3.0
-- [ ] @agent hq: switch to `hq.toml` / `products.toml` / `community.toml` via `hq-stats migrate`, then the site scripts, Python scripts and skills
+- [x] @agent hq-stats: normalised model, both readers, `migrate`, `schema: 2` in `stats.json`, release 0.3.0
+      ([hq-stats#8](https://github.com/rhizomatics/hq-stats/pull/8))
+- [x] @agent hq: switch to `hq.toml` / `products.toml` / `community.toml` via `hq-stats migrate`, then the site scripts, Python scripts and skills (hq 1.1.0)
+- [ ] @human Create the `picoware` and `hq` area labels in hq-private (lines without an existing area label)
 - [ ] @agent hq-seed: skeleton `hq.toml` and empty `products.toml`
 - [ ] @pair Product Catalogue pages on the site (the original goal of this project)
 
@@ -340,3 +342,12 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 - 2026-11-24: Split into `hq.toml`, `products.toml`, `community.toml`, each top level one kind of table.
 - 2026-11-24: TOML decided. `.github` becomes product `homepage` (repo override). Distributions defined in
   `hq.toml` (full set) and in hq-stats (what it can count), names matching where they overlap.
+- 2026-11-25: hq-stats 0.3.0 built (hq-stats#8): one normalised model read from either layout, `migrate`, products
+  spanning several repos summed at build. `schema: 2` became `format: 2`, since `stats.json` already had a
+  `format` field. `repos.toml` read until at least 1.0 and not before 2027-06-01. On HQ's snapshots, old and new
+  layouts give byte-identical `stats.json`, and the same figures as 0.2.3 (only `.github`'s website id changed).
+- 2026-11-25: HQ switched (1.1.0): `repos.toml` gone; lines `homeassistant`, `signalk`, `picoware`, `mqtt`,
+  `hq`, `org`; `[distributions]` and `[platforms]` (with `builds_on`) in `hq.toml`; site scripts share
+  `isProduct` and the repo list through `hq-config.mjs`; check-hq validates distributions, platforms and
+  community `extends`; `sync_sandbox.py` maps profiles by platform. MQTT has no default platform (it had no
+  `upstream`). New area labels `picoware` and `hq` still to create.

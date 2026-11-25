@@ -4,10 +4,22 @@ import hqStats from '@rhizomatics/hq-stats/astro';
 import { usageSidebar } from '@rhizomatics/hq-stats/sidebar';
 import { defineConfig } from 'astro/config';
 import { ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
-import { policies, policyGroups } from './scripts/lib/hq-docs.mjs';
+import { policies, policyGroups, projects } from './scripts/lib/hq-docs.mjs';
 
 // Usage pages from @rhizomatics/hq-stats: hq.toml's [stats] says where the snapshots and stats.json are.
 const stats = { config: '..' };
+
+async function activeProjectRedirects() {
+  const list = await projects(new URL('..', import.meta.url).pathname);
+  return Object.fromEntries(
+    list
+      .filter((p) => p.rel.startsWith('projects/active/'))
+      .map((p) => {
+        const name = p.rel.replace(/^projects\/active\//, '').replace(/\.md$/, '').toLowerCase();
+        return [`/projects/${name}/`, `/projects/active/${name}/`];
+      }),
+  );
+}
 
 // Policies: the list and how it works, then each policy under its `group:`, as on the list page.
 async function policiesSidebar() {
@@ -22,7 +34,11 @@ async function policiesSidebar() {
 export default defineConfig({
   site: ORG.siteUrl,
   trailingSlash: 'always',
-  redirects: { '/actions/': '/deployments/' },
+  redirects: {
+    '/actions/': '/deployments/',
+    // Active projects lived at projects/<name> before projects/active/ (2026-11-25).
+    ...(await activeProjectRedirects()),
+  },
   integrations: [
     starlight({
       title: `${ORG.name} HQ`,

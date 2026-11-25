@@ -1,7 +1,7 @@
 # Skill providers
 
 Who else provides what each HQ skill does, so a skill is retired when someone else does it as well or better
-([HQ as a product](../projects/hq-as-product.md), Phase 1). The choice per capability is recorded in
+([HQ as a product](../projects/active/hq-as-product.md), Phase 1). The choice per capability is recorded in
 `[capabilities]` in `hq.toml`; this file holds the evidence behind it. Surveyed 2026-11-19 from vendors' own
 repos and docs, skill marketplaces and GitHub's agentic workflow (gh-aw) catalogues.
 

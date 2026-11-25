@@ -9,7 +9,7 @@ agent: pm
 Runs every Friday. The last Friday of the month is the **monthly** review (weekly + refinement);
 every other Friday is the **weekly** review.
 
-Active projects are `projects/*.md`; ideas not yet started are in `projects/proposed/`. Project files
+Active projects are `projects/active/*.md`; drafted projects waiting to start are in `projects/queued/`, ideas not yet started in `projects/proposed/`. Project files
 are the maintainer's own documents and vary in shape, from a one-line idea to the fuller template
 in `projects/README.md`. Respect their wording; suggest structure rather than imposing it.
 
@@ -93,7 +93,7 @@ moving a file between folders is the whole change. Add a `summary:` to any proje
   "all HA components have no YAML") belongs in `policies/` (see `policies/README.md`), with any big
   catch-up work kept as a project. Propose the move and a draft of the policy.
 - Proposed projects: is any now ready to start (move up to `projects/`), or better shelved?
-- Active projects that look finished (propose moving to `projects/done/`) or abandoned (propose
+- Queued projects whose blockers have cleared (propose moving to `projects/active/`); active projects that look finished (propose moving to `projects/done/`) or abandoned (propose
   `projects/shelved/` with a dated reason). Moves between folders are the maintainer's call.
 - Shelved projects: has anything changed (platform, demand) that makes one worth reviving?
 

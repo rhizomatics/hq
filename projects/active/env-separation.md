@@ -59,7 +59,7 @@ No unencrypted secrets in any environment.
 
 ### Phase 1: Secrets
 
-Delivered by [mise environments](mise-environments.md), with fnox; its plan has the tasks.
+Delivered by [mise environments](vaults.md), with fnox; its plan has the tasks.
 
 Goals:
 - Replace all `.env` files holding secrets or private info, like URLs, with encrypted stores, and likewise for config files
@@ -84,7 +84,7 @@ production clones with external secrets redacted. These depend on the AWS migrat
 ## Decisions
 
 - 2026-11-23 jeyrb: fnox over envforge for secrets; Phase 1 is run as the
-  [mise environments](mise-environments.md) project.
+  [mise environments](vaults.md) project.
 
 ## Log
 

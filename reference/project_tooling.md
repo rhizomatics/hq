@@ -22,7 +22,7 @@
   Chrome profile logged in with agent accounts only; headless Playwright for preview environments,
   docs sites and screenshots.
 - What exists, hosts, accounts and sandbox needs: `hq-private/reference/diagnostics.md`. Project:
-  `projects/agent-diagnostics.md`.
+  `projects/active/agent-diagnostics.md`.
 
 ## Github Actions
 - All production projects

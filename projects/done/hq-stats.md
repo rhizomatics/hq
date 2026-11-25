@@ -11,7 +11,7 @@ started: 2026-11-19
 
 Any open source developer, even with a single product, can collect usage for their projects across every channel
 they publish to (downloads and website page views) and show it publicly, with no AI and little set-up. Shares
-branding with [HQ as a product](hq-as-product.md), ships before it and is marketed first, as the low-friction
+branding with [HQ as a product](../active/hq-as-product.md), ships before it and is marketed first, as the low-friction
 way in to HQ.
 
 ## Context
@@ -26,7 +26,7 @@ way in to HQ.
 - Platform channels (HACS, HA analytics, SignalK) are what nobody else offers; generic ones (PyPI, npm, ghcr,
   GitHub traffic, GoatCounter page views) make it useful beyond those platforms.
 - **Shape (2026-11-16): a plain npm package, `@<org>/hq-stats`**, published the same way as the org's other npm
-  packages ([release policy](../policies/release.md): GitHub Actions, gated on CI, staged npm release with
+  packages ([release policy](../../policies/release.md): GitHub Actions, gated on CI, staged npm release with
   manual approval, immutable semver releases). Its source lives in its own repo; nothing about a user lives there.
   - **Configuration and outputs live in the user's `hq` repo**: `repos.toml` (or a skeleton one for someone without
     HQ), an `hq-stats` section for options, and the snapshots and public aggregates under `data/`. Snapshots record
@@ -43,7 +43,7 @@ way in to HQ.
   only, never on PR code.
 - Branding: the HQ logo with `stats` beneath in a complementary colour, a similar binary style at a smaller size.
 - **Community**: contributed projects built on the org's products (`[community.<id>]` in `repos.toml`, design in
-  [HQ as a product](hq-as-product.md#community-contributed-projects)) are collected from public sources only:
+  [HQ as a product](../active/hq-as-product.md#community-contributed-projects)) are collected from public sources only:
   stars, forks, releases, downloads per channel; no traffic or clones. Kept apart from the org's own figures:
   separate in the data, their own pages, never in the org's totals.
 - **Not stats**: `collect_github.py` (alerts, referrers, discussions) stays in `hq-private`. Security (incl. OpenSSF
@@ -111,7 +111,7 @@ _None._
 
 ## Log
 
-- 2026-11-15 — Created from the [HQ as a product](hq-as-product.md) decision to ship stats and site first, as
+- 2026-11-15 — Created from the [HQ as a product](../active/hq-as-product.md) decision to ship stats and site first, as
   a separate product with shared branding.
 - 2026-11-15 — Collectors plus optional pages on a subdomain, with a navigation manifest for HQ's menu; everything
   public. `hq-private/scripts/collect_stats.py` now skips private repos. Community projects added, collected from
@@ -123,7 +123,7 @@ _None._
   GoatCounter collection added to `collect_stats.py` and the Usage section split into Downloads and Page views;
   page views appear once the `GOATCOUNTER_TOKEN` secret exists.
 - 2026-11-16 — Decided: snapshots live in `hq`, public data only. GitHub traffic (repo page views, clones) counts as public and is kept.
-- 2026-11-19 — Started (moved to active) as the last Phase 0 task of [HQ as a product](hq-as-product.md). Built in a
+- 2026-11-19 — Started (moved to active) as the last Phase 0 task of [HQ as a product](../active/hq-as-product.md). Built in a
   local `hq-stats` repo next to `hq`, not yet on GitHub (the repo is the maintainer's to create):
   `hq-stats collect` (the JS port of `collect_stats.py`, same snapshot format plus each repo's description and
   archive state, so `build` no longer needs the private GitHub snapshot), `hq-stats build` (from `build-stats.mjs`),
@@ -160,5 +160,5 @@ _None._
   0.2.0. Community figures appear from the next daily snapshot. Left: post the announcements
   ([hq-private#137](https://github.com/rhizomatics/hq-private/issues/137), [#138](https://github.com/rhizomatics/hq-private/issues/138)), then the success test.
 - 2026-11-22 - announced on SignalK and HomeAssistant development discord channels. First developer and feature request within a few hours
-- 2026-11-23 — Known outside users, per the maintainer: [HQ as a product](../hq-as-product.md) moves on to
-  [HQ Seed](../hq-seed.md), and HQ Stats users are the first people to offer it to.
+- 2026-11-23 — Known outside users, per the maintainer: [HQ as a product](../active/hq-as-product.md) moves on to
+  [HQ Seed](../active/hq-seed.md), and HQ Stats users are the first people to offer it to.

@@ -15,11 +15,11 @@ improvements from the core product without losing their local changes. It's desi
 says honestly that it works best with Claude. It's built from existing skill packages wherever they exist, adding its own skills only to fill gaps.
 
 There should be value even for a single-product developer: usage stats and the public site are pulled out as
-a separate product, [HQ Stats](done/hq-stats.md), which ships and is marketed first.
+a separate product, [HQ Stats](../done/hq-stats.md), which ships and is marketed first.
 
 ## Context
 
-- **Two products.** (1) [HQ Stats](done/hq-stats.md): deterministic collection of usage per channel (PyPI, npm,
+- **Two products.** (1) [HQ Stats](../done/hq-stats.md): deterministic collection of usage per channel (PyPI, npm,
   ghcr, HACS, HA analytics, website page views) and its public pages, as an npm package configured and stored
   in the user's `hq` repo (reshaped 2026-11-16). No AI needed. (2) HQ, the agentic operating model: personas,
   policies, processes and skills. Different audiences and set-up costs; (1) is the low-friction way in to (2),
@@ -32,7 +32,7 @@ a separate product, [HQ Stats](done/hq-stats.md), which ships and is marketed fi
   by a choice of engine (Copilot, Claude, Codex). Ready-made OSPO workflows overlap HQ: org health report,
   contributor report, open source compliance check, stale repo report. Maintained by GitHub and improving, and
   engine-neutral, which also helps non-Claude users.
-- **OpenSSF Allstar** looks unmaintained; not a candidate. OpenSSF Scorecard is (see [OpenSSF](done/openssf.md)).
+- **OpenSSF Allstar** looks unmaintained; not a candidate. OpenSSF Scorecard is (see [OpenSSF](../done/openssf.md)).
 - **What HQ adds** over gh-aw's examples: platform-aware stats (HACS, HA analytics, SignalK), forum watching,
   policies aligned to an upstream platform, personas that disagree on purpose, private/public split, the site.
 
@@ -91,7 +91,7 @@ its default policies and what it adds to processes and skills: see [HQ Seed](hq-
 
 - **Core:** project and process model, issue/PR conventions, support, PRs, Dependabot, registry, projects,
   security merge step, provider config, the two reviews, brand kit structure. Stats and the site come from
-  [HQ Stats](done/hq-stats.md).
+  [HQ Stats](../done/hq-stats.md).
 - **Packs:** `homeassistant` and `signalk`: forum watch sources and topic terms, platform alignment policies,
   platform change tracking, upstream advisories (`security_watch`), stats channels (HACS, HA analytics).
 - No language modules: channel fields in `repos.toml` (`pypi`, `npm`, `ghcr`, ...) already select collectors.
@@ -105,7 +105,7 @@ standing are visible without being mixed into the org's own numbers.
 - **Registry:** `[community.<id>]` entries in `repos.toml`, beside `[repos]`: the project's GitHub repo, its
   author, the product it extends, and the same channel fields as our repos (`npm`, `pypi`, `hacs_zip`,
   `ha_domain`, ...). Only public projects.
-- **Stats** (in [HQ Stats](done/hq-stats.md)): collected by the same collectors, from public sources only
+- **Stats** (in [HQ Stats](../done/hq-stats.md)): collected by the same collectors, from public sources only
   (stars, forks, releases, last release date, downloads per channel). Traffic and clones need push access to
   their repo, so they're never collected. Shown in their own Community section and kept out of the org's totals.
 - **Reputation:** the reputation review covers the community too: mentions and sentiment, health (stale,
@@ -113,7 +113,7 @@ standing are visible without being mixed into the org's own numbers.
   thanked, notable ones mentioned in announcements).
 - **Breaking changes:** before a release that changes an extension point, the architect lists the community
   projects that use it, so the release notes and any heads-up reach their authors.
-- **Discovery:** a script finds candidates, per [scripts over agents](../policies/scripts_over_agents.md):
+- **Discovery:** a script finds candidates, per [scripts over agents](../../policies/scripts_over_agents.md):
   npm and PyPI dependents of our packages, a GitHub topic or code search for our package names, forum mentions
   from forum watch. The registry check proposes additions; the maintainer approves, since the entry names
   someone else's project publicly. An author who asks to be left out is removed.
@@ -168,11 +168,11 @@ a separate domain only once there are outside users.
       `projects/`, `policies/`, `reference/`, the site home page, and the admin workflows synced from `<org>/.github`
 - [ ] @agent Platform names (Home Assistant, SignalK, HACS) out of core files: moved to [HQ Seed](hq-seed.md), where the packs they belong in are made
 - [x] @agent Make `AGENTS.md` canonical, `CLAUDE.md` a pointer plus Claude-only notes (2026-11-15)
-- [x] @agent Scripts over agents ([policy](../policies/scripts_over_agents.md)): project tables, routine schedule and
+- [x] @agent Scripts over agents ([policy](../../policies/scripts_over_agents.md)): project tables, routine schedule and
       persona **Runs** generated by the site build; mechanical plumbing checks in `mise run check-hq` (2026-11-15).
       Part of the core: every seeded HQ gets the generators and checks
 
-- [x] @pair Pull usage stats and the site's Usage section out into [HQ Stats](done/hq-stats.md); it ships ahead of the phases below
+- [x] @pair Pull usage stats and the site's Usage section out into [HQ Stats](../done/hq-stats.md); it ships ahead of the phases below
       (2026-11-19: built and checked as a local `hq-stats` package; publishing it and moving the HQ site onto it
       are in the HQ Stats plan)
 
@@ -180,13 +180,13 @@ a separate domain only once there are outside users.
 
 - [x] @agent Survey existing skill packages for each HQ capability: vendors' own skills, skill marketplaces,
       agent plugin packages and gh-aw workflows. List per capability what exists, who maintains it and how it compares
-      (2026-11-19, [skill providers](../reference/skill_providers.md))
+      (2026-11-19, [skill providers](../../reference/skill_providers.md))
 - [x] @agent Run the best candidates beside HQ skills on Rhizomatics repos. The question (2026-11-19) was
       whether HQ should support gh-aw/OSPO workflows at all, as an optional provider. Four OSPO workflows ran in
       hq-private from 2026-11-19 ([hq-private#121](https://github.com/rhizomatics/hq-private/pull/121)); ended early on
-      2026-11-23 with enough data (results in [skill providers](../reference/skill_providers.md#githubs-ospo-workflows-gh-aw))
+      2026-11-23 with enough data (results in [skill providers](../../reference/skill_providers.md#githubs-ospo-workflows-gh-aw))
 - [x] @pair After the trial, decide whether HQ supports gh-aw/OSPO workflows as optional providers (2026-11-23: no;
-      see Decisions. Their place is a how-to in [skill providers](../reference/skill_providers.md#using-them))
+      see Decisions. Their place is a how-to in [skill providers](../../reference/skill_providers.md#using-them))
 - [x] @agent Survey existing security auditing skills and workflows; pick at least two providers to run alongside Dependabot and CodeQL
       (2026-11-19: zizmor for Actions workflows, built as a shared admin workflow; Socket.dev for package supply chain,
       a GitHub App for the maintainer to decide on ([hq-private#124](https://github.com/rhizomatics/hq-private/issues/124)). Scorecard, Grype and secret scanning were already running)
@@ -199,7 +199,7 @@ a separate domain only once there are outside users.
 - [x] @pair Split skills, policies and reference into core and packs: moved to [HQ Seed](hq-seed.md) (2026-11-23)
 - [ ] @pair Community: `[community.*]` schema in `repos.toml`; discovery script; registry check proposes
       additions; reputation review and release checks cover it. Seed Rhizomatics' entries (known plugins,
-      Supernotify Cards) for the maintainer to approve. Stats side is in [HQ Stats](done/hq-stats.md)
+      Supernotify Cards) for the maintainer to approve. Stats side is in [HQ Stats](../done/hq-stats.md)
 - [ ] @pair Brand kit structure in core; Rhizomatics images move to wherever its products keep them
 - [ ] @pair Per-agent adapters generated from personas and skills; try one non-Claude engine end to end
 
@@ -226,7 +226,7 @@ Rhizomatics alone.
 
 Decided:
 
-- 2026-11-15 — Stats and site become a separate project and product, [HQ Stats](done/hq-stats.md), with shared
+- 2026-11-15 — Stats and site become a separate project and product, [HQ Stats](../done/hq-stats.md), with shared
   branding. It's pulled out in the first phase and marketed ahead of HQ itself.
 - 2026-11-15 — Reusing existing skill packages is fundamental, gh-aw being only one source. HQ adds skills only
   for gaps and never does what a vendor has a better skill for. Skills in use, obsolete or retirable in favour of
@@ -242,7 +242,7 @@ Decided:
 - 2026-11-23 — gh-aw trial complete, ended a week early: HQ doesn't support the OSPO workflows as a provider, not
   even an opt-in one. Their reports were accurate but gave Rhizomatics nothing to act on; they're worthwhile only
   in large organisations with many repos and developers. They're worth no more than a how-to for such an org
-  ([skill providers](../reference/skill_providers.md#using-them)). The `gh-aw` provider kind stays in the
+  ([skill providers](../../reference/skill_providers.md#using-them)). The `gh-aw` provider kind stays in the
   `[capabilities]` schema for an instance that adds one.
 
 - 2026-11-23 — Socket.dev: already set up on every Rhizomatics repo ([hq-private#124](https://github.com/rhizomatics/hq-private/issues/124)).
@@ -259,7 +259,7 @@ _None._
   seed + upstream review model for support burden; pluggable capability providers (several security auditors);
   gh-aw to replace skills where it does as well; agent-neutral; brand kit as structure only; Allstar dropped
   (unmaintained).
-- 2026-11-15 — Decisions recorded: stats split out as [HQ Stats](done/hq-stats.md), first to market; skill-package
+- 2026-11-15 — Decisions recorded: stats split out as [HQ Stats](../done/hq-stats.md), first to market; skill-package
   reuse made fundamental, with the upstream review replaced by two reviews (product architecture, instance
   alignment). Plan updated to match.
 - 2026-11-15 — Agent-neutral by design, but stated honestly as best used with Claude; other engines listed
@@ -270,7 +270,7 @@ _None._
   canonical instructions with a "Names used in these docs" section (`<org>`, the maintainer, `hq-private`);
   `CLAUDE.md` imports it and keeps only Claude notes (Haiku researcher, cloud routine sandbox). Skills,
   personas, processes and `team.md` name roles, not the org. Policy review now greps for org names outside
-  config. Platform names deferred to Phase 2. Stats extraction is the [HQ Stats](done/hq-stats.md) project's
+  config. Platform names deferred to Phase 2. Stats extraction is the [HQ Stats](../done/hq-stats.md) project's
   work: its collectors already read the org from `repos.toml`.
 - 2026-11-15 — New policy, scripts over agents: lists that repeat facts are generated (project tables from
   `summary:` frontmatter, schedule from cadence **When:**/**Environment:**, persona **Runs** from **Who:**), and
@@ -303,10 +303,10 @@ _None._
   routine's processes have one persona and one start time. Candidates for scripts next: the registry check and
   the PR report's listing.
 - 2026-11-15 — project-review: first review. Phase 0 is 4 of 5 done; the open box (platform names out of core) is deferred to Phase 2 by design. Nothing is `@human`-blocked. Note the Log above is out of order and says "moved to proposed" before "Started (moved to active)"; status is active.
-- 2026-11-19 — Phase 0 finished: [HQ Stats](done/hq-stats.md) built as a local package (collector, aggregate, Usage pages
+- 2026-11-19 — Phase 0 finished: [HQ Stats](../done/hq-stats.md) built as a local package (collector, aggregate, Usage pages
   as an Astro integration) that reproduces the HQ site's Usage section. What's left there is publishing it.
   Platform names out of core stays in Phase 2.
-- 2026-11-19 — Phase 1 surveys done ([skill providers](../reference/skill_providers.md)). No third-party provider
+- 2026-11-19 — Phase 1 surveys done ([skill providers](../../reference/skill_providers.md)). No third-party provider
   fully covers an HQ capability; GitHub's OSPO gh-aw workflows overlap four skills partly and go on a two-week
   trial in hq-private (hq-private#121), each writing an unassigned `trial` issue. The survey's mirrors-only listing
   of the OSPO workflows was wrong: they're in github/awesome-copilot. gh-aw reads every public repo from one
