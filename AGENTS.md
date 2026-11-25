@@ -54,7 +54,7 @@ HQ is those two repos:
 ## Layout
 
 - `hq.toml`, `products.toml`, `community.toml` — the registry: the org settings above, product lines, platforms and distributions (`hq.toml`); every product, its line, repos and artefacts (`products.toml`); community projects and blogs (`community.toml`). Read through hq-stats' `loadConfig`. Source of truth for all processes; update `products.toml` when a repo is added, renamed or starts publishing somewhere new.
-- `projects/` — one folder per status: `active/` in progress, `queued/` drafted and waiting to start, `proposed/` ideas not started, `done/` finished, `shelved/` rejected or postponed indefinitely. Format, task tags (`@agent`/`@pair`/`@human`) in `projects/README.md`; the site's project list is generated from each file's folder and `summary:`.
+- `projects/` — one folder per status: `active/` in progress, `ongoing/` background work done as products are touched, `blocked/` waiting on something (with `blocked:` saying why), `ready/` drafted and waiting to start, `proposed/` ideas not started, `done/` finished, `shelved/` rejected or postponed indefinitely. Format, task tags (`@agent`/`@pair`/`@human`) in `projects/README.md`; the site's project list is generated from each file's folder and `summary:`.
 - `processes/` — recurring routines, one file per cadence (`daily.md` … `quarterly.md`): when, persona, environment, output. The site's process list (the schedule) and each persona's **Runs** in `team.md` are generated from them.
 - `team.md` — who owns what, character, handoffs between personas, disagreements.
 - `admin/` — shared repo admin for every product repo: caller templates, `sync-admin.sh` and the shared

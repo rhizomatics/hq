@@ -8,7 +8,9 @@
 // The index pages of projects/, processes/ and policies/ on the site are generated lists too (listPage);
 // each folder's README becomes that section's "How it works" page.
 
+import { execFile } from 'node:child_process';
 import { readFile, readdir, stat } from 'node:fs/promises';
+import { promisify } from 'node:util';
 import path from 'node:path';
 import { loadConfig } from '@rhizomatics/hq-stats';
 
@@ -22,11 +24,15 @@ const CADENCES = [
 // Project folders, in the order the list shows them. The folder is the status; nothing sits in projects/ itself.
 export const PROJECT_GROUPS = [
   ['active', 'Active'],
-  ['queued', 'Queued'],
+  ['ongoing', 'Ongoing'],
+  ['blocked', 'Blocked'],
+  ['ready', 'Ready'],
   ['proposed', 'Proposed'],
   ['done', 'Done'],
   ['shelved', 'Shelved'],
 ];
+// Groups shown folded away on the list page and in the sidebar.
+export const COLLAPSED_GROUPS = ['done', 'shelved'];
 
 // Policy groups (`group:` in each policy's frontmatter), in the order the list shows them.
 export const POLICY_GROUPS = [
@@ -54,7 +60,50 @@ const cell = (s) => s.replace(/\|/g, '\\|');
 
 // ---- projects ----
 
-export async function projects(hqRoot) {
+const exec = promisify(execFile);
+
+// When a project file entered each status folder, from git history (renames followed). A file at the top of
+// projects/, from before the status folders, was active. Null dates for a file git doesn't have yet.
+async function projectHistory(hqRoot, rel) {
+  let out;
+  try {
+    ({ stdout: out } = await exec('git', ['log', '--follow', '--format=%x00%ad', '--date=short', '--name-status', '--', rel], { cwd: hqRoot }));
+  } catch {
+    return { created: null, revised: null, entered: {} };
+  }
+  // Oldest first: each commit's date and the path the file had after it.
+  const commits = out
+    .split('\0')
+    .filter(Boolean)
+    .map((chunk) => {
+      const [date, ...lines] = chunk.trim().split('\n');
+      const change = lines.find((l) => l.trim());
+      return { date: date.trim(), path: change ? change.split('\t').at(-1) : null };
+    })
+    .filter((c) => c.path)
+    .reverse();
+  const folderOf = (p) => {
+    const parts = p.split('/');
+    return parts.length > 2 ? parts[1] : 'active';
+  };
+  const entered = {};
+  let current = null;
+  for (const c of commits) {
+    const folder = folderOf(c.path);
+    if (folder !== current) entered[folder === 'queued' ? 'ready' : folder] = c.date;
+    current = folder;
+  }
+  return { created: commits[0]?.date ?? null, revised: commits.at(-1)?.date ?? null, entered };
+}
+
+// The latest date at the start of a line in the **Log** section, the last time work was recorded.
+function lastLogged(body) {
+  const log = body.split(/^## Log\s*$/m)[1];
+  if (!log) return null;
+  return [...log.matchAll(/^\s*[-*]\s*(\d{4}-\d{2}-\d{2})/gm)].map((m) => m[1]).sort().at(-1) ?? null;
+}
+
+export async function projects(hqRoot, { history = false } = {}) {
   const out = [];
   for (const [dir, group] of PROJECT_GROUPS) {
     const abs = path.join(hqRoot, 'projects', dir);
@@ -63,7 +112,21 @@ export async function projects(hqRoot) {
       const rel = path.posix.join('projects', dir, f);
       const { fields, body } = frontmatter(await readFile(path.join(abs, f), 'utf8'));
       const title = fields.title || body.match(/^#\s+(.+)$/m)?.[1]?.trim() || f.replace(/\.md$/, '');
-      out.push({ rel, slug: f.replace(/\.md$/, ''), group, title, summary: fields.summary || null, programme: fields.programme || null });
+      const project = {
+        rel,
+        dir,
+        slug: f.replace(/\.md$/, ''),
+        group,
+        title,
+        summary: fields.summary || null,
+        programme: fields.programme || null,
+        blocked: fields.blocked || null,
+        blockedBy: fields.blocked_by || null,
+        started: fields.started || null,
+        lastLogged: lastLogged(body),
+      };
+      if (history) project.history = await projectHistory(hqRoot, rel);
+      out.push(project);
     }
   }
   return out;
@@ -72,22 +135,74 @@ export async function projects(hqRoot) {
 // The project a `programme:` names (by file name, in any status folder), or null.
 const programmeOf = (list, p) => (p.programme ? (list.find((x) => x.slug === p.programme) ?? null) : null);
 
-function projectTables(list, fromDir) {
+// The GitHub org, for issue references written as `repo#12`.
+const orgOf = (hqRoot) => loadConfig({ config: hqRoot }).settings.org.github;
+
+// A `blocked_by:` as a link: a project file name, a path in hq, an issue or PR (`owner/repo#12`), or a URL.
+function blockedByLink(list, ref, fromDir, org) {
+  if (!ref) return '';
+  if (/^https?:\/\//.test(ref)) return `[${cell(ref.replace(/^https?:\/\/(www\.)?/, ''))}](${ref})`;
+  const issue = ref.match(/^([\w.-]+)\/([\w.-]+)#(\d+)$/) ?? ref.match(/^([\w.-]+)#(\d+)$/);
+  if (issue) {
+    const [owner, repo, n] = issue.length === 4 ? issue.slice(1) : [org, issue[1], issue[2]];
+    return `[${cell(ref)}](https://github.com/${owner}/${repo}/issues/${n})`;
+  }
+  const project = list.find((x) => x.slug === ref.replace(/\.md$/, '').split('/').at(-1));
+  return project ? `[${cell(project.title)}](${path.posix.relative(fromDir, project.rel)})` : `\`${cell(ref)}\``;
+}
+
+// Date columns that make sense for each status, as [heading, value].
+function dateColumns(dir, p) {
+  const h = p.history ?? { entered: {} };
+  const started = p.started || h.entered.active || h.entered.ongoing || null;
+  // The Log says when work happened; commits also come from mechanical edits (links fixed across every project),
+  // so they only stand in for a project with no dated Log entry.
+  const lastWork = p.lastLogged ?? h.revised ?? null;
+  switch (dir) {
+    case 'active':
+    case 'ongoing':
+      return [['Started', started], ['Last work', lastWork]];
+    case 'blocked':
+      return [['Blocked since', h.entered.blocked ?? null]];
+    case 'ready':
+      return [['Proposed', h.created], ['Ready', h.entered.ready ?? null]];
+    case 'proposed':
+      return [['Proposed', h.created], ['Last revised', h.revised]];
+    case 'done':
+      return [['Started', started], ['Completed', h.entered.done ?? null]];
+    case 'shelved':
+      return [['Proposed', h.created], ['Shelved', h.entered.shelved ?? null]];
+    default:
+      return [];
+  }
+}
+
+function projectTables(list, fromDir, org) {
   const link = (p) => `[${cell(p.title)}](${path.posix.relative(fromDir, p.rel)})`;
   const programmeCell = (p) => {
     const owner = programmeOf(list, p);
     return owner ? link(owner) : p.programme ? cell(p.programme) : '';
   };
-  const byStatus = PROJECT_GROUPS.map(([, group]) => {
-    const rows = list.filter((p) => p.group === group).sort((a, b) => a.title.localeCompare(b.title));
-    const table = rows.length
-      ? [
-          '| Project | Goal | Programme |',
-          '|---|---|---|',
-          ...rows.map((p) => `| ${link(p)} | ${cell(p.summary ?? '_no summary_')} | ${programmeCell(p)} |`),
-        ].join('\n')
-      : '_None._';
-    return `## ${group}\n\n${table}`;
+  const byStatus = PROJECT_GROUPS.map(([dir, group]) => {
+    const rows = list.filter((p) => p.dir === dir).sort((a, b) => a.title.localeCompare(b.title));
+    if (!rows.length) return `## ${group}\n\n_None._`;
+    const dates = dateColumns(dir, rows[0]).map(([heading]) => heading);
+    const blocked = dir === 'blocked';
+    const headings = ['Project', 'Goal', ...(blocked ? ['Blocked on'] : []), ...dates, 'Programme'];
+    const table = [
+      `| ${headings.join(' | ')} |`,
+      `|${headings.map(() => '---').join('|')}|`,
+      ...rows.map((p) => {
+        const reason = blocked ? [`${cell(p.blocked ?? '_no reason given_')}${p.blockedBy ? ` (${blockedByLink(list, p.blockedBy, fromDir, org)})` : ''}`] : [];
+        // Non-breaking hyphens, so a date never wraps in a narrow column.
+        const values = dateColumns(dir, p).map(([, v]) => (v ? v.replaceAll('-', '\u2011') : '–'));
+        return `| ${[link(p), cell(p.summary ?? '_no summary_'), ...reason, ...values, programmeCell(p)].join(' | ')} |`;
+      }),
+    ].join('\n');
+    // Finished and shelved projects are folded away: the list is about what's moving.
+    return COLLAPSED_GROUPS.includes(dir)
+      ? `## ${group}\n\n<details>\n<summary>${rows.length} ${group.toLowerCase()} project${rows.length === 1 ? '' : 's'}</summary>\n\n${table}\n\n</details>`
+      : `## ${group}\n\n${table}`;
   });
   // Programmes: each owning project with its member projects, whatever their status.
   const owners = [...new Set(list.map((p) => p.programme).filter(Boolean))]
@@ -95,9 +210,9 @@ function projectTables(list, fromDir) {
     .filter(Boolean)
     .sort((a, b) => a.title.localeCompare(b.title));
   if (!owners.length) return byStatus.join('\n\n');
-  const order = Object.fromEntries(PROJECT_GROUPS.map(([, g], i) => [g, i]));
+  const order = Object.fromEntries(PROJECT_GROUPS.map(([dir], i) => [dir, i]));
   const programmes = owners.map((owner) => {
-    const members = list.filter((p) => p.programme === owner.slug).sort((a, b) => order[a.group] - order[b.group] || a.title.localeCompare(b.title));
+    const members = list.filter((p) => p.programme === owner.slug).sort((a, b) => order[a.dir] - order[b.dir] || a.title.localeCompare(b.title));
     const rows = [owner, ...members].map((p) => `| ${link(p)}${p === owner ? ' _(programme)_' : ''} | ${p.group} | ${cell(p.summary ?? '_no summary_')} |`);
     return `### ${cell(owner.title)}\n\n| Project | Status | Goal |\n|---|---|---|\n${rows.join('\n')}`;
   });
@@ -197,7 +312,7 @@ function runsList(list, persona, fromDir) {
 // The generated body of a section's index page on the site, under its intro and "How it works" button.
 export async function listPage(section, hqRoot) {
   const fromDir = section;
-  if (section === 'projects') return projectTables(await projects(hqRoot), fromDir);
+  if (section === 'projects') return projectTables(await projects(hqRoot, { history: true }), fromDir, orgOf(hqRoot));
   if (section === 'processes') return scheduleTable(await processes(hqRoot), fromDir);
   if (section === 'policies') return policyTables(await policies(hqRoot), fromDir);
   throw new Error(`no list page for ${section}`);
@@ -210,9 +325,9 @@ export async function expandGenerated(body, rel, hqRoot) {
   if (!body.includes('<!-- hq:')) return body;
   const fromDir = path.posix.dirname(rel);
   const procs = await processes(hqRoot);
-  const projectList = body.includes('<!-- hq:generated projects -->') ? await projects(hqRoot) : [];
+  const projectList = body.includes('<!-- hq:generated projects -->') ? await projects(hqRoot, { history: true }) : [];
   return body
-    .replace(/<!-- hq:generated projects -->/g, () => projectTables(projectList, fromDir))
+    .replace(/<!-- hq:generated projects -->/g, () => projectTables(projectList, fromDir, orgOf(hqRoot)))
     .replace(/<!-- hq:generated schedule -->/g, () => scheduleTable(procs, fromDir))
     .replace(/<!-- hq:runs ([\w-]+) -->/g, (_, persona) => runsList(procs, persona, fromDir));
 }
@@ -263,6 +378,14 @@ export async function checkHq(hqRoot) {
     if (!p.summary) problems.push(`${p.rel}: no summary: in frontmatter`);
     if (p.programme && !programmeOf(projectList, p)) problems.push(`${p.rel}: programme: "${p.programme}" isn't a project file name`);
     if (p.programme === p.slug) problems.push(`${p.rel}: programme: names itself`);
+    // A blocked project says why, and may say on what; nothing outside blocked/ says it's blocked.
+    if (p.dir === 'blocked' && !p.blocked) problems.push(`${p.rel}: blocked projects need a blocked: reason in frontmatter`);
+    if (p.dir !== 'blocked' && (p.blocked || p.blockedBy)) problems.push(`${p.rel}: has blocked: or blocked_by: but isn't in projects/blocked/`);
+    const ref = p.blockedBy;
+    if (ref && !/^https?:\/\//.test(ref) && !/^([\w.-]+\/)?[\w.-]+#\d+$/.test(ref)) {
+      const known = projectList.some((x) => x.slug === ref.replace(/\.md$/, '').split('/').at(-1)) || (await exists(path.join(hqRoot, ref)));
+      if (!known) problems.push(`${p.rel}: blocked_by: "${ref}" isn't a project, a file in hq, an issue (repo#12) or a URL`);
+    }
   }
   for (const [slug, n] of Object.entries(Object.groupBy(projectList, (p) => p.slug)).map(([k, v]) => [k, v.length])) {
     if (n > 1) problems.push(`projects: ${slug}.md is in ${n} status folders`);

@@ -4,21 +4,38 @@ import hqStats from '@rhizomatics/hq-stats/astro';
 import { usageSidebar } from '@rhizomatics/hq-stats/sidebar';
 import { defineConfig } from 'astro/config';
 import { ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
-import { policies, policyGroups, projects } from './scripts/lib/hq-docs.mjs';
+import { COLLAPSED_GROUPS, PROJECT_GROUPS, policies, policyGroups, projects } from './scripts/lib/hq-docs.mjs';
 
 // Usage pages from @rhizomatics/hq-stats: hq.toml's [stats] says where the snapshots and stats.json are.
 const stats = { config: '..' };
 
-async function activeProjectRedirects() {
-  const list = await projects(new URL('..', import.meta.url).pathname);
+const projectList = await projects(new URL('..', import.meta.url).pathname);
+const projectPage = (p) => p.rel.replace(/\.md$/, '').toLowerCase();
+
+// A project's page moves with it from folder to folder (proposed, ready, active, done...): its URL under every
+// other status folder, and at the top of projects/ where active ones once were, redirects to where it is now.
+function projectRedirects() {
   return Object.fromEntries(
-    list
-      .filter((p) => p.rel.startsWith('projects/active/'))
-      .map((p) => {
-        const name = p.rel.replace(/^projects\/active\//, '').replace(/\.md$/, '').toLowerCase();
-        return [`/projects/${name}/`, `/projects/active/${name}/`];
-      }),
+    projectList.flatMap((p) => {
+      const name = p.slug.toLowerCase();
+      const here = `/${projectPage(p)}/`;
+      const olds = [`/projects/${name}/`, `/projects/queued/${name}/`, ...PROJECT_GROUPS.map(([dir]) => `/projects/${dir}/${name}/`)];
+      return [...new Set(olds)].filter((u) => u !== here).map((u) => [u, here]);
+    }),
   );
+}
+
+// Projects: the list and how it works, then each status group with its name capitalised; done and shelved folded.
+function projectsSidebar() {
+  const groups = PROJECT_GROUPS.map(([dir, label]) => ({
+    label,
+    collapsed: COLLAPSED_GROUPS.includes(dir),
+    items: projectList
+      .filter((p) => p.dir === dir)
+      .sort((a, b) => a.title.localeCompare(b.title))
+      .map((p) => ({ label: p.title, slug: projectPage(p) })),
+  })).filter((g) => g.items.length);
+  return [{ label: 'All projects', link: '/projects/' }, { label: 'How it works', link: '/projects/how-it-works/' }, ...groups];
 }
 
 // Policies: the list and how it works, then each policy under its `group:`, as on the list page.
@@ -36,8 +53,7 @@ export default defineConfig({
   trailingSlash: 'always',
   redirects: {
     '/actions/': '/deployments/',
-    // Active projects lived at projects/<name> before projects/active/ (2026-11-25).
-    ...(await activeProjectRedirects()),
+    ...projectRedirects(),
   },
   integrations: [
     starlight({
@@ -70,7 +86,7 @@ export default defineConfig({
             { label: 'Security', link: '/security/' },
           ],
         },
-        { label: 'Projects', collapsed: true, items: [{ autogenerate: { directory: 'projects' } }] },
+        { label: 'Projects', collapsed: true, items: projectsSidebar() },
         { label: 'Processes', collapsed: true, items: [{ autogenerate: { directory: 'processes' } }] },
         { label: 'Policies', collapsed: true, items: await policiesSidebar() },
         { label: 'Reference', collapsed: true, items: [{ autogenerate: { directory: 'reference' } }] },

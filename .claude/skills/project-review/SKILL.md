@@ -9,7 +9,7 @@ agent: pm
 Runs every Friday. The last Friday of the month is the **monthly** review (weekly + refinement);
 every other Friday is the **weekly** review.
 
-Active projects are `projects/active/*.md`; drafted projects waiting to start are in `projects/queued/`, ideas not yet started in `projects/proposed/`. Project files
+Active projects are `projects/active/*.md`, background ones `projects/ongoing/`, stuck ones `projects/blocked/` (with `blocked:` and `blocked_by:` in frontmatter); drafted projects waiting to start are in `projects/ready/`, ideas not yet started in `projects/proposed/`. Project files
 are the maintainer's own documents and vary in shape, from a one-line idea to the fuller template
 in `projects/README.md`. Respect their wording; suggest structure rather than imposing it.
 
@@ -64,13 +64,25 @@ none just waits.
 4. An item carried forward as "still open" in two or more reports gets an issue regardless of the
    persona's schedule.
 
+## Weekly, per blocked project
+
+- Has the block cleared? Check what `blocked_by:` names: the project it waits on is done, the issue closed,
+  the PR merged. If so, propose moving it back to `projects/active/` (or `ready/`) in the project's hq issue.
+- Is `blocked:` still the real reason? If it waits on the maintainer, say so plainly and make sure an hq issue
+  asks for exactly that.
+- Blocked for more than 6 weeks (the site shows **Blocked since**): challenge it. Is there a way round the block,
+  a smaller part that can go ahead, or is it better shelved? Put the question in the project's hq issue.
+
 ## Weekly, per active project
 
 - What moved this week: ticked tasks, Log entries, related commits/issues/PRs in the product repos
   (`gh search issues/prs --owner <org> --updated >=<date>`), relevant process reports
   (e.g. an alignment proposal that belongs to a project).
-- Status check: is the recorded status still true? Stalled (no movement in 3+ weeks)? Blocked, and on
-  whom?
+- Status check: is its folder still true? Blocked, and on whom (propose `projects/blocked/` with the reason)?
+- Challenge progress: an active project with no dated Log entry or commit in 3+ weeks (the site's **Last
+  work**) is stalled. Say what would get it moving, or propose `ongoing/` (it's really background work),
+  `blocked/` or `shelved/`. Ongoing projects aren't expected to move weekly: check them monthly, for whether
+  they're still worth carrying.
 - **Next steps**: the 1–3 concrete next tasks, each tagged `@agent` / `@pair` / `@human`. For
   `@agent` tasks, say whether you could do them next run unattended.
 
@@ -92,8 +104,8 @@ moving a file between folders is the whole change. Add a `summary:` to any proje
 - Is it really a policy? A standing rule with no end state (a preferred library, a docs toolchain,
   "all HA components have no YAML") belongs in `policies/` (see `policies/README.md`), with any big
   catch-up work kept as a project. Propose the move and a draft of the policy.
-- Proposed projects: is any now ready to start (move up to `projects/`), or better shelved?
-- Queued projects whose blockers have cleared (propose moving to `projects/active/`); active projects that look finished (propose moving to `projects/done/`) or abandoned (propose
+- Proposed projects: is any now drafted enough to be ready (move to `projects/ready/`), or better shelved?
+- Ready projects that should start given capacity (propose moving to `projects/active/`); active projects that look finished (propose moving to `projects/done/`) or abandoned (propose
   `projects/shelved/` with a dated reason). Moves between folders are the maintainer's call.
 - Shelved projects: has anything changed (platform, demand) that makes one worth reviving?
 
