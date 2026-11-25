@@ -1,5 +1,6 @@
 ---
 summary: A product catalogue on the site, each product a home for its downloads, page views, RFCs and reports
+programme: hq-as-a-product
 ---
 
 # HQ Product Catalogue

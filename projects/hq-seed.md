@@ -4,6 +4,7 @@ summary: The repo anyone seeds their own HQ from, and keeps taking improvements 
 status: active
 lead: architect
 owner: jeyrb
+programme: hq-as-a-product
 started: 2026-11-23
 ---
 

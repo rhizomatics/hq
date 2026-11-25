@@ -1,5 +1,6 @@
 ---
 summary: HA components with zero YAML, or a small power-user set
+productline: homeassistant
 ---
 
 # De-YAMLification

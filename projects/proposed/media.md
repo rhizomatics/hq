@@ -1,5 +1,6 @@
 ---
 summary: Supporting material aimed at a general audience that uses Rhizomatics products
+team: maintainer
 ---
 
 # Media

@@ -4,6 +4,7 @@ summary: Logs, HA API/DB, config, previews and agent accounts reachable the same
 status: active
 lead: infra-lead
 owner: jeyrb
+programme: env-separation
 started: 2026-11-10
 ---
 
@@ -15,6 +16,11 @@ automation (Claude in Chrome, headless Playwright), and the local services agent
 (OpenObserve, SignalK, Home Assistant, routers). Each one gets a
 dedicated agent account, a skill or doc, a known place for its secret and the same sandbox rules
 in every project.
+
+## Dependencies
+
+- [Environment Separarion](env-separation.md)
+- [Vaults](vaults.md)
 
 ## Context
 

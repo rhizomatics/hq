@@ -5,6 +5,7 @@ status: draft
 lead: infra-lead
 owner: jeyrb
 started: 2026-11-23
+productline: hq
 ---
 
 # HQ Budgets

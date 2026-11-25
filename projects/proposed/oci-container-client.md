@@ -8,4 +8,10 @@ Updates2MQTT has acummulated a lot of OCI container registry client behaviour in
 
 Breaking out the purely OCI functionality could make this more useful to a much larger audience than updates2mqtt itself.
 
+## Open Questions
+
+Where a new library sits in the product lines.
+
+## Log
+
 - 2026-10-30 — project-review: moved to proposed; idea note with no tasks or next step. Move back up when a first task and a start date exist.

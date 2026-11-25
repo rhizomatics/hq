@@ -1,5 +1,6 @@
 ---
 summary: Heating oil / offline fuel storage in HA, using the Energy features
+productline: homeassistant
 ---
 
 # Tankie

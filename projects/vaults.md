@@ -1,19 +1,22 @@
 ---
-title: mise environments
-summary: mise as the way into prod/dev/test environments, starting with secrets through fnox
+title: vaults
+summary: environment scoped for vaults for encrypted secrets and private information scoped per dev/test/prod
 status: active
 lead: infra-lead
 owner: jeyrb
+programme: env-separation
 started: 2026-11-23
 ---
 
-# mise environments
+# Vaults
 
-Use mise as the one way into an environment (production, dev, test) from any checkout. Its tools,
-its tasks and later its hosts and settings all come from there. Start with secrets: replace
-`set -a; . ~/Projects/.hq.env/<env>/<service>.env` with [fnox](https://fnox.jdx.dev) profiles
-that mise tasks call, so secrets are encrypted at rest, scoped to one command and ready to move to
-AWS Secrets Manager without changing how agents ask for them.
+Hold all secrets (passwords, tokens, API keys etc) and private information (real usernames, IP addresses, local URLs) in environment scoped vaults.
+
+Production vaults can selectively be made available to agents on a `break-glass` basis, where a temporary lease granted by human authority (e.g. password entry, biometrics).
+Mise-en-place is defined in [Project Standards](../policies/project_standards.md) as the one way to build and configure an environment (production, dev, test). 
+
+Secrets are all encrypted at rest, scoped to one command and ready to move to a different vaulting technology, e.g. 
+AWS Secrets Manager, without changing how agents ask for them.
 
 This is Phase 1 of [environment separation](env-separation.md). Once proven, its generic parts become
 an [HQ Seed](hq-seed.md) module (working name `secrets`).

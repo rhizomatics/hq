@@ -11,6 +11,15 @@ Expectations of Rhizomatics projects
 
 "All projects" means every repo with any code or markdown, including sites and picoware.
 
+- All tooling will be managed by `mise`
+  - Packages not directly supplied by mise will use its [bootstrap packages](https://mise.jdx.dev/bootstrap/packages/) capability
+  - `mise bootstrap` used for environment wide settings, operating system packages etc
+- All product dependencies by the standard package manager
+  - `uv` for Python
+    - `.venv` holds a virtual environment for all Python projects
+  - `npm` for Node
+  - Package managers themselves provisioned by `mise`
+  - Licences must be compatibile with Apache 2.0 usage
 - `prek` configured and local hooks installed
   - legacy hooks for 'pre-commit' removed
   - No pre-commit.ci: hooks run locally through prek, and the CI workflow runs the linters and
@@ -30,8 +39,6 @@ Expectations of Rhizomatics projects
   - `uv.lock` for Python
   - `npm.lock` for JavaScript
   - pre-commit checks on locks
-- All dependencies will be managed via the platform, the standard package manager and Mise
-  - Licences must be compatibile with Apache 2.0 usage
 - Page views on every website the org publishes (docs sites, the HQ site, www) are counted with
   GoatCounter, cookieless, so no site needs a consent banner. No Google Analytics or other cookie-setting
   trackers. Each website has its own GoatCounter site, recorded as `goatcounter` on its repo in hq's
