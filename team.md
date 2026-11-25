@@ -59,8 +59,9 @@ generated on the site from the **Who:** of each entry in `processes/`; on GitHub
 ## Handoffs
 
 Findings that belong to another persona go into the report under **For other roles**, naming
-the persona; that persona picks them up on its next run (by reading the latest reports), or the
-maintainer turns them into an hq issue.
+the persona; that persona picks them up on its next run (by reading the latest reports). pm's weekly
+project review files an hq issue for any handoff left waiting because its persona won't run again
+soon, or that keeps being carried forward.
 
 | From | Finding | To |
 |---|---|---|

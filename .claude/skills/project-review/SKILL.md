@@ -45,6 +45,25 @@ done (PR links, commits) and what's left, and ticks the items now done in the bo
 `<!-- hq:needs-action -->` only if it asks for something new. Close the issue when every item is
 done or handed to a PR the maintainer only has to merge.
 
+## Then: chase stale handoffs
+
+Handoffs (**For other roles** in a report, see `team.md`) are picked up only when the persona they
+name next runs, and some personas run rarely (tech-writer's only process is quarterly). Make sure
+none just waits.
+
+1. Read the **For other roles** sections of reports in `hq-private/reports/` written in the last
+   six weeks.
+2. An item is **picked up** when a later report by the named persona lists it under its handoffs
+   picked up, or the fix is evident (the file, setting or snapshot now shows it done). An item marked
+   resolved in the report itself is done.
+3. File an hq issue for an item that is not picked up, is more than 7 days old, and whose persona has
+   no scheduled run (per **Who:** and **When:** in `processes/`) in the next 14 days. One issue per
+   item, labelled for the persona's area, its body linking the report section and starting with
+   `<!-- hq:handoff <report path> <persona> -->`. Search open and closed issues for that marker
+   first and don't file twice. Items that are pm's own are worked here, not filed.
+4. An item carried forward as "still open" in two or more reports gets an issue regardless of the
+   persona's schedule.
+
 ## Weekly, per active project
 
 - What moved this week: ticked tasks, Log entries, related commits/issues/PRs in the product repos
@@ -82,7 +101,8 @@ moving a file between folders is the whole change. Add a `summary:` to any proje
 
 `hq-private/reports/projects/YYYY-MM-DD.md`: a **Decisions picked up** line per hq issue acted on
 (issue link and what was done, or "none"; the detail is in the follow-up comment, since the report
-is public), one section per project (status, moved, next steps, flags), then for the monthly review
+is public), a **Handoffs chased** line (issue links filed this run, or "none"; no item detail, since
+handoffs can come from private reports), one section per project (status, moved, next steps, flags), then for the monthly review
 a **Refinements** section with proposed edits as diffs or drafts.
 
 Every `@human` next step, flag (blocked on the maintainer, stalled) and refinement needing a decision
