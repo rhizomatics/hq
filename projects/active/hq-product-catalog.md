@@ -106,11 +106,69 @@ The draft had `Artefact ..> Repo`. Repo hangs off the product instead: artefacts
   `internal` is just `public: false` on a product. `hq` and `hq-private` become one product with two repos.
 - **Not yet:** `utils`. Add a line when its first product exists (`oci-client`); "Libraries" is the plainer name.
 - **`agent-plugins`** is the org-wide catalogue of agent skills, as www.rhizomatics.org.uk is for products, so it
-  sits in `org` for now. **Open:** with one entry it's hard to tell whether it stays org-wide or splits by domain
-  (a Home Assistant plugin set, a SignalK one). That turns on how agent plugin marketplaces are discovered and
-  consumed, which needs looking into before it grows.
+  sits in `org` for now. Whether it stays org-wide or splits by domain (a Home Assistant plugin set, a SignalK
+  one) was researched in "Agent plugin marketplaces" below: it stays org-wide (decided 2026-11-25).
 - The draft called the HA line "Home Assistant Marketplace": that names a channel, not an audience, and HACS isn't
   the only one (HA analytics, PyPI for homeassistant-repl). The channel belongs on the artefact.
+
+### Agent plugin marketplaces (researched 2026-11-25)
+
+How a plugin in `agent-plugins` gets found and installed, and so whether one org-wide marketplace or one per
+domain serves users better. Web research, 2026-11-25; sources at the end.
+
+**How they're discovered.** People find *plugins*, not marketplaces:
+
+- **Anthropic's official directory** (`claude-plugins-official`) is registered in every Claude Code install and
+  browsable from `/plugin`. Third-party plugins are submitted one at a time through a portal
+  (claude.ai/directory/manage), not by PR, and its `marketplace.json` is being cut back to Anthropic's own. Being
+  listed there is worth far more than any marketplace of ours, and it's per plugin.
+- **Aggregator sites** (claudemarketplaces.com, claudepluginhub.com, claude-plugins.dev, aitmpl, awesome lists)
+  crawl GitHub for `marketplace.json` and list each plugin with its description; some rank marketplaces by stars.
+  Thousands of marketplaces are indexed, so a marketplace's name does little; a plugin's name and description
+  ("Home Assistant", "SignalK") are what search finds.
+- **Search and word of mouth within a domain.** For Home Assistant there are already at least six community
+  plugin sets for integration development (roquerodrigo, nolte, jpawlowski, Jam3s97, L3Digital-Net,
+  mleibetseder), each its own small marketplace or plugin repo named after the domain. People reach them by
+  searching "Home Assistant Claude Code plugin", and the hits are plugin repos, not org marketplaces.
+
+**How they're consumed.**
+
+- Claude Code: `claude plugin marketplace add <owner/repo>` once, then install plugins by name. Adding a
+  marketplace is one command, so one marketplace with plugins from two domains costs a user nothing: they install
+  only the plugin they want.
+- GitHub Copilot CLI reads the same `.claude-plugin/marketplace.json` (`copilot plugin marketplace add`), and VS
+  Code recognises `.claude-plugin/plugin.json`, though GitHub's docs warn that fields differ (Copilot uses
+  `repository`/`ref` where Claude Code uses `source`). Not yet checked against our file.
+- The `skills` CLI (skills.sh, `npx skills add owner/repo`) installs `SKILL.md` folders from any GitHub repo into
+  20+ agents (Claude Code, Codex, Cursor, Copilot, Gemini). It reads the repo the skill lives in, so our layout,
+  with each plugin's skills in the product's own repo, already works with it for every agent, marketplace or not.
+
+**Decided 2026-11-25: keep `agent-plugins` org-wide**, in the `org` line, and spend the effort per plugin instead:
+
+1. Keep the plugin in the product repo (as now), so each product's skills version with its code and install
+   straight from it (`npx skills add rhizomatics/homeassistant-repl`) for agents other than Claude Code.
+2. Submit each plugin that's ready to the official directory (an `@human` step: it needs the maintainer's
+   account on the portal). That, not our marketplace, is where users of either domain will see it.
+3. Name and describe plugins for their domain ("Home Assistant ...", "SignalK ..."), as aggregators and search
+   index plugin text. Mention the plugin in the product's README and docs, where its users already are.
+4. Check `marketplace.json` against Copilot CLI's format; adjust if a field it needs is missing.
+
+Split by domain only if one line gets enough plugins (say three or more) that a domain bundle is worth
+advertising on its own, e.g. a "SignalK development" set linked from SignalK forums. Splitting is cheap later: a
+new marketplace repo listing the same plugin sources, with nothing to move.
+
+Sources: [claude-plugins-official README](https://github.com/anthropics/claude-plugins-official/blob/main/README.md),
+[Copilot CLI plugin marketplaces](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-marketplace),
+[Copilot plugin and marketplace reference](https://docs.github.com/en/copilot/reference/plugin-and-marketplace-reference),
+[VS Code agent plugins](https://code.visualstudio.com/docs/agent-customization/agent-plugins.md),
+[claudemarketplaces.com](https://claudemarketplaces.com/marketplaces),
+[claudepluginhub.com](https://www.claudepluginhub.com/marketplaces/anthropics-claude-plugins-official),
+[skills.sh overview](https://rywalker.com/research/skills-sh),
+[npx skills guide](https://dev.to/toyama0919/managing-ai-agent-skills-with-npx-skills-a-practical-guide-2an8),
+HA plugin sets: [roquerodrigo](https://github.com/roquerodrigo/ha-integration-dev-skill),
+[nolte](https://github.com/nolte/claude-home-assistant), [jpawlowski](https://github.com/jpawlowski/ha-custom-integration-skills),
+[Jam3s97](https://github.com/Jam3s97/home-assistant-marketplace-skills),
+[mleibetseder](https://github.com/mleibetseder/home-assistant-agent-plugin).
 
 ### Per-product fields
 
@@ -321,8 +379,11 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 
 - [x] @human Decide: line slugs (`homeassistant`), Picoware stays a line, platforms list in HQ not hq-stats
 - [x] @human Confirm TOML
-- [ ] @agent Research how agent plugin marketplaces are discovered and consumed, to settle whether
-      `agent-plugins` stays org-wide or splits by domain
+- [x] @agent Research how agent plugin marketplaces are discovered and consumed, to settle whether
+      `agent-plugins` stays org-wide or splits by domain (2026-11-25: "Agent plugin marketplaces" above)
+- [x] @human Decide: keep `agent-plugins` org-wide or split by domain (2026-11-25: org-wide)
+- [ ] @human Submit `homeassistant-repl` to the official Claude plugin directory (claude.ai/directory/manage)
+- [ ] @agent Check `agent-plugins`' `marketplace.json` against Copilot CLI's marketplace format
 - [x] @agent hq-stats: normalised model, both readers, `migrate`, `schema: 2` in `stats.json`, release 0.3.0
       ([hq-stats#8](https://github.com/rhizomatics/hq-stats/pull/8))
 - [x] @agent hq: switch to `hq.toml` / `products.toml` / `community.toml` via `hq-stats migrate`, then the site scripts, Python scripts and skills (hq 1.1.0)
@@ -351,3 +412,6 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
   `isProduct` and the repo list through `hq-config.mjs`; check-hq validates distributions, platforms and
   community `extends`; `sync_sandbox.py` maps profiles by platform. MQTT has no default platform (it had no
   `upstream`). Area labels `picoware` and `hq` created in hq-private the same day.
+- 2026-11-25: Researched agent plugin marketplaces. Discovery is per plugin (official directory, aggregators,
+  domain search), install of a marketplace is one command, and the `skills` CLI installs from product repos for
+  other agents. Decided: `agent-plugins` stays org-wide; `homeassistant-repl` to be submitted to the official directory.
