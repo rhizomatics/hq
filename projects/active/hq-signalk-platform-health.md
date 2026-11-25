@@ -84,7 +84,8 @@ The Home Assistant side has a first version, which this could follow:
       and `build-design.mjs` stops reading manifests ([hq-stats#10](https://github.com/rhizomatics/hq-stats/pull/10),
       HQ branch `platform-health`)
 - [x] @agent hq-stats: collect SignalK plugin registry `score`, `badges` and `testStatus` the same way (same PR)
-- [ ] @human Release hq-stats 0.4.0; then @agent bump HQ's site to it and open the `platform-health` PR
+- [x] @human Release hq-stats 0.4.0; then @agent bump HQ's site to it and open the `platform-health` PR
+      ([hq#23](https://github.com/rhizomatics/hq/pull/23))
 - [ ] @pair Targets per product line, overridable per product (in `products.toml`), and a check that warns when
       a product's declared level or score misses its target or disagrees with its own assessment
 
@@ -106,3 +107,6 @@ a product programme).
   declares Bronze (assessment Bronze; Silver needs `test-coverage`). README badge for homeassistant-repl on branch
   `quality-scale-badge` (PR to open once GitHub recovers); supernotify#343's Silver badge now holds. The moves of
   other HQ scanning into hq-stats are a separate project.
+- 2026-11-25: hq-stats 0.4.0 released; HQ's catalogue reads ratings from it in hq#23. All six Home Assistant
+  integrations now declare the level their own assessment supports (supernotify moved to Platinum,
+  homeassistant-repl to Bronze), each with its README badge. Ratings start with the next daily collection.
