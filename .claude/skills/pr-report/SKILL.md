@@ -7,7 +7,7 @@ agent: pm
 
 # Weekly lingering PR report
 
-For each repo in `repos.toml`:
+For each repo in `products.toml`:
 `gh api 'repos/<org>/<repo>/pulls?state=open'`, with `gh api repos/<org>/<repo>/pulls/<n>` for
 `mergeable`, `.../pulls/<n>/reviews`, and `gh api repos/<org>/<repo>/commits/<sha>/check-runs` for CI (REST
 only: GraphQL-based `gh pr list` doesn't work in cloud routines)

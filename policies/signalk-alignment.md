@@ -13,7 +13,7 @@ Plugins will be automatically tested across a 6 month rolling version range (see
 
 ## npm Releases
 
-Scope: All SignalK plugins (`family = "signalk-plugin"` in `repos.toml`)
+Scope: All SignalK plugins (products on the `signalk` line in `products.toml` with an `npm` artefact)
 
 Every npm release is staged by CI and made live by a maintainer. No npm token exists anywhere.
 

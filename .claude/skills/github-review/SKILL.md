@@ -9,7 +9,7 @@ agent: infra-lead
 
 ## 1. Recurring build failures (root causes)
 
-For each repo in `repos.toml`: `gh run list -R <org>/<repo> --status failure --created ">=<date 35 days ago>" --json workflowName,headBranch,event,createdAt,url,databaseId`.
+For each repo in `products.toml`: `gh run list -R <org>/<repo> --status failure --created ">=<date 35 days ago>" --json workflowName,headBranch,event,createdAt,url,databaseId`.
 Read failing logs (`gh run view <id> --log-failed`) and cluster by cause: flaky test, expired
 token/secret, rate limit, upstream action deprecation (Node version, `set-output`), dependency
 resolution, runner image change, publish credential (PyPI/npm OIDC, GHCR). For each cluster with
@@ -18,9 +18,9 @@ renovate/dependabot PRs whose CI fails for the same reason.
 
 ## 2. Workflow consistency per app type
 
-Families in `repos.toml` map to app types: `ha-integration` (HACS release zip, hassfest, HACS
-validation), `signalk-plugin` (npm publish with OIDC trusted publishing), `mqtt-service` (Docker
-to GHCR + PyPI), `cli`, `site`. Within each type compare `.github/workflows/*`: same jobs, triggers,
+A product's artefacts in `products.toml` give its app type: `homeassistant_marketplace_integration` (HACS
+release zip, hassfest, HACS validation), `npm` on the `signalk` platform (npm publish with OIDC trusted
+publishing), `ghcr` + `pypi` (Docker to GHCR + PyPI), a CLI (`pypi` alone), `website`. Within each type compare `.github/workflows/*`: same jobs, triggers,
 action versions (pinned to SHA or major consistently), permissions blocks, concurrency, caching,
 release flow. Identify the best current version per type and the repos behind it. Where a type
 has 3+ repos with near-identical workflows, propose a reusable workflow in hq (`.github/workflows/reusable-*.yml`, with its caller template in `admin/`).
@@ -55,10 +55,10 @@ Checks no other process makes (hq-private#110):
   Release Notes Format headings it needs, plus GitHub's generated notes (PR list and "Full Changelog" link).
 - **Immutable releases**: `immutable` is true on the latest release
   (`gh api repos/<org>/<repo>/releases?per_page=1 --jq '.[0].immutable'`), except repos with
-  `category = ["experimental"]`. GitHub applies immutability to all of a repo's releases, so it may be
+  `lifecycle = "experimental"` in `products.toml`. GitHub applies immutability to all of a repo's releases, so it may be
   switched off briefly for a beta: flag it only if it's still off a week after the beta.
-- **Container rescans** (`policies/build.md`): every repo that publishes to GHCR (`ghcr` in
-  `repos.toml`) has a scheduled scan workflow that ran in the last 8 days, and a critical or high
+- **Container rescans** (`policies/build.md`): every repo that publishes to GHCR (a `ghcr`
+  artefact in `products.toml`) has a scheduled scan workflow that ran in the last 8 days, and a critical or high
   finding with a fix available led to a rebuilt image.
 - **Badge** (`policies/project_standards.md`): the README shows the "managed by hq" badge.
 

@@ -11,7 +11,7 @@ The maintainer has given this process standing approval to merge and close the D
 described below (see "Issues and PRs" in `AGENTS.md`). Anything outside these rules is left open
 for the weekly `/pr-report`. Silence is the expected outcome.
 
-## Gather, per repo in `repos.toml`
+## Gather, per repo in `products.toml`
 
 - Open PRs by `dependabot[bot]`: `gh api 'repos/<org>/<repo>/pulls?state=open&per_page=100'`.
 - For each: `gh api repos/<org>/<repo>/pulls/<n>` (`head.sha`, `mergeable`,
@@ -30,7 +30,7 @@ for the weekly `/pr-report`. Silence is the expected outcome.
 - Astral: `uv`, `uv_build`, `ruff`, `ty` and `astral-sh/*` actions.
 - oxc: `oxlint`, `oxfmt`, `oxlint-tsgolint`.
 
-**Inherited** (close without merging), only in repos whose `upstream` in `repos.toml` is that platform:
+**Inherited** (close without merging), only in repos whose product's platform in `products.toml` (usually from its line) is that platform:
 - `homeassistant`: `homeassistant`, `pytest-homeassistant-custom-component`, and any package Home
   Assistant or the test harness pins: `homeassistant/package_constraints.txt` and `pyproject.toml`
   `dependencies` in `home-assistant/core` at the latest release, and `requirements_test.txt` in

@@ -2,8 +2,8 @@
 // Builds src/data/actions.json, the GitHub Actions health shown on the site's Deployments page.
 //
 // Sources, all read-only:
-//   - repos.toml                        which repos to cover (`archived = true` ones are left out)
-//   - hq-private/data/github/<latest>   only for repo visibility and archive state
+//   - products.toml                     which repos to cover (archived products are left out)
+//   - hq-private/data/github/<latest>   only for repo visibility and archive state (lib/github.mjs)
 //   - GitHub REST API                   workflows and workflow runs of each public repo
 //
 // Only public repos are covered, and everything written comes from their public Actions history.
@@ -19,16 +19,12 @@
 // A repo takes its worst workflow's state. Dependabot's update jobs don't set the state; their
 // failures are listed separately.
 
-import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parse as parseToml } from 'smol-toml';
 import { USER_AGENT } from '../src/lib/hq-config.mjs';
-import { writeJson } from './lib/github.mjs';
+import { publicRepos, writeJson } from './lib/github.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const hqRoot = path.resolve(siteRoot, '..');
-const privateRoot = path.resolve(process.env.HQ_PRIVATE ?? path.join(hqRoot, '..', 'hq-private'));
 const outPath = path.join(siteRoot, 'src', 'data', 'actions.json');
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const DAY = 86_400_000;
@@ -135,15 +131,11 @@ async function repoHealth(org, name, now) {
 }
 
 async function main() {
-  const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
-  const org = registry.org.github;
-  const dir = path.join(privateRoot, 'data', 'github');
-  const latest = (await readdir(dir)).filter((f) => f.endsWith('.json')).sort().at(-1);
-  const orgRepos = Object.fromEntries(JSON.parse(await readFile(path.join(dir, latest), 'utf8')).org_repos.map((r) => [r.name, r]));
+  const { org, repos: covered } = await publicRepos();
+  const names = covered.map((r) => r.name);
+  const repoOf = Object.fromEntries(covered.map((r) => [r.name, r]));
   const now = Date.now();
   const notes = [];
-
-  const names = Object.keys(registry.repos).filter((n) => !registry.repos[n].archived && orgRepos[n]?.visibility === 'public' && !orgRepos[n].archived);
   const repos = [];
   if (!token) {
     notes.push('No GitHub token at build time, so workflow states were not fetched.');
@@ -155,7 +147,7 @@ async function main() {
       const results = await Promise.all(
         batch.map(async (name) => {
           try {
-            return { id: name, family: registry.repos[name].family, url: `https://github.com/${org}/${name}/actions`, ...(await repoHealth(org, name, now)) };
+            return { id: name, line: repoOf[name].line, url: `https://github.com/${org}/${name}/actions`, ...(await repoHealth(org, name, now)) };
           } catch (err) {
             notes.push(`${name}: workflow runs unavailable (${err.message}).`);
             return null;

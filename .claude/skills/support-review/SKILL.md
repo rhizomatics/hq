@@ -11,7 +11,7 @@ The daily sweep answers people; this review stops the same questions recurring.
 
 ## Gather (last calendar month)
 
-- Issues and discussions opened or active in the month for each repo in `repos.toml`
+- Issues and discussions opened or active in the month for each repo in `products.toml`
   (`gh issue list --state all --search "updated:>=YYYY-MM-01"`, discussions via GraphQL).
 - Daily reports in `hq-private/reports/support-sweep/` and `hq-private/reports/forums/` for the month.
 - Time-to-first-response and time-to-close per repo, from the issue timelines.

@@ -3,7 +3,7 @@
 // Design Process page (features) and the Support page (bugs and unclassified issues).
 //
 // Sources, all read-only:
-//   - repos.toml                        which repos to cover (`archived = true` ones are left out)
+//   - products.toml                     which repos to cover (archived products are left out)
 //   - hq-private/data/github/<latest>   only for repo visibility and archive state
 //   - GitHub REST API                   each public repo's settings and open issues (pull requests left out)
 //
@@ -42,7 +42,7 @@ async function main() {
     out = (
       await inBatches(repos, async (r) => {
         try {
-          return { id: r.name, family: r.family, product: r.product, url: `https://github.com/${org}/${r.name}/issues`, ...(await repoIssues(org, r.name)) };
+          return { id: r.name, line: r.line, product: r.product, url: `https://github.com/${org}/${r.name}/issues`, ...(await repoIssues(org, r.name)) };
         } catch (err) {
           notes.push(`${r.name}: issues unavailable (${err.message}).`);
           return null;

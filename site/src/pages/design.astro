@@ -2,11 +2,11 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import design from '../data/design.json';
 import issues from '../data/issues.json';
-import { FAMILIES, ORG } from '../lib/hq-config.mjs';
+import { LINES, ORG } from '../lib/hq-config.mjs';
 
 type Product = {
   id: string;
-  family: string;
+  line: string;
   url: string;
   roadmap: string | null;
   principles: string | null;
@@ -17,7 +17,7 @@ type Product = {
 };
 
 const products = design.products as Product[];
-const groups = FAMILIES.map(([family, label]) => [label, products.filter((p) => p.family === family).sort((a, b) => a.id.localeCompare(b.id))] as const).filter(
+const groups = LINES.map(([line, label]) => [label, products.filter((p) => p.line === line).sort((a, b) => a.id.localeCompare(b.id))] as const).filter(
   ([, list]) => list.length,
 );
 const features = Object.fromEntries((issues.repos as { id: string; counts: Record<string, number> }[]).map((r) => [r.id, r.counts.feature ?? 0]));

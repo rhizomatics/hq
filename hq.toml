@@ -1,0 +1,196 @@
+# The org, its product lines and platforms, and the org-specific settings every process, skill and site script
+# reads instead of naming the org itself. Products are in products.toml, community projects in community.toml.
+# Read through @rhizomatics/hq-stats' loadConfig (site/src/lib/hq-config.mjs); terms in AGENTS.md
+# ("Names used in these docs") and projects/hq-product-catalog.md.
+#
+# [org]
+#   name:          display name, used in prose and on the site
+#   github:        GitHub org (or user) that owns the repos
+#   maintainers:   GitHub logins of the human maintainers; the first is assigned hq issues
+#   hq_repo:       the public repo holding these docs (this repo)
+#   private_repo:  repo for reports, data snapshots and hq issues, checked out next to hq_repo;
+#                  omit for an entirely public set-up (hq issues then go in hq_repo)
+#   site_url:      where the public HQ site is served
+# [stats]:         usage stats by @rhizomatics/hq-stats (projects/done/hq-stats.md); paths relative to this file
+#   data_dir:      daily snapshots, written by .github/workflows/collect-stats.yml
+#   legacy_hacs:   history from the retired hacs-downloads site
+#   out:           the aggregate the site's Usage pages are built from (not committed)
+# [lines.<slug>]:  product lines, in display order: the heading products are listed under. The slug is also the
+#                  hq issue area label.
+#   name:          the heading
+#   platform:      default platform of its products (a product or artefact can override it)
+#   kind:          "org" for the org's own things (sites, HQ itself): page views only, never counted as products
+# [platforms.<id>]: what products run on or inside, made by others. Static facts only.
+#   builds_on:     the platforms it runs on in turn (Home Assistant on Python)
+# [distributions.<id>]: every way a product is delivered; an artefact's distribution must be one of these
+#                  (`mise run check-hq` checks). hq-stats counts the ones it knows by the same name.
+#   note:          what it is
+# [labels]:        hq issue labels; an issue gets one source and one area (the areas are the line slugs)
+#
+# security_watch: platform packages our users run but we don't patch, so Dependabot's alerts don't
+# reach the decision that matters. Advisories for them are snapshotted by collect_github.py.
+# ecosystem is the GitHub advisory API's name (pip, npm); area is the hq issue label.
+#
+# [capabilities.<id>]: who provides each recurring capability, so an HQ skill can be swapped for a better one
+# made by someone else (projects/hq-as-product.md, "Reuse skill packages first"; the survey behind these is
+# reference/skill_providers.md). `providers` is a list, in order of preference, each:
+#   kind:    "hq"      a skill in .claude/skills (ref: its name)
+#            "gh-aw"   a GitHub agentic workflow (ref: owner/repo/path.md@<sha>; where: the repo it runs in)
+#            "skill"   a third-party agent skill or plugin (ref: package@version)
+#            "action"  a scanner run in CI (ref: owner/repo@<version>; where: "admin" for the shared callers,
+#                      or the repos that run it)
+#            "service" a GitHub feature, app or hosted service (ref: its name)
+#   ref, where, note
+#   status:  "active" (default) | "trial" (runs beside the active ones until compared) | "candidate" (chosen,
+#            not running yet)
+# Every skill in .claude/skills is the hq provider of exactly one capability; `mise run check-hq` checks this.
+
+[org]
+name = "Rhizomatics"
+github = "rhizomatics"
+maintainers = ["jeyrb"]
+hq_repo = "hq"
+private_repo = "hq-private"
+site_url = "https://hq.rhizomatics.org.uk"
+
+[stats]
+data_dir = "data/stats"
+legacy_hacs = "data/legacy/hacs-downloads-history.json"
+out = "site/src/data/stats.json"
+
+[lines.homeassistant]
+name = "Home Assistant"
+platform = "homeassistant"
+
+[lines.signalk]
+name = "SignalK"
+platform = "signalk"
+
+[lines.picoware]
+name = "Picoware"            # no default platform: each product names its own (esp32, linux)
+
+[lines.mqtt]
+name = "MQTT"
+
+[lines.hq]
+name = "HQ"
+
+[lines.org]
+name = "Organisation"
+kind = "org"
+
+[platforms.homeassistant]
+builds_on = ["python"]
+
+[platforms.signalk]
+builds_on = ["node"]
+
+[platforms.python]
+
+[platforms.node]
+
+[platforms.linux]
+
+[platforms.esp32]
+
+[distributions]
+pypi = { note = "a package on PyPI" }
+npm = { note = "a package on npm (SignalK plugins reach the SignalK app store this way)" }
+ghcr = { note = "a container image on ghcr.io/<org>/" }
+github_release = { note = "a release asset on GitHub, downloaded directly" }
+homeassistant_marketplace_integration = { note = "a Home Assistant integration installed through HACS: its release zip and domain" }
+homeassistant_marketplace_frontend = { note = "a Home Assistant card installed through HACS: its release .js" }
+website = { note = "a website, with its GoatCounter site code" }
+
+[labels]
+sources = [
+  "security-escalation", "dependabot", "support", "forums", "alignment", "github", "docs",
+  "architecture", "platform", "reputation", "roadmap", "project", "adoption", "prs",
+]
+
+[[security_watch]]
+ecosystem = "npm"
+package = "signalk-server"
+area = "signalk"
+
+[[security_watch]]
+ecosystem = "npm"
+package = "@signalk/resources-provider"
+area = "signalk"
+
+[[security_watch]]
+ecosystem = "pip"
+package = "homeassistant"
+area = "homeassistant"
+
+# Capabilities and their providers (header above). The gh-aw OSPO trial ended 2026-11-23: none kept
+# (reference/skill_providers.md).
+
+[capabilities.support]
+providers = [{ kind = "hq", ref = "support-sweep" }]
+
+[capabilities.pull-requests]
+providers = [{ kind = "hq", ref = "pr-report" }]
+
+[capabilities.dependency-updates]
+providers = [
+  { kind = "hq", ref = "dependabot-sweep" },
+  { kind = "action", ref = "rhizomatics/hq/.github/workflows/reusable-dependabot-automerge.yml", where = "admin", note = "merges the trusted bumps itself; the sweep handles the rest" },
+]
+
+[capabilities.security]
+providers = [
+  { kind = "hq", ref = "security-escalation", note = "merges, de-duplicates and ranks every provider below; applies the escalation rules" },
+  { kind = "service", ref = "dependabot-alerts" },
+  { kind = "service", ref = "codeql" },
+  { kind = "service", ref = "secret-scanning" },
+  { kind = "action", ref = "ossf/scorecard-action@v2.4.1", where = "every released repo (scorecard.yml)" },
+  { kind = "action", ref = "anchore/scan-action@v7.4.2", where = "image repos (image-scan.yml)", note = "Grype, container images" },
+  { kind = "action", ref = "zizmorcore/zizmor-action@v0.8.1", where = "admin", note = "Actions workflow audit, in every repo since hq v1.0.1; patterns in policies/release_workflows.md" },
+  { kind = "service", ref = "socket.dev", note = "malicious and risky npm/PyPI packages with no CVE; GitHub App on every repo" },
+]
+
+[capabilities.registry]
+providers = [{ kind = "hq", ref = "registry-check" }]
+
+[capabilities.github-settings]
+providers = [{ kind = "hq", ref = "github-review" }]
+
+[capabilities.adoption]
+providers = [{ kind = "hq", ref = "adoption-report" }]
+
+[capabilities.alignment]
+providers = [{ kind = "hq", ref = "alignment-review" }]
+
+[capabilities.docs]
+providers = [{ kind = "hq", ref = "docs-review" }]
+
+[capabilities.agent-accessibility]
+providers = [{ kind = "hq", ref = "agent-accessibility-review" }]
+
+[capabilities.releases]
+providers = [{ kind = "hq", ref = "release-digest" }]
+
+[capabilities.forums]
+providers = [{ kind = "hq", ref = "forum-watch" }]
+
+[capabilities.reputation]
+providers = [{ kind = "hq", ref = "reputation-review" }]
+
+[capabilities.support-themes]
+providers = [{ kind = "hq", ref = "support-review" }]
+
+[capabilities.roadmaps]
+providers = [{ kind = "hq", ref = "roadmap-review" }]
+
+[capabilities.architecture]
+providers = [{ kind = "hq", ref = "architecture-review" }]
+
+[capabilities.platforms]
+providers = [{ kind = "hq", ref = "platform-review" }]
+
+[capabilities.policies]
+providers = [{ kind = "hq", ref = "policy-review" }]
+
+[capabilities.projects]
+providers = [{ kind = "hq", ref = "project-review" }]

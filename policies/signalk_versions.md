@@ -5,7 +5,7 @@ summary: Support a rolling six months of signalk-server releases, and the Node v
 
 # SignalK Versions
 
-Scope: All SignalK plugins (`family = "signalk-plugin"` in `repos.toml`)
+Scope: All SignalK plugins (products on the `signalk` line in `products.toml` with an `npm` artefact)
 
 ## Policy - SignalK Server
 

@@ -13,8 +13,8 @@ a week instead of all at once.
 
 ## Pick today's batch
 
-1. Quarter folder: `hq-private/reports/docs-review/YYYY-Qn/`. Products in scope: repos in `repos.toml` with
-   user-facing docs (skip `family = "meta"`).
+1. Quarter folder: `hq-private/reports/docs-review/YYYY-Qn/`. Products in scope: products in `products.toml` with
+   user-facing docs (skip the `org` line).
 2. Already reviewed this quarter = files in that folder. Nothing left → write nothing and stop.
 3. Batch size = ceil(remaining products / 5), max 4. Order: products with the most support
    traffic in the last quarter first (from `hq-private/reports/support-review/`), then the rest alphabetically.

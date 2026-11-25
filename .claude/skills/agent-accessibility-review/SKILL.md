@@ -10,7 +10,7 @@ agent: architect
 Two audiences: **contributor agents** (an agent working in the repo) and **user agents** (an agent
 helping someone install, configure or troubleshoot the project from its docs).
 
-## Checklist per repo in `repos.toml`
+## Checklist per repo in `products.toml`
 
 Contributor agents:
 - `CLAUDE.md` and/or `AGENTS.md` present, current (mentions the actual build/test/lint commands,

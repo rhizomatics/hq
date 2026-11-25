@@ -5,7 +5,7 @@ summary: Immutable, semantically versioned releases with notes in a standard for
 
 # Release
 
-- All releases will be immutable, except in `experimental` projects (`repos.toml`)
+- All releases will be immutable, except in `experimental` products (`lifecycle` in `products.toml`)
   - GitHub's immutable releases setting covers every release in a repo, so it may be switched off briefly to
     publish a beta and then switched back on
 - Release notes will be in Release Note Format as below, and will also have the GitHub auto generated release notes (PRs plus diff link)

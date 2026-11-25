@@ -11,7 +11,7 @@ Everything above is shared with other agents. These notes are Claude-only.
 
 Scheduled routines run in a cloud sandbox with every repo of the org attached, each cloned under
 `/home/user/<repo>` (so `hq` and `hq-private` are siblings). Commit and push reports and data to
-`hq-private`, and changes to docs, projects or `repos.toml` to `hq`, each on `main`. What works there:
+`hq-private`, and changes to docs, projects or the registry (`hq.toml`, `products.toml`, `community.toml`) to `hq`, each on `main`. What works there:
 
 - `gh api` REST calls scoped to a repo of the org: issues, comments, PRs, check runs, commits,
   releases, Actions runs, private security advisories, contents. Also `hq` issues.

@@ -7,8 +7,8 @@ agent: pm
 
 # Daily support sweep
 
-Find every open issue and discussion in the repos in `repos.toml` where a user is waiting on a
-maintainer. Maintainers are listed in `repos.toml` under `[org].maintainers`.
+Find every open issue and discussion in the repos in `products.toml` where a user is waiting on a
+maintainer. Maintainers are listed in `hq.toml` under `[org].maintainers`.
 
 ## Gather
 

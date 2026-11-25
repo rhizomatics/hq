@@ -7,7 +7,7 @@
   },
   "scripts": {
     "sync": "node scripts/sync-content.mjs",
-    "stats": "hq-stats build --config ../repos.toml",
+    "stats": "hq-stats build --config ..",
     "actions": "node scripts/build-actions.mjs",
     "design": "node scripts/build-design.mjs",
     "issues": "node scripts/build-issues.mjs",
@@ -20,9 +20,8 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.9",
-    "@rhizomatics/hq-stats": "^0.2.3",
+    "@rhizomatics/hq-stats": "^0.3.0",
     "astro": "^7.4.7",
-    "chart.js": "^4.6.1",
-    "smol-toml": "^1.9.1"
+    "chart.js": "^4.6.1"
   }
 }

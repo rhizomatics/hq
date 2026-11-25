@@ -25,13 +25,13 @@ Read every file under `policies/` and `processes/`, then `AGENTS.md`, `CLAUDE.md
 
 - **Contradictions** between files: the same rule stated differently (versions windows, trusted
   packages, file names and paths, cooldowns), or a process README rule that `AGENTS.md` contradicts.
-- **Org names outside config**: the org, maintainer, site URL and repo names belong in `repos.toml`
-  (`[org]`); everywhere else names the role (`<org>`, the maintainer, `hq-private`). A grep for them
-  outside `repos.toml` and instance content (`projects/`, `policies/`, `reference/`, the site's home page)
+- **Org names outside config**: the org, maintainer, site URL and repo names belong in `hq.toml`
+  (`[org]`) and `products.toml`; everywhere else names the role (`<org>`, the maintainer, `hq-private`). A grep for them
+  outside those and instance content (`projects/`, `policies/`, `reference/`, the site's home page)
   should find nothing.
 - **Duplication** that will drift: keep a rule in one place and point to it from the others.
 - **Stale facts**: examples whose dates have passed, deprecated tools still named, repos that were
-  renamed or archived (check against `repos.toml`).
+  renamed or archived (check against `products.toml`).
 - **Process plumbing**: run `mise run check-hq` (or `node site/scripts/check-hq.mjs`) and fix or
   raise what it reports. It covers the mechanical checks: every cadence entry has a skill and vice
   versa, skill `name` and `agent:` match the entry, the persona exists, each entry has **When:**
@@ -73,14 +73,14 @@ runs every process whose **Routine:** names it, in order, and its prompt should 
 the default in `processes/README.md` (or the entry's **Environment:**, if it sets one), and that it
 runs the right skill.
 
-**Attached repos**: compare each routine's attached repos with `repos.toml` exactly, not just for
-missing ones. The correct set is every repo in `repos.toml` without `archived = true`, including
+**Attached repos**: compare each routine's attached repos with `products.toml` exactly, not just for
+missing ones. The correct set is every repo (`repos`, default the slug) of every product not `lifecycle = "archived"`, including
 `hq` and `hq-private` (routines commit to both). Report per routine:
 
-- repos in `repos.toml` that aren't attached (new repos are the usual case);
-- attached repos that shouldn't be: archived in `repos.toml`, renamed (the old name still attached),
-  deleted, or not in `repos.toml` at all (if the repo is real and belongs, the gap is in
-  `repos.toml`; fix it in the PR);
+- repos in `products.toml` that aren't attached (new repos are the usual case);
+- attached repos that shouldn't be: archived in `products.toml`, renamed (the old name still attached),
+  deleted, or not in `products.toml` at all (if the repo is real and belongs, the gap is in
+  `products.toml`; fix it in the PR);
 - routines whose repo sets differ from each other, since all `hq:` routines should carry the same set.
 
 A process with no routine is a gap unless its cadence entry says it runs by hand.
@@ -95,7 +95,7 @@ Only cheap checks, by REST (`gh api`), farmed to the `researcher` subagent for m
   "managed by hq" badge in the README.
 - `release.md`: latest release immutable (`.immutable` on `releases?per_page=1`), except
   `experimental` repos.
-- `design.md` / `project_standards.md`: major repos (`category = ["major"]`) have
+- `design.md` / `project_standards.md`: major products (`significance = "major"`) have
   `docs/developer/design/design_principles.md` and `roadmap.md`; RFCs have a status line in the
   agreed format.
 

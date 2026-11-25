@@ -1,6 +1,6 @@
 ---
 group: general
-summary: "What every product gets: a repos.toml entry, GitHub features enabled, Apache-2.0 licence, the HQ badge."
+summary: "What every product gets: a products.toml entry, GitHub features enabled, Apache-2.0 licence, the HQ badge."
 ---
 
 # Products
@@ -13,8 +13,9 @@ Each product is part of a *Product Line*, including internal and catch-all lines
 
 ## Git Repositories
 
-Each product will be listed in HQ in `repos.toml`.
-Products marked `category = ["experimental"]` there aren't shown publicly. All others are shown on the public HQ site and listed under the appropriate category at https://www.rhizomatics.org.uk (the `.github` project).
+Each product will be listed in HQ in `products.toml`, under its product line, with the repos it's built in.
+Products marked `lifecycle = "experimental"` there aren't shown publicly, and nor is anything on the `org` line
+(the org's own sites and HQ itself) counted as a product. All others are shown on the public HQ site and listed under the appropriate category at https://www.rhizomatics.org.uk (the `.github` project).
 
 ## GitHub
 

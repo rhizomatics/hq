@@ -2,11 +2,11 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import Kpi from '../components/Kpi.astro';
 import issues from '../data/issues.json';
-import { FAMILIES, ORG } from '../lib/hq-config.mjs';
+import { LINES, ORG } from '../lib/hq-config.mjs';
 
 type Repo = {
   id: string;
-  family: string;
+  line: string;
   product: boolean;
   url: string;
   enabled: boolean;
@@ -16,7 +16,7 @@ type Repo = {
 };
 
 const repos = (issues.repos as Repo[]).filter((r) => r.product);
-const groups = FAMILIES.map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => a.id.localeCompare(b.id))] as const).filter(
+const groups = LINES.map(([line, label]) => [label, repos.filter((r) => r.line === line).sort((a, b) => a.id.localeCompare(b.id))] as const).filter(
   ([, list]) => list.length,
 );
 const n = (r: Repo, t: string) => r.counts[t] ?? 0;

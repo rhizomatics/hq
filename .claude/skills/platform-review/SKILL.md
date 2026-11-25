@@ -30,7 +30,7 @@ github.com pages (`/releases`, `/pulls?q=...`, `/discussions`); the `gh` command
   (`gh pr list -R SignalK/signalk-server --state all --search "updated:>=<date>"`), focusing on the
   plugin API, server API, resources, notifications and the app store.
 
-## Assess against our products (`repos.toml`, by `upstream`)
+## Assess against our products (`products.toml`, by `platform`)
 
 For each relevant change: which of our repos, and is it a
 

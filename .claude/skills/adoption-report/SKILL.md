@@ -29,7 +29,7 @@ if it proves stable, propose adding it to `hq-private/scripts/`.
 `hq-private/reports/adoption/YYYY-Www.md`:
 
 1. Three-line headline: what moved and why (link to releases in the window — `gh release list`).
-2. Per family (HA integrations, SignalK plugins, MQTT services, other) a table:
+2. Per product line (`[lines]` in `hq.toml`: Home Assistant, SignalK, MQTT, HQ, ...) a table:
    `Project | Real-use signal | Δ wk | Downloads/pulls | Δ wk | Clones (uniq) | Stars Δ`.
 3. Anomalies (spikes from CI, mirrors, a blog/forum mention — check referrers with
    `gh api repos/<org>/<repo>/traffic/popular/referrers`).

@@ -2,7 +2,7 @@
 
 Who else provides what each HQ skill does, so a skill is retired when someone else does it as well or better
 ([HQ as a product](../projects/hq-as-product.md), Phase 1). The choice per capability is recorded in
-`[capabilities]` in `repos.toml`; this file holds the evidence behind it. Surveyed 2026-11-19 from vendors' own
+`[capabilities]` in `hq.toml`; this file holds the evidence behind it. Surveyed 2026-11-19 from vendors' own
 repos and docs, skill marketplaces and GitHub's agentic workflow (gh-aw) catalogues.
 
 **How sure:** catalogue listings were checked against the source repo where it mattered (the OSPO workflows, the
@@ -31,7 +31,7 @@ Overlap: **full** (could replace the skill), **partial** (covers part; HQ keeps 
 | pull-requests (`pr-report`) | OSPO Organization Health Report (stale PRs, merge times); [Contribution Check](https://github.com/github/gh-aw) | GitHub, gh-aw | partial: no split of external contributions, stuck bumps and drafts | not adopted ([trial](#githubs-ospo-workflows-gh-aw)) |
 | dependency-updates (`dependabot-sweep`) | [dependabot skill](https://github.com/github/awesome-copilot/blob/main/skills/dependabot/SKILL.md); Renovate automerge | GitHub, skill; Mend, tool | partial: config help only. Notes that `@dependabot merge` comment commands were deprecated (Jan 2026) | keep; the shared auto-merge workflow already does the deterministic part |
 | security (`security-escalation`) | see [Security](#security) | | partial | **merge step** over several providers |
-| registry (`registry-check`) | [OSPO Stale Repository Report](https://github.com/github/awesome-copilot/blob/main/workflows/ospo-stale-repos.md) | GitHub, gh-aw | partial: inactive repos only, no comparison with `repos.toml` or publishing channels | not adopted ([trial](#githubs-ospo-workflows-gh-aw)) |
+| registry (`registry-check`) | [OSPO Stale Repository Report](https://github.com/github/awesome-copilot/blob/main/workflows/ospo-stale-repos.md) | GitHub, gh-aw | partial: inactive repos only, no comparison with `products.toml` or publishing channels | not adopted ([trial](#githubs-ospo-workflows-gh-aw)) |
 | github-settings (`github-review`) | [OSS Release Compliance Checker](https://github.com/github/awesome-copilot/blob/main/workflows/ospo-release-compliance-checker.md); CI Doctor and CI Coach (gh-aw); OpenSSF Scorecard | GitHub, gh-aw; OpenSSF | partial: community files and security settings per repo; nothing compares workflows across repos | not adopted (compliance checker); Scorecard already in use |
 | adoption (`adoption-report`) | [OSPO Contributors Report](https://github.com/github/awesome-copilot/blob/main/workflows/ospo-contributors-report.md) | GitHub, gh-aw | partial: contributors only; no provider reads PyPI, npm, GHCR, HACS or HA analytics | not adopted for the contributor part; downloads are [HQ Stats](../projects/done/hq-stats.md) |
 | docs (`docs-review`) | Markdown Linter, Link Checker, Documentation Unbloat, Daily Accessibility Review (gh-aw) | GitHub Next, gh-aw | partial: each covers one aspect, none checks fidelity to the code | keep; revisit a link checker as a cheap add-on |

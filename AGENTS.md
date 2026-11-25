@@ -1,7 +1,7 @@
 # HQ
 
 Management and administration hub for an open source organisation: the GitHub org and its human
-maintainers are set in `repos.toml` (`[org]`). Agents do routine work; the maintainers decide. No product
+maintainers are set in `hq.toml` (`[org]`). Agents do routine work; the maintainers decide. No product
 code here, apart from the public site that publishes it (`site/`).
 
 This file is the canonical instruction file for every agent. Agent-specific notes live in thin files that
@@ -9,7 +9,7 @@ point here (`CLAUDE.md` for Claude Code).
 
 ## Names used in these docs
 
-The docs name roles, not the org. Each resolves through `repos.toml`:
+The docs name roles, not the org. Each resolves through `hq.toml` and `products.toml`:
 
 - **the org**: `[org].github`, written `<org>` in commands and paths (`gh api repos/<org>/<repo>`).
 - **the maintainer**: the first of `[org].maintainers`, written `<maintainer>` in commands. Issues are
@@ -17,18 +17,26 @@ The docs name roles, not the org. Each resolves through `repos.toml`:
 - **`hq`** and **`hq-private`**: the repos `[org].hq_repo` and `[org].private_repo`, checked out side by side
   (locally and in scheduled runs). Paths written `hq-private/...` in any hq doc mean that checkout.
 - **the site**: the public HQ site at `[org].site_url`.
-- **areas** and **labels**: the `area` of each family in `[families]`, and `[labels].sources`.
+- **areas** and **labels**: the product line slugs (`[lines]` in `hq.toml`), and `[labels].sources`.
 
 Three words for what surrounds a product, used only in these senses:
 
-- **product**: one of the org's own repos in `[repos]` that users install (not `meta`, `internal` or
-  `experimental`; see `policies/products.md`).
+- **product**: one thing users install or visit, with one roadmap and one release cadence: a table in
+  `products.toml`, keyed by its slug (usually its repo's name). Built in one or more **repos** (`repos`); each
+  repo belongs to exactly one product. Counted as a product unless it's on an `org` line, `public = false`,
+  `experimental` or archived (`policies/products.md`).
+- **product line**: the heading products are listed under (`[lines]` in `hq.toml`): `homeassistant`, `signalk`,
+  `picoware`, `mqtt`, `hq`, and `org` for the org's own sites and HQ itself (`kind = "org"`: page views only,
+  never counted as products). A line's slug is also its hq issue area.
+- **artefact**: how a product is delivered (`artefacts.<name>`): a package on a registry, a release asset, a
+  website. Its distribution is one of `[distributions]` in `hq.toml`.
 - **platform**: what a product is built *for* and runs inside, made by others: Home Assistant, SignalK, MQTT
-  brokers. Set per repo by `upstream`. Its releases and changes are watched by the platform review; its
+  brokers, or as bare as Linux or an ESP32 (`[platforms]` in `hq.toml`). Set by `platform`: a line's default,
+  overridden per product or artefact. Its releases and changes are watched by the platform review; its
   conventions are the `*-alignment` policies; its packages are in `security_watch`. Say "platform", never
   "ecosystem", for this.
 - **community**: projects other people build *on* one of our products: plugins, cards, packages that depend on
-  ours. Listed in `[community.<id>]` with the product they `extend`. Their stats are shown apart and never
+  ours. Listed in `community.toml` with the product they `extend`. Their stats are shown apart and never
   counted in the org's totals.
 
 "Ecosystem" appears only as a package manager's own term (Dependabot's `package-ecosystem`, the advisory
@@ -45,7 +53,7 @@ HQ is those two repos:
 
 ## Layout
 
-- `repos.toml` — registry of every repo, its family and where it's published, plus the org settings above. Source of truth for all processes; update it when a repo is added, renamed or starts publishing somewhere new.
+- `hq.toml`, `products.toml`, `community.toml` — the registry: the org settings above, product lines, platforms and distributions (`hq.toml`); every product, its line, repos and artefacts (`products.toml`); community projects and blogs (`community.toml`). Read through hq-stats' `loadConfig`. Source of truth for all processes; update `products.toml` when a repo is added, renamed or starts publishing somewhere new.
 - `projects/` — active projects; `projects/proposed/` ideas not started, `projects/done/` finished, `projects/shelved/` rejected or postponed indefinitely. Format, task tags (`@agent`/`@pair`/`@human`) in `projects/README.md`; the site's project list is generated from each file's folder and `summary:`.
 - `processes/` — recurring routines, one file per cadence (`daily.md` … `quarterly.md`): when, persona, environment, output. The site's process list (the schedule) and each persona's **Runs** in `team.md` are generated from them.
 - `team.md` — who owns what, character, handoffs between personas, disagreements.
@@ -59,7 +67,7 @@ HQ is those two repos:
 - `reference/` — lookup material for processes: `project_tooling.md`, forums to watch (`*_discussion.md`), per-product problem phrases (`topic_terms.md`) and platform changes still to act on (`*_platform_changes.md`).
 - `site/` — the public HQ site (Astro Starlight), built twice daily by
   `.github/workflows/site.yml`: the docs above, public reports, and a Usage section per component
-  from the snapshots in `data/stats/` (the pages are [@rhizomatics/hq-stats](https://github.com/rhizomatics/hq-stats)'s, configured by `[stats]`). Org name, URLs and family headings come from `repos.toml` via
+  from the snapshots in `data/stats/` (the pages are [@rhizomatics/hq-stats](https://github.com/rhizomatics/hq-stats)'s, configured by `[stats]`). Org name, URLs and product line headings come from `hq.toml` and `products.toml` via
   `site/src/lib/hq-config.mjs`. `scripts/sync-content.mjs` publishes docs and reports and fails on
   anything that looks private;
   `scripts/build-actions.mjs` fetches each public repo's Actions state for the Operations › Deployments page;
@@ -102,7 +110,7 @@ HQ is those two repos:
   of named users, unposted drafts. When unsure, mark it private. Public reports never hold those;
   put such detail in the hq issue instead.
 - Keep reports short and compare with the previous one in the same folder; say what changed, not what's the same. **Daily reports**: a quiet day is one or two lines; otherwise a headline, the action items (each with its hq issue link) and then only the detail those items need, aiming for under ~20 lines plus drafts. No lists of sources checked or unchanged tables unless something failed or changed; data gaps are one line each.
-- Fix what an agent can fix (hq reference files, `repos.toml`, docs) in the same run, or as a PR for product repos, instead of listing it as a to-do.
+- Fix what an agent can fix (hq reference files, `products.toml`, docs) in the same run, or as a PR for product repos, instead of listing it as a to-do.
 - **Scripts over agents** (`policies/scripts_over_agents.md`): never hand-edit a generated list; change its source. Run `mise run check-hq` after changing processes, skills, personas or projects. Mechanical work you find yourself repeating each run is a candidate for a script: say so in your report.
 - When working a project, update its **Log** and task checkboxes in the same session.
 - Farm out bulk gathering (the same query across many repos, fetching many forum threads, release notes or search results) to the `researcher` subagent. Give it the exact sources, fields and date range; keep ranking, judgement and drafting in your own persona.
@@ -128,7 +136,7 @@ If something you need is unavailable, say so in the report rather than guessing.
 
 **Pinging the maintainer.** Issues are filed as the maintainer, and GitHub doesn't notify you of your own actions, so `hq-private/.github/workflows/notify-assignee.yml` re-assigns them as `github-actions[bot]` to make it ping. A new issue assigned to the maintainer pings by itself. A comment pings only if it contains the line `<!-- hq:needs-action -->` (hidden when rendered): add it when the comment asks the maintainer for something new (a new checklist item, a question, a decision, a blocker) and leave it off progress notes, ticks and closing comments. Editing an issue's body never pings, so when you add something to an existing issue, also post a flagged comment saying what.
 
-**Labels:** one source (`[labels].sources` in `repos.toml`) and one area (the `area` values in `[families]`). Title: `<area>: <specific action>`, e.g. `homeassistant: upgrade aiohttp in supernotify for CVE-2026-1234`.
+**Labels:** one source (`[labels].sources` in `hq.toml`) and one area (a line slug from `[lines]`). Title: `<area>: <specific action>`, e.g. `homeassistant: upgrade aiohttp in supernotify for CVE-2026-1234`.
 
 **Waiting threads and PRs** (an unanswered support thread, a forum post worth replying to, a PR needing a decision) each get their own issue, per the rule above: `<area>: reply to <repo>#123 (<what they need>)`, `<area>: decide on <repo>#45 <feature>`. Close it, saying how, once the thread is answered or the PR merged or closed. A PR whose only step is review and merge doesn't need one: the PR is the to-do.
 

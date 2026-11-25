@@ -10,7 +10,7 @@
 
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { parse as parseToml } from 'smol-toml';
+import { loadConfig } from '@rhizomatics/hq-stats';
 
 const CADENCES = [
   ['daily', 'Daily'],
@@ -240,35 +240,67 @@ export async function checkHq(hqRoot) {
     if (!groups.includes(p.group)) problems.push(`${p.rel}: group: should be one of ${groups.join(', ')}`);
   }
 
-  const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
-  // GoatCounter codes: the site code GoatCounter allows, and no two repos counting to the same site.
+  // hq.toml, products.toml and community.toml, through hq-stats' loader, which already fails on a product in an
+  // unknown line, a repo in two products, a bad slug or lifecycle.
+  let cfg;
+  try {
+    cfg = loadConfig({ config: hqRoot, warn: (m) => problems.push(m) });
+  } catch (err) {
+    problems.push(`products: ${err.message}`);
+    return problems;
+  }
+  const settings = cfg.settings;
+  const lineIds = new Set(cfg.lines.map((l) => l.id));
+  const platformIds = new Set(Object.keys(settings.platforms ?? {}));
+  const distributions = new Set(Object.keys(settings.distributions ?? {}));
+  const productIds = new Set(cfg.products.map((p) => p.id));
+
+  // Platforms named anywhere are in [platforms], and so is what each builds on.
+  for (const l of cfg.lines) {
+    for (const pl of l.platforms) if (!platformIds.has(pl)) problems.push(`hq.toml [lines.${l.id}]: platform "${pl}" isn't in [platforms]`);
+  }
+  for (const [id, pl] of Object.entries(settings.platforms ?? {})) {
+    for (const b of [pl.builds_on ?? []].flat()) if (!platformIds.has(b)) problems.push(`hq.toml [platforms.${id}]: builds_on "${b}" isn't in [platforms]`);
+  }
+  // GoatCounter codes: the site code GoatCounter allows, and no two products counting to the same site.
   const codes = {};
-  for (const [name, r] of Object.entries(registry.repos ?? {})) {
-    if (r.goatcounter == null) continue;
-    if (!/^[a-z0-9][a-z0-9-]*$/.test(r.goatcounter)) problems.push(`repos.toml [repos.${name}]: goatcounter "${r.goatcounter}" isn't a GoatCounter site code`);
-    if (codes[r.goatcounter]) problems.push(`repos.toml: goatcounter "${r.goatcounter}" used by both ${codes[r.goatcounter]} and ${name}`);
-    codes[r.goatcounter] = name;
+  for (const p of cfg.products) {
+    for (const pl of p.platforms) if (!platformIds.has(pl)) problems.push(`products.toml [${p.id}]: platform "${pl}" isn't in hq.toml [platforms]`);
+    for (const a of p.artefacts) {
+      if (!distributions.has(a.distribution)) problems.push(`products.toml [${p.id}]: artefact ${a.name}'s distribution "${a.distribution}" isn't in hq.toml [distributions]`);
+      if (a.goatcounter == null) continue;
+      if (!/^[a-z0-9][a-z0-9-]*$/.test(a.goatcounter)) problems.push(`products.toml [${p.id}]: goatcounter "${a.goatcounter}" isn't a GoatCounter site code`);
+      if (codes[a.goatcounter]) problems.push(`products.toml: goatcounter "${a.goatcounter}" used by both ${codes[a.goatcounter]} and ${p.id}`);
+      codes[a.goatcounter] = p.id;
+    }
+  }
+  for (const w of settings.security_watch ?? []) {
+    if (!lineIds.has(w.area)) problems.push(`hq.toml [[security_watch]] ${w.package}: area "${w.area}" isn't a line`);
   }
 
-  // Community entries: complete, and extending one of the org's own repos.
-  for (const [id, e] of Object.entries(registry.community ?? {})) {
-    const kind = e.kind ?? 'project';
-    if (kind === 'blog') {
-      for (const field of ['url', 'author']) if (!e[field]) problems.push(`repos.toml [community.${id}]: no ${field}`);
+  // Community entries: complete, and extending one of the org's own products.
+  for (const e of cfg.community) {
+    const where = `community.toml [${e.id}]`;
+    if (e.line && !lineIds.has(e.line)) problems.push(`${where}: line "${e.line}" isn't in hq.toml [lines]`);
+    if (e.kind === 'blog') {
+      for (const field of ['url', 'author']) if (!e[field]) problems.push(`${where}: no ${field}`);
       continue;
     }
-    if (kind !== 'project') problems.push(`repos.toml [community.${id}]: kind "${kind}" isn't project or blog`);
-    for (const field of ['repo', 'author', 'extends']) if (!e[field]) problems.push(`repos.toml [community.${id}]: no ${field}`);
-    if (e.repo && !/^[\w.-]+\/[\w.-]+$/.test(e.repo)) problems.push(`repos.toml [community.${id}]: repo should be owner/name`);
-    if (e.extends && !registry.repos?.[e.extends]) problems.push(`repos.toml [community.${id}]: extends "${e.extends}", which isn't in [repos]`);
+    if (e.kind !== 'project') problems.push(`${where}: kind "${e.kind}" isn't project or blog`);
+    for (const field of ['repo', 'author', 'extends']) if (!e[field]) problems.push(`${where}: no ${field}`);
+    if (e.repo && !/^[\w.-]+\/[\w.-]+$/.test(e.repo)) problems.push(`${where}: repo should be owner/name`);
+    if (e.extends && !productIds.has(e.extends)) problems.push(`${where}: extends "${e.extends}", which isn't in products.toml`);
+    for (const a of e.artefacts) {
+      if (!distributions.has(a.distribution)) problems.push(`${where}: artefact ${a.name}'s distribution "${a.distribution}" isn't in hq.toml [distributions]`);
+    }
   }
 
   // Capabilities: every provider well formed and third-party ones pinned; every skill provides exactly one.
   const KINDS = ['hq', 'gh-aw', 'skill', 'action', 'service'];
   const STATUSES = ['active', 'trial', 'candidate'];
   const providedBy = {};
-  for (const [id, cap] of Object.entries(registry.capabilities ?? {})) {
-    const where = `repos.toml [capabilities.${id}]`;
+  for (const [id, cap] of Object.entries(settings.capabilities ?? {})) {
+    const where = `hq.toml [capabilities.${id}]`;
     if (!Array.isArray(cap.providers) || !cap.providers.length) {
       problems.push(`${where}: no providers`);
       continue;
@@ -283,7 +315,7 @@ export async function checkHq(hqRoot) {
       }
       // Third-party code runs pinned, so a change to it reaches us only when we move the pin. The org's own
       // shared workflows are pinned by their callers instead (admin/README.md).
-      const ownWorkflow = p.ref?.startsWith(`${registry.org.github}/${registry.org.hq_repo ?? 'hq'}/`);
+      const ownWorkflow = p.ref?.startsWith(`${settings.org.github}/${settings.org.hq_repo ?? 'hq'}/`);
       if (['gh-aw', 'skill', 'action'].includes(p.kind) && p.ref && !ownWorkflow && !/@[\w.-]+$/.test(p.ref)) {
         problems.push(`${where}: ${p.kind} provider "${p.ref}" isn't pinned (@version or @sha)`);
       }
@@ -292,11 +324,11 @@ export async function checkHq(hqRoot) {
       }
     }
   }
-  if (registry.capabilities) {
+  if (settings.capabilities) {
     for (const s of skills) {
       if (!(await exists(path.join(skillsDir, s, 'SKILL.md')))) continue;
       const caps = providedBy[s] ?? [];
-      if (caps.length !== 1) problems.push(`.claude/skills/${s}: hq provider of ${caps.length ? caps.join(', ') : 'no capability'} in repos.toml (should be one)`);
+      if (caps.length !== 1) problems.push(`.claude/skills/${s}: hq provider of ${caps.length ? caps.join(', ') : 'no capability'} in hq.toml (should be one)`);
     }
   }
 

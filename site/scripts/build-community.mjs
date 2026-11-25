@@ -4,7 +4,7 @@
 // data/stats/, shown at /usage/community/ and read from stats.json by the Community page).
 //
 // Sources, all read-only and public:
-//   - repos.toml        `[community.<id>]` entries with kind = "blog"
+//   - community.toml    entries with kind = "blog"
 //   - each blog's RSS feed (<url>/feed)   its title, description and latest posts. Some hosts (Substack) refuse
 //     GitHub's build servers, so each feed read is also kept in hq-private/data/community/feeds.json and that
 //     copy is used when a fetch fails. `node scripts/build-community.mjs --update-feeds` only refreshes that copy
@@ -12,9 +12,8 @@
 
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { parse as parseToml } from 'smol-toml';
-import { hqRoot, privateRoot, siteRoot, writeJson } from './lib/github.mjs';
-import { ORG, USER_AGENT } from '../src/lib/hq-config.mjs';
+import { privateRoot, siteRoot, writeJson } from './lib/github.mjs';
+import { CONFIG, ORG, USER_AGENT } from '../src/lib/hq-config.mjs';
 
 const outPath = path.join(siteRoot, 'src', 'data', 'community.json');
 const feedsPath = path.join(privateRoot, 'data', 'community', 'feeds.json');
@@ -73,9 +72,7 @@ async function saveFeedCopies(copies) {
 }
 
 async function main() {
-  const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
-  const all = Object.entries(registry.community ?? {}).map(([id, e]) => ({ id, ...e }));
-  const blogEntries = all.filter((e) => e.kind === 'blog');
+  const blogEntries = CONFIG.community.filter((e) => e.kind === 'blog');
   const copies = await readFeedCopies();
 
   if (process.argv.includes('--update-feeds')) {

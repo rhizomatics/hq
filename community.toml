@@ -1,0 +1,38 @@
+# Contributed projects built on the org's products, by other people, and writing about them. Tracked for stats and
+# reputation, never counted in the org's own totals (projects/hq-as-product.md, "Community"). Public projects
+# only, added with the maintainer's approval. One table per entry, keyed by its id.
+#
+#   kind:     "project" (the default) or "blog"
+#   A project:
+#     repo:       owner/name on GitHub
+#     author:     GitHub login of the author
+#     extends:    the org's product it builds on (a key of products.toml)
+#     artefacts:  as on a product (products.toml)
+#   A blog (writing about the products or their platforms):
+#     line:       the product line it writes about (a key of [lines] in hq.toml)
+#     url:        the blog's home page; its RSS feed gives the description and latest posts
+#     title:      the blog's name, shown even when its feed can't be read
+#     author:     the byline the blog itself uses
+#     note:       optional, shown with it (e.g. that it's the maintainer's personal blog)
+
+[supernotify-cards]
+repo = "lollox80/supernotify-cards"
+author = "lollox80"
+extends = "supernotify"
+artefacts.homeassistant_marketplace_frontend = { asset = "supernotify-control-card.js" }
+
+[boat-tech-projects]
+kind = "blog"
+line = "signalk"
+title = "Boat Tech Projects"
+url = "https://automatedboat.substack.com"
+author = "jey"
+note = "The maintainer's personal blog"
+
+[home-tech-projects]
+kind = "blog"
+line = "homeassistant"
+title = "Home Tech Projects"
+url = "https://automatedhome.substack.com"
+author = "jey"
+note = "The maintainer's personal blog"

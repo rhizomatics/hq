@@ -8,7 +8,7 @@
 //                                              (what the digest works from; nothing is written)
 //
 // Sources, all read-only:
-//   - repos.toml + hq-private/data/github/<latest>   which repos are public products (lib/github.mjs)
+//   - products.toml + hq-private/data/github/<latest>   which repos are public products (lib/github.mjs)
 //   - GitHub REST API                                each product's releases (drafts and pre-releases left out:
 //                                                    flagged on GitHub, or tagged like -beta4, b1, rc2)
 //   - hq-private/data/releases/summaries.json        the digest's judgement per release, keyed "<repo>@<tag>":
@@ -44,7 +44,7 @@ async function recentReleases(org, repos, since) {
       .map((rel) => ({
         key: `${r.name}@${rel.tag_name}`,
         repo: r.name,
-        family: r.family,
+        line: r.line,
         tag: rel.tag_name,
         name: rel.name || rel.tag_name,
         date: rel.published_at,

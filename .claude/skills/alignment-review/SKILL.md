@@ -9,7 +9,7 @@ agent: architect
 
 ## 1. What changed this month
 
-For each repo in `repos.toml`, list commits on the default branch in the last ~35 days that touched
+For each repo in `products.toml`, list commits on the default branch in the last ~35 days that touched
 shared-convention files, e.g.:
 `gh api "repos/<org>/<repo>/commits?since=<date>&per_page=100"` then inspect the diffs of
 commits touching: `pyproject.toml`, `.pre-commit-config.yaml`, `mise.toml`, `properdocs.yml`,
@@ -22,7 +22,7 @@ Shallow-clone into the scratchpad when diffing many files is easier than the API
 Also take each open item in `reference/hass_platform_changes.md` (kept by the platform review) as a change
 to spread to the Home Assistant repos that haven't made it yet.
 
-## 2. Snapshot the current state per family
+## 2. Snapshot the current state per platform
 
 The baseline every repo should meet is `policies/project_standards.md` plus the policies in
 `policies/` (within each policy's scope, allowing its listed exceptions); report each repo's gaps
@@ -34,7 +34,7 @@ baseline file), and for the rest the lowest checks from
 that are cheap and one pattern across repos (pinning actions, workflow `permissions:`), not score-chasing, and
 skip the checks `policies/project_standards.md` lists as accepted. Scores stay internal: never put them in public reports.
 
-Within each `family`, compare the current versions of those files side by side: ruff/mypy/pytest
+Within each platform (a product's `platform`, usually its line's), compare the current versions of those files side by side: ruff/mypy/pytest
 config, Python version, hook versions, docs plugins and theme, lint/format tooling. Note who is ahead and who is behind.
 
 ## 3. Recommend

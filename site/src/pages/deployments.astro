@@ -2,12 +2,12 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import Kpi from '../components/Kpi.astro';
 import actions from '../data/actions.json';
-import { FAMILIES, META_LABEL, ORG, githubUrl } from '../lib/hq-config.mjs';
+import { LINES, ORG, ORG_LINES, githubUrl } from '../lib/hq-config.mjs';
 
 type State = 'red' | 'flapping' | 'recovered' | 'green' | 'none';
 type Repo = {
   id: string;
-  family: string;
+  line: string;
   url: string;
   state: State;
   workflows: { name: string; state: Exclude<State, 'none'>; conclusion: string; lastRun: string; url: string; failures24h: number; streaks7d: number }[];
@@ -17,8 +17,8 @@ type Repo = {
 const repos = actions.repos as Repo[];
 const ORDER: Record<State, number> = { red: 0, flapping: 1, recovered: 2, green: 3, none: 4 };
 const LABEL: Record<State, string> = { red: 'Broken', flapping: 'Flapping', recovered: 'Recovered', green: 'Passing', none: 'No runs' };
-const groups = [...FAMILIES, ['meta', META_LABEL]]
-  .map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => ORDER[a.state] - ORDER[b.state] || a.id.localeCompare(b.id))] as const)
+const groups = [...LINES, ...ORG_LINES]
+  .map(([line, label]) => [label, repos.filter((r) => r.line === line).sort((a, b) => ORDER[a.state] - ORDER[b.state] || a.id.localeCompare(b.id))] as const)
   .filter(([, list]) => list.length);
 const count = (s: State) => repos.filter((r) => r.state === s).length;
 const asOf = actions.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';

@@ -9,7 +9,7 @@ agent: infra-lead
 
 Silence is the expected outcome. Escalate only what needs a human soon.
 
-## Gather, per repo in `repos.toml`
+## Gather, per repo in `products.toml`
 
 In a cloud routine the alert APIs are blocked: read the alert lists from the latest
 `hq-private/data/github/YYYY-MM-DD.json` instead (fields mirror the API below; `{"error": ...}` means the
@@ -36,7 +36,7 @@ Once per run, not per repo:
   check again once the release post is out.
 - Platform advisories, since Home Assistant and SignalK flaws hit our users whatever our own
   dependencies say: `advisories` in the latest `hq-private/data/github/YYYY-MM-DD.json`, one list
-  per package in `security_watch` in `repos.toml` (reviewed GitHub advisories from the last 30 days,
+  per package in `security_watch` in `hq.toml` (reviewed GitHub advisories from the last 30 days,
   with `epss` and `kev_added`). An advisory listed under two packages is one item. New means its
   `ghsa` isn't in an earlier report in `hq-private/reports/security/`.
 - OpenSSF Scorecard, a weekly supply-chain view per public repo with a `scorecard.yml` workflow: WebFetch
@@ -58,11 +58,11 @@ Once per run, not per repo:
 
 ## Providers and merging
 
-The providers are listed under `[capabilities.security]` in `repos.toml` (evidence in
+The providers are listed under `[capabilities.security]` in `hq.toml` (evidence in
 `reference/skill_providers.md`). This skill is the step that merges them: it doesn't scan anything itself.
 
 - Code scanning holds several tools: group its alerts by `tool.name` (CodeQL, Grype, Scorecard, zizmor, and any
-  other provider added there). A tool name that isn't a provider in `repos.toml` is still read; mention it once
+  other provider added there). A tool name that isn't a provider in `hq.toml` is still read; mention it once
   so the list can be updated.
 - A provider whose `status` is `candidate` may not be running yet. Its absence isn't a data gap.
 - **One finding, several reports**: merge before applying the rules below, keeping every source's link.
@@ -85,7 +85,7 @@ The providers are listed under `[capabilities.security]` in `repos.toml` (eviden
 2. Any privately reported advisory in `triage` (a researcher is waiting on us).
 3. Critical/high code-scanning alert, from any tool (after merging). zizmor's `high` counts as high.
 4. Critical/high Dependabot alert, **unless** it is purely transitive from the upstream platform:
-   the repo has `upstream = "homeassistant"` or `"signalk"` in `repos.toml`, the relationship is
+   the repo's product has the platform `homeassistant` or `signalk` in `products.toml` (usually from its line), the relationship is
    `transitive` (or `unknown` and the package is not declared in our own manifest), and it arrives
    via `homeassistant` / `signalk-server` / their test harnesses. Those are the platform's to fix
    and we can't pin around them sensibly. Count them in the summary but don't escalate.
@@ -95,11 +95,11 @@ The providers are listed under `[capabilities.security]` in `repos.toml` (eviden
    advisory says "actively exploited") — use judgement.
 6. A new critical/high uv advisory, or a medium one that applies to how we use uv. CI runs
    `astral-sh/setup-uv` without a version, so it picks up the fix by itself. What stays exposed:
-   - `upstream = "homeassistant"` repos: the lock carries Home Assistant's exact uv pin into the
+   - repos on the `homeassistant` platform: the lock carries Home Assistant's exact uv pin into the
      venv. Each has `override-dependencies = ["uv>=X"]` in `[tool.uv]`; when a fix lands, raise X
      and relock (`uv lock --upgrade-package uv`) as a PR per repo. Check the locked `uv` version.
-   - Published images, which copy `ghcr.io/astral-sh/uv:latest` at build time (repos with `ghcr` in
-     `repos.toml`; compare the latest release date with the fix date).
+   - Published images, which copy `ghcr.io/astral-sh/uv:latest` at build time (products with a `ghcr` artefact in
+     `products.toml`; compare the latest release date with the fix date).
    - The maintainer's laptop and servers, where uv is installed with mise (`mise upgrade uv`, not
      `uv self update`).
    Escalate under the area of the repos or images it affects, or `org` if none do.
@@ -135,7 +135,7 @@ excluded-transitive / other open) only when a count changed, and only the change
 first run of each month write the full table and the repos with scanning not enabled.
 
 Escalations become hq issues per "Issues and PRs" in `AGENTS.md`: labels `security-escalation` plus
-the area (`homeassistant`, `signalk`, `mqtt`, `org` — from the repo's family), assigned to the
+the area (the repo's product line: `homeassistant`, `signalk`, `picoware`, `mqtt`, `hq`, `org`), assigned to the
 maintainer, one issue per escalation, never a rolling one: titled with the fix and severity, e.g.
 `homeassistant: upgrade aiohttp in supernotify (high, CVE-2026-1234)`. Alerts fixed by the same
 action (one package across repos) share an issue, one checklist item each: repo, alert link,

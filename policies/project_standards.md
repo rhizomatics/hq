@@ -41,8 +41,8 @@ Expectations of Rhizomatics projects
   - pre-commit checks on locks
 - Page views on every website the org publishes (docs sites, the HQ site, www) are counted with
   GoatCounter, cookieless, so no site needs a consent banner. No Google Analytics or other cookie-setting
-  trackers. Each website has its own GoatCounter site, recorded as `goatcounter` on its repo in hq's
-  `repos.toml` (e.g. `rhizomatics` for www.rhizomatics.org.uk on `.github`, `rhizomatics-hq` for the HQ site,
+  trackers. Each website has its own GoatCounter site, recorded as the `goatcounter` of its product's
+  `website` artefact in hq's `products.toml` (e.g. `rhizomatics` for www.rhizomatics.org.uk on `homepage`, `rhizomatics-hq` for the HQ site,
   a product's name for its docs site). Count only the public production build, as the boat tech directory's
   `site/src/analytics.mjs` does, so dev servers and builds run elsewhere aren't counted (decided 2026-11-15)
 - Every public repo with releases runs OpenSSF Scorecard (`.github/workflows/scorecard.yml`, the same workflow
@@ -55,7 +55,7 @@ Expectations of Rhizomatics projects
   - Acted on: Token-Permissions (top-level `permissions: {}` or read-only, writes granted per job),
     Dependency-Update-Tool, SAST, License, Dangerous-Workflow, Pinned-Dependencies, Vulnerabilities, Binary-Artifacts
 - README badges
-  - Every repo in `repos.toml` except `hq`, `.github` and internal repos shows the "managed by hq" badge,
+  - Every repo in `products.toml` except `hq`, `.github` and non-public ones shows the "managed by hq" badge,
     linking to the HQ site:
     `[![managed by hq](https://raw.githubusercontent.com/rhizomatics/hq/main/assets/badge-managed-by-hq.svg)](https://hq.rhizomatics.org.uk/)`
   - Sailing projects listed in the boat tech directory also show its badge:
@@ -154,7 +154,7 @@ Standard tools - `npm`,`oxfmt`,`oxlint`
 
 ## Major Projects
 
-Major projects are the ones with `category = ["major"]` in `repos.toml` (chosen by downloads and known installs).
+Major projects are the ones with `significance = "major"` in `products.toml` (chosen by downloads and known installs).
 They have `design_principles.md` and `roadmap.md` in `docs/developer/design/`, as set out in `design.md`.
 
 

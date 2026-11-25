@@ -2,11 +2,11 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import Kpi from '../components/Kpi.astro';
 import security from '../data/security.json';
-import { FAMILIES, META_LABEL, ORG, githubUrl } from '../lib/hq-config.mjs';
+import { LINES, ORG, ORG_LINES, githubUrl } from '../lib/hq-config.mjs';
 
 type Repo = {
   id: string;
-  family: string;
+  line: string;
   url: string;
   reporting: boolean;
   policy: string | null;
@@ -17,8 +17,8 @@ type Repo = {
 };
 
 const repos = security.repos as Repo[];
-const groups = [...FAMILIES, ['meta', META_LABEL]]
-  .map(([family, label]) => [label, repos.filter((r) => r.family === family).sort((a, b) => a.id.localeCompare(b.id))] as const)
+const groups = [...LINES, ...ORG_LINES]
+  .map(([line, label]) => [label, repos.filter((r) => r.line === line).sort((a, b) => a.id.localeCompare(b.id))] as const)
   .filter(([, list]) => list.length);
 const count = (f: (r: Repo) => boolean) => `${repos.filter(f).length} of ${repos.length}`;
 const asOf = security.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';

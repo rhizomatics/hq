@@ -3,8 +3,7 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parse as parseToml } from 'smol-toml';
-import { USER_AGENT } from '../../src/lib/hq-config.mjs';
+import { ORG, REPOS, USER_AGENT } from '../../src/lib/hq-config.mjs';
 
 export const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const hqRoot = path.resolve(siteRoot, '..');
@@ -48,19 +47,17 @@ export async function ghAll(route) {
   }
 }
 
-// Public, unarchived repos from repos.toml; visibility and archive state come from the latest private snapshot.
-// `product` follows policies/products.md: not `meta`, `internal` or `experimental`.
+// Public, unarchived repos from products.toml; visibility and archive state come from the latest private snapshot.
+// Each has its product's `line`, and `product` per policies/products.md (hq-config's isProduct).
 export async function publicRepos() {
-  const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
   const dir = path.join(privateRoot, 'data', 'github');
   const latest = (await readdir(dir)).filter((f) => f.endsWith('.json')).sort().at(-1);
   const orgRepos = Object.fromEntries(JSON.parse(await readFile(path.join(dir, latest), 'utf8')).org_repos.map((r) => [r.name, r]));
-  const isProduct = (r) => r.family !== 'meta' && !r.category?.some((c) => c === 'internal' || c === 'experimental');
   return {
-    org: registry.org.github,
-    repos: Object.keys(registry.repos)
-      .filter((n) => !registry.repos[n].archived && orgRepos[n]?.visibility === 'public' && !orgRepos[n].archived)
-      .map((name) => ({ name, family: registry.repos[name].family, product: isProduct(registry.repos[name]) })),
+    org: ORG.github,
+    repos: REPOS.filter((r) => !r.archived && orgRepos[r.name]?.visibility === 'public' && !orgRepos[r.name].archived).map(
+      ({ name, line, product, productId }) => ({ name, line, product, productId }),
+    ),
   };
 }
 

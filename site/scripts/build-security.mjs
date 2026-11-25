@@ -3,7 +3,7 @@
 // advisories it has published.
 //
 // Sources, all read-only and all public on GitHub:
-//   - repos.toml                        which repos to cover (`archived = true` ones are left out)
+//   - products.toml                     which repos to cover (archived products are left out)
 //   - hq-private/data/github/<latest>   only for repo visibility and archive state
 //   - GitHub REST API                   private vulnerability reporting, file tree (SECURITY.md),
 //                                       active workflows (CodeQL, Dependabot updates), published advisories
@@ -49,7 +49,7 @@ async function main() {
     out = (
       await inBatches(repos, async (r) => {
         try {
-          return { id: r.name, family: r.family, url: `https://github.com/${org}/${r.name}/security`, ...(await repoSecurity(org, r.name)) };
+          return { id: r.name, line: r.line, url: `https://github.com/${org}/${r.name}/security`, ...(await repoSecurity(org, r.name)) };
         } catch (err) {
           notes.push(`${r.name}: security settings unavailable (${err.message}).`);
           return null;

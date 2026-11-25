@@ -17,7 +17,7 @@ Layout, agents and modules were decided on 2026-11-23 ([HQ Seed](../projects/hq-
   edits; `hq-private` gives the seed three files and the rest is instance.
 - **Org names are cheap.** Mostly comments, plus a few real values: the admin callers pin
   `rhizomatics/hq/...@<sha>`, `reusable-auto-assign.yml` defaults to `jeyrb`, `reusable-labels.yml` checks out
-  `rhizomatics/hq`, and `sync-admin.sh` matches `github.com/rhizomatics/`. All can read `repos.toml` `[org]`.
+  `rhizomatics/hq`, and `sync-admin.sh` matches `github.com/rhizomatics/`. All can read `hq.toml` `[org]`.
 - **Platform names are the bulk of the core work**: 20 core files mention them, mostly as examples or
   module-shaped sections (below).
 - **Agent specifics go deeper than the 2026-11-15 count suggested.** The layout itself is Claude's
@@ -38,12 +38,12 @@ Layout, agents and modules were decided on 2026-11-23 ([HQ Seed](../projects/hq-
 | `projects/README.md`, `processes/README.md`, `processes/weekly.md`, `processes/fortnightly.md` | `processes/README.md`: routines, models and the cloud environment (25 mentions) → out of the seed; the rest is neutral |
 | `processes/daily.md`, `monthly.md`, `quarterly.md` | platform processes' entries move to modules; `**Routine:**` lines → out of the seed |
 | Team: `pm`, `infra-lead`, `researcher` | path wording only |
-| Team: `architect`, `marketing`, `tech-writer` | platform names (1–3 each) → "the platforms in `repos.toml`" |
+| Team: `architect`, `marketing`, `tech-writer` | platform names (1–3 each) → "the platforms in `hq.toml`" |
 | Skills with no platform content: `support-sweep`, `support-review`, `pr-report`, `release-digest`, `registry-check`, `project-review`, `roadmap-review`, `docs-review`, `alignment-review` | frontmatter gains `role:` (keeping `agent:` and `context: fork`); `registry-check` checks routines' attached repos (→ out of the seed) |
 | Skills with platform examples: `adoption-report` (HACS, HA analytics), `github-review`, `reputation-review` (also names the org), `agent-accessibility-review`, `forum-watch` | examples out; forum sources and platform channels read from modules |
 | `policy-review` | its "Cloud routines" section (19 mentions) → out of the seed; the rest core |
 | `policies/README.md`, `policies/scripts_over_agents.md` | none beyond one SignalK example |
-| `repos.toml` | split: schema header and `[org]`/`[families]`/`[labels]`/`[capabilities]` shape → skeleton; `[repos]`, `[community]`, `security_watch` entries → instance |
+| `hq.toml`, `products.toml`, `community.toml` | `hq.toml`'s header and `[org]`/`[lines]`/`[platforms]`/`[distributions]`/`[labels]`/`[capabilities]` shape → skeleton; `products.toml` and `community.toml` entries, `security_watch` → instance (skeleton `products.toml` empty) |
 | `admin/` (README, `labels.yml`, `sync-admin.sh`, `templates/`), `.github/workflows/reusable-*.yml` | org and pinned ref from `[org]` and the instance's own latest release; `templates/hass-github/` → `homeassistant` |
 | `site/` (config, `scripts/`, `src/`), `mise.toml`, `.pre-commit-config.yaml`, `.gitignore`, `site/.gitignore` | `hq-docs.mjs` paths and routine checks (21 mentions) → `team/` and `skills/`, routine checks dropped; home page and branding → placeholders; `design.astro` has one example of each platform. `@rhizomatics/hq-stats` and its npm cooldown exemption stay as a dependency, not an instance detail |
 | `.github/workflows/site.yml`, `collect-stats.yml` | org from config |

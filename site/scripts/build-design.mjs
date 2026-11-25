@@ -2,13 +2,13 @@
 // Builds src/data/design.json for the Design Process page (per product: roadmap, design principles,
 // RFCs, GitHub discussions and issues) and the RFCs page (open and recently closed RFCs).
 //
-// Products are the public repos in repos.toml, less `meta`, `internal`, `experimental` and archived ones
-// (policies/products.md). Roadmap and design principles are found by file name (`roadmap.md`,
+// Products are the public repos of products in products.toml, less those on an org line, non-public,
+// experimental or archived (policies/products.md). Roadmap and design principles are found by file name (`roadmap.md`,
 // `design_principles.md`) anywhere under `docs/` (policies/design.md).
 //
 // Sources, all read-only:
-//   - repos.toml                        which repos to cover (`archived = true` ones are left out)
-//   - hq-private/data/github/<latest>   only for repo visibility and archive state
+//   - products.toml                     which repos to cover (archived products are left out)
+//   - hq-private/data/github/<latest>   only for repo visibility and archive state (lib/github.mjs)
 //   - GitHub REST API                   each public repo's settings, tree, RFC files and their last commit
 //
 // An RFC is any Markdown file in a directory named `rfcs` (policies/design.md), apart from index,
@@ -21,16 +21,12 @@
 // the header (`Created:`, `Date:` or the byline) and the file's first commit; changed is its last commit.
 // Needs GITHUB_TOKEN (or GH_TOKEN).
 
-import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parse as parseToml } from 'smol-toml';
 import { ORG, USER_AGENT } from '../src/lib/hq-config.mjs';
-import { writeJson } from './lib/github.mjs';
+import { publicRepos, writeJson } from './lib/github.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const hqRoot = path.resolve(siteRoot, '..');
-const privateRoot = path.resolve(process.env.HQ_PRIVATE ?? path.join(hqRoot, '..', 'hq-private'));
 const outPath = path.join(siteRoot, 'src', 'data', 'design.json');
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const DAY = 86_400_000;
@@ -146,16 +142,11 @@ async function repoDesign(org, name) {
 }
 
 async function main() {
-  const registry = parseToml(await readFile(path.join(hqRoot, 'repos.toml'), 'utf8'));
-  const org = registry.org.github;
-  const dir = path.join(privateRoot, 'data', 'github');
-  const latest = (await readdir(dir)).filter((f) => f.endsWith('.json')).sort().at(-1);
-  const orgRepos = Object.fromEntries(JSON.parse(await readFile(path.join(dir, latest), 'utf8')).org_repos.map((r) => [r.name, r]));
+  const { org, repos: covered } = await publicRepos();
+  const names = covered.map((r) => r.name);
+  const repoOf = Object.fromEntries(covered.map((r) => [r.name, r]));
   const now = Date.now();
   const notes = [];
-
-  const isProduct = (r) => r.family !== 'meta' && !r.category?.some((c) => c === 'internal' || c === 'experimental');
-  const names = Object.keys(registry.repos).filter((n) => !registry.repos[n].archived && orgRepos[n]?.visibility === 'public' && !orgRepos[n].archived);
   const all = [];
   const products = [];
   if (!token) {
@@ -168,7 +159,7 @@ async function main() {
         batch.map(async (name) => {
           try {
             const { rfcs, product, truncated } = await repoDesign(org, name);
-            if (isProduct(registry.repos[name])) products.push({ ...product, family: registry.repos[name].family });
+            if (repoOf[name].product) products.push({ ...product, line: repoOf[name].line });
             if (truncated) notes.push(`${name}: file list was truncated, so some RFCs may be missing.`);
             return rfcs;
           } catch (err) {

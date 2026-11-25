@@ -29,4 +29,4 @@ Four reviews, each run every four months in its own month, so one lands each mon
 - **Report:** none
 - Review HQ policies and processes for consistency, gaps and missed opportunities, and check policies against the repos where that's cheap (GitHub settings, design docs, releases).
 - Check every skill in `.claude/skills/` still matches its cadence entry here and in the other cadence files: timing, persona, output, report visibility and scope.
-- Include the Claude routines that run the processes: schedules and environments consistent with the HQ docs, and each routine's attached repos exactly the non-archived repos in `repos.toml` (none missing, none extra).
+- Include the Claude routines that run the processes: schedules and environments consistent with the HQ docs, and each routine's attached repos exactly the repos of the non-archived products in `products.toml` (none missing, none extra).

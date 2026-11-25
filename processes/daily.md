@@ -10,7 +10,7 @@
 ## Site build
 - **When:** 00:40, 08:40 (after the stats snapshot) and 16:40 UTC, to refresh the Operations pages; also on any push that changes docs, data or `site/`
 - **Who:** GitHub Actions (`.github/workflows/site.yml`)
-- **Output:** the HQ site (`[org].site_url` in `repos.toml`) — docs, public reports and per-component usage
+- **Output:** the HQ site (`[org].site_url` in `hq.toml`) — docs, public reports and per-component usage
 - **Report:** public (it is the site)
 
 ## Dependabot sweep — `/dependabot-sweep`

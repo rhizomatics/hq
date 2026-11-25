@@ -20,7 +20,7 @@
 - **Who:** pm
 - **When:** 07:20 UTC, after the PR report
 - **Routine:** `hq: weekly pm (Monday)`
-- **Output:** section in `hq-private/reports/prs/YYYY-Www.md`; clear-cut fixes committed to `repos.toml`
+- **Output:** section in `hq-private/reports/prs/YYYY-Www.md`; clear-cut fixes committed to `products.toml`
 - **Report:** private (a section of the PR report)
 - New, removed, renamed or archived repos in the org; new publishing channels.
 

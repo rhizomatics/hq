@@ -12,8 +12,8 @@ May, August and November, scheduled daily then. Each run reviews **one batch**.
 
 ## Pick today's batch
 
-1. Quarter folder: `hq-private/reports/architecture-review/YYYY-Qn/`. In scope: repos in `repos.toml` with
-   `upstream = "homeassistant"` or `"signalk"`, plus `mqtt-service` repos (reviewed against Home
+1. Quarter folder: `hq-private/reports/architecture-review/YYYY-Qn/`. In scope: products in `products.toml` on
+   the `homeassistant` or `signalk` platform, plus the `mqtt` line (reviewed against Home
    Assistant MQTT discovery conventions).
 2. First run of the quarter only: write `_platform-changes.md` (below) before any product.
 3. Already reviewed = product files in the folder. Nothing left → stop.

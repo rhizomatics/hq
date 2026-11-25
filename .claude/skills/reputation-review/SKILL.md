@@ -29,7 +29,7 @@ agent: marketing
 6. **The org's main site** — www.rhizomatics.org.uk, built with Zensical from `docs/` in `<org>/.github`
    (`index.md`, `home-automation.md`, `sailing.md`, `zensical.toml`), served from its `gh-pages` branch.
    Read the live pages and the source, and check:
-   - **Coverage and accuracy**: every product in `repos.toml` (not `meta`, `internal`, `experimental` or
+   - **Coverage and accuracy**: every product in `products.toml` (not on the `org` line, `public = false`, `experimental` or
      archived) appears on the right page with a current one-line description and working links to its repo
      and docs; nothing retired is still promoted; the description matches the product's README.
    - **Positioning**: does each page tell a newcomer what the products do for them, in the house voice

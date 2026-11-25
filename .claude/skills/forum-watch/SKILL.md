@@ -8,7 +8,7 @@ agent: marketing
 # Daily forum watch
 
 Sources and access methods are in `reference/hass_discussion.md` and `reference/signalk_discussion.md`; problem phrases per product in `reference/topic_terms.md`. Products are the repos in
-`repos.toml` (read a repo's README if you need to know what it does).
+`products.toml` (read a repo's README if you need to know what it does).
 
 ## Gather
 
@@ -16,7 +16,7 @@ Check only the sources whose cadence is due today (see the reference files), cov
 period since that source was last checked: one cadence period, or since the last report that
 listed it. Record in the report which sources were checked.
 
-1. **Mentions** — product, repo and package names from `repos.toml`, and the org's own name (`[org].name`).
+1. **Mentions** — product, repo and package names from `products.toml`, and the org's own name (`[org].name`).
 2. **Opportunities** — threads matching the problem phrases where nobody has already given a good
    answer, the thread is recent and still open, and our product genuinely fits (version, platform,
    setup effort). Being useful beats being promotional; skip weak fits.

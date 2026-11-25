@@ -6,8 +6,8 @@ import { defineConfig } from 'astro/config';
 import { ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
 import { policies, policyGroups } from './scripts/lib/hq-docs.mjs';
 
-// Usage pages from @rhizomatics/hq-stats: repos.toml's [stats] says where the snapshots and stats.json are.
-const stats = { config: '../repos.toml' };
+// Usage pages from @rhizomatics/hq-stats: hq.toml's [stats] says where the snapshots and stats.json are.
+const stats = { config: '..' };
 
 // Policies: the list and how it works, then each policy under its `group:`, as on the list page.
 async function policiesSidebar() {

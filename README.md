@@ -10,7 +10,7 @@ How the [Rhizomatics](https://github.com/rhizomatics) open source projects are r
 - [policies/](policies/) — cross-project policies, such as supported Python and Home Assistant versions
 - [reference/](reference/) — the standards every project should meet, and where users talk about the products
 - [projects/](projects/) — work in progress and ideas
-- [repos.toml](repos.toml) — every repo and where it's published
+- [products.toml](products.toml) — every product, its repos and where it's published; [hq.toml](hq.toml) the org, product lines and platforms; [community.toml](community.toml) projects built on ours
 
 Reports, metrics and the maintainer's to-do list live in a private companion repo. Analytics are supplied by https://rhizomatics.goatcounter.com
 

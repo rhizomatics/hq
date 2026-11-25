@@ -1,0 +1,155 @@
+# One table per product, keyed by its slug: one thing users install or visit, with one roadmap and one release
+# cadence. Lines, platforms and distributions are in hq.toml; terms in AGENTS.md and
+# projects/hq-product-catalog.md. Update it when a repo is added, renamed or starts publishing somewhere new.
+#
+#   line:          a key of [lines] in hq.toml
+#   repos:         the repos it's built in (default: [slug]); every org repo is in exactly one product
+#   platform:      what it runs on or inside, one or a list (default: its line's); a key of [platforms]. Security
+#                  escalation leaves out transitive vulnerabilities inherited from it.
+#   significance:  "major" for the products that get the stricter design and standards checks
+#   lifecycle:     "active" (default) | "experimental" (not shown publicly) | "archived" (retired: left off the
+#                  public site, even before GitHub archives it)
+#   public:        false to leave it out of everything public
+#   description:   used until GitHub has one
+#   formerly:      { name = <old repo name(s)> }, so a renamed repo keeps its history
+#   artefacts.<name>: how it's delivered. The name is the distribution (a key of [distributions] in hq.toml)
+#                  unless it says `distribution =`. A string is the package name. Fields:
+#     package:     npm / PyPI package, or GHCR image under ghcr.io/<org>/
+#     asset:       release asset (HACS downloads a zip, or a card's .js; counts = HACS installs/updates)
+#     domain:      Home Assistant integration domain (for HA analytics install counts)
+#     goatcounter: GoatCounter site code counting the website's page views; cookieless, so no consent banner
+#                  (policies/project_standards.md)
+#     platform:    overrides the product's, for a product with artefacts on different platforms
+#     formerly:    names an artefact had before, still counted: { asset, package, domain }
+
+# --- Home Assistant -------------------------------------------------------------------------------------------
+
+[supernotify]
+line = "homeassistant"
+significance = "major"
+artefacts.homeassistant_marketplace_integration = { asset = "supernotify.zip", domain = "supernotify" }
+artefacts.website = { goatcounter = "supernotify" }
+
+[autoarm]
+line = "homeassistant"
+significance = "major"
+artefacts.homeassistant_marketplace_integration = { asset = "autoarm.zip", domain = "autoarm" }
+artefacts.website = { goatcounter = "autoarm" }
+
+[remote_logger]
+line = "homeassistant"
+significance = "major"
+artefacts.homeassistant_marketplace_integration = { asset = "remote_logger.zip", domain = "remote_logger" }
+artefacts.website = { goatcounter = "remote-logger" }
+
+[appliance_autonotify]
+line = "homeassistant"
+artefacts.website = { goatcounter = "appliance-autonotify" }
+
+[appliance_autonotify.artefacts.homeassistant_marketplace_integration]
+asset = "appliance_autonotify.zip"
+domain = "appliance_autonotify"
+formerly = { asset = "appliances_autonotify.zip" }
+
+[camera_autonotify]
+line = "homeassistant"
+artefacts.homeassistant_marketplace_integration = { asset = "camera_autonotify.zip", domain = "camera_autonotify" }
+artefacts.website = { goatcounter = "camera-autonotify" }
+
+[homeassistant-repl]
+line = "homeassistant"
+artefacts.pypi = "homeassistant-repl"
+artefacts.homeassistant_marketplace_integration = { asset = "ha_repl_server.zip", domain = "ha_repl_server" }
+artefacts.website = { goatcounter = "homeassistant-repl" }
+
+# --- SignalK --------------------------------------------------------------------------------------------------
+
+[signalk-einklabel-plugin]
+line = "signalk"
+significance = "major"
+artefacts.npm = "@rhizomatics/signalk-einklabel-plugin"
+artefacts.website = { goatcounter = "signalk-einklabel" }
+
+[signalk-einklabel-genai-plugin]
+line = "signalk"
+artefacts.npm = "@rhizomatics/signalk-einklabel-genai-plugin"
+
+[signalk-datalab-plugin]
+line = "signalk"
+significance = "major"
+artefacts.npm = "@rhizomatics/signalk-datalab-plugin"
+artefacts.website = { goatcounter = "signalk-datalab" }
+
+[signalk-teltonika-sms-plugin]
+line = "signalk"
+artefacts.npm = "@rhizomatics/signalk-teltonika-sms-plugin"
+
+[signalk-bluetti-plugin]
+line = "signalk"
+significance = "major"
+artefacts.npm = "@rhizomatics/signalk-bluetti-plugin"
+
+[signalk-delta-squelch-plugin]
+line = "signalk"
+artefacts.npm = "@rhizomatics/signalk-delta-squelch-plugin"
+
+[signalk-ble-sensors-plugin]
+line = "signalk"
+artefacts.npm = "@rhizomatics/signalk-ble-sensors-plugin"
+
+[signalk-cli]
+line = "signalk"
+artefacts.pypi = "signalk-cli"
+artefacts.website = { goatcounter = "signalk-cli" }
+
+[boat-tech-directory]
+line = "signalk"
+significance = "major"
+artefacts.npm = "@rhizomatics/signalk-boat-tech-directory-plugin"
+artefacts.website = { goatcounter = "boat-tech-directory" }
+
+# --- Picoware -------------------------------------------------------------------------------------------------
+
+[pico-ais-reporter]
+line = "picoware"
+platform = "linux"
+
+[pico-ble-proxy]
+line = "picoware"
+platform = ["esp32", "linux"]   # firmware and daemon; each becomes an artefact once released
+
+# --- MQTT -----------------------------------------------------------------------------------------------------
+
+[updates2mqtt]
+line = "mqtt"
+significance = "major"
+artefacts.pypi = "updates2mqtt"
+artefacts.ghcr = "updates2mqtt"
+artefacts.website = { goatcounter = "updates2mqtt" }
+
+[anpr2mqtt]
+line = "mqtt"
+artefacts.pypi = "anpr2mqtt"
+artefacts.ghcr = "anpr2mqtt"
+artefacts.website = { goatcounter = "anpr2mqtt" }
+
+# --- HQ -------------------------------------------------------------------------------------------------------
+
+[hq-stats]
+line = "hq"
+artefacts.npm = "@rhizomatics/hq-stats"
+
+# --- Organisation ---------------------------------------------------------------------------------------------
+
+[homepage]
+line = "org"
+repos = [".github"]                 # www.rhizomatics.org.uk
+artefacts.website = { goatcounter = "rhizomatics" }
+
+[hq]
+line = "org"
+repos = ["hq", "hq-private"]        # hq-private is private, so stats and public pages skip it
+artefacts.website = { goatcounter = "rhizomatics-hq" }
+
+[agent-plugins]
+line = "org"
