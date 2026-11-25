@@ -137,8 +137,10 @@ domain serves users better. Web research, 2026-11-25; sources at the end.
   marketplace is one command, so one marketplace with plugins from two domains costs a user nothing: they install
   only the plugin they want.
 - GitHub Copilot CLI reads the same `.claude-plugin/marketplace.json` (`copilot plugin marketplace add`), and VS
-  Code recognises `.claude-plugin/plugin.json`, though GitHub's docs warn that fields differ (Copilot uses
-  `repository`/`ref` where Claude Code uses `source`). Not yet checked against our file.
+  Code recognises `.claude-plugin/plugin.json`. Checked 2026-11-25 against the
+  [Copilot CLI plugin reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference):
+  our file works as it is (object `source` supported, `.claude-plugin/plugin.json` and `skills/` found), except
+  `owner.url`, which isn't in Copilot's documented `owner`; dropped in agent-plugins#8. Not tested live.
 - The `skills` CLI (skills.sh, `npx skills add owner/repo`) installs `SKILL.md` folders from any GitHub repo into
   20+ agents (Claude Code, Codex, Cursor, Copilot, Gemini). It reads the repo the skill lives in, so our layout,
   with each plugin's skills in the product's own repo, already works with it for every agent, marketplace or not.
@@ -383,7 +385,8 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
       `agent-plugins` stays org-wide or splits by domain (2026-11-25: "Agent plugin marketplaces" above)
 - [x] @human Decide: keep `agent-plugins` org-wide or split by domain (2026-11-25: org-wide)
 - [ ] @human Submit `homeassistant-repl` to the official Claude plugin directory (claude.ai/directory/manage)
-- [ ] @agent Check `agent-plugins`' `marketplace.json` against Copilot CLI's marketplace format
+- [x] @agent Check `agent-plugins`' `marketplace.json` against Copilot CLI's marketplace format
+      ([agent-plugins#8](https://github.com/rhizomatics/agent-plugins/pull/8), 2026-11-25)
 - [x] @agent hq-stats: normalised model, both readers, `migrate`, `schema: 2` in `stats.json`, release 0.3.0
       ([hq-stats#8](https://github.com/rhizomatics/hq-stats/pull/8))
 - [x] @agent hq: switch to `hq.toml` / `products.toml` / `community.toml` via `hq-stats migrate`, then the site scripts, Python scripts and skills (hq 1.1.0)
@@ -415,3 +418,5 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 - 2026-11-25: Researched agent plugin marketplaces. Discovery is per plugin (official directory, aggregators,
   domain search), install of a marketplace is one command, and the `skills` CLI installs from product repos for
   other agents. Decided: `agent-plugins` stays org-wide; `homeassistant-repl` to be submitted to the official directory.
+- 2026-11-25: Checked `agent-plugins` against Copilot CLI's marketplace format: compatible apart from `owner.url`,
+  removed in agent-plugins#8 along with Copilot and `skills` CLI install lines in its README (awaiting review).
