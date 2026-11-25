@@ -72,5 +72,16 @@ The Home Assistant side has a first version, which this could follow:
   `quality_scale.yaml` adds up to (the highest tier whose rules, per hassfest's list, are all done or exempt)
   found supernotify declaring Silver while a Bronze rule (`action-setup`) is still `todo`. The same check, as a
   `check-hq`-style warning or in the architecture review, would cover "notice where rules had changed".
-- Placement, to decide: platform scores sit better in HQ's site build than in `hq-stats`, which counts usage
-  (downloads, installs, views) and stays usable without HQ.
+- Placement (decided 2026-11-25): platform scores are stats, so the code goes in `hq-stats`, collected into its
+  snapshots and `stats.json` like downloads; HQ keeps only the data and config (targets per line or product).
+  The Home Assistant level read by HQ's `build-design.mjs` moves there too, and HQ's pages then read it from
+  `stats.json`.
+
+## Tasks
+
+- [ ] @agent hq-stats: collect each Home Assistant integration's declared quality scale level and the level its
+      `quality_scale.yaml` adds up to, into the snapshots and `stats.json`; HQ's catalogue reads it from there
+      and `build-design.mjs` stops reading manifests
+- [ ] @agent hq-stats: collect SignalK plugin registry `score`, `badges` and `testStatus` the same way
+- [ ] @pair Targets per product line, overridable per product (in `products.toml`), and a check that warns when
+      a product's declared level or score misses its target or disagrees with its own assessment
