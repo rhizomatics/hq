@@ -1,7 +1,7 @@
 # The org, its product lines and platforms, and the org-specific settings every process, skill and site script
 # reads instead of naming the org itself. Products are in products.toml, community projects in community.toml.
 # Read through @rhizomatics/hq-stats' loadConfig (site/src/lib/hq-config.mjs); terms in AGENTS.md
-# ("Names used in these docs") and projects/active/hq-product-catalog.md.
+# ("Names used in these docs") and projects/done/hq-product-catalog.md.
 #
 # [org]
 #   name:          display name, used in prose and on the site
@@ -99,8 +99,8 @@ pypi = { label = "PyPI", note = "a package on PyPI" }
 npm = { label = "npm", note = "a package on npm (SignalK plugins reach the SignalK app store this way)" }
 ghcr = { label = "Container image", note = "a container image on ghcr.io/<org>/" }
 github_release = { label = "GitHub release", note = "a release asset on GitHub, downloaded directly" }
-homeassistant_marketplace_integration = { label = "HACS integration", note = "a Home Assistant integration installed through HACS: its release zip and domain" }
-homeassistant_marketplace_frontend = { label = "HACS card", note = "a Home Assistant card installed through HACS: its release .js" }
+homeassistant_marketplace_integration = { label = "Marketplace integration", note = "a Home Assistant integration installed through the Home Assistant Marketplace (HACS): its release zip and domain" }
+homeassistant_marketplace_frontend = { label = "Marketplace card", note = "a Home Assistant card installed through the Home Assistant Marketplace (HACS): its release .js" }
 website = { label = "Website", note = "a website, with its GoatCounter site code" }
 
 [labels]

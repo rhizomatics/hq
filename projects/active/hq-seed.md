@@ -29,7 +29,7 @@ community, agent neutrality) and the launch; this one builds the seed and the up
 - **Coupling is light** (2026-11-15 count): org name and maintainer are already config (`hq.toml` `[org]`);
   four skills are platform-specific and become module content. Platform names in core files are the main
   extraction work.
-- **Products and product lines** ([Product Catalogue](hq-product-catalog.md)): the seed's config skeleton
+- **Products and product lines** ([Product Catalogue](../done/hq-product-catalog.md)): the seed's config skeleton
   (`hq.toml`, `products.toml`; was `repos.toml` until hq 1.1.0) is the schema every HQ inherits, so how it defines a product and a product line should be settled before the
   seed's first release; changing it afterwards means a migration in every instance. Today `family` does three jobs:
   the product line heading on the site, the hq issue area, and in effect the platform. Modules are chosen by
@@ -163,7 +163,7 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 - [x] @agent Check what Claude Code picks up from a neutral layout (2026-11-23, on 2.1.327: `AGENTS.md` yes;
       `skills/` and `team/` only through symlinks from `.claude/`; see [Agents](#agents-decided-2026-11-23))
 - [x] @pair Skill frontmatter (2026-11-23: keep `agent:` and `context: fork` beside `role:`)
-- [x] @pair Config schema for products and product lines, settled with the [Product Catalogue](hq-product-catalog.md)
+- [x] @pair Config schema for products and product lines, settled with the [Product Catalogue](../done/hq-product-catalog.md)
       (`hq.toml` / `products.toml`, hq 1.1.0; skeleton in [hq-seed#1](https://github.com/rhizomatics/hq-seed/pull/1))
       project: product line, issue area and platform as separate fields, `[families]` migrated
 - [ ] @pair Formats: `hq.lock`, `module.toml`, the module markers in skills, the `seed:` policy setting; `check-hq` validates them
@@ -246,7 +246,7 @@ _None._
   One question opened: whether skills keep `agent:`/`context: fork` beside `role:`.
 - 2026-11-23 — Skill frontmatter decided: option (a), `agent:` and `context: fork` kept beside `role:`. Phase 1 is
   left with the formats (`hq.lock`, `module.toml`, module markers, `seed:`) and the repo itself.
-- 2026-11-23 — Linked to the new [Product Catalogue](hq-product-catalog.md) project: the seed's `repos.toml`
+- 2026-11-23 — Linked to the new [Product Catalogue](../done/hq-product-catalog.md) project: the seed's `repos.toml`
   schema needs its definitions of product and product line, so that's a Phase 1 task here, ahead of the first release.
 - 2026-11-25 — `hq-seed` repo created. Config schema settled by the Product Catalogue (hq 1.1.0: `hq.toml`,
   `products.toml`, `community.toml` in place of `repos.toml`); `module.toml` relevance now reads `platform` from

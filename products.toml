@@ -1,6 +1,6 @@
 # One table per product, keyed by its slug: one thing users install or visit, with one roadmap and one release
 # cadence. Lines, platforms and distributions are in hq.toml; terms in AGENTS.md and
-# projects/active/hq-product-catalog.md. Update it when a repo is added, renamed or starts publishing somewhere new.
+# projects/done/hq-product-catalog.md. Update it when a repo is added, renamed or starts publishing somewhere new.
 #
 #   line:          a key of [lines] in hq.toml
 #   repos:         the repos it's built in (default: [slug]); every org repo is in exactly one product
