@@ -79,9 +79,38 @@ The Home Assistant side has a first version, which this could follow:
 
 ## Tasks
 
-- [ ] @agent hq-stats: collect each Home Assistant integration's declared quality scale level and the level its
+- [x] @agent hq-stats: collect each Home Assistant integration's declared quality scale level and the level its
       `quality_scale.yaml` adds up to, into the snapshots and `stats.json`; HQ's catalogue reads it from there
-      and `build-design.mjs` stops reading manifests
-- [ ] @agent hq-stats: collect SignalK plugin registry `score`, `badges` and `testStatus` the same way
+      and `build-design.mjs` stops reading manifests ([hq-stats#10](https://github.com/rhizomatics/hq-stats/pull/10),
+      HQ branch `platform-health`)
+- [x] @agent hq-stats: collect SignalK plugin registry `score`, `badges` and `testStatus` the same way (same PR)
+- [ ] @human Release hq-stats 0.4.0; then @agent bump HQ's site to it and open the `platform-health` PR
 - [ ] @pair Targets per product line, overridable per product (in `products.toml`), and a check that warns when
       a product's declared level or score misses its target or disagrees with its own assessment
+
+## What else HQ scans itself (2026-11-25)
+
+The model: hq-stats does the scanning and collecting, HQ works only from its captured data plus its own docs and
+config. What HQ still gathers for itself, and where each belongs:
+
+| Script | What it gathers | Fits hq-stats? |
+| --- | --- | --- |
+| `site/scripts/build-issues.mjs` | open issues per repo, by type | **Yes**: counts, and history would show trends; hq-stats already snapshots `open_issues_and_prs` |
+| `site/scripts/build-security.mjs` | public security settings, published advisories | **Yes**, as ratings beside `health`; OpenSSF Scorecard scores (public API) would fit there too |
+| `site/scripts/build-actions.mjs` | Actions state per workflow (failures, flapping) | **Probably**: a rating of build health, but the Deployments page wants it fresher than a daily snapshot |
+| `site/scripts/build-releases.mjs` | the last month's releases | **Partly**: the release list and dates are data hq-stats half has (`release_assets`); the one-line summaries are HQ's own writing and stay |
+| `site/scripts/build-design.mjs` | RFCs, roadmaps, design principles | **No**: documents, not stats |
+| `site/scripts/build-community.mjs` | blog feeds | **No**: content (community projects' stats are already hq-stats') |
+| `hq-private/scripts/collect_github.py` | security alerts, traffic referrers, org repo list, discussions | **No**: private, and hq-stats only ever writes public data |
+
+The yeses are a follow-on once the ratings have run for a while; none is urgent.
+
+## Log
+
+- 2026-11-25: Started. hq-stats 0.4.0 (hq-stats#10) collects Home Assistant quality scale (declared, and what each
+  `quality_scale.yaml` adds up to per hassfest's rule list) and the SignalK plugin registry's score, badges, tests
+  and plugin-ci, as `health` per product, without GitHub API calls. HQ's catalogue reads it (branch
+  `platform-health`, waiting for the release). First figures: supernotify declares Silver but its assessment
+  doesn't reach Bronze (`action-setup`); homeassistant-repl declares none (`runtime-data` short of Bronze); both
+  being fixed. SignalK: 100 for three plugins, 95 for three (no screenshots), 75 for datalab (tests not runnable)
+  and boat-tech-directory (no plugin-ci). Listed what else HQ scans itself and where it belongs.
