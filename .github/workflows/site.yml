@@ -6,6 +6,10 @@ name: Site
 # actions: read). Security alerts are never read or published.
 # Runs at 00:40, 08:40 (after collect-stats.yml's 04:23 snapshot) and 16:40 to refresh the Operations pages,
 # and on doc or site changes.
+# Only the scheduled (and manual) builds read GitHub's API for the Operations, Design and Releases data, then save
+# it to the Actions cache; a build on push restores the newest copy and skips those scripts, so a busy day of
+# pushes doesn't use up this repo's API allowance (1,000 requests an hour, shared with everything else here).
+# The Operations pages can therefore lag a push by up to 8 hours.
 # Logs are public: the build scripts only print counts, file names and public source errors.
 
 on:
@@ -64,15 +68,42 @@ jobs:
           cache: npm
           cache-dependency-path: site/package-lock.json
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      # On push: the GitHub data the last scheduled build saved (newest first by key prefix).
+      - name: Restore GitHub data
+        id: github-data
+        if: github.event_name == 'push'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            site/src/data/actions.json
+            site/src/data/design.json
+            site/src/data/issues.json
+            site/src/data/security.json
+            site/src/data/releases.json
+          key: site-github-data-
+          restore-keys: site-github-data-
       - name: Build
         working-directory: site
         env:
           HQ_PRIVATE: ${{ github.workspace }}/hq-private
           GITHUB_TOKEN: ${{ github.token }}
           ASTRO_TELEMETRY_DISABLED: "1"
+          CACHED: ${{ steps.github-data.outputs.cache-matched-key != '' }}
         run: |
           npm ci
-          npm run build
+          if [ "$CACHED" = "true" ]; then npm run build:cached; else npm run build; fi
+      # Scheduled and manual builds save the GitHub data they read, for the builds on push to reuse.
+      - name: Save GitHub data
+        if: github.event_name != 'push'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            site/src/data/actions.json
+            site/src/data/design.json
+            site/src/data/issues.json
+            site/src/data/security.json
+            site/src/data/releases.json
+          key: site-github-data-${{ github.run_id }}
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: site/dist

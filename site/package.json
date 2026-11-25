@@ -16,6 +16,7 @@
     "releases": "node scripts/build-releases.mjs",
     "dev": "npm run sync && npm run actions && npm run design && npm run issues && npm run security && npm run community && npm run releases && astro dev",
     "build": "npm run sync && npm run stats && npm run actions && npm run design && npm run issues && npm run security && npm run community && npm run releases && astro build",
+    "build:cached": "npm run sync && npm run stats && npm run community && astro build",
     "preview": "astro preview"
   },
   "dependencies": {
