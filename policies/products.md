@@ -7,6 +7,10 @@ summary: "What every product gets: a repos.toml entry, GitHub features enabled, 
 
 Products will follow all the other HQ policies except where an exception listed.
 
+## Product Lines
+
+Each product is part of a *Product Line*, including internal and catch-all lines where a specific line isn't worthwhile.
+
 ## Git Repositories
 
 Each product will be listed in HQ in `repos.toml`.
