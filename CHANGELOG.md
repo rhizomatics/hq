@@ -2,6 +2,24 @@
 title: What's New
 ---
 
+# Unreleased
+
+## Shared admin workflows
+
+- `admin-zizmor.yml` runs on a push to `main` only when workflows or `.github/zizmor.yml` change (still on every
+  pull request and weekly): zizmor audits workflows only, and its online checks use the repo's API allowance.
+- The reusable workflows are named "… (shared)", so a repo's Actions list tells them apart from its own callers
+  of the same name. Check names are unchanged.
+
+## HQ
+
+- Site builds on push reuse the GitHub data the scheduled builds save, rather than reading every repo again.
+- The Deployments page's data reads each repo's recent runs in one or a few calls rather than one per workflow:
+  about half the API calls, same result.
+- Products: a catalogue at `/products/` and a page per product. Projects: `ongoing`, `blocked` and `ready`
+  statuses, dates per status, done and shelved folded away. Community projects can be recommended rather than
+  built on.
+
 # 1.1.0
 
 ## Products, product lines and artefacts

@@ -2,8 +2,14 @@
 name: zizmor
 
 on:
+  # zizmor audits workflows only, and its online checks use this repo's API allowance: on main, run it when they
+  # or its config change. Every pull request still gets it (it may be a required check), and the weekly run
+  # picks up new advisories for the actions in use.
   push:
     branches: [main]
+    paths:
+      - .github/workflows/**
+      - .github/zizmor.yml
   pull_request:
   schedule:
     - cron: "41 5 * * 2"

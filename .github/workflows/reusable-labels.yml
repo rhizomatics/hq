@@ -1,6 +1,6 @@
 # Reusable: sync the shared label set in rhizomatics/hq admin/labels.yml into the calling repo.
 # Labels that exist only in the calling repo are left alone (skip-delete).
-name: Sync labels
+name: Sync labels (shared)
 
 on:
   workflow_call:

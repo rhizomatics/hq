@@ -4,7 +4,7 @@
 # beside CodeQL, Grype and Scorecard; it doesn't fail the build on findings. Private repos without
 # Advanced Security can't upload, so there it fails the job on findings instead.
 # Callers trigger on push to main, pull_request and a weekly schedule (new audits arrive with new versions).
-name: zizmor
+name: zizmor (shared)
 
 on:
   workflow_call:

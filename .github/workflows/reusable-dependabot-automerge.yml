@@ -4,7 +4,7 @@
 #
 # Waits on checks itself rather than using GitHub auto-merge, because most repos have no required
 # status checks and auto-merge would then merge before CI finishes.
-name: Dependabot auto-merge
+name: Dependabot auto-merge (shared)
 
 on:
   workflow_call:

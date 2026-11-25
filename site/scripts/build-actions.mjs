@@ -54,11 +54,27 @@ const relevant = (run) => !PR_EVENTS.has(run.event) && !run.head_branch?.startsW
 // cancelled and skipped runs say nothing about health
 const counted = (run) => relevant(run) && !['cancelled', 'skipped', 'neutral'].includes(run.conclusion);
 
-async function completedRuns(repo, wf) {
+// A repo's completed runs across all its workflows, newest first, back to at least 7 days ago (the flapping
+// window) or 5 pages. One to a few calls per repo, where asking per workflow took one call for each.
+async function recentRuns(repo, now) {
+  const out = [];
+  for (let page = 1; page <= 5; page += 1) {
+    const { workflow_runs: runs } = await gh(`repos/${repo}/actions/runs?status=completed&exclude_pull_requests=true&per_page=100&page=${page}`);
+    out.push(...runs);
+    if (runs.length < 100 || Date.parse(runs.at(-1).created_at) < now - 7 * DAY) break;
+  }
+  return out;
+}
+
+// A workflow's counted runs, newest first: from the repo's recent runs, or, for a workflow with none counted
+// there (one that runs rarely), its own latest 30.
+async function completedRuns(repo, wf, recent) {
+  const own = recent.filter((r) => r.workflow_id === wf.id && counted(r));
+  if (own.length) return own;
   const { workflow_runs: runs } = await gh(
     `repos/${repo}/actions/workflows/${wf.id}/runs?status=completed&exclude_pull_requests=true&per_page=30`,
   );
-  return runs.filter(counted); // newest first
+  return runs.filter(counted);
 }
 
 // Separate runs of consecutive failures among runs since `from` (newest first).
@@ -73,8 +89,8 @@ function failureStreaks(runs, from) {
   return streaks;
 }
 
-async function workflowHealth(repo, wf, now) {
-  const own = await completedRuns(repo, wf);
+async function workflowHealth(repo, wf, now, recent) {
+  const own = await completedRuns(repo, wf, recent);
   const latest = own[0];
   if (!latest) return null;
   const recentFailures = own.filter((r) => FAILED.has(r.conclusion) && Date.parse(r.updated_at) >= now - DAY);
@@ -100,8 +116,8 @@ async function workflowHealth(repo, wf, now) {
 
 // Dependabot runs one job per ecosystem and directory ("uv in /."), so each is judged on its own
 // latest run. Ecosystems that missed the latest round have been dropped from the config.
-async function dependabotFailures(repo, wf) {
-  const runs = await completedRuns(repo, wf);
+async function dependabotFailures(repo, wf, recent) {
+  const runs = await completedRuns(repo, wf, recent);
   if (!runs.length) return [];
   const newest = Date.parse(runs[0].created_at);
   const latestByJob = new Map();
@@ -116,12 +132,12 @@ async function dependabotFailures(repo, wf) {
 
 async function repoHealth(org, name, now) {
   const repo = `${org}/${name}`;
-  const { workflows } = await gh(`repos/${repo}/actions/workflows?per_page=100`);
+  const [{ workflows }, recent] = await Promise.all([gh(`repos/${repo}/actions/workflows?per_page=100`), recentRuns(repo, now)]);
   // dynamic/agents/* are Copilot's pull request reviews, not the repo's own jobs
   const active = workflows.filter((w) => w.state === 'active' && !w.path.startsWith('dynamic/agents/'));
   const isDependabot = (w) => w.path === 'dynamic/dependabot/dependabot-updates';
-  const results = await Promise.all(active.filter((w) => !isDependabot(w)).map((w) => workflowHealth(repo, w, now)));
-  const dependabot = (await Promise.all(active.filter(isDependabot).map((w) => dependabotFailures(repo, w)))).flat();
+  const results = await Promise.all(active.filter((w) => !isDependabot(w)).map((w) => workflowHealth(repo, w, now, recent)));
+  const dependabot = (await Promise.all(active.filter(isDependabot).map((w) => dependabotFailures(repo, w, recent)))).flat();
   const list = results.filter(Boolean).sort((a, b) => RANK[b.state] - RANK[a.state] || a.name.localeCompare(b.name));
   return {
     state: list.reduce((s, w) => (RANK[w.state] > RANK[s] ? w.state : s), 'none'),
