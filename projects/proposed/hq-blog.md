@@ -27,10 +27,18 @@ Rhizomatics with an HQ, and a way to boost the two existing substacks,
 
 ## Questions
 
-- Byline and voice: the maintainer by name, or "Rhizomatics"?
-- Comments: none, or GitHub Discussions on `hq` (giscus)?
-- Cross-posting: HQ posts also go to a substack (with the HQ post as the canonical one), or stay on HQ only?
-- Should www.rhizomatics.org.uk link to it, or carry it instead of HQ?
+For the maintainer to decide; the notes are trade-offs, not answers.
+
+- **Byline and voice:** the maintainer by name, or "Rhizomatics"? A named author suits opinion pieces on open
+  source and agentic product management, and matches the substacks; "Rhizomatics" reads as product news.
+- **Comments:** none, or GitHub Discussions on `hq` (giscus)? Discussions keep conversation where the work is and
+  need no new account for readers who have GitHub, but add a thread to watch; none keeps it cheap, with replies
+  going to the substacks or GitHub instead.
+- **Cross-posting:** HQ posts also go to a substack, with the HQ post as the canonical one, or stay on HQ only?
+  Substack brings subscribers and email delivery; HQ only keeps one place to maintain. A third substack for HQ
+  topics is another option, with HQ linking to it.
+- **Where it shows:** should www.rhizomatics.org.uk link to it, or carry the blog instead of HQ? HQ is about how
+  things are run, which fits these topics; www is where product users arrive.
 
 ## Tasks
 
