@@ -68,7 +68,7 @@ that environment a spec to build to.
 ### Later (developer environment)
 
 - [ ] @human Decide which resources move to the remote dev environment (preview, starters, mounted config)
-- [ ] @pair Move `.hq.env` secrets to AWS Secrets Manager and resolve them at runtime (now planned in [mise environments](vaults.md), through fnox profiles)
+- [x] @pair Move `.hq.env` secrets to an encrypred vault and resolve them at runtime (now planned in [mise environments](vaults.md), through fnox profiles)
 
 ## Decisions
 
