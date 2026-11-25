@@ -88,22 +88,10 @@ The Home Assistant side has a first version, which this could follow:
 - [ ] @pair Targets per product line, overridable per product (in `products.toml`), and a check that warns when
       a product's declared level or score misses its target or disagrees with its own assessment
 
-## What else HQ scans itself (2026-11-25)
+## What else HQ scans itself
 
-The model: hq-stats does the scanning and collecting, HQ works only from its captured data plus its own docs and
-config. What HQ still gathers for itself, and where each belongs:
-
-| Script | What it gathers | Fits hq-stats? |
-| --- | --- | --- |
-| `site/scripts/build-issues.mjs` | open issues per repo, by type | **Yes**: counts, and history would show trends; hq-stats already snapshots `open_issues_and_prs` |
-| `site/scripts/build-security.mjs` | public security settings, published advisories | **Yes**, as ratings beside `health`; OpenSSF Scorecard scores (public API) would fit there too |
-| `site/scripts/build-actions.mjs` | Actions state per workflow (failures, flapping) | **Probably**: a rating of build health, but the Deployments page wants it fresher than a daily snapshot |
-| `site/scripts/build-releases.mjs` | the last month's releases | **Partly**: the release list and dates are data hq-stats half has (`release_assets`); the one-line summaries are HQ's own writing and stay |
-| `site/scripts/build-design.mjs` | RFCs, roadmaps, design principles | **No**: documents, not stats |
-| `site/scripts/build-community.mjs` | blog feeds | **No**: content (community projects' stats are already hq-stats') |
-| `hq-private/scripts/collect_github.py` | security alerts, traffic referrers, org repo list, discussions | **No**: private, and hq-stats only ever writes public data |
-
-The yeses are a follow-on once the ratings have run for a while; none is urgent.
+Listed, with where each belongs, in [HQ data from hq-stats](../proposed/hq-data-from-stats.md) (part of the HQ as
+a product programme).
 
 ## Log
 
@@ -114,3 +102,7 @@ The yeses are a follow-on once the ratings have run for a while; none is urgent.
   doesn't reach Bronze (`action-setup`); homeassistant-repl declares none (`runtime-data` short of Bronze); both
   being fixed. SignalK: 100 for three plugins, 95 for three (no screenshots), 75 for datalab (tests not runnable)
   and boat-tech-directory (no plugin-ci). Listed what else HQ scans itself and where it belongs.
+- 2026-11-25: supernotify fixed `action-setup` (declares Silver, assessment Silver) and homeassistant-repl now
+  declares Bronze (assessment Bronze; Silver needs `test-coverage`). README badge for homeassistant-repl on branch
+  `quality-scale-badge` (PR to open once GitHub recovers); supernotify#343's Silver badge now holds. The moves of
+  other HQ scanning into hq-stats are a separate project.
