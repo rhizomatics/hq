@@ -25,12 +25,12 @@ community, agent neutrality) and the launch; this one builds the seed and the up
 - **What a seed holds** (from the HQ as a product design): the core (project and process model, issue and PR
   conventions, personas, the core skills and policies, `check-hq`, the site with HQ Stats), the `homeassistant` and
   `signalk` modules, and an optional private-repo skeleton (`collect_github.py`, `notify-assignee.yml`). It holds no
-  Rhizomatics content: no projects, reports, data, or `[repos]` entries.
-- **Coupling is light** (2026-11-15 count): org name and maintainer are already config (`repos.toml` `[org]`);
+  Rhizomatics content: no projects, reports, data, or products in `products.toml`.
+- **Coupling is light** (2026-11-15 count): org name and maintainer are already config (`hq.toml` `[org]`);
   four skills are platform-specific and become module content. Platform names in core files are the main
   extraction work.
-- **Products and product lines** ([Product Catalogue](hq-product-catalog.md)): the seed's `repos.toml` skeleton
-  is the schema every HQ inherits, so how it defines a product and a product line should be settled before the
+- **Products and product lines** ([Product Catalogue](hq-product-catalog.md)): the seed's config skeleton
+  (`hq.toml`, `products.toml`; was `repos.toml` until hq 1.1.0) is the schema every HQ inherits, so how it defines a product and a product line should be settled before the
   seed's first release; changing it afterwards means a migration in every instance. Today `family` does three jobs:
   the product line heading on the site, the hq issue area, and in effect the platform. Modules are chosen by
   platform and technology (`upstream`, a `pyproject.toml`), not by family, so the seed needs those kept apart.
@@ -107,8 +107,8 @@ The seed is a core plus **modules**, one per technology or platform: `python`, `
   watch, its inherited dependencies for the Dependabot sweep, its advisories for security escalation);
 - reference material (forums to watch, platform changes) and admin templates (e.g. `homeassistant`'s
   Dependabot config);
-- a `module.toml`: description, version, and what makes it relevant (a `pyproject.toml` in a repo, an
-  `upstream` in `repos.toml`), so an agent can choose.
+- a `module.toml`: description, version, and what makes it relevant (a `pyproject.toml` in a repo, a
+  `platform` in `products.toml`), so an agent can choose.
 
 **Set-up:** the owner picks the modules, or more likely their agent does from the org's repos, and `/hq-init`
 builds them into the new HQ: policies and reference copied in, skills and cadence entries added, sections inserted
@@ -146,7 +146,7 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 | --- | --- | --- |
 | `AGENTS.md`, `team/` (with the maintainer role), `processes/`, `projects/README.md`, core `policies/` | `hq` | names roles, never the org; platform names out |
 | Core skills (`skills/`) | `hq` (`.claude/skills`) | neutral frontmatter, module markers |
-| `repos.toml` skeleton, `check-hq`, site with HQ Stats | `hq` | the site's home page and branding become placeholders |
+| `hq.toml` and `products.toml` skeleton, `check-hq`, site with HQ Stats | `hq` | the site's home page and branding become placeholders |
 | Shared admin workflows (`admin/`, `reusable-*.yml`) | `hq` | callers point at the instance's own `hq`, not Rhizomatics' |
 | `modules/<name>/` | `hq` | policies, skills and sections, reference, templates; per-file sorting in the [inventory](../../reference/hq_seed_inventory.md) |
 | Private skeleton: `private/` | `hq-private` | optional; omitted for an all-public HQ |
@@ -163,10 +163,11 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 - [x] @agent Check what Claude Code picks up from a neutral layout (2026-11-23, on 2.1.327: `AGENTS.md` yes;
       `skills/` and `team/` only through symlinks from `.claude/`; see [Agents](#agents-decided-2026-11-23))
 - [x] @pair Skill frontmatter (2026-11-23: keep `agent:` and `context: fork` beside `role:`)
-- [ ] @pair `repos.toml` schema for products and product lines, settled with the [Product Catalogue](hq-product-catalog.md)
+- [x] @pair Config schema for products and product lines, settled with the [Product Catalogue](hq-product-catalog.md)
+      (`hq.toml` / `products.toml`, hq 1.1.0; skeleton in [hq-seed#1](https://github.com/rhizomatics/hq-seed/pull/1))
       project: product line, issue area and platform as separate fields, `[families]` migrated
 - [ ] @pair Formats: `hq.lock`, `module.toml`, the module markers in skills, the `seed:` policy setting; `check-hq` validates them
-- [ ] @human Create the public `<org>/hq-seed` repo
+- [x] @human Create the public `<org>/hq-seed` repo (2026-11-25)
 
 ### Phase 2: build
 
@@ -177,7 +178,7 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 - [ ] @pair Extract core and modules into `hq-seed`, with placeholders where Rhizomatics content was; `check-hq`
       passes on the bare seed and on a seed with every module
 - [ ] @pair Private-repo skeleton, optional at seed time
-- [ ] @pair `/hq-init`: picks modules from the org's repos (owner confirms), builds them in, drafts `repos.toml`,
+- [ ] @pair `/hq-init`: picks modules from the org's repos (owner confirms), builds them in, drafts `hq.toml` and `products.toml`,
       writes `hq.lock`
 - [ ] @pair Seed review: fortnightly process and skill, in the core; PRs for likely fits, issues for the rest,
       draft PRs upstream
@@ -247,3 +248,6 @@ _None._
   left with the formats (`hq.lock`, `module.toml`, module markers, `seed:`) and the repo itself.
 - 2026-11-23 — Linked to the new [Product Catalogue](hq-product-catalog.md) project: the seed's `repos.toml`
   schema needs its definitions of product and product line, so that's a Phase 1 task here, ahead of the first release.
+- 2026-11-25 — `hq-seed` repo created. Config schema settled by the Product Catalogue (hq 1.1.0: `hq.toml`,
+  `products.toml`, `community.toml` in place of `repos.toml`); `module.toml` relevance now reads `platform` from
+  `products.toml`. First content, the config skeleton, in hq-seed#1.

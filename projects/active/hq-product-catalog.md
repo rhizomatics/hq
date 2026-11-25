@@ -384,14 +384,16 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 - [x] @agent Research how agent plugin marketplaces are discovered and consumed, to settle whether
       `agent-plugins` stays org-wide or splits by domain (2026-11-25: "Agent plugin marketplaces" above)
 - [x] @human Decide: keep `agent-plugins` org-wide or split by domain (2026-11-25: org-wide)
-- [ ] @human Submit `homeassistant-repl` to the official Claude plugin directory (claude.ai/directory/manage)
+- [ ] @human Submit `homeassistant-repl` to the official Claude plugin directory (claude.ai/directory/manage):
+      merge [homeassistant-repl#53](https://github.com/rhizomatics/homeassistant-repl/pull/53) first (the icon is
+      only taken on first submission); repository `rhizomatics/homeassistant-repl`, plugin path `.`
 - [x] @agent Check `agent-plugins`' `marketplace.json` against Copilot CLI's marketplace format
       ([agent-plugins#8](https://github.com/rhizomatics/agent-plugins/pull/8), 2026-11-25)
 - [x] @agent hq-stats: normalised model, both readers, `migrate`, `schema: 2` in `stats.json`, release 0.3.0
       ([hq-stats#8](https://github.com/rhizomatics/hq-stats/pull/8))
 - [x] @agent hq: switch to `hq.toml` / `products.toml` / `community.toml` via `hq-stats migrate`, then the site scripts, Python scripts and skills (hq 1.1.0)
 - [x] @human Create the `picoware` and `hq` area labels in hq-private (lines without an existing area label) (2026-11-25)
-- [ ] @agent hq-seed: skeleton `hq.toml` and empty `products.toml`
+- [x] @agent hq-seed: skeleton `hq.toml` and empty `products.toml` ([hq-seed#1](https://github.com/rhizomatics/hq-seed/pull/1))
 - [x] @pair Product Catalogue pages on the site (the original goal of this project)
       ([hq#22](https://github.com/rhizomatics/hq/pull/22), merged 2026-11-25)
 
@@ -427,3 +429,7 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
   builds, security and community projects. Linked from the home page and the sidebar. Website URLs come from each
   repo's GitHub homepage; distribution names from `label` in `hq.toml`. Not yet: per-product reports (reports are
   per area, not per product). Merged as hq#22.
+- 2026-11-25: Directory submission prepared: the portal needs the plugin's own repo, not `agent-plugins`;
+  homeassistant-repl#53 adds the README install line and a listing icon. hq-seed skeleton in hq-seed#1: placeholder
+  `[org]`, default `[stats]`, the `org` line, core distributions and label sources; platforms, `security_watch` and
+  capabilities to come with modules and skills.
