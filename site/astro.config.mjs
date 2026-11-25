@@ -3,7 +3,7 @@ import starlight from '@astrojs/starlight';
 import hqStats from '@rhizomatics/hq-stats/astro';
 import { usageSidebar } from '@rhizomatics/hq-stats/sidebar';
 import { defineConfig } from 'astro/config';
-import { ORG, analyticsHead, githubUrl } from './src/lib/hq-config.mjs';
+import { LINES, ORG, PRODUCTS, analyticsHead, githubUrl, isProduct } from './src/lib/hq-config.mjs';
 import { COLLAPSED_GROUPS, PROJECT_GROUPS, policies, policyGroups, projects } from './scripts/lib/hq-docs.mjs';
 
 // Usage pages from @rhizomatics/hq-stats: hq.toml's [stats] says where the snapshots and stats.json are.
@@ -23,6 +23,12 @@ function projectRedirects() {
       return [...new Set(olds)].filter((u) => u !== here).map((u) => [u, here]);
     }),
   );
+}
+
+// Products: the catalogue, then each product line that has products, linking to its section of the catalogue.
+function productsSidebar() {
+  const lines = LINES.filter(([line]) => PRODUCTS.some((p) => p.line === line && isProduct(p)));
+  return [{ label: 'All products', link: '/products/' }, ...lines.map(([line, label]) => ({ label, link: `/products/#${line}` }))];
 }
 
 // Projects: the list and how it works, then each status group with its name capitalised; done and shelved folded.
@@ -73,7 +79,7 @@ export default defineConfig({
       customCss: ['./src/styles/site.css'],
       lastUpdated: false,
       sidebar: [
-        { label: 'Products', link: '/products/' },
+        { label: 'Products', items: productsSidebar() },
         { label: 'Releases', link: '/releases/' },
         { label: 'Usage', items: usageSidebar(stats) },
         { label: 'Community', link: '/community/' },

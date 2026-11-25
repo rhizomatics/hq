@@ -82,15 +82,17 @@ async function projectHistory(hqRoot, rel) {
     })
     .filter((c) => c.path)
     .reverse();
+  // queued/ was renamed ready/: one status under either name.
   const folderOf = (p) => {
     const parts = p.split('/');
-    return parts.length > 2 ? parts[1] : 'active';
+    const folder = parts.length > 2 ? parts[1] : 'active';
+    return folder === 'queued' ? 'ready' : folder;
   };
   const entered = {};
   let current = null;
   for (const c of commits) {
     const folder = folderOf(c.path);
-    if (folder !== current) entered[folder === 'queued' ? 'ready' : folder] = c.date;
+    if (folder !== current) entered[folder] = c.date;
     current = folder;
   }
   return { created: commits[0]?.date ?? null, revised: commits.at(-1)?.date ?? null, entered };
