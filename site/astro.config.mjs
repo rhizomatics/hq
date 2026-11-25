@@ -81,7 +81,9 @@ export default defineConfig({
       sidebar: [
         { label: 'Products', items: productsSidebar() },
         { label: 'Releases', link: '/releases/' },
-        { label: 'Usage', items: usageSidebar(stats) },
+        // Usage without hq-stats' per-line groups of products: those are under Products, and each product's page
+        // links to its usage.
+        { label: 'Usage', items: usageSidebar(stats).filter((item) => !item.items) },
         { label: 'Community', link: '/community/' },
         { label: 'Design Process', items: [{ label: 'Overview', link: '/design/' }, { label: 'RFCs', link: '/rfcs/' }] },
         {
