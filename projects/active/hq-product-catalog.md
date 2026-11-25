@@ -384,9 +384,8 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 - [x] @agent Research how agent plugin marketplaces are discovered and consumed, to settle whether
       `agent-plugins` stays org-wide or splits by domain (2026-11-25: "Agent plugin marketplaces" above)
 - [x] @human Decide: keep `agent-plugins` org-wide or split by domain (2026-11-25: org-wide)
-- [ ] @human Submit `homeassistant-repl` to the official Claude plugin directory (claude.ai/directory/manage):
-      repository `rhizomatics/homeassistant-repl`, plugin path `plugin` (homeassistant-repl#54 and agent-plugins#9
-      merged 2026-11-25; install from the marketplace tested after merge)
+- [x] @human Submit `homeassistant-repl` to the official Claude plugin directory (submitted 2026-11-25, from
+      `rhizomatics/homeassistant-repl`, plugin path `plugin`)
 - [x] @agent Check `agent-plugins`' `marketplace.json` against Copilot CLI's marketplace format
       ([agent-plugins#8](https://github.com/rhizomatics/agent-plugins/pull/8), 2026-11-25)
 - [x] @agent hq-stats: normalised model, both readers, `migrate`, `schema: 2` in `stats.json`, release 0.3.0
@@ -440,3 +439,8 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 - 2026-11-25: homeassistant-repl#54, agent-plugins#9 and hq-seed#1 merged. Installing `homeassistant-repl@rhizomatics`
   from the live marketplace (fresh Claude Code 2.1.327 config) gets the plugin and its skill from `plugin/`.
   Ready to submit to the directory.
+- 2026-11-25: `homeassistant-repl` submitted to the Claude plugin directory. The portal also flagged a missing
+  privacy policy: homeassistant-repl#55 adds a product-specific one (it can read everything in Home Assistant,
+  personal data included, and an agent sends it to its model provider) and data-handling rules in the skill.
+  The portal attributes the submission to the maintainer's claude.ai organisation, not Rhizomatics; worth
+  checking on the listing.
