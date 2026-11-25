@@ -81,9 +81,9 @@ export default defineConfig({
       sidebar: [
         { label: 'Products', items: productsSidebar() },
         { label: 'Releases', link: '/releases/' },
-        // Usage without hq-stats' per-line groups of products: those are under Products, and each product's page
-        // links to its usage.
-        { label: 'Usage', items: usageSidebar(stats).filter((item) => !item.items) },
+        // Usage without hq-stats' per-line groups of products (under Products, whose pages link to their usage) or
+        // its Community entry (Community follows; its page links to the figures).
+        { label: 'Usage', items: usageSidebar(stats).filter((item) => !item.items && !item.link?.endsWith('/community/')) },
         { label: 'Community', link: '/community/' },
         { label: 'Design Process', items: [{ label: 'Overview', link: '/design/' }, { label: 'RFCs', link: '/rfcs/' }] },
         {
