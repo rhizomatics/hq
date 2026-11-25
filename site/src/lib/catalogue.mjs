@@ -21,6 +21,21 @@ const platformNames = { homeassistant: 'Home Assistant', signalk: 'SignalK', esp
 
 export const platformLabel = (id) => platformNames[id] ?? id;
 
+// Home Assistant's Integration Quality Scale: a level's name and its badge (shields.io), as the READMEs show it.
+const QUALITY_COLOURS = { bronze: 'cd7f32', silver: 'a8a9ad', gold: 'd4a017', platinum: '8a9ba8' };
+export function qualityBadge(qs) {
+  if (!qs) return null;
+  const level = String(qs.level).toLowerCase();
+  const name = level.charAt(0).toUpperCase() + level.slice(1);
+  const colour = QUALITY_COLOURS[level] ?? 'lightgrey';
+  return {
+    level: name,
+    alt: `Quality scale: ${name} (self-assessed)`,
+    image: `https://img.shields.io/badge/quality%20scale-${encodeURIComponent(level)}%20(self--assessed)-${colour}`,
+    url: qs.url,
+  };
+}
+
 // Community projects from community.toml, with their figures from stats.json once a snapshot has them. A project
 // added since the last snapshot is listed from its config alone. `relation` is "extends" (built on the product)
 // or "recommended" (someone else's project we recommend using with it).
@@ -93,6 +108,7 @@ function entry(p) {
     id: p.id,
     line: p.line,
     major: p.significance === 'major',
+    quality: qualityBadge(d?.qualityScale),
     platforms: ownPlatforms(p),
     description: usage?.description || d?.description || p.description || '',
     repos: repos.map((r) => ({ name: r, url: `https://github.com/${ORG.github}/${r}` })),

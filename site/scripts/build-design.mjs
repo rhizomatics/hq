@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Builds src/data/design.json for the Design Process page (per product: roadmap, design principles,
-// RFCs, GitHub discussions and issues) and the RFCs page (open and recently closed RFCs).
+// RFCs, GitHub discussions and issues, Home Assistant quality scale level) and the RFCs page (open and recently
+// closed RFCs). The quality scale level also goes on the Product Catalogue.
 //
 // Products are the public repos of products in products.toml, less those on an org line, non-public,
 // experimental or archived (policies/products.md). Roadmap and design principles are found by file name (`roadmap.md`,
@@ -102,6 +103,25 @@ const docLink = (repo, paths, file) => {
   return p ? `https://github.com/${repo}/blob/HEAD/${p}` : null;
 };
 
+// A Home Assistant integration's Integration Quality Scale level, as its manifest.json declares it
+// (`quality_scale`), with a link to its quality_scale.yaml. Null for a repo without an integration, or one that
+// declares no level. One extra call, only for repos with a custom_components/<domain>/manifest.json.
+async function qualityScale(repo, tree) {
+  const manifest = tree.find((t) => t.type === 'blob' && /^custom_components\/[^/]+\/manifest\.json$/.test(t.path));
+  if (!manifest) return null;
+  const blob = await gh(`repos/${repo}/git/blobs/${manifest.sha}`);
+  let level;
+  try {
+    level = JSON.parse(Buffer.from(blob.content, 'base64').toString('utf8')).quality_scale;
+  } catch {
+    return null;
+  }
+  if (!level) return null;
+  const yaml = path.posix.join(path.posix.dirname(manifest.path), 'quality_scale.yaml');
+  const hasYaml = tree.some((t) => t.path === yaml);
+  return { level, url: `https://github.com/${repo}/blob/HEAD/${hasYaml ? yaml : manifest.path}` };
+}
+
 async function repoDesign(org, name) {
   const repo = `${org}/${name}`;
   const [{ tree, truncated }, settings] = await Promise.all([gh(`repos/${repo}/git/trees/HEAD?recursive=1`), gh(`repos/${repo}`)]);
@@ -119,6 +139,7 @@ async function repoDesign(org, name) {
     rfcCount: files.length,
     discussions: settings.has_discussions ? `https://github.com/${repo}/discussions` : null,
     issues: settings.has_issues ? `https://github.com/${repo}/issues` : null,
+    qualityScale: await qualityScale(repo, tree),
   };
   const out = await Promise.all(
     files.map(async (f) => {
