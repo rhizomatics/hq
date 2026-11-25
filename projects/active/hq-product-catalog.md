@@ -385,9 +385,8 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
       `agent-plugins` stays org-wide or splits by domain (2026-11-25: "Agent plugin marketplaces" above)
 - [x] @human Decide: keep `agent-plugins` org-wide or split by domain (2026-11-25: org-wide)
 - [ ] @human Submit `homeassistant-repl` to the official Claude plugin directory (claude.ai/directory/manage):
-      first merge [homeassistant-repl#54](https://github.com/rhizomatics/homeassistant-repl/pull/54) and
-      [agent-plugins#9](https://github.com/rhizomatics/agent-plugins/pull/9) together (the icon is only taken on
-      first submission); then repository `rhizomatics/homeassistant-repl`, plugin path `plugin`
+      repository `rhizomatics/homeassistant-repl`, plugin path `plugin` (homeassistant-repl#54 and agent-plugins#9
+      merged 2026-11-25; install from the marketplace tested after merge)
 - [x] @agent Check `agent-plugins`' `marketplace.json` against Copilot CLI's marketplace format
       ([agent-plugins#8](https://github.com/rhizomatics/agent-plugins/pull/8), 2026-11-25)
 - [x] @agent hq-stats: normalised model, both readers, `migrate`, `schema: 2` in `stats.json`, release 0.3.0
@@ -438,3 +437,6 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
   and images) and `agent-plugins` (its entry points at another repo). The plugin moves to `plugin/` in
   homeassistant-repl#54; agent-plugins#9 lists it with a `git-subdir` source, tested by a real install. Copilot
   users go through the `skills` installer, as Copilot doesn't document `git-subdir`.
+- 2026-11-25: homeassistant-repl#54, agent-plugins#9 and hq-seed#1 merged. Installing `homeassistant-repl@rhizomatics`
+  from the live marketplace (fresh Claude Code 2.1.327 config) gets the plugin and its skill from `plugin/`.
+  Ready to submit to the directory.
