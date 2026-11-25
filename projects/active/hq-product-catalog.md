@@ -392,8 +392,8 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 - [x] @agent hq: switch to `hq.toml` / `products.toml` / `community.toml` via `hq-stats migrate`, then the site scripts, Python scripts and skills (hq 1.1.0)
 - [x] @human Create the `picoware` and `hq` area labels in hq-private (lines without an existing area label) (2026-11-25)
 - [ ] @agent hq-seed: skeleton `hq.toml` and empty `products.toml`
-- [ ] @pair Product Catalogue pages on the site (the original goal of this project): built, in review
-      (PR on hq, branch `product-catalogue`)
+- [x] @pair Product Catalogue pages on the site (the original goal of this project)
+      ([hq#22](https://github.com/rhizomatics/hq/pull/22), merged 2026-11-25)
 
 ## Log
 
@@ -426,4 +426,4 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
   `/products/<id>/` gathers its artefacts (with install links), usage, releases, RFCs and design documents, issues,
   builds, security and community projects. Linked from the home page and the sidebar. Website URLs come from each
   repo's GitHub homepage; distribution names from `label` in `hq.toml`. Not yet: per-product reports (reports are
-  per area, not per product). In review.
+  per area, not per product). Merged as hq#22.
