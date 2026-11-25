@@ -326,7 +326,7 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
 - [x] @agent hq-stats: normalised model, both readers, `migrate`, `schema: 2` in `stats.json`, release 0.3.0
       ([hq-stats#8](https://github.com/rhizomatics/hq-stats/pull/8))
 - [x] @agent hq: switch to `hq.toml` / `products.toml` / `community.toml` via `hq-stats migrate`, then the site scripts, Python scripts and skills (hq 1.1.0)
-- [ ] @human Create the `picoware` and `hq` area labels in hq-private (lines without an existing area label)
+- [x] @human Create the `picoware` and `hq` area labels in hq-private (lines without an existing area label) (2026-11-25)
 - [ ] @agent hq-seed: skeleton `hq.toml` and empty `products.toml`
 - [ ] @pair Product Catalogue pages on the site (the original goal of this project)
 
@@ -350,4 +350,4 @@ Order: hq-stats 0.3 first (it owns the published schema), then HQ, then hq-seed 
   `hq`, `org`; `[distributions]` and `[platforms]` (with `builds_on`) in `hq.toml`; site scripts share
   `isProduct` and the repo list through `hq-config.mjs`; check-hq validates distributions, platforms and
   community `extends`; `sync_sandbox.py` maps profiles by platform. MQTT has no default platform (it had no
-  `upstream`). New area labels `picoware` and `hq` still to create.
+  `upstream`). Area labels `picoware` and `hq` created in hq-private the same day.

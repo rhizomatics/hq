@@ -41,8 +41,13 @@ Agentic use generally liberates from the need for YAML or TOML everywhere, since
 Like humans, agents aren't ideal for repetitive, routine work - its wasteful of tokens and they're not as reliable as a script. Some tasks start as requiring intelligence and then become routine.
 Move as much work to scripts, static site generator features, github facilities and similar, and use regular automated review to drive this.
 
-### Reuse First
-Its easy to have skills to do everything, however there may be better skills already out there, written with the help of people who know more about the domain and refined by a much larger community of use. Examples are [Github Agentic Workflows](https://github.github.com/gh-aw/) and especially security auditing. 
+### Reuse Selectively
+Its easy to have skills to do everything, however there may be better skills already out there, written with the help of people who know more about the domain and refined by a much larger community of use. 
+
+ Security auditing is a good example, where skills developed by cyber security experts working with agents are likely to outperform what a non-expert and agent produce.
+
+[Github Agentic Workflows](https://github.github.com/gh-aw/) is an example of being selective, it seemed appropriate and HQ was reinventing some wheels, however in practice it used up lots of API tokens and didn't have much relevance for this size of organization.
+
 Focus on selecting the best specialists, and keeping watch over their performance, obsolesence, better alternatives and gaps that might need other reusable skills, or new skills owned by the HQ.
 
 ## Related
