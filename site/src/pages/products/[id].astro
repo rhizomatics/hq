@@ -8,6 +8,7 @@ export function getStaticPaths() {
 }
 
 const { p } = Astro.props;
+const titled = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 type State = 'red' | 'flapping' | 'recovered' | 'green' | 'none';
 const STATE: Record<State, string> = { red: 'Broken', flapping: 'Flapping', recovered: 'Recovered', green: 'Passing', none: 'No runs' };
 const fmt = (n: number | null | undefined) => (n == null ? '–' : Math.round(n).toLocaleString('en-GB'));
@@ -38,10 +39,27 @@ const headings = [
     {p.major && <> · <span class="catalogue-badge">major</span></>}
     {' · '}{p.repos.map((r, i) => <>{i > 0 && ', '}<a href={r.url}>{r.name}</a></>)} on GitHub
   </p>
-  {p.quality && (
+  {p.quality?.level && (
     <p>
       <a href={p.quality.url}><img src={p.quality.image} alt={p.quality.alt} /></a>
       <span class="ci-meta"> Home Assistant's <a href="https://developers.home-assistant.io/docs/core/integration-quality-scale/">Integration Quality Scale</a>, self-assessed</span>
+    </p>
+  )}
+  {p.quality?.assessed && (
+    <p class="ci-meta">
+      {p.quality.assessed === 'below Bronze'
+        ? <>Its own <a href={p.quality.url}>assessment</a> doesn't reach Bronze yet</>
+        : <>Its own <a href={p.quality.url}>assessment</a> adds up to {p.quality.assessed}</>}
+      {p.quality.next && <>: {titled(p.quality.next.tier)} still needs {p.quality.next.todo.map((r: string, i: number) => <>{i > 0 && ', '}<code>{r}</code></>)}</>}.
+    </p>
+  )}
+  {p.registry && (
+    <p>
+      <a href={p.registry.url}><img src={p.registry.image} alt={p.registry.alt} /></a>
+      <span class="ci-meta">
+        {' '}SignalK plugin registry, version {p.registry.version}: tests {p.registry.testStatus ?? 'unknown'}, plugin-ci {p.registry.pluginCi ?? 'unknown'};
+        {' '}{p.registry.badges.join(', ')}
+      </span>
     </p>
   )}
 

@@ -21,18 +21,39 @@ const platformNames = { homeassistant: 'Home Assistant', signalk: 'SignalK', esp
 
 export const platformLabel = (id) => platformNames[id] ?? id;
 
-// Home Assistant's Integration Quality Scale: a level's name and its badge (shields.io), as the READMEs show it.
+// Platform ratings, from hq-stats (`health` on each component in stats.json): Home Assistant's Integration Quality
+// Scale and the SignalK plugin registry's score, each as the catalogue shows it, with a shields.io badge.
 const QUALITY_COLOURS = { bronze: 'cd7f32', silver: 'a8a9ad', gold: 'd4a017', platinum: '8a9ba8' };
-export function qualityBadge(qs) {
-  if (!qs) return null;
-  const level = String(qs.level).toLowerCase();
-  const name = level.charAt(0).toUpperCase() + level.slice(1);
-  const colour = QUALITY_COLOURS[level] ?? 'lightgrey';
+const titled = (level) => (level ? String(level).charAt(0).toUpperCase() + String(level).slice(1) : null);
+const shield = (label, message, colour) =>
+  `https://img.shields.io/badge/${encodeURIComponent(label).replaceAll('-', '--')}-${encodeURIComponent(message).replaceAll('-', '--')}-${colour}`;
+
+export function qualityRating(ha) {
+  if (!ha || ha.error || !ha.declared) return ha && !ha.error && ha.assessed !== undefined ? { level: null, assessed: titled(ha.assessed), next: ha.next ?? null, url: ha.assessment_url } : null;
+  const level = String(ha.declared).toLowerCase();
   return {
-    level: name,
-    alt: `Quality scale: ${name} (self-assessed)`,
-    image: `https://img.shields.io/badge/quality%20scale-${encodeURIComponent(level)}%20(self--assessed)-${colour}`,
-    url: qs.url,
+    level: titled(level),
+    // What its own quality_scale.yaml adds up to, when that differs from what it declares.
+    assessed: ha.assessed !== undefined && ha.assessed !== level ? (titled(ha.assessed) ?? 'below Bronze') : null,
+    next: ha.next ?? null,
+    alt: `Quality scale: ${titled(level)} (self-assessed)`,
+    image: shield('quality scale', `${level} (self-assessed)`, QUALITY_COLOURS[level] ?? 'lightgrey'),
+    url: ha.assessment_url,
+  };
+}
+
+export function signalkRating(sk) {
+  if (!sk || sk.error || sk.score == null) return null;
+  const colour = sk.score >= 90 ? '4c1' : sk.score >= 75 ? 'dfb317' : 'fe7d37';
+  return {
+    score: sk.score,
+    badges: sk.badges ?? [],
+    testStatus: sk.test_status,
+    pluginCi: sk.plugin_ci,
+    version: sk.version,
+    alt: `SignalK plugin registry: ${sk.score}/100`,
+    image: shield('signalk registry', `${sk.score}/100`, colour),
+    url: sk.url,
   };
 }
 
@@ -108,7 +129,8 @@ function entry(p) {
     id: p.id,
     line: p.line,
     major: p.significance === 'major',
-    quality: qualityBadge(d?.qualityScale),
+    quality: qualityRating(usage?.health?.homeassistant),
+    registry: signalkRating(usage?.health?.signalk),
     platforms: ownPlatforms(p),
     description: usage?.description || d?.description || p.description || '',
     repos: repos.map((r) => ({ name: r, url: `https://github.com/${ORG.github}/${r}` })),

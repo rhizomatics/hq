@@ -14,8 +14,9 @@ const day = (t: string) => t.slice(0, 10);
   </p>
 
   {CATALOGUE_BY_LINE.map(([line, label, list]) => {
-    // Home Assistant integrations declare a quality scale level; a line with none has no column for it.
+    // Platform ratings from hq-stats: a column only for a line with products its platform rates.
     const quality = list.some((p) => p.quality);
+    const registry = list.some((p) => p.registry);
     return (
     <>
       <h2 id={line}>{label}</h2>
@@ -26,6 +27,7 @@ const day = (t: string) => t.slice(0, 10);
             <th scope="col">What it does</th>
             <th scope="col">Get it</th>
             {quality && <th scope="col"><a href="https://developers.home-assistant.io/docs/core/integration-quality-scale/">Quality scale</a></th>}
+            {registry && <th scope="col" class="num"><a href="https://signalk.org/signalk-plugin-registry/">Registry score</a></th>}
             <th scope="col" class="num">Downloads, 30 days</th>
             <th scope="col">Latest release</th>
           </tr>
@@ -46,7 +48,13 @@ const day = (t: string) => t.slice(0, 10);
                   ? p.artefacts.map((a, i) => <>{i > 0 && ' · '}{a.url ? <a href={a.url}>{a.label}</a> : a.label}</>)
                   : <a href={p.repos[0]?.url}>GitHub</a>}
               </td>
-              {quality && <td>{p.quality ? <a href={p.quality.url}>{p.quality.level}</a> : <span class="ci-meta">not declared</span>}</td>}
+              {quality && (
+                <td>
+                  {p.quality?.level ? <a href={p.quality.url}>{p.quality.level}</a> : <span class="ci-meta">not declared</span>}
+                  {p.quality?.assessed && <div class="ci-meta">assessment: {p.quality.assessed}</div>}
+                </td>
+              )}
+              {registry && <td class="num">{p.registry ? <a href={p.registry.url}>{p.registry.score}</a> : <span class="ci-meta">–</span>}</td>}
               <td class="num">{p.usage ? fmt(p.usage.kpis.downloads30) : <span class="ci-meta">–</span>}</td>
               <td>
                 {p.releases[0]
@@ -64,7 +72,7 @@ const day = (t: string) => t.slice(0, 10);
   <ul class="usage-notes">
     <li>Downloads to {DATA_AS_OF.usage}, from every channel the product publishes to; see <a href="/usage/">Usage</a> for what they count.</li>
     <li>Latest release within the last {DATA_AS_OF.windowDays} days; older ones are on each product's GitHub releases.</li>
-    <li>Quality scale levels are Home Assistant's Integration Quality Scale, self-assessed and declared in each integration's manifest; the link shows the assessment.</li>
+    <li>Quality scale: Home Assistant's Integration Quality Scale level each integration declares in its manifest, self-assessed; "assessment" shows where its own quality_scale.yaml adds up to something else. Registry score: the SignalK plugin registry's score out of 100 for the latest stable version. Both as of {DATA_AS_OF.usage}.</li>
     <li>Experimental products and the organisation's own sites aren't listed.</li>
   </ul>
 </StarlightPage>
