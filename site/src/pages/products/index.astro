@@ -1,0 +1,63 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { CATALOGUE, CATALOGUE_BY_LINE, DATA_AS_OF, platformLabel } from '../../lib/catalogue.mjs';
+import { ORG } from '../../lib/hq-config.mjs';
+
+const fmt = (n: number | null | undefined) => (n == null ? '–' : Math.round(n).toLocaleString('en-GB'));
+const day = (t: string) => t.slice(0, 10);
+---
+<StarlightPage frontmatter={{ title: 'Products', description: `Every ${ORG.name} open source product: what it is, where to get it, and how it's used.`, tableOfContents: false }}>
+  <p>
+    Every {ORG.name} product, by product line: what it does, where to get it, and how much it's used. Each has its
+    own page with its releases, design documents, support and the state of its builds.{' '}
+    {CATALOGUE.length} products; <strong>major</strong> ones are the most used and get the strictest design and standards checks.
+  </p>
+
+  {CATALOGUE_BY_LINE.map(([line, label, list]) => (
+    <>
+      <h2 id={line}>{label}</h2>
+      <table class="usage-table catalogue-table">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">What it does</th>
+            <th scope="col">Get it</th>
+            <th scope="col" class="num">Downloads, 30 days</th>
+            <th scope="col">Latest release</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((p) => (
+            <tr>
+              <th scope="row">
+                <a href={`/products/${p.id}/`}>{p.id}</a>
+                {p.major && <span class="catalogue-badge">major</span>}
+              </th>
+              <td>
+                {p.description || <span class="ci-meta">–</span>}
+                {p.platforms.length > 0 && <div class="ci-meta">{p.platforms.map(platformLabel).join(', ')}</div>}
+              </td>
+              <td>
+                {p.artefacts.length
+                  ? p.artefacts.map((a, i) => <>{i > 0 && ' · '}{a.url ? <a href={a.url}>{a.label}</a> : a.label}</>)
+                  : <a href={p.repos[0]?.url}>GitHub</a>}
+              </td>
+              <td class="num">{p.usage ? fmt(p.usage.kpis.downloads30) : <span class="ci-meta">–</span>}</td>
+              <td>
+                {p.releases[0]
+                  ? <><a href={p.releases[0].url}>{p.releases[0].tag}</a> <span class="ci-meta catalogue-date">{day(p.releases[0].date)}</span></>
+                  : <span class="ci-meta">none in {DATA_AS_OF.windowDays} days</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ))}
+
+  <ul class="usage-notes">
+    <li>Downloads to {DATA_AS_OF.usage}, from every channel the product publishes to; see <a href="/usage/">Usage</a> for what they count.</li>
+    <li>Latest release within the last {DATA_AS_OF.windowDays} days; older ones are on each product's GitHub releases.</li>
+    <li>Experimental products and the organisation's own sites aren't listed.</li>
+  </ul>
+</StarlightPage>

@@ -93,3 +93,13 @@
   font-size: var(--sl-text-sm); line-height: 1.6;
 }
 .hq-button:hover { color: var(--sl-color-black); opacity: 0.9; }
+
+/* Product Catalogue */
+.catalogue-badge {
+  display: inline-block; margin-inline-start: 0.4rem; border-radius: 999px; padding: 0 0.5rem;
+  font-size: var(--sl-text-xs); font-weight: 600; vertical-align: middle;
+  color: var(--sl-color-accent-high); border: 1px solid var(--sl-color-accent);
+}
+.catalogue-table th[scope='row'] { white-space: nowrap; }
+.catalogue-date { white-space: nowrap; }
+.catalogue-table td:nth-child(3) a { white-space: nowrap; }

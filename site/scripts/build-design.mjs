@@ -111,6 +111,8 @@ async function repoDesign(org, name) {
   const product = {
     id: name,
     url: `https://github.com/${repo}`,
+    description: settings.description ?? null,
+    homepage: settings.homepage || null,
     roadmap: docLink(repo, blobs, 'roadmap.md'),
     principles: docLink(repo, blobs, 'design_principles.md'),
     rfcs: rfcDir ? `https://github.com/${repo}/tree/HEAD/${rfcDir}` : null,

@@ -1,0 +1,153 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import Kpi from '../../components/Kpi.astro';
+import { CATALOGUE, DATA_AS_OF, lineLabel, platformLabel } from '../../lib/catalogue.mjs';
+
+export function getStaticPaths() {
+  return CATALOGUE.map((p) => ({ params: { id: p.id }, props: { p } }));
+}
+
+const { p } = Astro.props;
+type State = 'red' | 'flapping' | 'recovered' | 'green' | 'none';
+const STATE: Record<State, string> = { red: 'Broken', flapping: 'Flapping', recovered: 'Recovered', green: 'Passing', none: 'No runs' };
+const fmt = (n: number | null | undefined) => (n == null ? '–' : Math.round(n).toLocaleString('en-GB'));
+const day = (t: string | null) => (t ? t.slice(0, 10) : '');
+const k = p.usage?.kpis;
+const rfcs = p.design ? [...p.design.open, ...p.design.drafts, ...p.design.closed] : [];
+const STAGE: Record<string, string> = { open: 'In review', draft: 'Draft', closed: 'Closed' };
+const issueTypes = p.issues ? Object.entries(p.issues.counts as Record<string, number>).sort((a, b) => b[1] - a[1]) : [];// The sections this page shows, for Starlight's "On this page".
+const headings = [
+  ['get-it', 'Get it', true],
+  ['usage', 'Usage', Boolean(k)],
+  ['releases', 'Releases', true],
+  ['design', 'Design', true],
+  ['support', 'Support', true],
+  ['operations', 'Builds and security', p.actions.length > 0 || p.security.length > 0],
+  ['community', 'Community', p.community.length > 0],
+]
+  .filter(([, , shown]) => shown)
+  .map(([slug, text]) => ({ depth: 2, slug: slug as string, text: text as string }));
+---
+<StarlightPage frontmatter={{ title: p.id, description: p.description || `${p.id}, a ${lineLabel(p.line)} product`, tableOfContents: true }} headings={headings}>
+  <p>
+    {p.description}
+  </p>
+  <p class="ci-meta">
+    <a href={`/products/#${p.line}`}>{lineLabel(p.line)}</a>
+    {p.platforms.length > 0 && <> · runs on {p.platforms.map(platformLabel).join(', ')}</>}
+    {p.major && <> · <span class="catalogue-badge">major</span></>}
+    {' · '}{p.repos.map((r, i) => <>{i > 0 && ', '}<a href={r.url}>{r.name}</a></>)} on GitHub
+  </p>
+
+  <h2 id="get-it">Get it</h2>
+  {p.artefacts.length ? (
+    <ul>
+      {p.artefacts.map((a) => (
+        <li>{a.url ? <a href={a.url}>{a.label}</a> : a.label}{a.detail && <> <code>{a.detail}</code></>}</li>
+      ))}
+    </ul>
+  ) : (
+    <p>Not published yet: see the <a href={p.repos[0]?.url}>repo on GitHub</a>.</p>
+  )}
+
+  {k && (
+    <>
+      <h2 id="usage">Usage</h2>
+      <div class="kpis">
+        <Kpi label="Downloads, 30 days" value={fmt(k.downloads30)} note="all channels" />
+        {k.haInstalls != null && <Kpi label="Home Assistant installs" value={fmt(k.haInstalls)} note="opted-in only" />}
+        <Kpi label="GitHub stars" value={fmt(k.stars)} note={k.starsChange7 ? `${k.starsChange7 > 0 ? '+' : ''}${k.starsChange7} this week` : undefined} />
+        {k.views30 != null && <Kpi label="Website page views, 30 days" value={fmt(k.views30)} />}
+      </div>
+      <p><a href={`/usage/${p.usage.page}/`}>Downloads, installs and page views over time</a>, to {DATA_AS_OF.usage}.</p>
+    </>
+  )}
+
+  <h2 id="releases">Releases</h2>
+  {p.releases.length ? (
+    <ul>
+      {p.releases.map((r) => (
+        <li>
+          <a href={r.url}>{r.tag}</a> <span class="ci-meta">{day(r.date)}</span>
+          {r.kind === 'critical-fix' && <span class="release-kind"> · Important fix</span>}
+          {r.summary && <> — {r.summary}</>}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No releases in the last {DATA_AS_OF.windowDays} days.</p>
+  )}
+  <p class="ci-meta">The last {DATA_AS_OF.windowDays} days; all releases are on <a href={`${p.repos[0]?.url}/releases`}>GitHub</a>.</p>
+
+  <h2 id="design">Design</h2>
+  {p.design ? (
+    <>
+      <ul>
+        <li>{p.design.roadmap ? <a href={p.design.roadmap}>Roadmap</a> : <>Roadmap: <span class="ci-meta">none yet</span></>}</li>
+        <li>{p.design.principles ? <a href={p.design.principles}>Design principles</a> : <>Design principles: <span class="ci-meta">none yet</span></>}</li>
+        <li>{p.design.rfcs ? <a href={p.design.rfcs}>{p.design.rfcCount} RFC{p.design.rfcCount === 1 ? '' : 's'}</a> : <>RFCs: <span class="ci-meta">none</span></>}</li>
+        {p.design.discussions && <li><a href={p.design.discussions}>Discussions</a>, to comment on designs</li>}
+      </ul>
+      {rfcs.length > 0 && (
+        <table class="usage-table">
+          <thead><tr><th scope="col">RFC</th><th scope="col">Stage</th><th scope="col">Updated</th></tr></thead>
+          <tbody>
+            {rfcs.map((r) => (
+              <tr>
+                <td><a href={r.url}>{r.number} {r.title}</a>{r.status && <div class="ci-meta">{r.status}</div>}</td>
+                <td>{STAGE[r.stage] ?? r.stage}</td>
+                <td>{day(r.updated)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </>
+  ) : (
+    <p>Design documents weren't available at the last build.</p>
+  )}
+
+  <h2 id="support">Support</h2>
+  {p.issues ? (
+    <p>
+      <a href={p.issues.url}>{p.issues.total} open issue{p.issues.total === 1 ? '' : 's'}</a>
+      {issueTypes.length > 0 && <>: {issueTypes.map(([t, n], i) => <>{i > 0 && ', '}{n} {t}</>)}</>}.
+      See <a href="/support/">Support</a> for how issues are handled.
+    </p>
+  ) : (
+    <p>Issue counts weren't available at the last build.</p>
+  )}
+
+  {(p.actions.length > 0 || p.security.length > 0) && (
+    <>
+      <h2 id="operations">Builds and security</h2>
+      <ul>
+        {p.actions.map((a) => (
+          <li><a href={a.url}>{a.id}</a> builds: <span class={`ci-status ci-status--${a.state}`}>{STATE[a.state as State] ?? a.state}</span></li>
+        ))}
+        {p.security.map((s) => (
+          <li>
+            <a href={s.url}>{s.id}</a> security: {[
+              s.reporting && 'private vulnerability reporting',
+              s.codeql && 'CodeQL',
+              s.dependabot && 'Dependabot',
+              s.policy && 'its own policy',
+            ].filter(Boolean).join(', ') || 'no measures found'}; {s.advisories} published advisor{s.advisories === 1 ? 'y' : 'ies'}
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  {p.community.length > 0 && (
+    <>
+      <h2 id="community">Community</h2>
+      <p>Built on {p.id} by other people (see <a href="/community/">Community</a>):</p>
+      <ul>
+        {p.community.map((c) => (
+          <li><a href={c.url}>{c.name}</a> by <a href={c.authorUrl}>{c.author}</a>{c.description && <> — {c.description}</>}</li>
+        ))}
+      </ul>
+    </>
+  )}
+</StarlightPage>

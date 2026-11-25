@@ -8,9 +8,12 @@ hero:
   image:
     file: ../../assets/icon.svg
   actions:
+    - text: Products
+      link: /products/
+      icon: right-arrow
     - text: Releases
       link: /releases/
-      icon: right-arrow
+      variant: minimal
     - text: Usage
       link: /usage/
       variant: minimal
@@ -29,6 +32,10 @@ hero:
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 <CardGrid>
+  <Card title="Products" icon="puzzle">
+    The product catalogue: every product by product line, what it does and where to get it. Each has a page with
+    its usage, releases, design documents, support and builds. [Browse products](/products/).
+  </Card>
   <Card title="Releases" icon="rocket">
     What's new across the products over the last month: new features and important fixes, each in a line or two.
     [See releases](/releases/).
