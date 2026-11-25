@@ -455,6 +455,7 @@ export async function checkHq(hqRoot) {
     for (const field of ['repo', 'author', 'extends']) if (!e[field]) problems.push(`${where}: no ${field}`);
     if (e.repo && !/^[\w.-]+\/[\w.-]+$/.test(e.repo)) problems.push(`${where}: repo should be owner/name`);
     if (e.extends && !productIds.has(e.extends)) problems.push(`${where}: extends "${e.extends}", which isn't in products.toml`);
+    if (e.relation && !['extends', 'recommended'].includes(e.relation)) problems.push(`${where}: relation "${e.relation}" isn't extends or recommended`);
     for (const a of e.artefacts) {
       if (!distributions.has(a.distribution)) problems.push(`${where}: artefact ${a.name}'s distribution "${a.distribution}" isn't in hq.toml [distributions]`);
     }

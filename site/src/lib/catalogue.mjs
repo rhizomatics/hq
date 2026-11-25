@@ -20,6 +20,32 @@ const distributions = CONFIG.settings.distributions ?? {};
 const platformNames = { homeassistant: 'Home Assistant', signalk: 'SignalK', esp32: 'ESP32', linux: 'Linux', python: 'Python', node: 'Node.js' };
 
 export const platformLabel = (id) => platformNames[id] ?? id;
+
+// Community projects from community.toml, with their figures from stats.json once a snapshot has them. A project
+// added since the last snapshot is listed from its config alone. `relation` is "extends" (built on the product)
+// or "recommended" (someone else's project we recommend using with it).
+const statsCommunity = byRepo(stats.community);
+export const COMMUNITY_PROJECTS = CONFIG.community
+  .filter((e) => e.kind === 'project' && e.repo)
+  .map((e) => {
+    const s = statsCommunity[e.id];
+    const [owner, name] = e.repo.split('/');
+    const author = e.author ?? owner;
+    return {
+      id: e.id,
+      name: s?.name ?? name,
+      url: s?.url ?? `https://github.com/${e.repo}`,
+      author,
+      authorUrl: `https://github.com/${author}`,
+      extends: e.extends,
+      relation: e.relation ?? 'extends',
+      description: s?.description || e.description || '',
+      archived: s?.archived ?? false,
+      latestRelease: s?.latestRelease ?? null,
+      stars: s?.kpis?.stars ?? null,
+      counted: Boolean(s),
+    };
+  });
 export const distributionLabel = (id) => distributions[id]?.label ?? id;
 
 // Where to get an artefact, and what to call it.
@@ -95,7 +121,7 @@ function entry(p) {
       : null,
     actions: repos.map((r) => actionsByRepo[r]).filter(Boolean),
     security: repos.map((r) => securityByRepo[r]).filter(Boolean),
-    community: (stats.community ?? []).filter((c) => c.extends === p.id),
+    community: COMMUNITY_PROJECTS.filter((c) => c.extends === p.id),
   };
 }
 

@@ -1,23 +1,12 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import community from '../data/community.json';
-import stats from '../data/stats.json';
+import { COMMUNITY_PROJECTS, DATA_AS_OF } from '../lib/catalogue.mjs';
 import { ORG } from '../lib/hq-config.mjs';
 
-// Projects other people have built on our products, with their figures, from @rhizomatics/hq-stats (stats.json,
-// written by `hq-stats build`); the full figures are on its Usage › Community page. Blogs from build-community.mjs.
-type Project = {
-  id: string;
-  name: string;
-  url: string;
-  author: string;
-  authorUrl: string;
-  extends: string | null;
-  description: string;
-  archived: boolean;
-  latestRelease: { tag: string; date: string; url: string } | null;
-  kpis: { stars: number | null };
-};
+// Projects other people have built on our products, or that we recommend using with them: from community.toml,
+// with their figures from @rhizomatics/hq-stats once a snapshot has them (the full figures are on its Usage ›
+// Community page). Blogs from build-community.mjs.
 type Blog = {
   id: string;
   url: string;
@@ -30,7 +19,7 @@ type Blog = {
 };
 const blogs = (community.blogs ?? []) as Blog[];
 
-const projects = ((stats as { community?: Project[] }).community ?? []) as Project[];
+const projects = COMMUNITY_PROJECTS;
 const products = [...new Set(projects.map((p) => p.extends ?? ''))].map((id) => ({
   id,
   url: `https://github.com/${ORG.github}/${id}`,
@@ -41,14 +30,15 @@ const day = (t: string) => t.slice(0, 10);
 const usage = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/usage/community/`;
 const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
 ---
-<StarlightPage frontmatter={{ title: 'Community', description: `Projects other people have built on ${ORG.name} products: plugins, cards and more.`, tableOfContents: false }}>
+<StarlightPage frontmatter={{ title: 'Community', description: `Projects other people have built on ${ORG.name} products, or recommended to be used with them: plugins, cards, add-ons and more.`, tableOfContents: false }}>
   <p>
-    Projects other people have built on {ORG.name} products, grouped by the product they extend. They're made and
-    maintained by their authors, not by us; thank you to everyone who has built one.
+    Projects other people have built on {ORG.name} products, or recommended to be used with our products, grouped
+    by the product they go with. They're made and maintained by their authors, not by us; thank you to everyone who
+    has built one.
   </p>
   <p>
-    Built something on one of our products? Open an issue or discussion on that product's repo and we'll add it here.
-    If you'd rather yours wasn't listed, say so the same way.
+    Built something on one of our products, or found something that works well with one? Open an issue or discussion
+    on that product's repo and we'll add it here. If you'd rather yours wasn't listed, say so the same way.
   </p>
 
   {count > 0 && <p>Downloads and trends for each project are on <a href={usage}>Usage › Community</a>.</p>}
@@ -56,7 +46,7 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
   {count ? (
     products.map((product) => (
       <>
-        <h2>{product.id ? <>For <a href={product.url}>{product.id}</a></> : 'Other'}</h2>
+        <h2>{product.id ? <>For <a href={`/products/${product.id}/`}>{product.id}</a></> : 'Other'}</h2>
         <table class="usage-table">
           <thead>
             <tr>
@@ -70,11 +60,14 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
           <tbody>
             {product.projects.map((p) => (
               <tr>
-                <th scope="row"><a href={p.url}>{p.name}</a>{p.archived && <span class="ci-meta"> (archived)</span>}</th>
+                <th scope="row">
+                  <a href={p.url}>{p.name}</a>{p.archived && <span class="ci-meta"> (archived)</span>}
+                  {p.relation === 'recommended' && <div class="ci-meta">recommended to use with it</div>}
+                </th>
                 <td><a href={p.authorUrl}>{p.author}</a></td>
                 <td>{p.description}</td>
                 <td>{p.latestRelease ? <a href={p.latestRelease.url}>{p.latestRelease.tag}</a> : ''}{p.latestRelease && <span class="ci-meta"> {day(p.latestRelease.date)}</span>}</td>
-                <td class="num">{p.kpis.stars ?? ''}</td>
+                <td class="num">{p.stars ?? ''}</td>
               </tr>
             ))}
           </tbody>
@@ -112,7 +105,7 @@ const asOf = community.generatedAt.slice(0, 16).replace('T', ' ') + ' UTC';
   )}
 
   <ul class="usage-notes">
-    <li>Projects as of {stats.snapshotDate}, blogs as of {asOf}. Figures come from each project's public GitHub data and are never added to {ORG.name}'s own usage.</li>
+    <li>Projects' figures as of {DATA_AS_OF.usage} (a project added since shows none yet), blogs as of {asOf}. Figures come from each project's public GitHub data and are never added to {ORG.name}'s own usage.</li>
     {community.notes.map((note) => <li>{note}</li>)}
   </ul>
 </StarlightPage>

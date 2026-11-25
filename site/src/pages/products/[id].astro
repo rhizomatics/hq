@@ -142,10 +142,14 @@ const headings = [
   {p.community.length > 0 && (
     <>
       <h2 id="community">Community</h2>
-      <p>Built on {p.id} by other people (see <a href="/community/">Community</a>):</p>
+      <p>Other people's projects built on {p.id}, or recommended to use with it (see <a href="/community/">Community</a>):</p>
       <ul>
         {p.community.map((c) => (
-          <li><a href={c.url}>{c.name}</a> by <a href={c.authorUrl}>{c.author}</a>{c.description && <> — {c.description}</>}</li>
+          <li>
+            <a href={c.url}>{c.name}</a> by <a href={c.authorUrl}>{c.author}</a>
+            {c.relation === 'recommended' && <span class="ci-meta"> · recommended</span>}
+            {c.description && <> — {c.description}</>}
+          </li>
         ))}
       </ul>
     </>

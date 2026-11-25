@@ -1,4 +1,5 @@
-# Contributed projects built on the org's products, by other people, and writing about them. Tracked for stats and
+# Projects other people have built on the org's products, or that we recommend using with them, and writing
+# about them. Tracked for stats and
 # reputation, never counted in the org's own totals (projects/active/hq-as-product.md, "Community"). Public projects
 # only, added with the maintainer's approval. One table per entry, keyed by its id.
 #
@@ -6,7 +7,10 @@
 #   A project:
 #     repo:       owner/name on GitHub
 #     author:     GitHub login of the author
-#     extends:    the org's product it builds on (a key of products.toml)
+#     extends:    the org's product it builds on, or is recommended with (a key of products.toml)
+#     relation:   "extends" (the default: built on the product) or "recommended" (someone else's project we
+#                 recommend using with it)
+#     description: what it does, shown until the first stats snapshot has GitHub's own
 #     artefacts:  as on a product (products.toml)
 #   A blog (writing about the products or their platforms):
 #     line:       the product line it writes about (a key of [lines] in hq.toml)
@@ -20,6 +24,13 @@ repo = "lollox80/supernotify-cards"
 author = "lollox80"
 extends = "supernotify"
 artefacts.homeassistant_marketplace_frontend = { asset = "supernotify-control-card.js" }
+
+[ha-addon-openobserve]
+repo = "Sm0by/ha-addon-openobserve"
+author = "Sm0by"
+extends = "remote_logger"
+relation = "recommended"
+description = "Home Assistant add-on for OpenObserve: logs, metrics and traces via OpenTelemetry (OTLP)"
 
 [boat-tech-projects]
 kind = "blog"
