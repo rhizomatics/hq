@@ -44,6 +44,7 @@ artefacts.website = { goatcounter = "remote-logger" }
 
 [appliance_autonotify]
 line = "homeassistant"
+significance = "major"
 artefacts.website = { goatcounter = "appliance-autonotify" }
 
 [appliance_autonotify.artefacts.homeassistant_marketplace_integration]
@@ -53,6 +54,7 @@ formerly = { asset = "appliances_autonotify.zip" }
 
 [camera_autonotify]
 line = "homeassistant"
+significance = "major"
 artefacts.homeassistant_marketplace_integration = { asset = "camera_autonotify.zip", domain = "camera_autonotify" }
 artefacts.website = { goatcounter = "camera-autonotify" }
 
