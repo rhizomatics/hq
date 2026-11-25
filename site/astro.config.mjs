@@ -57,6 +57,7 @@ export default defineConfig({
       customCss: ['./src/styles/site.css'],
       lastUpdated: false,
       sidebar: [
+        { label: 'Products', link: '/products/' },
         { label: 'Releases', link: '/releases/' },
         { label: 'Usage', items: usageSidebar(stats) },
         { label: 'Community', link: '/community/' },

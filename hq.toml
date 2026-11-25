@@ -24,6 +24,7 @@
 #   builds_on:     the platforms it runs on in turn (Home Assistant on Python)
 # [distributions.<id>]: every way a product is delivered; an artefact's distribution must be one of these
 #                  (`mise run check-hq` checks). hq-stats counts the ones it knows by the same name.
+#   label:         its name on the site (the Product Catalogue)
 #   note:          what it is
 # [labels]:        hq issue labels; an issue gets one source and one area (the areas are the line slugs)
 #
@@ -94,13 +95,13 @@ builds_on = ["node"]
 [platforms.esp32]
 
 [distributions]
-pypi = { note = "a package on PyPI" }
-npm = { note = "a package on npm (SignalK plugins reach the SignalK app store this way)" }
-ghcr = { note = "a container image on ghcr.io/<org>/" }
-github_release = { note = "a release asset on GitHub, downloaded directly" }
-homeassistant_marketplace_integration = { note = "a Home Assistant integration installed through HACS: its release zip and domain" }
-homeassistant_marketplace_frontend = { note = "a Home Assistant card installed through HACS: its release .js" }
-website = { note = "a website, with its GoatCounter site code" }
+pypi = { label = "PyPI", note = "a package on PyPI" }
+npm = { label = "npm", note = "a package on npm (SignalK plugins reach the SignalK app store this way)" }
+ghcr = { label = "Container image", note = "a container image on ghcr.io/<org>/" }
+github_release = { label = "GitHub release", note = "a release asset on GitHub, downloaded directly" }
+homeassistant_marketplace_integration = { label = "HACS integration", note = "a Home Assistant integration installed through HACS: its release zip and domain" }
+homeassistant_marketplace_frontend = { label = "HACS card", note = "a Home Assistant card installed through HACS: its release .js" }
+website = { label = "Website", note = "a website, with its GoatCounter site code" }
 
 [labels]
 sources = [
