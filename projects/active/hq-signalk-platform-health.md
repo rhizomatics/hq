@@ -1,6 +1,7 @@
 ---
 summary: Report and validate platform view of product health
-productline: signalk
+productline: hq
+labels: signalk
 ---
 # SignalK Platform Health
 

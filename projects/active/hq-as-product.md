@@ -3,6 +3,7 @@ title: HQ as a product
 summary: Others seed their own HQ, adapt it with their own agents and keep taking core updates
 status: active
 lead: architect
+productline: hq
 owner: jeyrb
 started: 2026-11-15
 ---

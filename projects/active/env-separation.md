@@ -3,6 +3,7 @@ title: Provision fully segregated development and test environments
 summary: Keep development and test apart from personal production machines, against supply chain attacks
 status: draft
 lead: infra-lead
+infra: security, infra
 owner: jeyrb
 started: 2026-11-23
 ---

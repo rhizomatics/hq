@@ -4,6 +4,7 @@ summary: environment scoped for vaults for encrypted secrets and private informa
 status: active
 lead: infra-lead
 owner: jeyrb
+labels: security, infra
 programme: env-separation
 started: 2026-11-23
 ---

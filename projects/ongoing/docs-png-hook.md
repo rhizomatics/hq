@@ -3,6 +3,7 @@ title: Docs PNGs compressed at commit
 summary: No docs build needs pngquant; PNGs compressed by a prek hook, as each repo is next released
 lead: infra-lead
 owner: jeyrb
+labels: release
 started: 2026-11-11
 ---
 

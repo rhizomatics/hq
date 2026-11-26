@@ -1,5 +1,6 @@
 ---
 summary: Extract updates2mqtt's OCI registry client into a reusable Python library
+labels: python, updates2mqtt
 ---
 
 # OCI Container Python Client Library

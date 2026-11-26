@@ -151,6 +151,12 @@ the seed review, the same path as everyone else's. Changes only Rhizomatics need
 | `modules/<name>/` | `hq` | policies, skills and sections, reference, templates; per-file sorting in the [inventory](../../reference/hq_seed_inventory.md) |
 | Private skeleton: `private/` | `hq-private` | optional; omitted for an all-public HQ |
 
+## Contents
+
+Like other products, the HQ should have a roadmap, design principles and RFCs.
+
+The design principles should fold in the orginal design as amended since initiation of HQ, some of which is recorded in lessons learned, and others in the HQ projects done
+
 ## Plan
 
 ### Phase 1: shape
