@@ -1,5 +1,5 @@
 ---
-title: vaults
+title: Environment Vaults
 summary: environment scoped for vaults for encrypted secrets and private information scoped per dev/test/prod
 status: active
 lead: infra-lead

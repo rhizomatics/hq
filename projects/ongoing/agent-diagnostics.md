@@ -4,7 +4,7 @@ summary: Logs, HA API/DB, config, previews and agent accounts reachable the same
 status: active
 lead: infra-lead
 owner: jeyrb
-labels: security, infta
+labels: security, infra
 programme: env-separation
 started: 2026-11-10
 ---
