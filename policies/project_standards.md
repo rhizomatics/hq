@@ -31,6 +31,8 @@ Expectations of Rhizomatics projects
   - `check-yaml` for YAML linting
   - `codespell` for spell check of codes and docs (non-English support TBD)
   - `bandit` for security checks
+  - `optimize-png` in every repo with a properdocs site: compresses PNGs under `docs/` as they're committed,
+    so the docs build needs no `pngquant` ([Documentation Toolchain](./docs_toolchain.md))
 - Linting configured using standard linters for all code and available config
   - For Python code defer to [Python Stack](./python_stack.md)
   - For JavaScript, `oxfmt` and `oxlint`
