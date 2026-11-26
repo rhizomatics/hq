@@ -69,7 +69,25 @@ Processes:
       for periodic audits and monthly or quarterly reviews. Touches every skill's **Output** and the reports
       pages
 
-HQ Product:
+Rolling reports, proposed design (2026-11-26):
+
+- **Rolling:** one file per routine, `hq-private/reports/<area>/current.md`, rewritten each run. `updated:` in its
+  frontmatter says when; git history is the archive and the audit trail, so the comparison with last time is
+  `git log -p` on that file rather than reading yesterday's report.
+  - Daily: `security`, `forums`, `dependabot`, `support-sweep` (55 of the 72 report files written 2026-11-12
+    to 11-26).
+  - Weekly: `projects`, `prs`, `adoption`, `registry`.
+- **Snapshot** (unchanged, dated files): monthly, quarterly and four-monthly reviews (`platform`, `reputation`,
+  `github`, `alignment`, `architecture-review`, `agent-accessibility`, `support-review`, `marketing`, `decisions`)
+  and any periodic security audit.
+- The existing dated daily and weekly files stay where they are.
+- **Changes:**
+  - each rolling skill's **Output**, and its "compare with the previous report" step;
+  - `AGENTS.md`'s report rules;
+  - the site's Reports section: one page per rolling area, showing `updated:`, beside the dated snapshots;
+  - `reportDate()` in `sync-content.mjs`, which reads `updated:` for `current.md`.
+- A cadence file's `- **Report:**` line gains `rolling` or `snapshot`, so a script can check each skill matches.
+
 
 - [ ] @human Blocked on `hq-seed` going live and `hq` rebased on it: move HQ improvement projects to `hq-seed`'s
       roadmap and RFCs
