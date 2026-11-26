@@ -5,7 +5,7 @@ summary: "SignalK plugins as exemplary citizens: TypeScript, npm release convent
 
 # SignalK Alignment
 
-Plugins will be exemplary citizens of the `npm` and `SignalK` ecosystems.
+Plugins will be exemplary citizens of the `npm` and `SignalK` ecosystems. Once at v1.0.0, they should have reached and maintain a Registry Score of 100, as computed by the SignalK plugin registry.
 
 Plugins will be in typescript.
 

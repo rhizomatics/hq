@@ -87,8 +87,9 @@ The Home Assistant side has a first version, which this could follow:
 - [x] @agent hq-stats: collect SignalK plugin registry `score`, `badges` and `testStatus` the same way (same PR)
 - [x] @human Release hq-stats 0.4.0; then @agent bump HQ's site to it and open the `platform-health` PR
       ([hq#23](https://github.com/rhizomatics/hq/pull/23))
-- [ ] @pair Targets per product line, overridable per product (in `products.toml`), and a check that warns when
-      a product's declared level or score misses its target or disagrees with its own assessment
+- [x] @pair Targets per product line, overridable per product (in `products.toml`), and a check that warns when
+      a product's declared level or score misses its target or disagrees with its own assessment (2026-11-26:
+      targets in `hass-alignment.md` and `signalk-alignment.md` instead; checked by the monthly alignment review)
 
 ## What else HQ scans itself
 
@@ -111,3 +112,9 @@ a product programme).
 - 2026-11-25: hq-stats 0.4.0 released; HQ's catalogue reads ratings from it in hq#23. All six Home Assistant
   integrations now declare the level their own assessment supports (supernotify moved to Platinum,
   homeassistant-repl to Bronze), each with its README badge. Ratings start with the next daily collection.
+- 2026-11-26: done. The maintainer put the goals in policy: Home Assistant integrations Silver or better from
+  v1.0.0, aiming for Platinum; SignalK plugins at registry score 100 from v1.0.0. The monthly alignment review
+  (step 2a) checks each product from hq-stats' `health`: goal met (declared and assessed levels agree), not
+  slipped against a month earlier, the quality scale rule lists and registry checks kept up with, and cheap moves
+  to the next level. The first collection under hq-stats 0.4.0 ran today with ratings for all 14 products;
+  homeassistant-repl's assessment is now Platinum.

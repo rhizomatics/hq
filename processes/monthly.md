@@ -5,7 +5,7 @@
 - **When:** 08:00 UTC
 - **Output:** `hq-private/reports/alignment/YYYY-MM.md`
 - **Report:** public; snapshot
-- Improvements in one repo's tooling config, docs plugins or templates to spread to others.
+- Improvements in one repo's tooling config, docs plugins or templates to spread to others, and each product's platform rating (quality scale, registry score) against policy: met, not slipped, rules up to date, cheap moves up.
 
 ## 4th — Support review — `/support-review`
 - **Who:** pm
