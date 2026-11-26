@@ -56,7 +56,7 @@ function frontmatter(text) {
   return { fields, body: fm ? text.slice(fm[0].length) : text };
 }
 
-const cell = (s) => s.replace(/\|/g, '\\|');
+const cell = (s) => s.replace(/\\/g, '\\\\').replace(/\|/g, '\\|');
 
 // ---- projects ----
 
