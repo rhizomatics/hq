@@ -103,8 +103,14 @@ and the maintainer's own logins.
   (`chmod 700` the folder and `chmod 600` the key) (2026-11-23)
 - [x] @agent Make the `dev` key (`dev-key.txt`, no passphrase) and turn on `[audit]` in
   `~/.config/fnox/config.toml` (2026-11-23)
-- [ ] @agent Upgrade fnox to 1.50.0 once it clears the cooldown (2026-11-25). Its daemon cache-time
+- [x] @agent Upgrade fnox to 1.50.0 once it clears the cooldown (2026-11-25). Its daemon cache-time
   settings give the lease a fixed cap; in 1.48.0 the agent's own use keeps an idle lease alive
+  (2026-11-26: prod provider `cache_ttl = "30m"`, `max_cache_ttl = "4h"`; see the Log)
+- [ ] @human On the MacBook: `chezmoi update`, end any lease first, then add the same two lines
+  (`cache_ttl`, `max_cache_ttl`) under `[providers.prod]` and `sensitive = false` on `OPENOBSERVE_URL`
+  and `OPENOBSERVE_ORG_ID` in its `~/.config/fnox/config.toml`
+- [ ] @pair At the first real lease under 1.50.0: check that an expired value makes `prod-run` fail
+  loudly rather than prompting or running without it (tested only with dummy, passphrase-free values)
 - [ ] @agent Inventory, names only, of every secret or private value an agent or repo uses: the
   diagnostics accounts, `ha-repl` config, MCP server configs, mise `[env]`, `.env.example` files,
   publish tokens (npm, PyPI, AWS) held locally. Goes in `hq-private/projects/mise-environments/inventory.md`,
@@ -270,3 +276,27 @@ Secrets are done when:
     and `prod-run mqtt` was refused. `lease-end` revoked it, and the audit log recorded reads by name.
     No production system was contacted.
   - The maintainer deleted `~/Projects/.hq.env` and the shared-folder copies: no plaintext originals remain.
+- 2026-11-26: upgraded to fnox 1.50.0 (published 2026-11-18, past the cooldown). Tested first in an
+  isolated scratch home with dummy plain values, then applied on virtdevmac.
+  - **Fixed cap:** 1.50.0's `cache_ttl` (sliding) and `max_cache_ttl` (absolute) work as documented: each
+    read resets the first, the second expires regardless, and an expired value is resolved again (for
+    prod, that needs the passphrase). Set on `[providers.prod]` to 30m and 4h; `[daemon] idle_timeout`
+    stays 30m and only decides when the process exits. Dev values are unaffected.
+  - **Daemon keying unchanged:** `--if-missing` still makes a separate daemon, `--non-interactive`
+    doesn't, `-P a,b` equals `-P a -P b`, and `daemon stop` without `-P` stops nothing of ours. The
+    lease tasks' workarounds stay.
+  - **The 2026-11-23 "lease stopped after `fnox.toml` changed" explained:** a config change makes the
+    daemon resolve values again rather than serve cached ones; for prod that needs the passphrase, so
+    the lease ends. Now in the policy's known limits.
+  - `daemon status` now counts cached entries correctly, and `--json` lists them without values
+    (`--verbose` also turns on debug logging).
+  - `sensitive = false` (#1148) set on `OPENOBSERVE_URL` and `OPENOBSERVE_ORG_ID`, so `--redact` no
+    longer hides a stream name that matches the org ID.
+  - The #1199 breaking change doesn't apply: both providers are age with key files, and no secret sets
+    `if_missing`.
+  - **Found:** the daemon protocol moved to v8, so a 1.50.0 client can't reach a 1.48.0 daemon. The
+    pin moved while a `prod-ha-repl` lease was open, and `lease-end` then removed the lease file but left
+    the 1.48.0 daemon serving, because `daemon stop` exits 0 even when it reached nothing. Stopped it by
+    hand (last prod read 00:23). `lease-end` now stops each daemon with its own binary, checks the
+    process has gone, kills it if not, and reports truthfully; tested on a 1.48.0 and a 1.50.0 daemon
+    together (dotfiles `c42361d`). The policy now says to end leases before upgrading fnox.

@@ -72,7 +72,7 @@ see the end of this section.
 | 1. No plaintext | [fnox](https://fnox.jdx.dev) stores every secret as [age](https://age-encryption.org) ciphertext in fnox's global config, `~/.config/fnox/config.toml`, outside every repo. It's set up by hand on each machine that needs it and kept out of dotfile sync |
 | 2. Tiers | one fnox profile per environment and service (`dev-signalk`, `prod-hass`). Two age keys in `~/.config/fnox/` (mode 600): `dev-key.txt`, no passphrase, for `dev-*`; `prod-key.age`, passphrase-protected, for production and cost. The critical tier is never added |
 | 3. Least privilege | a command gets one profile's keys only (`fnox exec --only`) |
-| 4. Break-glass | mise tasks (below). The passphrase is the human step: without a terminal, fnox can't ask for it and refuses. The lease is the fnox daemon's in-memory cache, ended by `[daemon] idle_timeout` or `lease-end`. Reads are logged by name in `~/.local/state/fnox/audit.log` (`[audit] enabled = true` in the global `~/.config/fnox/config.toml`) |
+| 4. Break-glass | mise tasks (below). The passphrase is the human step: without a terminal, fnox can't ask for it and refuses. The lease is the fnox daemon's in-memory cache. Each value expires 30 minutes after its last read or 4 hours after the passphrase was entered, whichever comes first (`cache_ttl` and `max_cache_ttl` on the prod provider), or at `lease-end`. Reads are logged by name in `~/.local/state/fnox/audit.log` (`[audit] enabled = true` in the global `~/.config/fnox/config.toml`) |
 | 5. Blind handling | `prod-run` passes values through the environment and redacts them from output (`exec --redact`). `fnox import -p <key>` encrypts to a public key, so an agent can add secrets it can't read |
 | 6. Two gates | `prod-<service>` profile names match the sandbox profiles, so one name grants both |
 | 7. Apart | production profiles are encrypted to the prod key only |
@@ -92,7 +92,8 @@ mise run lease-end                      # ends every lease at once
   first and records the profile set it opened.
 - `prod-run` reuses exactly that set, passes only the named service's keys, and fails loudly when the
   lease has ended or doesn't cover the service.
-- `lease-end` stops every fnox daemon of the user.
+- `lease-end` stops every fnox daemon of the user, each with the fnox binary that started it (so a lease opened
+  before an upgrade still ends), and checks the process has gone.
 - Dev secrets need no lease: `fnox -c ~/.config/fnox/config.toml -P dev-<service> exec -- <command>`.
 - Every call passes `-c` with the global config's path, even though fnox loads it anyway: in a repo
   with its own `fnox.toml`, fnox would otherwise load a different set of configs and miss the lease.
@@ -102,14 +103,14 @@ nothing is unpacked or printed:
 `tar -xOf prod.tar prod/<service>.env | fnox -c <config> -P prod-<service> import -p prod --force`.
 Then delete the plaintext source.
 
-**Known limits** (fnox 1.48.0):
-- **No fixed cap.** A lease ends only after idle time, so steady use keeps it open. Newer fnox
-  daemon settings add a fixed cap.
+**Known limits** (fnox 1.50.0):
 - **Only the tasks reach the lease.** fnox runs a separate daemon for each profile set and
   `--if-missing` value, so a hand-written `fnox exec` misses the lease and leaves an empty daemon behind.
 - **No hardware key.** The passphrase is the human step; fnox's `fido2` and `yubikey` providers could
   replace it where a hardware key is available.
-- Adding a key to a profile while its lease is open breaks that lease.
+- Changing the config while a lease is open ends it: fnox resolves the values again, which needs the passphrase.
+- **Upgrading fnox:** end every lease first. A release can change the daemon protocol (1.50.0 did), and a
+  newer client can't use an older daemon's lease.
 
 **Other implementations of the same policy** include:
 - a password manager's CLI with per-use approval (1Password with biometric unlock);
