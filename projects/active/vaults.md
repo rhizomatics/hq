@@ -111,7 +111,7 @@ and the maintainer's own logins.
   and `OPENOBSERVE_ORG_ID` in its `~/.config/fnox/config.toml` (2026-11-26)
 - [x] @agent The cap is 1 hour, not 4 (maintainer, 2026-11-26): `max_cache_ttl = "1h"` in virtdevmac's
   `~/.config/fnox/config.toml` once no lease is open (editing it ends a lease) (2026-11-26)
-- [ ] @human The same on the MacBook: `max_cache_ttl = "1h"` under `[providers.prod]`
+- [x] @human The same on the MacBook: `max_cache_ttl = "1h"` under `[providers.prod]` (2026-11-26)
 - [x] @pair At the first real lease under 1.50.0: check that an expired value makes `prod-run` fail
   loudly rather than prompting or running without it (tested only with dummy, passphrase-free values).
   Done 2026-11-26, see the Log
@@ -312,3 +312,4 @@ Secrets are done when:
   (checked set, never printed). Then the cap was changed to 1h, which drops the cached value: the next
   `prod-run`, with no terminal, stopped at once with exit 97 ("has ended or is not serving"), without
   prompting or running the command. Expiry takes the same path. Lease ended with `lease-end`.
+- 2026-11-26: MacBook's cap set to 1h too; both machines now match.
