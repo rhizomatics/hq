@@ -172,8 +172,9 @@ async function syncDocs() {
     await writePage(`${dir}/index`, {
       title,
       label: `All ${dir}`,
-      front: `description: ${yamlString(intro)}`,
-      body: `<div class="hq-section-intro not-content">\n<p>${intro}</p>\n<a class="hq-button" href="${BASE}${dir}/how-it-works/">How it works</a>\n</div>\n\n${rewriteLinks(list, `${dir}/README.md`, { linkBase: REPO })}\n`,
+      // No "On this page": its headings (statuses, groups) are already in the sidebar, and the tables need the width.
+      front: `description: ${yamlString(intro)}\ntableOfContents: false`,
+      body: `<div class="hq-section-intro hq-list-page not-content">\n<p>${intro}</p>\n<a class="hq-button" href="${BASE}${dir}/how-it-works/">How it works</a>\n</div>\n\n${rewriteLinks(list, `${dir}/README.md`, { linkBase: REPO })}\n`,
       order: 0,
     });
   }

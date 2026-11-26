@@ -86,6 +86,8 @@
 
 /* Intro and "How it works" button on the generated projects, processes and policies lists. */
 .hq-section-intro { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+/* Section list pages (projects, processes, policies) have no table of contents: let their tables use the room. */
+body:has(.hq-list-page) { --sl-content-width: 72rem; }
 .hq-section-intro p { margin: 0; color: var(--sl-color-gray-2); }
 .hq-button {
   display: inline-flex; align-items: center; padding: 0.4rem 1.1rem; border-radius: 999rem;
