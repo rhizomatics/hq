@@ -106,11 +106,15 @@ and the maintainer's own logins.
 - [x] @agent Upgrade fnox to 1.50.0 once it clears the cooldown (2026-11-25). Its daemon cache-time
   settings give the lease a fixed cap; in 1.48.0 the agent's own use keeps an idle lease alive
   (2026-11-26: prod provider `cache_ttl = "30m"`, `max_cache_ttl = "4h"`; see the Log)
-- [ ] @human On the MacBook: `chezmoi update`, end any lease first, then add the same two lines
+- [x] @human On the MacBook: `chezmoi update`, end any lease first, then add the same two lines
   (`cache_ttl`, `max_cache_ttl`) under `[providers.prod]` and `sensitive = false` on `OPENOBSERVE_URL`
-  and `OPENOBSERVE_ORG_ID` in its `~/.config/fnox/config.toml`
+  and `OPENOBSERVE_ORG_ID` in its `~/.config/fnox/config.toml` (2026-11-26)
+- [ ] @agent The cap is 1 hour, not 4 (maintainer, 2026-11-26): `max_cache_ttl = "1h"` in virtdevmac's
+  `~/.config/fnox/config.toml` once no lease is open (editing it ends a lease)
+- [ ] @human The same on the MacBook: `max_cache_ttl = "1h"` under `[providers.prod]`
 - [ ] @pair At the first real lease under 1.50.0: check that an expired value makes `prod-run` fail
-  loudly rather than prompting or running without it (tested only with dummy, passphrase-free values)
+  loudly rather than prompting or running without it (tested only with dummy, passphrase-free values).
+  The timers do apply to real prod values (seen 2026-11-26); expiry itself is still to see
 - [ ] @agent Inventory, names only, of every secret or private value an agent or repo uses: the
   diagnostics accounts, `ha-repl` config, MCP server configs, mise `[env]`, `.env.example` files,
   publish tokens (npm, PyPI, AWS) held locally. Goes in `hq-private/projects/mise-environments/inventory.md`,
@@ -300,3 +304,7 @@ Secrets are done when:
     hand (last prod read 00:23). `lease-end` now stops each daemon with its own binary, checks the
     process has gone, kills it if not, and reports truthfully; tested on a 1.48.0 and a 1.50.0 daemon
     together (dotfiles `c42361d`). The policy now says to end leases before upgrading fnox.
+- 2026-11-26: the maintainer set the cap at 1 hour, not 4. MacBook updated to 1.50.0 with the timers. On
+  the first real lease under 1.50.0 (`prod-ha-repl`), `daemon status --json` showed the prod token with
+  both timers running (30m sliding, 4h absolute, as configured then); the change to 1h waits for that
+  lease to end, since editing the config would end it.
