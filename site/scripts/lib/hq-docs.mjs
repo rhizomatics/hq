@@ -393,6 +393,20 @@ export async function checkHq(hqRoot) {
     if (!e.fields.when) problems.push(`${where}: no **When:** (UTC time), so it has no routine`);
     else if (!/\d{2}:\d{2} UTC/.test(e.fields.when)) problems.push(`${where}: **When:** has no UTC time`);
     if (!e.fields.report) problems.push(`${where}: no **Report:** visibility`);
+    // A report file is rolling (one current.md) or a snapshot (dated files): say which, and keep Output and the
+    // skill in line with it. The site itself, raw data and "none" aren't report files.
+    const report = e.fields.report ?? '';
+    if (/^(public|private)/.test(report) && !/\((it is|raw data)/.test(report)) {
+      const kind = report.match(/;\s*(rolling|snapshot)\s*$/)?.[1];
+      const area = e.fields.output?.match(/hq-private\/reports\/([\w-]+)\//)?.[1];
+      const skillText = await readFile(skillFile, 'utf8');
+      if (!kind) problems.push(`${where}: **Report:** doesn't end "; rolling" or "; snapshot"`);
+      else if (kind === 'rolling') {
+        if (!area || !e.fields.output.includes(`reports/${area}/current.md`)) problems.push(`${where}: a rolling report's **Output:** is hq-private/reports/<area>/current.md`);
+        else if (!skillText.includes(`reports/${area}/current.md`)) problems.push(`${where}: rolling, but the skill doesn't write reports/${area}/current.md`);
+        else if (new RegExp(`reports/${area}/YYYY`).test(skillText)) problems.push(`${where}: rolling, but the skill still names a dated reports/${area}/ file`);
+      } else if (area && e.fields.output.includes('current.md')) problems.push(`${where}: a snapshot report's **Output:** names current.md`);
+    }
   }
   // Processes sharing a routine run as one persona at one time.
   const byRoutine = {};

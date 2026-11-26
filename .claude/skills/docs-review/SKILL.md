@@ -1,11 +1,11 @@
 ---
 name: docs-review
-description: Quarterly rolling documentation review of each of the org's products for readability, accessibility and fidelity to the code. Runs daily during the review window and reviews only the next small batch of products each run.
+description: Quarterly batched documentation review of each of the org's products for readability, accessibility and fidelity to the code. Runs daily during the review window and reviews only the next small batch of products each run.
 context: fork
 agent: tech-writer
 ---
 
-# Quarterly rolling docs review
+# Quarterly batched docs review
 
 The review window is the 1st–14th of January, April, July and October; this skill is
 scheduled daily then. Each run reviews **one batch**, so results arrive spread over about

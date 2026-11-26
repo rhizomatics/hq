@@ -17,8 +17,8 @@
 - **Who:** infra-lead
 - **When:** 05:40 UTC
 - **Routine:** `hq: daily infra-lead`
-- **Output:** `hq-private/reports/dependabot/YYYY-MM-DD.md`
-- **Report:** private by exception
+- **Output:** `hq-private/reports/dependabot/current.md`
+- **Report:** private by exception; rolling
 - Merges trusted bumps (GitHub-owned, hassfest/HACS and `<org>/hq` shared admin workflows; Astral and
   oxc tooling) once CI is green, never major versions; closes bumps of dependencies inherited from Home Assistant or
   SignalK. Standing approval from the maintainer; everything else waits for the PR report.
@@ -26,16 +26,16 @@
 ## Support sweep — `/support-sweep`
 - **Who:** pm
 - **When:** 06:00 UTC
-- **Output:** `hq-private/reports/support-sweep/YYYY-MM-DD.md`
-- **Report:** private
+- **Output:** `hq-private/reports/support-sweep/current.md`
+- **Report:** private; rolling
 - Issues and discussions waiting on a maintainer reply, ranked, with draft replies.
 
 ## Security escalation — `/security-escalation`
 - **Who:** infra-lead
 - **When:** 05:40 UTC, after the Dependabot sweep
 - **Routine:** `hq: daily infra-lead`
-- **Output:** `hq-private/reports/security/YYYY-MM-DD.md`
-- **Report:** private
+- **Output:** `hq-private/reports/security/current.md`
+- **Report:** private; rolling
 - **Escalates:** issue labelled `security-escalation` in `<org>/hq-private`
 - Excludes purely transitive vulnerabilities from Home Assistant / SignalK.
 
@@ -43,10 +43,10 @@
 - **Who:** marketing
 - **When:** 06:40 UTC
 - **Routine:** `hq: daily marketing`
-- **Output:** `hq-private/reports/forums/YYYY-MM-DD.md`
-- **Report:** private
+- **Output:** `hq-private/reports/forums/current.md`
+- **Report:** private; rolling
 - Runs daily but only checks sources due by their own cadence (see `reference/*_discussion.md`).
-  Files one hq issue per thread worth replying to, never a rolling one.
+  Files one hq issue per thread worth replying to, never a standing one.
 
 ## Release digest — `/release-digest`
 - **Who:** marketing

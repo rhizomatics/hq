@@ -23,6 +23,11 @@ Each process also declares who can read its report (`- **Report:**`):
 - **private by exception**: published unless the report's frontmatter says `visibility: private`, which the agent sets whenever the report holds anything sensitive.
 - **private**: stays in `hq-private`.
 
+And whether it's **rolling** or a **snapshot**, after a `;` on the same line (`- **Report:** private; rolling`):
+
+- **rolling**: one file, `hq-private/reports/<area>/current.md`, rewritten each run, with `updated:` in its frontmatter; git history keeps every version. Daily and weekly routines. A run may add a one-off dated report beside it when the detail would clutter it, linked from `current.md`.
+- **snapshot**: a new dated file each run. Monthly and longer reviews, and periodic audits.
+
 Publishing starts with reports dated 2026-11-14; earlier ones were written as private. The site build also withholds any report that looks private (IP or email addresses, referrer counts, tokens).
 
 Data gathering that needs no judgement (download counts, traffic) is a plain script on a GitHub Actions cron so it is cheap, reliable and builds history; the agent routines only interpret.

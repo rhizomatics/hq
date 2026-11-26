@@ -13,15 +13,15 @@ Sources and access methods are in `reference/hass_discussion.md` and `reference/
 ## Gather
 
 Check only the sources whose cadence is due today (see the reference files), covering the
-period since that source was last checked: one cadence period, or since the last report that
-listed it. Record in the report which sources were checked.
+period since that source was last checked: one cadence period, or since the last version of the
+report that listed it (`git log -p` on `current.md`). Record in the report which sources were checked.
 
 1. **Mentions** — product, repo and package names from `products.toml`, and the org's own name (`[org].name`).
 2. **Opportunities** — threads matching the problem phrases where nobody has already given a good
    answer, the thread is recent and still open, and our product genuinely fits (version, platform,
    setup effort). Being useful beats being promotional; skip weak fits.
 
-Skip threads already listed in earlier reports unless there is a new reply mentioning us.
+Skip threads already listed in the report's history unless there is a new reply mentioning us.
 
 ## Classify mentions
 
@@ -30,7 +30,7 @@ comparison with an alternative (note which) · announcement by us.
 
 ## Output
 
-`hq-private/reports/forums/YYYY-MM-DD.md`, short (see "Working rules" in `AGENTS.md`):
+Rewrite `hq-private/reports/forums/current.md` (see "Rolling reports" in `AGENTS.md`), short (see "Working rules" in `AGENTS.md`):
 
 ```
 # Forum watch YYYY-MM-DD
@@ -49,10 +49,10 @@ issue; give a suggested issue title). Landscape notes (competitors, announcement
 each at most, and go to the reputation review rather than accumulating here.
 
 Then file one hq issue per thread worth replying to (labels `forums` + area), per "Issues and PRs"
-in `AGENTS.md`, never a rolling issue. The title names the thread and what's at stake, with a
+in `AGENTS.md`, never a standing issue. The title names the thread and what's at stake, with a
 date when the chance passes (`homeassistant: reply on WTH "Notifying people is hard" by 2026-11-24
 (frontend wants mockup feedback)`); the body says in a line why it matters and why now, and links
-the thread and its draft (`hq-private/reports/forums/YYYY-MM-DD.md#...`). Rank the time-sensitive
+the thread and its draft (`current.md#...` at the commit that added it, so the link survives the next run). Rank the time-sensitive
 ones first in the report: a platform team asking for feedback, a WTH or feature-request thread
 about something a product already does, an RFC or design discussion we could shape. Close an issue,
 saying how, once a reply from us is visible in the thread or the thread has gone cold.

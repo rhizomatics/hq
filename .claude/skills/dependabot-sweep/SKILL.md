@@ -86,7 +86,7 @@ requires checks that no longer run is a settings fix: file or update an hq issue
 
 ## Output
 
-`hq-private/reports/dependabot/YYYY-MM-DD.md`, short (see "Working rules" in `AGENTS.md`):
+Rewrite `hq-private/reports/dependabot/current.md` (see "Rolling reports" in `AGENTS.md`), short (see "Working rules" in `AGENTS.md`):
 
 ```
 # Dependabot sweep YYYY-MM-DD

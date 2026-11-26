@@ -52,13 +52,14 @@ name next runs, and some personas run rarely (tech-writer's only process is quar
 none just waits.
 
 1. Read the **For other roles** sections of reports in `hq-private/reports/` written in the last
-   six weeks.
-2. An item is **picked up** when a later report by the named persona lists it under its handoffs
+   six weeks: the dated snapshots, and for rolling reports their `current.md` history
+   (`git log -p --since=<6 weeks ago> -- reports/*/current.md`).
+2. An item is **picked up** when a later report (or a later version of the same `current.md`) by the named persona lists it under its handoffs
    picked up, or the fix is evident (the file, setting or snapshot now shows it done). An item marked
    resolved in the report itself is done.
 3. File an hq issue for an item that is not picked up, is more than 7 days old, and whose persona has
    no scheduled run (per **Who:** and **When:** in `processes/`) in the next 14 days. One issue per
-   item, labelled for the persona's area, its body linking the report section and starting with
+   item, labelled for the persona's area, its body linking the report section (at the commit that added it) and starting with
    `<!-- hq:handoff <report path> <persona> -->`. Search open and closed issues for that marker
    first and don't file twice. Items that are pm's own are worked here, not filed.
 4. An item carried forward as "still open" in two or more reports gets an issue regardless of the
@@ -111,7 +112,7 @@ moving a file between folders is the whole change. Add a `summary:` to any proje
 
 ## Output
 
-`hq-private/reports/projects/YYYY-MM-DD.md`: a **Decisions picked up** line per hq issue acted on
+Rewrite `hq-private/reports/projects/current.md` (see "Rolling reports" in `AGENTS.md`), weekly and monthly runs alike: a **Decisions picked up** line per hq issue acted on
 (issue link and what was done, or "none"; the detail is in the follow-up comment, since the report
 is public), a **Handoffs chased** line (issue links filed this run, or "none"; no item detail, since
 handoffs can come from private reports), one section per project (status, moved, next steps, flags), then for the monthly review

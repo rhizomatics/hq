@@ -32,5 +32,5 @@ channels, a rename) directly to `products.toml` and commit; list judgement calls
 
 ## Output
 
-Append a section to this week's `hq-private/reports/prs/YYYY-Www.md` if it exists, otherwise write
-`hq-private/reports/registry/YYYY-Www.md`. No drift → one line.
+Rewrite the `## Registry` section of `hq-private/reports/prs/current.md` (see "Rolling reports" in `AGENTS.md`), adding it if missing and
+leaving the rest of the file alone. No drift → one line.

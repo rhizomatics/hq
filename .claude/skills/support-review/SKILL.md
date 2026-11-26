@@ -13,7 +13,8 @@ The daily sweep answers people; this review stops the same questions recurring.
 
 - Issues and discussions opened or active in the month for each repo in `products.toml`
   (`gh issue list --state all --search "updated:>=YYYY-MM-01"`, discussions via GraphQL).
-- Daily reports in `hq-private/reports/support-sweep/` and `hq-private/reports/forums/` for the month.
+- The month's daily reports: the history of `hq-private/reports/support-sweep/current.md` and
+  `hq-private/reports/forums/current.md` (`git log -p --since=<a month ago>`), plus any dated files from the month.
 - Time-to-first-response and time-to-close per repo, from the issue timelines.
 
 ## Analyse

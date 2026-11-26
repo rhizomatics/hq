@@ -26,7 +26,7 @@ if it proves stable, propose adding it to `hq-private/scripts/`.
 
 ## Output
 
-`hq-private/reports/adoption/YYYY-Www.md`:
+Rewrite `hq-private/reports/adoption/current.md` (see "Rolling reports" in `AGENTS.md`):
 
 1. Three-line headline: what moved and why (link to releases in the window — `gh release list`).
 2. Per product line (`[lines]` in `hq.toml`: Home Assistant, SignalK, MQTT, HQ, ...) a table:

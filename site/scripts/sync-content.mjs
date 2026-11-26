@@ -229,9 +229,11 @@ async function syncReports() {
     if (vis === 'private' || !(await exists(path.join(reportsRoot, area)))) continue;
     for (const file of await walk(path.join(reportsRoot, area))) {
       const rel = path.relative(reportsRoot, file).split(path.sep).join('/');
-      const date = reportDate(rel);
-      if (!date || date < REPORTS_FROM) continue;
       const text = await readFile(file, 'utf8');
+      // A rolling report (current.md) is dated by `updated:` in its frontmatter; the rest by their names.
+      const rolling = path.posix.basename(rel) === 'current.md';
+      const date = rolling ? (text.match(/^---\n[\s\S]*?^updated:\s*['"]?(\d{4}-\d{2}-\d{2})/m)?.[1] ?? null) : reportDate(rel);
+      if (!date || date < REPORTS_FROM) continue;
       if (/^---\n[\s\S]*?^visibility:\s*private\s*$[\s\S]*?\n---/m.test(text)) continue;
       const found = findPrivate(text);
       if (found.length) {
@@ -242,10 +244,11 @@ async function syncReports() {
       const { title, front, body } = titleAndBody(text, path.posix.basename(rel, '.md'));
       await writePage(slug, {
         title,
-        front: front.replace(/^visibility:.*$/m, '').trim(),
+        front: front.replace(/^(visibility|updated):.*$/gm, '').trim(),
+        label: rolling ? `Current (updated ${date})` : undefined,
         body: rewriteLinks(body, `../hq-private/reports/${rel}`, { linkBase: REPO }),
-        // Newest first in the sidebar.
-        order: -Number(date.replaceAll('-', '')),
+        // Newest first in the sidebar; the rolling report first of all.
+        order: rolling ? -99999998 : -Number(date.replaceAll('-', '')),
       });
       published += 1;
     }

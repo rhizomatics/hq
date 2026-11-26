@@ -9,7 +9,8 @@ agent: marketing
 
 ## Inputs
 
-- The month's `hq-private/reports/forums/` (mentions, sentiment, comparisons) and `hq-private/reports/adoption/`.
+- The month's forum and adoption reports: the history of `hq-private/reports/forums/current.md` and
+  `hq-private/reports/adoption/current.md` (`git log -p --since=<a month ago>`), plus any dated files from the month.
 - Previous `hq-private/reports/reputation/` for trend lines.
 
 ## Investigate

@@ -38,11 +38,11 @@ Once per run, not per repo:
   dependencies say: `advisories` in the latest `hq-private/data/github/YYYY-MM-DD.json`, one list
   per package in `security_watch` in `hq.toml` (reviewed GitHub advisories from the last 30 days,
   with `epss` and `kev_added`). An advisory listed under two packages is one item. New means its
-  `ghsa` isn't in an earlier report in `hq-private/reports/security/`.
+  `ghsa` isn't in the history of `hq-private/reports/security/current.md` (`git log -p`).
 - OpenSSF Scorecard, a weekly supply-chain view per public repo with a `scorecard.yml` workflow: WebFetch
   `https://api.securityscorecards.dev/projects/github.com/<org>/<repo>` (no key; 404 = not yet published,
   note it once). If the host is blocked in the routine's network, that is a one-line data gap, not a failure. Never escalate a score on its own. Escalate only a check that fell to 0 or dropped 3+
-  points since the previous report in `hq-private/reports/security/` and bears on a real exposure
+  points since the last version of `hq-private/reports/security/current.md` and bears on a real exposure
   (Dangerous-Workflow, Token-Permissions, Pinned-Dependencies, Vulnerabilities, Binary-Artifacts). Other
   low checks go to the alignment review, not here; the checks `policies/project_standards.md` lists as accepted
   are never raised. Scores stay internal: never put them in public reports.
@@ -123,12 +123,12 @@ The providers are listed under `[capabilities.security]` in `hq.toml` (evidence 
    - What the human must decide: upgrade the maintainer's own servers, tell users (a draft in the
      report), raise a floor (a PR per repo).
 
-Compare with the previous file in `hq-private/reports/security/` so the same alert isn't escalated twice
+Compare with the last version of `hq-private/reports/security/current.md` (and its history, `git log -p`) so the same alert isn't escalated twice
 unless it is older than 7 days and still open (then re-escalate as "still open").
 
 ## Output
 
-Always write `hq-private/reports/security/YYYY-MM-DD.md`, short (see "Working rules" in `AGENTS.md`). Nothing
+Always rewrite `hq-private/reports/security/current.md` (see "Rolling reports" in `AGENTS.md`), short (see "Working rules" in `AGENTS.md`); its git history is the audit trail. Nothing
 to escalate → one line, plus a line per data gap (e.g. snapshot missing or stale). Otherwise the
 escalations, each with its hq issue link. Add the table of counts per repo (escalated /
 excluded-transitive / other open) only when a count changed, and only the changed rows; on the
@@ -136,7 +136,7 @@ first run of each month write the full table and the repos with scanning not ena
 
 Escalations become hq issues per "Issues and PRs" in `AGENTS.md`: labels `security-escalation` plus
 the area (the repo's product line: `homeassistant`, `signalk`, `picoware`, `mqtt`, `hq`, `org`), assigned to the
-maintainer, one issue per escalation, never a rolling one: titled with the fix and severity, e.g.
+maintainer, one issue per escalation, never a standing one: titled with the fix and severity, e.g.
 `homeassistant: upgrade aiohttp in supernotify (high, CVE-2026-1234)`. Alerts fixed by the same
 action (one package across repos) share an issue, one checklist item each: repo, alert link,
 severity, why it matters, and what the human must do. If an issue for the same package is open, add

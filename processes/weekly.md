@@ -5,23 +5,23 @@
 ### Adoption report — `/adoption-report`
 - **Who:** marketing
 - **When:** 07:00 UTC
-- **Output:** `hq-private/reports/adoption/YYYY-Www.md`
-- **Report:** private
+- **Output:** `hq-private/reports/adoption/current.md`
+- **Report:** private; rolling
 - Download, install and clone trends from `data/stats/`.
 
 ### Lingering PRs — `/pr-report`
 - **Who:** pm
 - **When:** 07:20 UTC
 - **Routine:** `hq: weekly pm (Monday)`
-- **Output:** `hq-private/reports/prs/YYYY-Www.md`
-- **Report:** private
+- **Output:** `hq-private/reports/prs/current.md`
+- **Report:** private; rolling
 
 ### Registry check — `/registry-check`
 - **Who:** pm
 - **When:** 07:20 UTC, after the PR report
 - **Routine:** `hq: weekly pm (Monday)`
-- **Output:** section in `hq-private/reports/prs/YYYY-Www.md`; clear-cut fixes committed to `products.toml`
-- **Report:** private (a section of the PR report)
+- **Output:** section in `hq-private/reports/prs/current.md`; clear-cut fixes committed to `products.toml`
+- **Report:** private (a section of the PR report); rolling
 - New, removed, renamed or archived repos in the org; new publishing channels.
 
 ## Friday
@@ -29,8 +29,8 @@
 ### Project review — `/project-review`
 - **Who:** pm
 - **When:** 07:00 UTC
-- **Output:** `hq-private/reports/projects/YYYY-MM-DD.md`; factual updates to `projects/`
-- **Report:** public
+- **Output:** `hq-private/reports/projects/current.md`; factual updates to `projects/`
+- **Report:** public; rolling
 - First acts on the maintainer's decisions left as comments on hq issues (approvals, choices), and posts a follow-up comment on each. Ask in a session for anything more urgent than a week.
 - Progress and next steps for every project, mark work that's done.
 - Check open RFCs and their status and template usage, flag up drafts open for more than 2 weeks and `ready for review` ones have a GitHub discussion open. Identify where work can be identified to move them to closed.

@@ -83,7 +83,7 @@ HQ is those two repos:
 - `hq-private/commands/` — helper shell commands for the maintainer.
 - `hq-private/scripts/` — deterministic data collection (stdlib Python 3.11+, no deps), run by `hq-private/.github/workflows/collect-github.yml`.
 - `hq-private/reference/` — private reference notes (e.g. the real-world test environments).
-- `hq-private/reports/<area>/` — dated process outputs (`YYYY-MM-DD.md`, `YYYY-Www.md` for weekly, `YYYY-MM.md` for monthly).
+- `hq-private/reports/<area>/` — process outputs: `current.md` for a rolling report (daily and weekly routines), dated files for a snapshot (`YYYY-MM.md` monthly, `YYYY-Qn/` quarterly; daily and weekly ones from before 2026-11-26 too).
 
 ## House values
 
@@ -109,7 +109,17 @@ HQ is those two repos:
   unfixed security findings, alert details, traffic referrers, personal infrastructure, support triage
   of named users, unposted drafts. When unsure, mark it private. Public reports never hold those;
   put such detail in the hq issue instead.
-- Keep reports short and compare with the previous one in the same folder; say what changed, not what's the same. **Daily reports**: a quiet day is one or two lines; otherwise a headline, the action items (each with its hq issue link) and then only the detail those items need, aiming for under ~20 lines plus drafts. No lists of sources checked or unchanged tables unless something failed or changed; data gaps are one line each.
+- **Rolling reports.** A process whose `- **Report:**` line says `rolling` keeps one file,
+  `hq-private/reports/<area>/current.md`, and rewrites it each run with `updated: YYYY-MM-DD` in its frontmatter.
+  Git history is the archive and the audit trail: compare with the last version (`git show HEAD:<path>`, or
+  `git log -p -- <path>` further back), never with a dated file. Commit and push the report before filing or
+  commenting on issues, and link its sections at that commit
+  (`https://github.com/<org>/hq-private/blob/<sha>/reports/<area>/current.md#<anchor>`), since the next run
+  rewrites them. When one run turns up more detail than belongs in the rolling report (a deep investigation, a
+  long incident write-up), the persona may also write a one-off `hq-private/reports/<area>/YYYY-MM-DD-<topic>.md`
+  and link it from `current.md`: its own judgement, not a schedule. A `snapshot` report is a new dated file each run, kept for periodic audits and the monthly and
+  quarterly reviews.
+- Keep reports short and compare with the previous one (the last version of a rolling report); say what changed, not what's the same. **Daily reports**: a quiet day is one or two lines; otherwise a headline, the action items (each with its hq issue link) and then only the detail those items need, aiming for under ~20 lines plus drafts. No lists of sources checked or unchanged tables unless something failed or changed; data gaps are one line each.
 - Fix what an agent can fix (hq reference files, `products.toml`, docs) in the same run, or as a PR for product repos, instead of listing it as a to-do.
 - **Scripts over agents** (`policies/scripts_over_agents.md`): never hand-edit a generated list; change its source. Run `mise run check-hq` after changing processes, skills, personas or projects. Mechanical work you find yourself repeating each run is a candidate for a script: say so in your report.
 - When working a project, update its **Log** and task checkboxes in the same session.
@@ -130,7 +140,7 @@ If something you need is unavailable, say so in the report rather than guessing.
 
 **PRs are how agents deliver changes.** Code, docs and config changes in product repos are built by an agent on a branch and opened as a PR. When reviewing and merging is all the maintainer has to do, the PR is the to-do: request review from the maintainer, put the why and the report link in its description, and skip the hq issue. Add an hq issue only when there is also a decision or a non-PR step, and link the two. Keep each PR to one repo and one theme. Agents never merge, except the Dependabot PRs that `/dependabot-sweep` has standing approval to merge or close.
 
-**One issue per action, named so the notification says it all.** An issue is one specific thing the maintainer must do, and its title says what and, when it's time-sensitive, by when: `homeassistant: reply on WTH "Notifying people is hard" by 2026-11-24 (frontend wants mockup feedback)`, not `homeassistant: forum replies`. Never keep a standing or rolling issue for a routine (no `<area>: reply to waiting users`, `<area>: forum replies`, `<area>: review waiting PRs`): items added to one arrive as edits nobody is notified about, under a title that doesn't say what's new or urgent, and get missed. The body opens with one line on why it matters and why now, then links the thing to act on and its draft or report section. Group items in one issue only when they're the same action done in one sitting (the same dependency bump across repos, the alerts on one package, the settings commands from one review); never mix areas or projects, and split past ~8 checklist items.
+**One issue per action, named so the notification says it all.** An issue is one specific thing the maintainer must do, and its title says what and, when it's time-sensitive, by when: `homeassistant: reply on WTH "Notifying people is hard" by 2026-11-24 (frontend wants mockup feedback)`, not `homeassistant: forum replies`. Never keep a standing issue for a routine (no `<area>: reply to waiting users`, `<area>: forum replies`, `<area>: review waiting PRs`): items added to one arrive as edits nobody is notified about, under a title that doesn't say what's new or urgent, and get missed. The body opens with one line on why it matters and why now, then links the thing to act on and its draft or report section. Group items in one issue only when they're the same action done in one sitting (the same dependency bump across repos, the alerts on one package, the settings commands from one review); never mix areas or projects, and split past ~8 checklist items.
 
 **Before filing, search** open hq issues with the same labels; if one already covers the same action, comment on it with what's new rather than duplicating. Tick or close items an agent can verify as done, with a comment saying how.
 

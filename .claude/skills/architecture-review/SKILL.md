@@ -1,6 +1,6 @@
 ---
 name: architecture-review
-description: Quarterly rolling architecture review of each of the org's products against its platform's architecture (Home Assistant or SignalK), including the Home Assistant Integration Quality Scale — code changes needed, level changes, and changes to the scale itself.
+description: Quarterly batched architecture review of each of the org's products against its platform's architecture (Home Assistant or SignalK), including the Home Assistant Integration Quality Scale — code changes needed, level changes, and changes to the scale itself.
 context: fork
 agent: architect
 ---

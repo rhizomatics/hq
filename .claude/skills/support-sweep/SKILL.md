@@ -33,7 +33,7 @@ close as duplicate). Keep drafts to a few sentences.
 
 ## Output
 
-Write `hq-private/reports/support-sweep/YYYY-MM-DD.md`, short (see "Working rules" in `AGENTS.md`):
+Rewrite `hq-private/reports/support-sweep/current.md` (see "Rolling reports" in `AGENTS.md`), short (see "Working rules" in `AGENTS.md`):
 
 ```
 # Support sweep YYYY-MM-DD
@@ -48,11 +48,11 @@ Gaps: <one line per repo or source that couldn't be read, if any>
 > draft...
 ```
 
-Only items still waiting go in the table; things cleared since yesterday get one line at most.
+Only items still waiting go in the table; things cleared since the last run (the file's last version) get one line at most.
 Nothing waiting → a one-line report.
 
 Then file one hq issue per waiting thread (labels `support` + area), per "Issues and PRs" in
-`AGENTS.md`, never a rolling issue: title `<area>: <reply to | decide on> <repo>#123 (<what they
-need>)`, body linking the thread and its draft (`hq-private/reports/support-sweep/YYYY-MM-DD.md#repo123`).
+`AGENTS.md`, never a standing issue: title `<area>: <reply to | decide on> <repo>#123 (<what they
+need>)`, body linking the thread and its draft: commit the report first, then link `current.md#repo123` at that commit, so the link survives the next run.
 If an issue for the thread is already open, comment on it only when something new needs the
 maintainer. Close issues for threads that are no longer waiting, saying how. Do not post anything in the product repos.

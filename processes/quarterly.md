@@ -1,24 +1,24 @@
 # Quarterly
 
-Four reviews, each run every four months in its own month, so one lands each month. The rolling ones spread their results over about a week.
+Four reviews, each run every four months in its own month, so one lands each month. The batched ones (docs and architecture) spread their runs over two weeks.
 
 ## Jan / May / Sep — Docs review — `/docs-review`
 - **Who:** tech-writer
-- **When:** 08:30 UTC daily on the 1st–14th; each run reviews the next batch until all products are done
-- **Report:** public
+- **When:** 08:30 UTC daily on the 1st–14th; each run reviews the next batch until all products are done (batched)
+- **Report:** public; snapshot
 - Readability, accessibility and fidelity to the code.
 
 ## Feb / Jun / Oct — Architecture review — `/architecture-review`
 - **Who:** architect
-- **When:** 08:30 UTC daily on the 1st–14th, rolling like the docs review
+- **When:** 08:30 UTC daily on the 1st–14th, batched like the docs review
 - **Output:** `hq-private/reports/architecture-review/YYYY-Qn/` (`_platform-changes.md` plus one file per product)
-- **Report:** private by exception
+- **Report:** private by exception; snapshot
 - Conformance with the Home Assistant / SignalK architecture, HA Quality Scale (code, level, and changes to the scale), MQTT discovery for MQTT services.
 
 ## Mar / Jul / Nov — Roadmap review — `/roadmap-review`
 - **Who:** pm
 - **When:** 09:00 UTC on the 10th
-- **Report:** public
+- **Report:** public; snapshot
 - Roadmap items done, obsoleted, or needing reprioritising, for every product that has a roadmap.
 
 
