@@ -57,7 +57,7 @@ Projects:
 - [x] @agent Done and shelved collapsed by default, on the list page and in the sidebar
 - [x] @agent Dates per status from git history: proposed, ready, started (or `started:`), last work (latest
       Log date), blocked since, completed, shelved
-- [ ] @human Decide: `projects/` structure within product repos (only org-wide and product-line work in HQ)
+- [x] @human Decide: `projects/` structure within product repos (only org-wide and product-line work in HQ)
 
 Metadata:
 
@@ -90,8 +90,8 @@ Rolling reports, proposed design (2026-11-26):
 - A cadence file's `- **Report:**` line gains `rolling` or `snapshot`, so a script can check each skill matches.
 
 
-- [ ] @human Blocked on `hq-seed` going live and `hq` rebased on it: move HQ improvement projects to `hq-seed`'s
-      roadmap and RFCs
+- [x] @human Blocked on `hq-seed` going live and `hq` rebased on it: move HQ improvement projects to `hq-seed`'s
+      roadmap and RFCs (handed to [HQ Seed](../active/hq-seed.md) Phase 3, 2026-11-26)
 
 ## Log
 
@@ -110,3 +110,4 @@ Rolling reports, proposed design (2026-11-26):
   added them. A persona may add a one-off dated report beside `current.md` when the detail would clutter it
   (maintainer). check-hq enforces the Report line, Output and skill agreeing; the site lists each `current.md`
   first in its area. Existing dated reports are left as they are.
+- 2026-11-26: done. Projects in product repos went to the proposed Product Level Organization project (maintainer); the move to `hq-seed`'s roadmap is now an HQ Seed task.

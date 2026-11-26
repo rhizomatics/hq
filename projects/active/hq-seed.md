@@ -195,6 +195,9 @@ The design principles should fold in the orginal design as amended since initiat
 
 - [ ] @pair Rhizomatics `hq` records `hq.lock` against the first seed release; first seed review run on it
 - [ ] @agent Seed a throwaway org end to end from the README; fix whatever needed hand edits
+- [ ] @pair Once `hq` is a seeded instance: HQ improvement projects in `hq` (open ones, and the design choices in
+      done ones such as [HQ Improvements](../done/hq-improvements.md)) become `hq-seed`'s roadmap items and RFCs
+      (moved from HQ Improvements, 2026-11-26)
 - [ ] @human Offer it to one HQ Stats user; they seed an HQ and take one update
 
 ## Success test
@@ -257,3 +260,4 @@ _None._
 - 2026-11-25 — `hq-seed` repo created. Config schema settled by the Product Catalogue (hq 1.1.0: `hq.toml`,
   `products.toml`, `community.toml` in place of `repos.toml`); `module.toml` relevance now reads `platform` from
   `products.toml`. First content, the config skeleton, in hq-seed#1.
+- 2026-11-26: took over HQ Improvements' last item (its projects becoming the seed's roadmap and RFCs), as a Phase 3 task.
