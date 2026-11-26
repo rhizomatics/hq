@@ -1,5 +1,5 @@
 {
- "collected_at": "2026-11-26T12:22:35+00:00",
+ "collected_at": "2026-11-26T13:59:43+00:00",
  "community": {
   "ha-addon-openobserve": {
    "github": {
@@ -973,7 +973,7 @@
       "appliance_autonotify.zip.sha256": 1
      },
      "v1.1.0": {
-      "appliance_autonotify.zip": 50,
+      "appliance_autonotify.zip": 51,
       "appliance_autonotify.zip.sha256": 1
      }
     },
@@ -1799,7 +1799,7 @@
       "camera_autonotify.zip.sha256": 1
      },
      "v1.1.0": {
-      "camera_autonotify.zip": 36,
+      "camera_autonotify.zip": 37,
       "camera_autonotify.zip.sha256": 1
      }
     },
@@ -1934,7 +1934,7 @@
      }
     ]
    },
-   "ha_installs": 17,
+   "ha_installs": 19,
    "health": {
     "homeassistant": {
      "assessed": "silver",
@@ -3082,7 +3082,7 @@
       "remote_logger.zip.sha256": 2
      },
      "v2.13.0": {
-      "remote_logger.zip": 222,
+      "remote_logger.zip": 225,
       "remote_logger.zip.sha256": 1
      }
     },
@@ -3232,7 +3232,7 @@
      }
     ]
    },
-   "ha_installs": 75,
+   "ha_installs": 76,
    "health": {
     "homeassistant": {
      "assessed": "platinum",
@@ -5028,7 +5028,7 @@
       "supernotify.zip": 492
      },
      "v2.19.1": {
-      "supernotify.zip": 244,
+      "supernotify.zip": 253,
       "supernotify.zip.sha256": 1
      },
      "v2.2.0": {},
@@ -5214,7 +5214,7 @@
      }
     ]
    },
-   "ha_installs": 102,
+   "ha_installs": 103,
    "health": {
     "homeassistant": {
      "assessed": "platinum",
@@ -5227,7 +5227,7 @@
   },
   "updates2mqtt": {
    "ghcr": {
-    "total": 97507
+    "total": 97571
    },
    "github": {
     "archived": false,
