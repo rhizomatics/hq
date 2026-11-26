@@ -36,7 +36,6 @@ const headings = [
   <p class="ci-meta">
     <a href={`/products/#${p.line}`}>{lineLabel(p.line)}</a>
     {p.platforms.length > 0 && <> · runs on {p.platforms.map(platformLabel).join(', ')}</>}
-    {p.major && <> · <span class="catalogue-badge">major</span></>}
     {' · '}{p.repos.map((r, i) => <>{i > 0 && ', '}<a href={r.url}>{r.name}</a></>)} on GitHub
   </p>
   {p.quality?.level && (

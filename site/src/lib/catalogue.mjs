@@ -128,7 +128,6 @@ function entry(p) {
   return {
     id: p.id,
     line: p.line,
-    major: p.significance === 'major',
     quality: qualityRating(usage?.health?.homeassistant),
     registry: signalkRating(usage?.health?.signalk),
     platforms: ownPlatforms(p),
@@ -165,11 +164,11 @@ function entry(p) {
 
 export const CATALOGUE = PRODUCTS.filter(isProduct).map(entry);
 
-// [line id, heading, products] in display order; within a line, major products first.
+// [line id, heading, products] in display order; within a line, alphabetical.
 export const CATALOGUE_BY_LINE = LINES.map(([line, label]) => [
   line,
   label,
-  CATALOGUE.filter((p) => p.line === line).sort((a, b) => Number(b.major) - Number(a.major) || a.id.localeCompare(b.id)),
+  CATALOGUE.filter((p) => p.line === line).sort((a, b) => a.id.localeCompare(b.id)),
 ]).filter(([, , list]) => list.length);
 
 export const lineLabel = (line) => LINES.find(([l]) => l === line)?.[1] ?? line;

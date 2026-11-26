@@ -10,7 +10,7 @@ const day = (t: string) => t.slice(0, 10);
   <p>
     Every {ORG.name} product, by product line: what it does, where to get it, and how much it's used. Each has its
     own page with its releases, design documents, support and the state of its builds.{' '}
-    {CATALOGUE.length} products; <strong>major</strong> ones are the most used and get the strictest design and standards checks.
+    {CATALOGUE.length} products.
   </p>
 
   {CATALOGUE_BY_LINE.map(([line, label, list]) => {
@@ -37,7 +37,6 @@ const day = (t: string) => t.slice(0, 10);
             <tr>
               <th scope="row">
                 <a href={`/products/${p.id}/`}>{p.id}</a>
-                {p.major && <span class="catalogue-badge">major</span>}
               </th>
               <td>
                 {p.description || <span class="ci-meta">–</span>}
