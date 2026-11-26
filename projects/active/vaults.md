@@ -109,12 +109,12 @@ and the maintainer's own logins.
 - [x] @human On the MacBook: `chezmoi update`, end any lease first, then add the same two lines
   (`cache_ttl`, `max_cache_ttl`) under `[providers.prod]` and `sensitive = false` on `OPENOBSERVE_URL`
   and `OPENOBSERVE_ORG_ID` in its `~/.config/fnox/config.toml` (2026-11-26)
-- [ ] @agent The cap is 1 hour, not 4 (maintainer, 2026-11-26): `max_cache_ttl = "1h"` in virtdevmac's
-  `~/.config/fnox/config.toml` once no lease is open (editing it ends a lease)
+- [x] @agent The cap is 1 hour, not 4 (maintainer, 2026-11-26): `max_cache_ttl = "1h"` in virtdevmac's
+  `~/.config/fnox/config.toml` once no lease is open (editing it ends a lease) (2026-11-26)
 - [ ] @human The same on the MacBook: `max_cache_ttl = "1h"` under `[providers.prod]`
-- [ ] @pair At the first real lease under 1.50.0: check that an expired value makes `prod-run` fail
+- [x] @pair At the first real lease under 1.50.0: check that an expired value makes `prod-run` fail
   loudly rather than prompting or running without it (tested only with dummy, passphrase-free values).
-  The timers do apply to real prod values (seen 2026-11-26); expiry itself is still to see
+  Done 2026-11-26, see the Log
 - [ ] @agent Inventory, names only, of every secret or private value an agent or repo uses: the
   diagnostics accounts, `ha-repl` config, MCP server configs, mise `[env]`, `.env.example` files,
   publish tokens (npm, PyPI, AWS) held locally. Goes in `hq-private/projects/mise-environments/inventory.md`,
@@ -308,3 +308,7 @@ Secrets are done when:
   the first real lease under 1.50.0 (`prod-ha-repl`), `daemon status --json` showed the prod token with
   both timers running (30m sliding, 4h absolute, as configured then); the change to 1h waits for that
   lease to end, since editing the config would end it.
+- 2026-11-26: the maintainer opened the lease for this check. Under it, `prod-run ha-repl` got the token
+  (checked set, never printed). Then the cap was changed to 1h, which drops the cached value: the next
+  `prod-run`, with no terminal, stopped at once with exit 97 ("has ended or is not serving"), without
+  prompting or running the command. Expiry takes the same path. Lease ended with `lease-end`.
