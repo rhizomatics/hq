@@ -60,8 +60,8 @@ Projects:
 
 Metadata:
 
-- [ ] @pair Labels/tags in frontmatter, with `productline` and `programme` as labels; an index page per label
-      on the site, and labels as search terms
+- [x] @pair Labels/tags in frontmatter, with `productline` and `programme` as labels; an index page per label
+      on the site, and labels as search terms (2026-11-26: one Labels page with a section per label)
 
 Processes:
 
@@ -81,3 +81,8 @@ HQ Product:
   projects' reason and what they wait on, and folds done and shelved away; the sidebar groups by status with
   capitalised names; every project URL redirects from the other status folders, so moves don't break links.
   The site build checks out full history for the dates.
+- 2026-11-26: labels. `labels:` in project frontmatter (checked: lower-case and hyphens), with `productline:`
+  and `programme:` counted as labels and a programme's owner carrying its own name. The site has a Labels page
+  (sidebar, under Projects) with a section per label, and each project page opens with its labels, linked, so
+  the site search finds them. Documented in `projects/README.md`. Also removed the "major" flag from the
+  public product catalogue (products now alphabetical within a line).

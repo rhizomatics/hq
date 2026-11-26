@@ -98,3 +98,9 @@
 .catalogue-table th[scope='row'] { white-space: nowrap; }
 .catalogue-date { white-space: nowrap; }
 .catalogue-table td:nth-child(3) a { white-space: nowrap; }
+
+/* A project page's labels line (sync-content.mjs). */
+.hq-labels {
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3);
+}

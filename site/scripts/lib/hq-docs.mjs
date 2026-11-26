@@ -105,6 +105,38 @@ function lastLogged(body) {
   return [...log.matchAll(/^\s*[-*]\s*(\d{4}-\d{2}-\d{2})/gm)].map((m) => m[1]).sort().at(-1) ?? null;
 }
 
+// A frontmatter list: `a, b` or `[a, b]`.
+const listField = (v) => (v ? v.replace(/^\[|\]$/g, '').split(',').map((s) => s.trim().replace(/^(['"])(.*)\1$/, '$2')).filter(Boolean) : []);
+
+// A project's labels: its own `labels:`, its product lines (`productline:`) and its programme (`programme:`, and
+// a programme's owning project carries its own name), deduplicated, in that order.
+export function projectLabels(list, p) {
+  const own = [...p.labels, ...listField(p.productline), ...(p.programme ? [p.programme] : [])];
+  if (list.some((x) => x.programme === p.slug)) own.push(p.slug);
+  return [...new Set(own.map((l) => l.toLowerCase()))];
+}
+
+// Every label in use: [[label, [projects]]], alphabetical.
+export function labelIndex(list) {
+  const index = {};
+  for (const p of list) for (const l of projectLabels(list, p)) (index[l] ??= []).push(p);
+  return Object.entries(index).sort(([a], [b]) => a.localeCompare(b));
+}
+
+// The labels page: every label with its projects, each under its own heading so `#<label>` links to it.
+export function labelsPage(list, fromDir) {
+  const index = labelIndex(list);
+  if (!index.length) return '_No labels yet._';
+  const link = (p) => `[${cell(p.title)}](${path.posix.relative(fromDir, p.rel)})`;
+  const order = Object.fromEntries(PROJECT_GROUPS.map(([dir], i) => [dir, i]));
+  const chips = index.map(([l, ps]) => `[${l}](#${l}) (${ps.length})`).join(' · ');
+  const sections = index.map(([l, ps]) => {
+    const rows = [...ps].sort((a, b) => order[a.dir] - order[b.dir] || a.title.localeCompare(b.title)).map((p) => `| ${link(p)} | ${p.group} | ${cell(p.summary ?? '_no summary_')} |`);
+    return `## ${l}\n\n| Project | Status | Goal |\n|---|---|---|\n${rows.join('\n')}`;
+  });
+  return [chips, ...sections].join('\n\n');
+}
+
 export async function projects(hqRoot, { history = false } = {}) {
   const out = [];
   for (const [dir, group] of PROJECT_GROUPS) {
@@ -122,6 +154,8 @@ export async function projects(hqRoot, { history = false } = {}) {
         title,
         summary: fields.summary || null,
         programme: fields.programme || null,
+        productline: fields.productline || null,
+        labels: listField(fields.labels),
         blocked: fields.blocked || null,
         blockedBy: fields.blocked_by || null,
         started: fields.started || null,
@@ -380,6 +414,7 @@ export async function checkHq(hqRoot) {
     if (!p.summary) problems.push(`${p.rel}: no summary: in frontmatter`);
     if (p.programme && !programmeOf(projectList, p)) problems.push(`${p.rel}: programme: "${p.programme}" isn't a project file name`);
     if (p.programme === p.slug) problems.push(`${p.rel}: programme: names itself`);
+    for (const l of p.labels) if (!/^[a-z0-9][a-z0-9-]*$/.test(l)) problems.push(`${p.rel}: label "${l}" isn't lower-case letters, digits and hyphens`);
     // A blocked project says why, and may say on what; nothing outside blocked/ says it's blocked.
     if (p.dir === 'blocked' && !p.blocked) problems.push(`${p.rel}: blocked projects need a blocked: reason in frontmatter`);
     if (p.dir !== 'blocked' && (p.blocked || p.blockedBy)) problems.push(`${p.rel}: has blocked: or blocked_by: but isn't in projects/blocked/`);

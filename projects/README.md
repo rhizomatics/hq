@@ -40,6 +40,7 @@ owner: <maintainer>
 started: YYYY-MM-DD
 productline: applies across 1 or more product lines
 programme: <slug of the owning project>   # optional, see Programmes below
+labels: [security, docs]                   # optional: lower-case words or hyphenated; see Labels below
 blocked: <why it can't move>               # in projects/blocked/ only, required there
 blocked_by: <what it waits on>             # optional: a project, issue (repo#12) or URL
 ---
@@ -74,3 +75,12 @@ a `@pair` task gets the PR the agent built. See "Issues and PRs" in `AGENTS.md`.
 Rules for agents working a project: work the first unblocked task you're allowed to; never cross a
 `@pair` gate without recorded approval in **Decisions**; add a **Log** entry each session; if
 blocked, say on what (in frontmatter `status` if the file has it, otherwise in the Log).
+
+## Labels
+
+`labels:` in a project's frontmatter (`labels: [security, docs]` or `labels: security, docs`) tags it for
+finding across statuses. Its `productline:` values and its `programme:` count as labels too, and a programme's
+owning project carries its own name, so nobody repeats those. Each project page shows its labels, and
+[Labels](https://hq.rhizomatics.org.uk/projects/labels/) on the site lists every label with its projects; the
+labels are on the pages, so the site search finds them. Use a label for a theme that cuts across product lines
+and programmes (`security`, `docs`, `ci`); don't make one per project.

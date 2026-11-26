@@ -41,7 +41,7 @@ function projectsSidebar() {
       .sort((a, b) => a.title.localeCompare(b.title))
       .map((p) => ({ label: p.title, slug: projectPage(p) })),
   })).filter((g) => g.items.length);
-  return [{ label: 'All projects', link: '/projects/' }, { label: 'How it works', link: '/projects/how-it-works/' }, ...groups];
+  return [{ label: 'All projects', link: '/projects/' }, { label: 'Labels', link: '/projects/labels/' }, { label: 'How it works', link: '/projects/how-it-works/' }, ...groups];
 }
 
 // Policies: the list and how it works, then each policy under its `group:`, as on the list page.

@@ -14,7 +14,7 @@ import { copyFile, readFile, readdir, writeFile, mkdir, rm, stat } from 'node:fs
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ORG, githubUrl } from '../src/lib/hq-config.mjs';
-import { checkHq, expandGenerated, listPage } from './lib/hq-docs.mjs';
+import { checkHq, expandGenerated, labelsPage, listPage, projectLabels, projects } from './lib/hq-docs.mjs';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hqRoot = path.resolve(siteRoot, '..');
@@ -138,6 +138,7 @@ async function syncDocs() {
     for (const f of await walk(path.join(hqRoot, dir))) sources.push(path.relative(hqRoot, f).split(path.sep).join('/'));
   }
   const problems = [];
+  const projectList = await projects(hqRoot);
   for (const rel of sources) {
     const text = await readFile(path.join(hqRoot, rel), 'utf8');
     const found = findPrivate(text);
@@ -145,7 +146,14 @@ async function syncDocs() {
     const slug = slugFor(rel);
     const name = path.posix.basename(slug);
     const { title, front, body: raw } = titleAndBody(text, name);
-    const body = await expandGenerated(raw, rel, hqRoot);
+    let body = await expandGenerated(raw, rel, hqRoot);
+    // A project page opens with its labels, each linking to the labels page; they're also search terms there.
+    const project = projectList.find((p) => p.rel === rel);
+    const labels = project ? projectLabels(projectList, project) : [];
+    if (labels.length) {
+      const line = `<p class="hq-labels">Labels: ${labels.map((l) => `<a href="${BASE}projects/labels/#${l}">${l}</a>`).join(' · ')}</p>`;
+      body = body.replace(/^(#\s+.+\n)?/, (h) => `${h}${h ? '\n' : ''}${line}\n\n`);
+    }
     const howItWorks = name === 'how-it-works';
     const order = rel.startsWith('processes/') || howItWorks ? CADENCE_ORDER[name] : (name === 'index' ? 0 : undefined);
     await writePage(slug, {
@@ -169,6 +177,12 @@ async function syncDocs() {
       order: 0,
     });
   }
+  await writePage('projects/labels', {
+    title: 'Project labels',
+    label: 'Labels',
+    front: `description: ${yamlString('Projects by label: their own labels, product lines and programmes.')}`,
+    body: `Each project's \`labels:\`, \`productline:\` and \`programme:\` in its frontmatter, as labels.\n\n${rewriteLinks(labelsPage(projectList, 'projects'), 'projects/README.md', { linkBase: REPO })}\n`,
+  });
   return { count: sources.length, problems };
 }
 
