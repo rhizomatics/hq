@@ -1,5 +1,6 @@
 ---
 summary: Collection of improvements to HQ prior to the first public seed
+programme: hq-as-product
 ---
 
 # HQ Improvements
@@ -65,7 +66,7 @@ Metadata:
 
 Processes:
 
-- [ ] @pair Rolling and snapshot reports: rolling by default, one per routine, updated each run; snapshots kept
+- [x] @pair Rolling and snapshot reports: rolling by default, one per routine, updated each run; snapshots kept
       for periodic audits and monthly or quarterly reviews. Touches every skill's **Output** and the reports
       pages
 
@@ -104,3 +105,8 @@ Rolling reports, proposed design (2026-11-26):
   (sidebar, under Projects) with a section per label, and each project page opens with its labels, linked, so
   the site search finds them. Documented in `projects/README.md`. Also removed the "major" flag from the
   public product catalogue (products now alphabetical within a line).
+- 2026-11-26: rolling reports built as designed (4fedbd2). The eight daily and weekly reports are rolling
+  `current.md` files; monthly and longer reviews stay snapshots. Issues link report sections at the commit that
+  added them. A persona may add a one-off dated report beside `current.md` when the detail would clutter it
+  (maintainer). check-hq enforces the Report line, Output and skill agreeing; the site lists each `current.md`
+  first in its area. Existing dated reports are left as they are.
