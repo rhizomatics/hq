@@ -91,3 +91,4 @@ that environment a spec to build to.
 - 2026-11-13 — project-review: no commits since 11-10. Open: preview pattern, home dev SignalK, browser guidance, snapshot sweep, stale MCP entry. Not stalled yet (3 days).
 - 2026-11-15 — project-review: no change since 11-10; five items still open.
 - 2026-11-20 — project-review: no change since 11-10; five items still open. Stalled at 10 days; the maintainer's local work (preview pattern, home dev SignalK) is the gate.
+- 2026-11-27 — project-review: no change since 11-10 (17 days). Monthly check: the preview pattern and home dev SignalK items are also tasks in [Environment Vaults](../active/vaults.md); worth folding the rest there and closing this, proposed in the project review report.

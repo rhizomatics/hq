@@ -1,7 +1,7 @@
 ---
 title: remote_logger to Quality Scale Silver
 summary: remote_logger at Quality Scale Silver by Feb 2027
-status: active
+status: done
 lead: architect
 owner: jeyrb
 started: 2026-11-01
@@ -48,3 +48,4 @@ counters. No other Silver rule looks like a candidate for an exception; all are 
 - 2026-11-13 — project-review: still no Silver PRs and no open PRs; `sensor.py` has no `PARALLEL_UPDATES`, manifest `bronze`. Since 11-06: Marketplace docs in all ten translated READMEs (#119), docs nav (#120), IANA enterprise number (#121). 11 weeks to 2027-02-01; seven Silver tasks remain, so it is time to build the two small ones.
 - 2026-11-15 — project-review: still no Silver PRs; `PARALLEL_UPDATES` absent, manifest `bronze`. Merged since 11-13: admin workflows v1.0.0 (#125), GoatCounter (#126), design principles (#123), Marketplace wording, Scorecard workflow. 11 weeks left; the work is still seven small tasks.
 - 2026-11-20 — project-review: still no Silver PRs; manifest `bronze`, `PARALLEL_UPDATES` absent. Merged since 11-15: Scorecard token permissions (#127), security hardening of the integration and release pipeline (#128, which added build attestation), admin v1.0.1 (#129). 10 weeks to 2027-02-01.
+- 2026-11-27 — project-review: done and beyond the goal. remote_logger reached Quality Scale Platinum on 2026-11-23 (`feat: Quality Scale Silver`, then `feat: Quality Scale Platinum`; manifest `platinum`, `PARALLEL_UPDATES` set), 10 weeks before the 2027-02-01 target. The earlier "no Silver PRs" entries are superseded. Folder was already `done/`.

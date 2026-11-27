@@ -336,3 +336,4 @@ _None._
 - 2026-11-23 — Design for the seed settled in [HQ Seed](hq-seed.md): modules (including language ones) replace
   platform packs; `AGENTS.md` only, no per-agent adapters (Claude Code 2.1.277 or later reads it); `team/` with a
   maintainer role; a fortnightly seed review takes updates.
+- 2026-11-27 — project-review: gh-aw trial already closed 11-23, so no 12-03 decision is pending. Phase 2 (community, brand kit, adapters) is parked behind [HQ Seed](hq-seed.md), whose repo hq-seed was created 11-25. Still to fix before 2026-12-10: rename the monthly ecosystem-review routine.
