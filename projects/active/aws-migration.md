@@ -61,3 +61,4 @@ repo so it can be rebuilt and reviewed.
 - 2026-11-13 — project-review: jeyrb answered hq-private#33 on 11-09: inventory runs option (a), locally by the maintainer with an agent (recorded as a Decision). Phase 0 boxes still unticked: the reply did not say whether access is set up. Next is a local `@pair` session for Phase 1.
 - 2026-11-15 — project-review: no reply on the Phase 0 question in hq-private#33 (asked 11-13). No movement since 11-09.
 - 2026-11-20 — project-review: no reply on the Phase 0 question in hq-private#33 (asked 11-13). No movement since 11-09; Phase 1 inventory still waits for a local `@pair` session.
+- 2026-11-27 — project-review: no reply on the Phase 0 question in hq-private#33 (asked 11-13); nothing since 11-09. Stalled 18 days, 6 weeks since start. Proposed in #33: move to `blocked/` (`blocked_by: hq-private#33`) until a local `@pair` session is booked.
