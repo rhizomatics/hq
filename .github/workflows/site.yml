@@ -29,9 +29,10 @@ on:
       - assets/**
       - .github/workflows/site.yml
   schedule:
-    - cron: "40 0 * * *"
-    - cron: "40 8 * * *"
-    - cron: "40 16 * * *"
+    - cron: "40 1 * * *"
+    - cron: "40 7 * * *"
+    - cron: "40 13 * * *"
+    - cron: "40 19 * * *"
   workflow_dispatch:
 
 permissions:
