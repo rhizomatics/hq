@@ -25,8 +25,10 @@ Application logos should have a consistent theme and colour set, drawing on simi
 All websites will have:
 
 - Sitemap
+  - Registered with both Google Search Console and Bing
 - LLMs text, basic and full
 - FavIcon
 - Apple Touch Icon
 - robots.txt, allowing search
 - 'Managed by HQ' badge with link to hq.rhizomatics.org.uk
+- Products in Sailing line will have a Boat Tech Directory badge
